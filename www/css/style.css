@@ -1,1 +1,55 @@
 /* Empty. Add your own CSS if you like */
+.padding{
+  padding:20px;
+}
+.zero-padding{
+  padding: 0 !important;
+}
+.zero-margin{
+  margin: 0 !important;
+}
+.size-margin-auto{
+  margin-left: auto;
+  margin-right: auto;
+}
+.absolute{
+  position: absolute;
+}
+.full-width{
+  width:100% !important;
+}
+.align-center{
+  text-align: center;
+}
+/*buttons*/
+.button.square{
+  border-radius: 0;
+}
+.custom-height-button{
+  min-height: 0 !important;
+  padding: 0 !important;
+}
+.button-sm{
+  height: 60px;
+  line-height: 25px;
+}
+.button-orange{
+  background-color: #f48420;
+  color: #ffffff;
+}
+
+.text-md{
+  height: 55px;
+}
+.item-input > input {
+  padding-left:10px !important;
+}
+
+/*text deco*/
+.capital{
+  text-transform: uppercase;
+}
+.underlined{
+  text-decoration: underline;
+}
+

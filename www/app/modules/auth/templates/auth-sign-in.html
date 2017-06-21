@@ -1,0 +1,33 @@
+<ion-view>
+  <ion-content class="">
+    <div class="sign-in-background"></div>
+    <div class="contents padding">
+      <div class="list list-inset">
+        <label class="item item-input text-md">
+          <i class="icon ion-ios-email-outline placeholder-icon"></i>
+          <input type="email" placeholder="{{'EMAIL_ADDRESS' | translate}}" ng-model="user.email">
+        </label>
+        <label class="item item-input text-md">
+          <i class="icon ion-ios-locked-outline placeholder-icon"></i>
+          <input type="email" placeholder="{{'PASSWORD' | translate}}" ng-model="user.email">
+        </label>
+      </div>
+      <div>
+        <button class="button custom-height-button button-sm square button-block button-orange capital ">
+          {{"SIGN_IN" | translate}}
+        </button>
+      </div>
+      <div class="row" style="margin: 10px 0 10px 0;">
+        <a ng-click="" class="underlined size-margin-auto" style="margin-top: 15px;margin-bottom: 15px;">{{"FORGET_PASSWORD" | translate}}</a>
+      </div>
+      <div class="" style="bottom: 40px;">
+        <p class="align-center light">{{"SIGN_IN_WITH" | translate}}</p>
+        <button class="button custom-height-button button-sm square button-block button-positive icon ion-social-facebook "></button>
+        <button class="button custom-height-button button-sm square button-block button-assertive icon ion-social-googleplus "></button>
+        <p class="align-center light">
+          <span>{{"NO_ACCOUNT" | translate}}</span> <a ng-click="" class="underlined">{{"REGISTER" | translate}}</a>
+        </p>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

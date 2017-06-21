@@ -1,0 +1,22 @@
+<ion-view>
+    <ion-content class="padding auth-background">
+      <div class="absolute full-width" style="bottom: 180px;">
+        <p class="align-center light">{{"SIGN_IN_WITH" | translate}}</p>
+        <button class="button custom-height-button button-sm square button-block button-positive icon ion-social-facebook"></button>
+        <button class="button custom-height-button button-sm square button-block button-assertive icon ion-social-googleplus"></button>
+      </div>
+
+      <div class="absolute full-width" style="bottom: 40px;">
+        <p class="light">{{"USE_EMAIL" | translate}}</p>
+        <div class="row zero-padding">
+          <div class="col">
+            <button class="button square button-block button-light zero-margin" ng-click="signInPage()">{{"SIGN_IN" | translate}}</button>
+          </div>
+          <div class="col">
+            <button class="button square button-block button-light zero-margin" ng-click="registerPage()">{{"REGISTER" | translate}}</button>
+          </div>
+        </div>
+      </div>
+
+    </ion-content>
+</ion-view>

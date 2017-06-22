@@ -5,6 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 var arcMall = angular.module('arcMall', [
   'ionic',
+  'ngMaterial',
   'pascalprecht.translate',
   'lang_en',
   'modules'

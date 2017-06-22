@@ -1,4 +1,34 @@
 <ion-view>
   <ion-content class="padding">
+    <a class="button button-icon row"  ng-click="toggleSideBar()">
+      <i class="ion-navicon white" style="font-size: 30px;"></i>
+    </a>
   </ion-content>
+
 </ion-view>
+<md-sidenav class="md-sidenav-left md-whiteframe-4dp" md-component-id="right">
+  <md-content >
+    <md-list flex>
+      <md-list-item class="md-3-line" style="height: 40px; min-height:0px; padding-top: 10px;">
+        <div class="md-list-item-text zero-margin" layout="column" ng-click="goToLogin()">
+          <h3><i class="ion-log-in"></i> Login</h3>
+        </div>
+      </md-list-item>
+      <md-list-item class="md-3-line" style="height: 40px; min-height:0px; padding-top: 10px;">
+        <div class="md-list-item-text zero-margin" layout="column" ng-click="goToRegistration()">
+          <h3><i class="ion-person-add"></i> Register</h3>
+        </div>
+      </md-list-item>
+      <md-list-item class="md-3-line" style="height: 40px; min-height:0px; padding-top: 10px;">
+        <div class="md-list-item-text zero-margin" layout="column" ng-click="goToOrderHistory()">
+          <h3><i class="ion-document-text"></i> Order History</h3>
+        </div>
+      </md-list-item>
+      <md-list-item class="md-3-line" style="height: 40px; min-height:0px; padding-top: 10px;">
+        <div class="md-list-item-text zero-margin" layout="column" ng-click="logOut()">
+          <h3><i class="ion-log-out"></i> Log Out</h3>
+        </div>
+      </md-list-item>
+    </md-list>
+  </md-content>
+</md-sidenav>

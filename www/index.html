@@ -18,7 +18,7 @@
 
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet">
     -->
@@ -30,6 +30,15 @@
     <script src="cordova.js"></script>
     <!--libraries-->
     <script src="lib/angular-translate/angular-translate.min.js"></script> <!-- translate -->
+    <!--material-->
+    <!-- Angular Material requires Angular.js Libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+
+    <!-- Angular Material Library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+
     <!--common-->
     <script src="app/common/lang/en.js"></script>
     <!-- your app's js -->
@@ -41,7 +50,17 @@
     <script src="app/modules/auth/controllers/AuthSignInCtrl.js"></script>
     <script src="app/modules/auth/controllers/AuthSignUpCtrl.js"></script>
     <link href="app/modules/auth/styles/auth-styles.css" rel="stylesheet">
-
+    <!--shopping-->
+    <script src="app/modules/shop/shop.config.js"></script>
+    <script src="app/modules/shop/controllers/HomeCtrl.js"></script>
+    <script src="app/modules/shop/controllers/CategoryCtrl.js"></script>
+    <script src="app/modules/shop/controllers/WishListCtrl.js"></script>
+    <script src="app/modules/shop/controllers/ItemCtrl.js"></script>
+    <link href="app/modules/shop/styles/shop-styles.css" rel="stylesheet">
+    <!--checkout-->
+    <script src="app/modules/checkout/checkout.config.js"></script>
+    <script src="app/modules/checkout/controllers/CartCtrl.js"></script>
+    <link href="app/modules/checkout/styles/checkout-styles.css" rel="stylesheet">
 
   </head>
   <body ng-app="arcMall">
@@ -50,7 +69,7 @@
       <!--<ion-header-bar class="bar-stable">-->
         <!--<h1 class="title">ARCMALL App Home</h1>-->
       <!--</ion-header-bar>-->
-      <ion-content>
+      <ion-content overflow-scroll="true">
         <ion-nav-view>
 
         </ion-nav-view>

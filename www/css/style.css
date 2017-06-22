@@ -52,4 +52,26 @@
 .underlined{
   text-decoration: underline;
 }
+.font-L{
+  font-size: 25px;
+}
+.white{
+  color: white !important;
+}
+.black{
+  color: black;
+}
 
+/*header*/
+.header-md{
+  height: 55px;
+}
+.has-header-md{
+  top:55px !important;
+}
+.has-header-md-tab{
+  top: 104px !important;
+}
+.left-title{
+  margin-left: 60px;
+}

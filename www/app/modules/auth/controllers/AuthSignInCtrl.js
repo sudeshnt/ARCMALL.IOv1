@@ -2,8 +2,13 @@
 
 angular.module('auth.module').controller('AuthSignInCtrl', AuthSignInCtrl);
 
-AuthSignInCtrl.$inject = ['$scope','$rootScope'];
+AuthSignInCtrl.$inject = ['$scope','$state','$rootScope'];
 
-function AuthSignInCtrl($scope,$rootScope) {
+function AuthSignInCtrl($scope,$state,$rootScope) {
   console.log('auth sign in');
+
+  $scope.signIn = function () {
+    $state.go('home');
+  }
+
 }

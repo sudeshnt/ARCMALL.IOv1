@@ -1,0 +1,110 @@
+<ion-header-bar class="bar bar-header header-md bar-darker">
+  <div style="width: 100%; display: inherit; margin-top: 0px !important;" >
+    <div class="search-box-wrapper">
+      <!--<a class="button button-icon row"  ng-click="goToHome()">-->
+        <label class="item item-input" style="height:45px;">
+          <i class="icon ion-navicon-round placeholder-icon font-L" ></i>
+          <input type="email" placeholder="{{'I_AM_SHOPPING_FOR' | translate}}" ng-model="user.email">
+        </label>
+        <!--<i class="ion-android-arrow-back white" style="font-size: 20px;"></i>-->
+      <!--</a>-->
+    </div>
+    <div class="absolute cart-icon-wrapper">
+      <a class="button button-icon row"  ng-click="showListBottomSheet()">
+        <i class="ion-android-cart font-L white" ></i>
+      </a>
+    </div>
+  </div>
+</ion-header-bar>
+<div class="tabs-striped tabs-top tabs-background-dark tabs-color-light ">
+  <div class="tabs has-header-md tabs-darker">
+    <a class="tab-item active" href="">
+      <!--<i class="icon ion-home"></i>-->
+      <p class="capital">{{'WHAT_S_NEW' | translate}}</p>
+    </a>
+    <a class="tab-item" href="">
+      <!--<i class="icon ion-star"></i>-->
+      <p class="capital">{{'JUST_FOR_YOU' | translate}}</p>
+    </a>
+    <!--<a class="tab-item" href="">-->
+      <!--<i class="icon ion-gear-a"></i>-->
+      <!--Settings-->
+    <!--</a>-->
+  </div>
+</div>
+
+<ion-view>
+  <ion-content class="has-header-md-tab" overflow-scroll="true">
+    <ion-slide-box on-slide-changed="slideChanged(index)" slide-interval="1000">
+      <ion-slide>
+        <div id="shop">
+          <div class="content">
+            <img class="full-width" style="height: 220px;" src="app/modules/shop/img/slide-show-1.jpg"/>
+            <div class="desc">
+              <h3 style="color: #617e89;">New Collection</h3>
+              <p>THis crisp white cotton poplin<br> shirt has wide cuffs</p>
+              <a class="button  button-assertive capital"  ng-click="toggleSideBar()">{{'DISCOVER' | translate}}</a>
+            </div>
+          </div>
+        </div>
+      </ion-slide>
+      <ion-slide>
+        <div id="shop">
+          <div class="content">
+            <img class="full-width" style="height: 220px;" src="app/modules/shop/img/slide-show-2.jpg"/>
+            <div class="desc">
+              <h3 style="color: #617e89;">New Collection</h3>
+              <p>THis crisp white cotton poplin<br> shirt has wide cuffs</p>
+              <a class="button  button-assertive capital" href="#">{{'DISCOVER' | translate}}</a>
+            </div>
+          </div>
+        </div>
+      </ion-slide>
+      <ion-slide>
+        <div id="shop">
+          <div class="content">
+            <img class="full-width" style="height: 220px;" src="app/modules/shop/img/slide-show-3.jpg"/>
+            <div class="desc">
+              <h3 style="color: #617e89;">New Collection</h3>
+              <p>THis crisp white cotton poplin<br> shirt has wide cuffs</p>
+              <a class="button  button-assertive capital" ng-click="toggleSideBar()" >{{'DISCOVER' | translate}}</a>
+            </div>
+          </div>
+        </div>
+      </ion-slide>
+    </ion-slide-box>
+  </ion-content>
+
+</ion-view>
+<md-sidenav class="md-sidenav-left .md-whiteframe-1dp" md-component-id="right" style="width: calc(100% - 100px) !important;">
+
+  <md-content>
+    <md-list flex>
+      <md-list-item class="md-3-line" style="height: 40px; min-height:0px; padding-top: 10px;" >
+        <div class="md-list-item-text zero-margin" layout="column" ng-click="goToLogin()">
+          <h3><i class="ion-log-in"></i> Login</h3>
+        </div>
+      </md-list-item>
+      <!--<md-divider ></md-divider>-->
+      <md-list-item class="md-3-line" style="height: 40px; min-height:0px; padding-top: 10px;" >
+        <div class="md-list-item-text zero-margin" layout="column" ng-click="goToRegistration()">
+          <h3><i class="ion-person-add"></i> Register</h3>
+        </div>
+      </md-list-item>
+      <!--<md-divider ></md-divider>-->
+      <md-list-item class="md-3-line" style="height: 40px; min-height:0px; padding-top: 10px;">
+        <div class="md-list-item-text zero-margin" layout="column" ng-click="goToOrderHistory()">
+          <h3><i class="ion-document-text"></i> Order History</h3>
+        </div>
+      </md-list-item>
+
+      <md-list-item class="md-3-line" style="height: 40px; min-height:0px; padding-top: 10px;">
+        <div class="md-list-item-text zero-margin" layout="column" ng-click="logOut()">
+          <h3><i class="ion-log-out"></i> Log Out</h3>
+        </div>
+      </md-list-item>
+      <!--<md-divider ></md-divider>-->
+    </md-list>
+
+  </md-content>
+</md-sidenav>

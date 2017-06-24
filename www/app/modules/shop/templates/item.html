@@ -13,23 +13,25 @@
     </div>
   </div>
 </ion-header-bar>
+
 <ion-view>
-  <ion-content class="has-header-md" overflow-scroll="true">
-    <div class="" style="background-color: #2b3036">
-      <div class="full-width">
-        <div class="row">
-          <div class="col">
-            <button class="button square button-block button-light zero-margin capital white" style="background-color:#4e636c; " ng-click="signInPage()">
-              {{"ADD_TO_WISH_LIST" | translate}}
-            </button>
-          </div>
-          <div class="col">
-            <button class="button square button-block button-light zero-margin capital white" style="background-color:#f48347; " ng-click="registerPage()">
-              {{"ADD_TO_CART" | translate}}
-            </button>
-          </div>
+  <div class="" style="background-color: #2b3036;margin-top:55px;">
+    <div class="full-width">
+      <div class="row">
+        <div class="col">
+          <button class="button square button-block button-light zero-margin capital white" style="background-color:#4e636c; " ng-click="signInPage()">
+            {{"ADD_TO_WISH_LIST" | translate}}
+          </button>
+        </div>
+        <div class="col">
+          <button class="button square button-block button-light zero-margin capital white" style="background-color:#f48347; " ng-click="registerPage()">
+            {{"ADD_TO_CART" | translate}}
+          </button>
         </div>
       </div>
     </div>
+  </div>
+  <ion-content class="has-header-md-search" overflow-scroll="true">
+
   </ion-content>
 </ion-view>

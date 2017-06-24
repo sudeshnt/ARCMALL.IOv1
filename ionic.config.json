@@ -1,4 +1,8 @@
 {
   "name": "ARCMALL.IOv1",
-  "app_id": ""
+  "app_id": "",
+  "type": "ionic1",
+  "watchPatterns": [
+    "scss/**/*"
+  ]
 }

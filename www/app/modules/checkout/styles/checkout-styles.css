@@ -32,3 +32,35 @@
 
 .bottomSheetdemoBasicUsage md-toast > * {
   font-weight: bolder; }
+
+.cart-item{
+  height:95px;
+}
+.cart-item > .item-avatar{
+  padding-left: 100px;
+  padding-top: 20px;
+}
+.cart-item > .item-avatar > img {
+  max-height: 60px;
+  max-width: 60px;
+}
+
+.circle {
+  display: block;
+  width: 60px;
+  height: 60px;
+  /*margin: 1em auto;*/
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  -webkit-border-radius: 99em;
+  -moz-border-radius: 99em;
+  /*border-radius: 99em;*/
+  border: 0px solid #eee;
+  box-shadow: 0 3px 2px rgba(0, 0, 0, 0.3);
+
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  border-radius: 50%;
+}

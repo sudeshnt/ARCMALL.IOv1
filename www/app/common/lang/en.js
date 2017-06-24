@@ -20,6 +20,8 @@ angular.module('lang_en',['pascalprecht.translate','ngSanitize'])
       WISH_LIST:"Wish List",
       ADD_TO_WISH_LIST:"add to wish list",
       ADD_TO_CART:"add to cart",
+      SEARCH_AN_ITEM:"Search an Item ...",
+      BILLING_DETAILS:"Billing Details",
     });
     $translateProvider.useSanitizeValueStrategy('escapeParameters');
   }]);

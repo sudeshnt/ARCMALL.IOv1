@@ -7,7 +7,7 @@
     </div>
     <h4 class="white left-title">{{'ALL_CATEGORIES' | translate}}</h4>
     <div class="absolute cart-icon-wrapper">
-      <a class="button button-icon row">
+      <a class="button button-icon row" href="/#/cart">
         <i class="ion-android-cart font-L white" ></i>
       </a>
     </div>
@@ -32,7 +32,7 @@
 
 <ion-view>
   <ion-content class="has-header-md-tab" overflow-scroll="true">
-    <div class="row ">
+    <div class="row" style="padding: 1px 5px 4px;" ng-click="openWishList()">
       <div class="list card card-margin">
         <div class="item item-image">
           <img src="app/modules/shop/img/cat-3.jpg">

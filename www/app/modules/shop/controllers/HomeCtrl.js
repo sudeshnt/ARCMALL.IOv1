@@ -6,6 +6,10 @@ HomeCtrl.$inject = ['$scope','$state','$rootScope','$timeout','$mdSidenav','$log
 
 function HomeCtrl($scope,$state,$rootScope,$timeout,$mdSidenav,$log,$mdBottomSheet, $mdToast) {
 
+  $scope.openCategories = function (){
+    $state.go('categories');
+  };
+
   $scope.showListBottomSheet = function() {
     $scope.alert = '';
     $mdBottomSheet.show({

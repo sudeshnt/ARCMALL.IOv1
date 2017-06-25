@@ -1,8 +1,8 @@
 .auth-background {
-  background: url('../img/auth-home.jpg') no-repeat center;
+  background: url('../img/auth-home.png') no-repeat center;
 }
 .sign-in-background{
-  background-image: url('../img/auth-home.jpg');
+  background-image: url('../img/auth-home.png');
   background-size: cover;
   display: block;
   filter: blur(7px);

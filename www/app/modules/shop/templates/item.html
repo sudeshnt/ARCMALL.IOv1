@@ -17,14 +17,14 @@
 <ion-view>
   <div class="" style="background-color: #2b3036;margin-top:55px;">
     <div class="full-width">
-      <div class="row">
-        <div class="col">
-          <button class="button square button-block button-light zero-margin capital white" style="background-color:#4e636c; " ng-click="signInPage()">
+      <div class="row padding-top-zero">
+        <div class="col padding-top-zero">
+          <button class="button square button-block button-light zero-margin capital white" style="background-color:#4e636c; " ng-click="">
             {{"ADD_TO_WISH_LIST" | translate}}
           </button>
         </div>
-        <div class="col">
-          <button class="button square button-block button-light zero-margin capital white" style="background-color:#f48347; " ng-click="registerPage()">
+        <div class="col padding-top-zero">
+          <button class="button square button-block button-light zero-margin capital white" style="background-color:#f48347; " ng-click="openCartPage();">
             {{"ADD_TO_CART" | translate}}
           </button>
         </div>
@@ -32,6 +32,42 @@
     </div>
   </div>
   <ion-content class="has-header-md-search" overflow-scroll="true">
+    <div class="row">
+        <div class="list card item-card full-width" ng-click="openItemDetails()">
+          <div class="item item-image" style="height:auto;">
+            <!--<img src="app/modules/shop/img/wish-2.jpg" class="full-width full-height">-->
+            <ion-slide-box on-slide-changed="slideChanged(index)" slide-interval="1000" class="item-slide">
+              <ion-slide>
+                <div id="shop" ng-click="openCategories()" style="height: 300px;">
+                  <div class="content">
+                    <img class="full-height" src="app/modules/shop/img/item-slide-pink-1.jpg"/>
+                  </div>
+                </div>
+              </ion-slide>
+              <ion-slide>
+                <div id="shop" style="height: 300px;">
+                  <div class="content">
+                    <img class="full-height"  src="app/modules/shop/img/item-slide-pink-2.jpg"/>
+                  </div>
+                </div>
+              </ion-slide>
+              <ion-slide>
+                <div id="shop" style="height: 300px;">
+                  <div class="content">
+                    <img class="full-height"  src="app/modules/shop/img/item-slide-pink-3.jpg"/>
+                  </div>
+                </div>
+              </ion-slide>
+            </ion-slide-box>
+          </div>
+          <div class="item tabs-secondary tabs-icon-left white-tabs" style="padding: 10px;">
+            <h2 class="align-center">Blue </h2>
+            <h3 class="align-center">$ 100</h3>
+          </div>
+        </div>
+
+    </div>
+
 
   </ion-content>
 </ion-view>

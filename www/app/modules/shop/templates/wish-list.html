@@ -18,7 +18,7 @@
     </div>
   </div>
 </ion-header-bar>
-<label class="item item-input" style="height:55px;top: 59px;">
+<label class="item item-input" style="height:55px;top: 55px;">
   <i class="icon ion-android-search placeholder-icon font-L" ></i>
   <input type="email" placeholder="{{'SEARCH_AN_ITEM' | translate}}" ng-model="user.email">
 </label>
@@ -27,7 +27,7 @@
   <ion-content class="has-header-md-search" overflow-scroll="true">
     <div class="row">
       <div class="col zero-padding">
-        <div class="list card wish-list-card" >
+        <div class="list card wish-list-card" ng-click="openItemDetails()">
           <div class="item item-image" >
             <img src="app/modules/shop/img/wish-2.jpg" class="full-width full-height">
           </div>

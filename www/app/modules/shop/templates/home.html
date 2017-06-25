@@ -10,7 +10,7 @@
       <!--</a>-->
     </div>
     <div class="absolute cart-icon-wrapper">
-      <a class="button button-icon row"  ng-click="showListBottomSheet()">
+      <a class="button button-icon row"  href="/#/categories">
         <i class="ion-android-cart font-L white" ></i>
       </a>
     </div>
@@ -37,7 +37,7 @@
   <ion-content class="has-header-md-tab" overflow-scroll="true">
     <ion-slide-box on-slide-changed="slideChanged(index)" slide-interval="1000">
       <ion-slide>
-        <div id="shop">
+        <div id="shop" ng-click="openCategories()">
           <div class="content">
             <img class="full-width" style="height: 220px;" src="app/modules/shop/img/slide-show-1.jpg"/>
             <div class="desc">
@@ -73,11 +73,16 @@
         </div>
       </ion-slide>
     </ion-slide-box>
+
+    <hr width="100" size="2">
+    <h4 class="align-center">FEATURED BRANDS</h4>
+    <hr width="100" size="2">
+
+
   </ion-content>
 
 </ion-view>
 <md-sidenav class="md-sidenav-left .md-whiteframe-1dp" md-component-id="right" style="width: calc(100% - 100px) !important;">
-
   <md-content>
     <md-list flex>
       <md-list-item class="md-3-line" style="height: 40px; min-height:0px; padding-top: 10px;" >
@@ -105,6 +110,5 @@
       </md-list-item>
       <!--<md-divider ></md-divider>-->
     </md-list>
-
   </md-content>
 </md-sidenav>

@@ -152,7 +152,11 @@ background-color: #f68469;
   left: -10px;
   top: 40px;
 }
-
+.item-card{
+  margin-top: 10px;
+  margin-bottom: 0px !important;
+  border-radius: 10px;
+}
 .wish-list-card{
   overflow: visible;
   margin-bottom: 0px !important;
@@ -165,4 +169,18 @@ background-color: #f68469;
 .wish-list-card > .tabs-secondary{
   padding: 10px !important;
   border-radius: 0 0 8px 8px !important;
+}
+
+.item-slide > .item-slide > .slider-pager {
+  position: absolute;
+  bottom: 20px;
+  z-index: 1;
+  width: 100%;
+  height: 15px;
+  text-align: left;
+  left: 20px;
+}
+.item-title{
+  font-size: 18px !important;
+  font-weight: 600 !important;
 }

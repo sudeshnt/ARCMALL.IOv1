@@ -22,6 +22,11 @@ angular.module('lang_en',['pascalprecht.translate','ngSanitize'])
       ADD_TO_CART:"add to cart",
       SEARCH_AN_ITEM:"Search an Item ...",
       BILLING_DETAILS:"Billing Details",
+      YOUR_ORDER:"Your Order",
+      SELECT_A_PAYMENT_METHOD:"select a payment method",
+      SIZE:"size",
+      SHIPPING_AND_HANDLING:"shipping and handling",
+      ORDER_TOTAL:"order total",
     });
     $translateProvider.useSanitizeValueStrategy('escapeParameters');
   }]);

@@ -11,33 +11,76 @@
     </div>
   </div>
 </ion-header-bar>
+<div class="bar bar-subheader">
+  <h2 class="title white">{{"YOUR_ORDER" | translate}}</h2>
+</div>
 <ion-view>
-  <ion-content class="">
+  <ion-content class="has-subheader">
     <!--<md-button flex="50" class="md-primary md-raised" ng-click="showListBottomSheet()">Show as List</md-button>-->
+    <ion-list show-delete="false" can-swipe="true"  class="list card cart-item" style="margin:0;">
 
-    <div class="list card cart-item">
-      <div class="item item-avatar">
+      <ion-item href="#" class="card item item-avatar">
         <div class="circle" style="background-image:url('app/modules/checkout/img/cart-item-1.jpg')">
         </div>
-        <h2>Marty McFly</h2>
-        <p>November 05, 1955</p>
-      </div>
-    </div>
-    <div class="list card cart-item">
-      <div class="item item-avatar">
+        <h2 class="item-title">Toy Car</h2>
+        <p>For kids</p>
+        <span class="price">$ 100.00</span>
+        <a class="item-close-btn ion-close-round"></a>
+        <div class="chip capital">{{"SIZE" | translate}} : 8</div>
+        <div class="chip align-center">x1</div>
+        <ion-option-button class="button-assertive icon ion-trash-a"></ion-option-button>
+      </ion-item>
+
+      <ion-item href="#" class="card item item-avatar">
         <div class="circle" style="background-image:url('app/modules/checkout/img/cart-item-2.jpg')">
         </div>
-        <h2>Marty McFly</h2>
-        <p>November 05, 1955</p>
-      </div>
-    </div>
-    <div class="list card cart-item">
-      <div class="item item-avatar">
+        <h2 class="item-title">Sun Glasses</h2>
+        <p>Unisex</p>
+        <span class="price">$ 100.00</span>
+        <a class="item-close-btn ion-close-round"></a>
+        <div class="chip capital">{{"SIZE" | translate}} : 8</div>
+        <div class="chip align-center">x1</div>
+        <ion-option-button class="button-assertive icon ion-trash-a"></ion-option-button>
+      </ion-item>
+
+      <ion-item href="#" class="card item item-avatar">
         <div class="circle" style="background-image:url('app/modules/checkout/img/cart-item-3.jpg')">
         </div>
-        <h2>Marty McFly</h2>
-        <p>November 05, 1955</p>
+        <h2 class="item-title">GoPro Camera</h2>
+        <p>13 Mega Pixels</p>
+        <span class="price">$ 100.00</span>
+        <a class="item-close-btn ion-close-round"></a>
+        <div class="chip capital">{{"SIZE" | translate}} : 8</div>
+        <div class="chip align-center">x1</div>
+        <ion-option-button class="button-assertive icon ion-trash-a"></ion-option-button>
+      </ion-item>
+    </ion-list>
+
+    <ion-item class="card item">
+      <div class="row">
+        <div class="col capital" style="font-size: 15px;font-weight:700;padding: 12px 0 0 0px;">
+          {{"SHIPPING_AND_HANDLING" | translate}}
+        </div>
+        <div class="col align-right">
+          <div class="chip success capital" style="width:auto;color: white;">FREE SHIPPING</div>
+        </div>
       </div>
+      <hr>
+      <div class="row">
+        <div class="col capital" style="font-size: 15px;font-weight:700;padding: 5px 0 15px 0px;">
+          {{"ORDER_TOTAL" | translate}}
+        </div>
+        <div class="col align-right bill-price">
+          <span>$ 327.00</span>
+        </div>
+      </div>
+    </ion-item>
+
+    <div class="bottom-button">
+      <button class="button custom-height-button button-sm square button-block button-black capital" ng-click="signIn()">
+        {{"SELECT_A_PAYMENT_METHOD" | translate}}
+      </button>
     </div>
+
   </ion-content>
 </ion-view>

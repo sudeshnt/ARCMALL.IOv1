@@ -184,3 +184,34 @@ background-color: #f68469;
   font-size: 18px !important;
   font-weight: 600 !important;
 }
+
+
+.item-details-collapse{
+  height: 60px;
+  margin: 10px 15px 0 15px;
+  border-radius: 5px;
+  background-color: white !important;
+  border-color: white !important;
+}
+.item-details-collapse > div > i {
+  font-size: 20px;
+  color:#a6a5ab;
+}
+.item-details-collapse > div > span {
+  font-size: 18px;
+  font-weight: 600;
+}
+.list .item.item-accordion {
+  line-height: 38px;
+  margin: 0 15px;
+  padding-top: 0;
+  padding-bottom: 0;
+  transition: 0.09s all linear;
+}
+.list .item.item-accordion.ng-hide {
+  line-height: 0px;
+}
+.list .item.item-accordion.ng-hide-add,
+.list .item.item-accordion.ng-hide-remove {
+  display: block !important;
+}

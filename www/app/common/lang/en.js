@@ -27,6 +27,10 @@ angular.module('lang_en',['pascalprecht.translate','ngSanitize'])
       SIZE:"size",
       SHIPPING_AND_HANDLING:"shipping and handling",
       ORDER_TOTAL:"order total",
+      DESCRIPTION:"Description",
+      REVIEWS:"Reviews",
+      SHIPPING_INFORMATION:"Shipping Information",
+      RETURN_POLICY:"Return Policy",
     });
     $translateProvider.useSanitizeValueStrategy('escapeParameters');
   }]);

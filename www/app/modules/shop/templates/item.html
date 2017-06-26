@@ -68,6 +68,23 @@
 
     </div>
 
+    <ion-list>
+      <div ng-repeat="group in groups">
+        <ion-item class="item-stable card item-details-collapse"
+                  ng-click="toggleGroup(group)"
+                  ng-class="{active: isGroupShown(group)}">
+          <div style="margin-top: 17px;">
+            <i class="icon" ng-class="isGroupShown(group) ? 'ion-minus-round' : 'ion-plus-round'"></i>
+            &nbsp;
+            <span>{{group.name}}</span>
+          </div>
+        </ion-item>
+        <ion-item class="card item-accordion"
+                  ng-show="isGroupShown(group)">
+          asdsad
+        </ion-item>
+      </div>
+    </ion-list>
 
   </ion-content>
 </ion-view>

@@ -10,3 +10,6 @@ if this error appears : ANDROID_BUILD_SDK_VERSION not found
     cordova platform remove android
     cordova platform add android@5.1.1
     rebuild the project
+    
+    
+git push https://sudeshnt:snt930105@github.com/sudeshnt/ARCMALL.IOv1.git

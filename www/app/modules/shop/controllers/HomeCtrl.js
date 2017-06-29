@@ -2,10 +2,9 @@
 
 angular.module('shop.module').controller('HomeCtrl',HomeCtrl );
 
-HomeCtrl.$inject = ['$scope','$state','$rootScope','$timeout','$mdSidenav','$log','$mdBottomSheet', '$mdToast'];
+HomeCtrl.$inject = ['$scope','$state','$rootScope','$timeout','$mdSidenav','$log','$mdBottomSheet', '$mdToast','UserService','$ionicActionSheet','$ionicLoading'];
 
-function HomeCtrl($scope,$state,$rootScope,$timeout,$mdSidenav,$log,$mdBottomSheet, $mdToast) {
-
+function HomeCtrl($scope,$state,$rootScope,$timeout,$mdSidenav,$log,$mdBottomSheet, $mdToast,UserService,$ionicActionSheet,$ionicLoading) {
   $scope.openCategories = function (){
     $state.go('categories');
   };
@@ -56,5 +55,33 @@ function HomeCtrl($scope,$state,$rootScope,$timeout,$mdSidenav,$log,$mdBottomShe
   $scope.openMenu = function($mdOpenMenu, ev) {
     originatorEv = ev;
     $mdOpenMenu(ev);
+  };
+
+  $scope.user = UserService.getUser();
+
+  $scope.showLogOutMenu = function() {
+    var hideSheet = $ionicActionSheet.show({
+      destructiveText: 'Logout',
+      titleText: 'Are you sure you want to logout? This app is awsome so I recommend you to stay.',
+      cancelText: 'Cancel',
+      cancel: function() {},
+      buttonClicked: function(index) {
+        return true;
+      },
+      destructiveButtonClicked: function(){
+        $ionicLoading.show({
+          template: 'Logging out...'
+        });
+
+        // Facebook logout
+        facebookConnectPlugin.logout(function(){
+            $ionicLoading.hide();
+            $state.go('authHome');
+          },
+          function(fail){
+            $ionicLoading.hide();
+          });
+      }
+    });
   };
 }

@@ -53,6 +53,14 @@ ion-content{
   background-color: #f48420;
   color: #ffffff;
 }
+.button-orange.activated{
+  border-color: #d8851e !important;
+  background-color: #ea7000 !important;
+  color: #ffffff  !important;
+}
+.button-orange:hover{
+  color: #ffffff  !important;
+}
 .button-black{
   background-color: #38464f;
   color: #ffffff;

@@ -8,6 +8,9 @@ function HomeCtrl($scope,$state,$rootScope,$timeout,$mdSidenav,$log,$mdBottomShe
   $scope.openCategories = function (){
     $state.go('categories');
   };
+  $scope.openWishList = function () {
+    $state.go('wish-list');
+  };
 
   $scope.showListBottomSheet = function() {
     $scope.alert = '';
@@ -34,6 +37,7 @@ function HomeCtrl($scope,$state,$rootScope,$timeout,$mdSidenav,$log,$mdBottomShe
   $scope.toggleSideBar = buildToggler('right');
 
   function buildToggler(navID) {
+    console.log('asdsa');
     return function() {
       // Component lookup should always be available since we are not using `ng-if`
       $mdSidenav(navID)

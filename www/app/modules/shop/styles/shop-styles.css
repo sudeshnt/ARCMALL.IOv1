@@ -16,7 +16,7 @@
   left: 5px;
   width: 100%;
   padding-right: 80px;
-  padding-left: 15px;
+  padding-left: 5px;
 }
 .bar.bar-darker {
   border-color: #111;
@@ -127,11 +127,11 @@ text-overflow: ellipsis;
 }
 .fab {
 border:none;
-font-size:17px;
+font-size:15px;
 color:white;
 background-color: #f68469;
 width: 60px;
-height: 40px;
+height: 35px;
 margin: auto;
 -webkit-box-shadow: 2px 3px 3px 0px rgba(41, 41, 41, .3);
 -moz-box-shadow: 2px 3px 3px 0px rgba(41, 41, 41, .3);
@@ -163,7 +163,7 @@ background-color: #f68469;
   border-radius: 10px;
 }
 .wish-list-card > .item-image{
-  height:300px;
+  height: 175px;
   border-radius: 8px 8px 0 0 !important;
 }
 .wish-list-card > .tabs-secondary{
@@ -184,7 +184,10 @@ background-color: #f68469;
   font-size: 18px !important;
   font-weight: 600 !important;
 }
-
+.cart-item-title{
+  font-size: 14px !important;
+  font-weight: 600 !important;
+}
 
 .item-details-collapse{
   height: 60px;
@@ -214,4 +217,25 @@ background-color: #f68469;
 .list .item.item-accordion.ng-hide-add,
 .list .item.item-accordion.ng-hide-remove {
   display: block !important;
+}
+.search-box{
+  height:45px;
+  margin-left: 40px;
+}
+.sidebar-toggle{
+  position: absolute;
+  top:8px;
+}
+.md-sidenav-left{
+  min-width: 0px;
+  width: 250px !important;
+}
+.sidenav-options{
+  margin-left: 15px;
+  font-size: 15px;
+  font-weight: 500;
+}
+.sidenav-icon{
+  font-size: 20px;
+  color: #a6a5ab;
 }

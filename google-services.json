@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "683451474237",
+    "project_id": "firebase-arcmall"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:683451474237:android:9717a2d6d2e294f7",
+        "android_client_info": {
+          "package_name": "com.alofatechlabs.arcMall"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "683451474237-k2fmieqk1k290egjc6b896rc3ec558ko.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.alofatechlabs.arcMall",
+            "certificate_hash": "ab0312402cc79bf3819cccc552d7cc6f2f6ca27c"
+          }
+        },
+        {
+          "client_id": "683451474237-itgqv3o8q200eeh6ov707hrd3vgc379t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-vSszfcvN8Dwagm5D8yqhyIMBxS2dnVs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -37,7 +37,9 @@
   height:100px;
 }
 .cart-item > .list > ion-item {
-  height:100px;
+   padding-top: 0;
+   padding-bottom: 0;
+  height:95px;
   margin:15px 10px;
 }
 .cart-item  > .list > ion-item > a{
@@ -45,7 +47,11 @@
   padding-left:105px;
   padding-top:10px;
 }
+.item-options{
+  border-style: none;
+}
 ion-option-button{
+  border-style: none !important;
   width:100px;
   background-color: #38464f !important;
 }
@@ -82,13 +88,13 @@ ion-option-button{
 }
 .chip {
   display: inline-block;
-  padding: 4px 9px;
+  padding: 2px 9px;
   border: none;
-  font-size: 12px;
+  font-size: 10px;
   color: black;
   background-color: #e2e4e3;
   width: 60px;
-  height: 30px;
+  height: 25px;
   border-radius: 4px;
   /*-webkit-box-shadow: 2px 3px 3px 0px rgba(41, 41, 41, .3);*/
   /*-moz-box-shadow: 2px 3px 3px 0px rgba(41, 41, 41, .3);*/
@@ -96,8 +102,8 @@ ion-option-button{
 }
 .price{
   position: absolute;
-  top: 35px;
-  right: 15px;
+  top: 25px;
+  right: 10px;
   color: #a8a7af;
 }
 .item-close-btn{

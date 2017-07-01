@@ -2,15 +2,16 @@
   <div style="width: 100%; display: inherit; margin-top: 0px !important;" >
     <div class="search-box-wrapper">
       <!--<a class="button button-icon row"  ng-click="goToHome()">-->
-        <label class="item item-input" style="height:45px;">
-          <i class="icon ion-navicon-round placeholder-icon font-L" ></i>
+        <a ng-click="toggleSideBar()" class="sidebar-toggle"><i class="icon ion-navicon-round placeholder-icon font-L"></i></a>
+
+        <label class="item item-input search-box">
           <input type="email" placeholder="{{'I_AM_SHOPPING_FOR' | translate}}" ng-model="user.email">
         </label>
         <!--<i class="ion-android-arrow-back white" style="font-size: 20px;"></i>-->
       <!--</a>-->
     </div>
     <div class="absolute cart-icon-wrapper">
-      <a class="button button-icon row"  href="/#/categories">
+      <a class="button button-icon row" >
         <i class="ion-android-cart font-L white" ></i>
       </a>
     </div>
@@ -37,13 +38,13 @@
   <ion-content class="has-header-md-tab" overflow-scroll="true">
     <ion-slide-box on-slide-changed="slideChanged(index)" slide-interval="1000">
       <ion-slide>
-        <div id="shop" ng-click="openCategories()">
+        <div id="shop">
           <div class="content">
             <img class="full-width" style="height: 220px;" src="app/modules/shop/img/slide-show-1.jpg"/>
             <div class="desc">
               <h3 style="color: #617e89;">New Collection</h3>
               <p>THis crisp white cotton poplin<br> shirt has wide cuffs</p>
-              <a class="button  button-assertive capital"  ng-click="toggleSideBar()">{{'DISCOVER' | translate}}</a>
+              <a class="button  button-assertive capital">{{'DISCOVER' | translate}}</a>
             </div>
           </div>
         </div>
@@ -55,7 +56,7 @@
             <div class="desc">
               <h3 style="color: #617e89;">New Collection</h3>
               <p>THis crisp white cotton poplin<br> shirt has wide cuffs</p>
-              <a class="button  button-assertive capital" href="#">{{'DISCOVER' | translate}}</a>
+              <a class="button  button-assertive capital">{{'DISCOVER' | translate}}</a>
             </div>
           </div>
         </div>
@@ -67,7 +68,7 @@
             <div class="desc">
               <h3 style="color: #617e89;">New Collection</h3>
               <p>THis crisp white cotton poplin<br> shirt has wide cuffs</p>
-              <a class="button  button-assertive capital" ng-click="toggleSideBar()" >{{'DISCOVER' | translate}}</a>
+              <a class="button  button-assertive capital">{{'DISCOVER' | translate}}</a>
             </div>
           </div>
         </div>
@@ -77,38 +78,63 @@
     <hr width="100" size="2">
     <h4 class="align-center">FEATURED BRANDS</h4>
     <hr width="100" size="2">
-    <a class="button button-assertive button-block button-outline" ng-click="showLogOutMenu()">Log Out</a>
+
+    <!--<a class="button button-assertive button-block button-outline" ng-click="showLogOutMenu()">Log Out</a>-->
 
   </ion-content>
 
 </ion-view>
-<md-sidenav class="md-sidenav-left .md-whiteframe-1dp" md-component-id="right" style="width: calc(100% - 100px) !important;">
-  <md-content>
+<md-sidenav class="md-sidenav-left md-whiteframe-4dp" md-component-id="right">
+  <!--<md-toolbar class="md-theme-light sidenav-header">-->
+  <!--<h1 class="md-toolbar-tools white">Touch2Buy</h1>-->
+  <!--</md-toolbar>-->
+  <md-content >
+    <img ng-src="app/modules/shop/img/home-slide-nav.jpg" style="width:100%">
     <md-list flex>
-      <md-list-item class="md-3-line" style="height: 40px; min-height:0px; padding-top: 10px;" >
-        <div class="md-list-item-text zero-margin" layout="column" ng-click="goToLogin()">
-          <h3><i class="ion-log-in"></i> Login</h3>
-        </div>
-      </md-list-item>
-      <!--<md-divider ></md-divider>-->
-      <md-list-item class="md-3-line" style="height: 40px; min-height:0px; padding-top: 10px;" >
-        <div class="md-list-item-text zero-margin" layout="column" ng-click="goToRegistration()">
-          <h3><i class="ion-person-add"></i> Register</h3>
-        </div>
-      </md-list-item>
-      <!--<md-divider ></md-divider>-->
-      <md-list-item class="md-3-line" style="height: 40px; min-height:0px; padding-top: 10px;">
-        <div class="md-list-item-text zero-margin" layout="column" ng-click="goToOrderHistory()">
-          <h3><i class="ion-document-text"></i> Order History</h3>
-        </div>
-      </md-list-item>
 
-      <md-list-item class="md-3-line" style="height: 40px; min-height:0px; padding-top: 10px;">
-        <div class="md-list-item-text zero-margin" layout="column" ng-click="logOut()">
-          <h3><i class="ion-log-out"></i> Log Out</h3>
+      <!--<md-divider ></md-divider>-->
+      <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;" >
+        <div class="md-list-item-text zero-margin" layout="column" ng-click="openCategories()">
+          <h4><i class="ion-ios-browsers sidenav-icon"></i><span class="sidenav-options">{{'ALL_CATEGORIES' | translate}}</span></h4>
         </div>
       </md-list-item>
-      <!--<md-divider ></md-divider>-->
+      <md-divider ></md-divider>
+      <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;">
+        <div class="md-list-item-text zero-margin" layout="column"  ng-click="openWishList()">
+          <h4><i class="ion-ios-heart sidenav-icon"></i><span class="sidenav-options">{{'WISH_LIST' | translate}}</span></h4>
+        </div>
+      </md-list-item>
+      <md-divider ></md-divider>
+      <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;">
+        <div class="md-list-item-text zero-margin" layout="column" ng-click="logOut()">
+          <h4><i class="ion-android-hand sidenav-icon"></i><span class="sidenav-options">{{'LOG_OUT' | translate}}</span></h4>
+        </div>
+      </md-list-item>
+      <md-divider ></md-divider>
     </md-list>
+    <!--<md-button ng-click="close()" class="md-primary">-->
+    <!--Close Sidenav Right-->
+    <!--</md-button>-->
   </md-content>
 </md-sidenav>
+<!--<md-sidenav class="md-sidenav-left .md-whiteframe-1dp" md-component-id="right">-->
+  <!--<md-content>-->
+    <!--<md-list flex>-->
+      <!--<md-list-item class="md-3-line" style="height: 40px; min-height:0px; padding-top: 10px;" >-->
+        <!--<div class="md-list-item-text zero-margin" layout="column" ng-click="openCategories()">-->
+          <!--<h3><i class="ion-log-in"></i> {{'ALL_CATEGORIES' | translate}}</h3>-->
+        <!--</div>-->
+      <!--</md-list-item>-->
+      <!--<md-list-item class="md-3-line" style="height: 40px; min-height:0px; padding-top: 10px;" >-->
+        <!--<div class="md-list-item-text zero-margin" layout="column" ng-click="openWishList()">-->
+          <!--<h3><i class="ion-heart"></i> {{'WISH_LIST' | translate}}</h3>-->
+        <!--</div>-->
+      <!--</md-list-item>-->
+      <!--<md-list-item class="md-3-line" style="height: 40px; min-height:0px; padding-top: 10px;">-->
+        <!--<div class="md-list-item-text zero-margin" layout="column" ng-click="logOut()">-->
+          <!--<h3><i class="ion-log-out"></i> {{'LOG_OUT' | translate}}</h3>-->
+        <!--</div>-->
+      <!--</md-list-item>-->
+    <!--</md-list>-->
+  <!--</md-content>-->
+<!--</md-sidenav>-->

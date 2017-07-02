@@ -2,7 +2,12 @@
   <div style="width: 100%; display: inherit; margin-top: 0px !important;" >
     <div class="search-box-wrapper">
       <!--<a class="button button-icon row"  ng-click="goToHome()">-->
-        <a ng-click="toggleSideBar()" class="sidebar-toggle"><i class="icon ion-navicon-round placeholder-icon font-L"></i></a>
+        <div class="absolute toggle-side-wrapper">
+          <a class="button button-icon row"  ng-click="toggleSideBar()">
+            <i class="ion-navicon-round font-L white"></i>
+          </a>
+        </div>
+        <!--<a ng-click="toggleSideBar()" class="sidebar-toggle"><i class="icon ion-navicon-round placeholder-icon font-L"></i></a>-->
 
         <label class="item item-input search-box">
           <input type="email" placeholder="{{'I_AM_SHOPPING_FOR' | translate}}" ng-model="user.email">
@@ -19,104 +24,151 @@
 </ion-header-bar>
 <div class="tabs-striped tabs-top tabs-background-dark tabs-color-light ">
   <div class="tabs has-header-md tabs-darker">
-    <a class="tab-item active" href="">
-      <!--<i class="icon ion-home"></i>-->
-      <p class="capital">{{'WHAT_S_NEW' | translate}}</p>
+    <a class="tab-item" ng-repeat="tab in tabs" ng-href="{{tab.route}}" ng-class="tab.active ? 'active' : ''">
+      <p class="capital">{{tab.heading}}</p>
     </a>
-    <a class="tab-item" href="">
-      <!--<i class="icon ion-star"></i>-->
-      <p class="capital">{{'JUST_FOR_YOU' | translate}}</p>
-    </a>
-    <!--<a class="tab-item" href="">-->
-      <!--<i class="icon ion-gear-a"></i>-->
-      <!--Settings-->
+    <!--<a class="tab-item" href="#/home/just-for-you">-->
+      <!--<p class="capital">{{'JUST_FOR_YOU' | translate}}</p>-->
+    <!--</a>-->
+    <!--<a class="tab-item" href="#/home/most-trending">-->
+      <!--<p class="capital">{{'MOST_TRENDING' | translate}}</p>-->
     <!--</a>-->
   </div>
 </div>
 
 <ion-view>
   <ion-content class="has-header-md-tab" overflow-scroll="true">
-    <ion-slide-box on-slide-changed="slideChanged(index)" slide-interval="1000">
-      <ion-slide>
-        <div id="shop">
-          <div class="content">
-            <img class="full-width" style="height: 220px;" src="app/modules/shop/img/slide-show-1.jpg"/>
-            <div class="desc">
-              <h3 style="color: #617e89;">New Collection</h3>
-              <p>THis crisp white cotton poplin<br> shirt has wide cuffs</p>
-              <a class="button  button-assertive capital">{{'DISCOVER' | translate}}</a>
-            </div>
-          </div>
-        </div>
-      </ion-slide>
-      <ion-slide>
-        <div id="shop">
-          <div class="content">
-            <img class="full-width" style="height: 220px;" src="app/modules/shop/img/slide-show-2.jpg"/>
-            <div class="desc">
-              <h3 style="color: #617e89;">New Collection</h3>
-              <p>THis crisp white cotton poplin<br> shirt has wide cuffs</p>
-              <a class="button  button-assertive capital">{{'DISCOVER' | translate}}</a>
-            </div>
-          </div>
-        </div>
-      </ion-slide>
-      <ion-slide>
-        <div id="shop">
-          <div class="content">
-            <img class="full-width" style="height: 220px;" src="app/modules/shop/img/slide-show-3.jpg"/>
-            <div class="desc">
-              <h3 style="color: #617e89;">New Collection</h3>
-              <p>THis crisp white cotton poplin<br> shirt has wide cuffs</p>
-              <a class="button  button-assertive capital">{{'DISCOVER' | translate}}</a>
-            </div>
-          </div>
-        </div>
-      </ion-slide>
-    </ion-slide-box>
+    <ion-nav-view name="whats-new-tab" ng-if="activeTabName=='whats-new-tab'"></ion-nav-view>
+    <ion-nav-view name="just-for-you-tab" ng-if="activeTabName=='just-for-you-tab'"></ion-nav-view>
+    <ion-nav-view name="most-trending-tab" ng-if="activeTabName=='most-trending-tab'"></ion-nav-view>
 
-    <hr width="100" size="2">
-    <h4 class="align-center">FEATURED BRANDS</h4>
-    <hr width="100" size="2">
+
+
+    <!--<ion-slide-box on-slide-changed="slideChanged(index)" slide-interval="1000">-->
+      <!--<ion-slide>-->
+        <!--<div id="shop">-->
+          <!--<div class="content">-->
+            <!--<img class="full-width" style="height: 220px;" src="app/modules/shop/img/slide-show-1.jpg"/>-->
+            <!--<div class="desc">-->
+              <!--<h3 style="color: #617e89;">New Collection</h3>-->
+              <!--<p>THis crisp white cotton poplin<br> shirt has wide cuffs</p>-->
+              <!--<a class="button  button-assertive capital">{{'DISCOVER' | translate}}</a>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</ion-slide>-->
+      <!--<ion-slide>-->
+        <!--<div id="shop">-->
+          <!--<div class="content">-->
+            <!--<img class="full-width" style="height: 220px;" src="app/modules/shop/img/slide-show-2.jpg"/>-->
+            <!--<div class="desc">-->
+              <!--<h3 style="color: #617e89;">New Collection</h3>-->
+              <!--<p>THis crisp white cotton poplin<br> shirt has wide cuffs</p>-->
+              <!--<a class="button  button-assertive capital">{{'DISCOVER' | translate}}</a>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</ion-slide>-->
+      <!--<ion-slide>-->
+        <!--<div id="shop">-->
+          <!--<div class="content">-->
+            <!--<img class="full-width" style="height: 220px;" src="app/modules/shop/img/slide-show-3.jpg"/>-->
+            <!--<div class="desc">-->
+              <!--<h3 style="color: #617e89;">New Collection</h3>-->
+              <!--<p>THis crisp white cotton poplin<br> shirt has wide cuffs</p>-->
+              <!--<a class="button  button-assertive capital">{{'DISCOVER' | translate}}</a>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</ion-slide>-->
+    <!--</ion-slide-box>-->
+
+    <!--<hr width="100" size="2">-->
+    <!--<h4 class="align-center">FEATURED BRANDS</h4>-->
+    <!--<hr width="100" size="2">-->
+
+    <!--<div class="row">-->
+      <!--<div class="col">-->
+        <!--<div class="row zero-padding" style="height: 50%;">-->
+          <!--<div class="list card card-margin full-height">-->
+            <!--<div class="item item-image full-height" >-->
+              <!--<img src="app/modules/shop/img/featured-2.jpg" class="full-height">-->
+              <!--<div class="text-on-image card-title-shadow" >-->
+                <!--<h2 class="align-center">$ 30</h2>-->
+                <!--<h3 class="align-center">Converse</h3>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="row zero-padding" style="height: 50%;">-->
+          <!--<div class="list card card-margin full-height">-->
+            <!--<div class="item item-image full-height" >-->
+              <!--<img src="app/modules/shop/img/featured-3.jpg" class="full-height">-->
+              <!--<div class="text-on-image card-title-shadow" >-->
+                <!--<h2 class="align-center">$ 480</h2>-->
+                <!--<h3 class="align-center">Lookbook Spring</h3>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="col">-->
+        <!--<div class="list card card-margin full-height" >-->
+          <!--<div class="item item-image full-height" >-->
+            <!--<img src="app/modules/shop/img/featured-1.jpg" class="full-height">-->
+            <!--<div class="text-on-image card-title-shadow">-->
+              <!--<h2 class="align-center">$ 150</h2>-->
+              <!--<h3 class="align-center">Contemporory Classic</h3>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
 
     <!--<a class="button button-assertive button-block button-outline" ng-click="showLogOutMenu()">Log Out</a>-->
 
   </ion-content>
+  <md-sidenav class="md-sidenav-left md-whiteframe-4dp" md-component-id="right">
+    <!--<md-toolbar class="md-theme-light sidenav-header">-->
+    <!--<h1 class="md-toolbar-tools white">Touch2Buy</h1>-->
+    <!--</md-toolbar>-->
+    <md-content >
+      <img ng-src="app/modules/shop/img/home-slide-nav.jpg" style="width:100%">
+      <md-list flex>
+
+        <!--<md-divider ></md-divider>-->
+        <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;" >
+          <div class="md-list-item-text zero-margin" layout="column" ng-click="openCategories()">
+            <h4><i class="ion-ios-browsers sidenav-icon"></i><span class="sidenav-options">{{'ALL_CATEGORIES' | translate}}</span></h4>
+          </div>
+        </md-list-item>
+        <md-divider ></md-divider>
+        <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;">
+          <div class="md-list-item-text zero-margin" layout="column"  ng-click="openWishList()">
+            <h4><i class="ion-ios-heart sidenav-icon"></i><span class="sidenav-options">{{'WISH_LIST' | translate}}</span></h4>
+          </div>
+        </md-list-item>
+        <md-divider ></md-divider>
+        <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;">
+          <div class="md-list-item-text zero-margin" layout="column"  ng-click="openWishList()">
+            <h4><i class="ion-ios-albums sidenav-icon"></i><span class="sidenav-options">{{'ORDER_HISTORY' | translate}}</span></h4>
+          </div>
+        </md-list-item>
+        <md-divider ></md-divider>
+        <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;">
+          <div class="md-list-item-text zero-margin" layout="column" ng-click="logOut()">
+            <h4><i class="ion-android-hand sidenav-icon"></i><span class="sidenav-options">{{'LOG_OUT' | translate}}</span></h4>
+          </div>
+        </md-list-item>
+        <md-divider ></md-divider>
+      </md-list>
+      <!--<md-button ng-click="close()" class="md-primary">-->
+      <!--Close Sidenav Right-->
+      <!--</md-button>-->
+    </md-content>
+  </md-sidenav>
 
 </ion-view>
-<md-sidenav class="md-sidenav-left md-whiteframe-4dp" md-component-id="right">
-  <!--<md-toolbar class="md-theme-light sidenav-header">-->
-  <!--<h1 class="md-toolbar-tools white">Touch2Buy</h1>-->
-  <!--</md-toolbar>-->
-  <md-content >
-    <img ng-src="app/modules/shop/img/home-slide-nav.jpg" style="width:100%">
-    <md-list flex>
-
-      <!--<md-divider ></md-divider>-->
-      <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;" >
-        <div class="md-list-item-text zero-margin" layout="column" ng-click="openCategories()">
-          <h4><i class="ion-ios-browsers sidenav-icon"></i><span class="sidenav-options">{{'ALL_CATEGORIES' | translate}}</span></h4>
-        </div>
-      </md-list-item>
-      <md-divider ></md-divider>
-      <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;">
-        <div class="md-list-item-text zero-margin" layout="column"  ng-click="openWishList()">
-          <h4><i class="ion-ios-heart sidenav-icon"></i><span class="sidenav-options">{{'WISH_LIST' | translate}}</span></h4>
-        </div>
-      </md-list-item>
-      <md-divider ></md-divider>
-      <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;">
-        <div class="md-list-item-text zero-margin" layout="column" ng-click="logOut()">
-          <h4><i class="ion-android-hand sidenav-icon"></i><span class="sidenav-options">{{'LOG_OUT' | translate}}</span></h4>
-        </div>
-      </md-list-item>
-      <md-divider ></md-divider>
-    </md-list>
-    <!--<md-button ng-click="close()" class="md-primary">-->
-    <!--Close Sidenav Right-->
-    <!--</md-button>-->
-  </md-content>
-</md-sidenav>
 <!--<md-sidenav class="md-sidenav-left .md-whiteframe-1dp" md-component-id="right">-->
   <!--<md-content>-->
     <!--<md-list flex>-->

@@ -15,6 +15,7 @@ angular.module('lang_en',['pascalprecht.translate','ngSanitize'])
       I_AM_SHOPPING_FOR:"I'm Shopping for...",
       WHAT_S_NEW:"what's new",
       JUST_FOR_YOU:"just for you",
+      MOST_TRENDING:"Most Trending",
       DISCOVER:"discover",
       ALL_CATEGORIES:"All Categories",
       WISH_LIST:"Wish List",
@@ -32,6 +33,7 @@ angular.module('lang_en',['pascalprecht.translate','ngSanitize'])
       SHIPPING_INFORMATION:"Shipping Information",
       RETURN_POLICY:"Return Policy",
       LOG_OUT:"Log Out",
+      ORDER_HISTORY:"Order History",
     });
     $translateProvider.useSanitizeValueStrategy('escapeParameters');
   }]);

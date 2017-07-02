@@ -27,7 +27,7 @@ function AuthHomeCtrl($scope, $state, $q, UserService, $ionicLoading) {
         },
         function (obj) {
           console.log(obj);
-          $state.go('home');
+          $state.go('home.whatsNew');
           // alert(JSON.stringify(obj)); // do something useful instead of alerting
         },
         function (msg){

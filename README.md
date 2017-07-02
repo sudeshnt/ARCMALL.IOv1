@@ -26,3 +26,13 @@ refer to : https://github.com/jeduan/cordova-plugin-facebook4
 cordova plugin add https://github.com/EddyVerbruggen/cordova-plugin-googleplus --save --variable REVERSED_CLIENT_ID=reversed_client_id
 reversed_client_id : com.googleusercontent.apps.itgqv3o8q200eeh6ov707hrd3vgc379t-683451474237
 refere to : https://github.com/EddyVerbruggen/cordova-plugin-googleplus
+
+Pages Required
+--------------
+
+Register page
+Forget Password Page
+Insert New Password Page
+Item List
+Item Details (More-bottom)
+Order List

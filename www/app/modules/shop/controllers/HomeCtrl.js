@@ -2,13 +2,49 @@
 
 angular.module('shop.module').controller('HomeCtrl',HomeCtrl );
 
-HomeCtrl.$inject = ['$scope','$state','$rootScope','$timeout','$mdSidenav','$log','$mdBottomSheet', '$mdToast','UserService','$ionicActionSheet','$ionicLoading'];
+HomeCtrl.$inject = ['$scope','$state','$filter','$rootScope','$timeout','$mdSidenav','$log','$mdBottomSheet', '$mdToast','UserService','$ionicActionSheet','$ionicLoading'];
 
-function HomeCtrl($scope,$state,$rootScope,$timeout,$mdSidenav,$log,$mdBottomSheet, $mdToast,UserService,$ionicActionSheet,$ionicLoading) {
+function HomeCtrl($scope,$state,$filter,$rootScope,$timeout,$mdSidenav,$log,$mdBottomSheet, $mdToast,UserService,$ionicActionSheet,$ionicLoading) {
+
+  $scope.tabs = [
+    { index:0, heading: $filter('translate')('WHAT_S_NEW'), route:"#/home/whats-new", tabPage:'whats-new' ,active:true},
+    { index:1, heading: $filter('translate')('JUST_FOR_YOU'), route:"#/home/just-for-you", tabPage:'just-for-you',active:false},
+    { index:2, heading: $filter('translate')('MOST_TRENDING'), route:"#/home/most-trending", tabPage:'most-trending',active:false}
+  ];
+
+  $scope.$on("$stateChangeSuccess", function(event,toState, toParams, fromState, fromParams) {
+    switch(toState.name){
+      case 'home.whatsNew':
+        setActive('whats-new');
+        break;
+      case 'home.justForYou':
+        setActive('just-for-you');
+        break;
+      case 'home.mostTrending':
+        setActive('most-trending');
+        break;
+    }
+  });
+
+  function setActive(activeTab) {
+    console.log(activeTab+'-tab');
+    for(var i in $scope.tabs){
+      if($scope.tabs[i].tabPage === activeTab){
+        $scope.tabs[i].active = true;
+        $scope.activeTabName = activeTab+'-tab';
+      }else{
+        $scope.tabs[i].active = false;
+        // $scope.activeTabName = '';
+      }
+    }
+  }
+
   $scope.openCategories = function (){
+    $mdSidenav('right').close();
     $state.go('categories');
   };
   $scope.openWishList = function () {
+    $mdSidenav('right').close();
     $state.go('wish-list');
   };
 
@@ -37,7 +73,6 @@ function HomeCtrl($scope,$state,$rootScope,$timeout,$mdSidenav,$log,$mdBottomShe
   $scope.toggleSideBar = buildToggler('right');
 
   function buildToggler(navID) {
-    console.log('asdsa');
     return function() {
       // Component lookup should always be available since we are not using `ng-if`
       $mdSidenav(navID)
@@ -55,11 +90,11 @@ function HomeCtrl($scope,$state,$rootScope,$timeout,$mdSidenav,$log,$mdBottomShe
       });
   };
 
-  var originatorEv;
-  $scope.openMenu = function($mdOpenMenu, ev) {
-    originatorEv = ev;
-    $mdOpenMenu(ev);
-  };
+  // var originatorEv;
+  // $scope.openMenu = function($mdOpenMenu, ev) {
+  //   originatorEv = ev;
+  //   $mdOpenMenu(ev);
+  // };
 
   $scope.user = UserService.getUser();
 

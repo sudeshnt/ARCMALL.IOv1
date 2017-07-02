@@ -7,6 +7,10 @@
   left: 15px;
   top:8px;
 }
+.toggle-side-wrapper{
+  left: 5px;
+  top:8px;
+}
 .filter-icon-wrapper{
   right: 55px;
   top:8px;
@@ -27,6 +31,11 @@
 .tabs-darker{
   background-color: #2b3036 !important;
   background-image: none;
+}
+.tabs-darker > .tabs {
+  background-color: #2b3036 !important;
+  background-image: none;
+  color: white;
 }
 
 #shop{
@@ -227,6 +236,7 @@ background-color: #f68469;
   top:8px;
 }
 .md-sidenav-left{
+  margin-top: 100px;
   min-width: 0px;
   width: 250px !important;
 }

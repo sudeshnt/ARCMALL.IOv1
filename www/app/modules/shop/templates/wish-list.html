@@ -1,7 +1,7 @@
 <ion-header-bar class="bar bar-header header-md bar-darker">
   <div style="width: 100%; display: inherit; margin-top: 0px !important;" >
     <div class="absolute back-icon-wrapper">
-      <a class="button button-icon row">
+      <a class="button button-icon row" href="/#/categories">
         <i class="ion-navicon-round font-L white"></i>
       </a>
     </div>
@@ -29,13 +29,13 @@
       <div class="col zero-padding">
         <div class="list card wish-list-card" ng-click="openItemDetails()">
           <div class="item item-image" >
-            <img src="app/modules/shop/img/wish-2.jpg" class="full-width full-height">
+            <img src="app/modules/shop/img/wish-1.jpg" class="full-width full-height">
           </div>
             <div class="fab-zone">
               <button class="fab">New</button>
             </div>
           <div class="item tabs-secondary tabs-icon-left white-tabs" style="padding: 10px;">
-            <h2 class="align-center">Frock</h2>
+            <h2 class="align-center">Casual Suit</h2>
             <h3 class="align-center">$ 100</h3>
           </div>
         </div>
@@ -43,10 +43,10 @@
       <div class="col zero-padding">
         <div class="list card wish-list-card" >
           <div class="item item-image" >
-            <img src="app/modules/shop/img/wish-1.jpg" class="full-width full-height">
+            <img src="app/modules/shop/img/wish-2.jpg" class="full-width full-height">
           </div>
           <div class="item tabs-secondary tabs-icon-left white-tabs" style="padding: 10px;">
-            <h2 class="align-center">Perfume</h2>
+            <h2 class="align-center">Formal Suit</h2>
             <h3 class="align-center">$ 100</h3>
           </div>
         </div>
@@ -56,7 +56,21 @@
       <div class="col zero-padding">
         <div class="list card wish-list-card" >
           <div class="item item-image" >
-            <img src="app/modules/shop/img/wish-6.jpg" class="full-width full-height">
+            <img src="app/modules/shop/img/wish-3.png" class="full-width full-height">
+          </div>
+          <div class="item tabs-secondary tabs-icon-left white-tabs" style="padding: 10px;">
+            <h2 class="align-center">Women Frock</h2>
+            <h3 class="align-center">$ 100</h3>
+          </div>
+        </div>
+      </div>
+      <div class="col zero-padding">
+        <div class="list card wish-list-card" >
+          <div class="item item-image" >
+            <img src="app/modules/shop/img/wish-4.jpg" class="full-width full-height">
+          </div>
+          <div class="fab-zone">
+            <button class="fab">New</button>
           </div>
           <div class="item tabs-secondary tabs-icon-left white-tabs" style="padding: 10px;">
             <h2 class="align-center">Party Frock</h2>
@@ -64,26 +78,12 @@
           </div>
         </div>
       </div>
-      <div class="col zero-padding">
-        <div class="list card wish-list-card" >
-          <div class="item item-image" >
-            <img src="app/modules/shop/img/wish-5.jpg" class="full-width full-height">
-          </div>
-          <div class="fab-zone">
-            <button class="fab">New</button>
-          </div>
-          <div class="item tabs-secondary tabs-icon-left white-tabs" style="padding: 10px;">
-            <h2 class="align-center">Lipstick</h2>
-            <h3 class="align-center">$ 100</h3>
-          </div>
-        </div>
-      </div>
     </div>
     <div class="row">
       <div class="col zero-padding">
         <div class="list card wish-list-card" >
           <div class="item item-image" >
-            <img src="app/modules/shop/img/wish-4.jpg" class="full-width full-height">
+            <img src="app/modules/shop/img/wish-5.jpg" class="full-width full-height">
           </div>
           <div class="fab-zone">
             <button class="fab">New</button>
@@ -97,7 +97,7 @@
       <div class="col zero-padding">
         <div class="list card wish-list-card">
           <div class="item item-image" >
-            <img src="app/modules/shop/img/wish-3.jpg" class="full-width full-height">
+            <img src="app/modules/shop/img/wish-6.jpg" class="full-width full-height">
           </div>
           <div class="fab-zone">
             <button class="fab">New</button>
@@ -109,5 +109,50 @@
         </div>
       </div>
     </div>
+    <div class="row" style="height: 30px;"></div>
+
   </ion-content>
+  <md-sidenav class="md-sidenav-left md-whiteframe-4dp" md-component-id="right">
+    <!--<md-toolbar class="md-theme-light sidenav-header">-->
+    <!--<h1 class="md-toolbar-tools white">Touch2Buy</h1>-->
+    <!--</md-toolbar>-->
+    <md-content >
+      <img ng-src="app/modules/shop/img/home-slide-nav.jpg" style="width:100%">
+      <md-list flex>
+        <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;" >
+          <div class="md-list-item-text zero-margin" layout="column" ng-click="openCategories()">
+            <h4><i class="ion-home sidenav-icon"></i><span class="sidenav-options">{{'HOME' | translate}}</span></h4>
+          </div>
+        </md-list-item>
+        <md-divider ></md-divider>
+        <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;" >
+          <div class="md-list-item-text zero-margin" layout="column" ng-click="openCategories()">
+            <h4><i class="ion-ios-browsers sidenav-icon"></i><span class="sidenav-options">{{'ALL_CATEGORIES' | translate}}</span></h4>
+          </div>
+        </md-list-item>
+        <md-divider ></md-divider>
+        <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;">
+          <div class="md-list-item-text zero-margin" layout="column"  ng-click="openWishList()">
+            <h4><i class="ion-ios-heart sidenav-icon"></i><span class="sidenav-options">{{'WISH_LIST' | translate}}</span></h4>
+          </div>
+        </md-list-item>
+        <md-divider ></md-divider>
+        <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;">
+          <div class="md-list-item-text zero-margin" layout="column"  ng-click="openWishList()">
+            <h4><i class="ion-ios-albums sidenav-icon"></i><span class="sidenav-options">{{'ORDER_HISTORY' | translate}}</span></h4>
+          </div>
+        </md-list-item>
+        <md-divider ></md-divider>
+        <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;">
+          <div class="md-list-item-text zero-margin" layout="column" ng-click="logOut()">
+            <h4><i class="ion-android-hand sidenav-icon"></i><span class="sidenav-options">{{'LOG_OUT' | translate}}</span></h4>
+          </div>
+        </md-list-item>
+        <md-divider ></md-divider>
+      </md-list>
+      <!--<md-button ng-click="close()" class="md-primary">-->
+      <!--Close Sidenav Right-->
+      <!--</md-button>-->
+    </md-content>
+  </md-sidenav>
 </ion-view>

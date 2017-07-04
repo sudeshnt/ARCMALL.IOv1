@@ -27,6 +27,9 @@ cordova plugin add https://github.com/EddyVerbruggen/cordova-plugin-googleplus -
 reversed_client_id : com.googleusercontent.apps.itgqv3o8q200eeh6ov707hrd3vgc379t-683451474237
 refere to : https://github.com/EddyVerbruggen/cordova-plugin-googleplus
 
+keytool -list -v -keystore c:\users\SudeshNT\.android\debug.keystore -alias androiddebugkey -storepass android -keypass android
+SHA1 office lap : 45:8B:B7:FB:05:A8:8E:D3:4D:8B:7B:E0:65:91:20:3C:13:ED:68:9A
+
 Pages Required
 --------------
 

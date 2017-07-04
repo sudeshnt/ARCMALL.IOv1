@@ -9,6 +9,7 @@ function AuthHomeCtrl($scope, $state, $q, UserService, $ionicLoading) {
   // This is the success callback from the login method
   var fbLoginSuccess = function(userData){
     console.log("UserInfo: ", userData);
+    $state.go('home.new');
   };
   $scope.facebookLogIn = function(){
     facebookConnectPlugin.login(["public_profile"], fbLoginSuccess,
@@ -27,11 +28,11 @@ function AuthHomeCtrl($scope, $state, $q, UserService, $ionicLoading) {
         },
         function (obj) {
           console.log(obj);
-          $state.go('home.whatsNew');
+          $state.go('home.new');
           // alert(JSON.stringify(obj)); // do something useful instead of alerting
         },
         function (msg){
-          console.log(obj);
+          console.log(msg);
           //alert('error: ' + msg);
         }
       );

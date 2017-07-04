@@ -24,9 +24,12 @@
 </ion-header-bar>
 <div class="tabs-striped tabs-top tabs-background-dark tabs-color-light ">
   <div class="tabs has-header-md tabs-darker">
-    <a class="tab-item" ng-repeat="tab in tabs" ng-href="{{tab.route}}" ng-class="tab.active ? 'active' : ''">
+    <a class="tab-item" ng-repeat="tab in tabs" ng-click="goToState(tab);" ng-class="tab.active ? 'active' : ''">
       <p class="capital">{{tab.heading}}</p>
     </a>
+    <!--<a class="tab-item" ng-repeat="tab in tabs" ng-href="{{tab.route}}" ng-class="tab.active ? 'active' : ''">-->
+      <!--<p class="capital">{{tab.heading}}</p>-->
+    <!--</a>-->
     <!--<a class="tab-item" href="#/home/just-for-you">-->
       <!--<p class="capital">{{'JUST_FOR_YOU' | translate}}</p>-->
     <!--</a>-->
@@ -38,9 +41,10 @@
 
 <ion-view>
   <ion-content class="has-header-md-tab" overflow-scroll="true">
-    <ion-nav-view name="whats-new-tab" ng-if="activeTabName=='whats-new-tab'"></ion-nav-view>
-    <ion-nav-view name="just-for-you-tab" ng-if="activeTabName=='just-for-you-tab'"></ion-nav-view>
-    <ion-nav-view name="most-trending-tab" ng-if="activeTabName=='most-trending-tab'"></ion-nav-view>
+    <!--<ion-nav-view name="{{activeTabName}}"  >{{activeTabName}}</ion-nav-view>-->
+    <ion-nav-view name="new-tab" ng-if="activeTabName==='new-tab'" >new tab</ion-nav-view>
+    <ion-nav-view name="outlets-tab" ng-if="activeTabName==='outlets-tab'" >outlets-tab</ion-nav-view>
+    <ion-nav-view name="wholesale-tab" ng-if="activeTabName==='wholesale-tab'" >wholesale-tab</ion-nav-view>
 
 
 

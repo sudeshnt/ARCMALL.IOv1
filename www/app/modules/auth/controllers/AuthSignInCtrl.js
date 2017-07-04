@@ -8,7 +8,7 @@ function AuthSignInCtrl($scope,$state,$rootScope) {
   console.log('auth sign in');
 
   $scope.signIn = function () {
-    $state.go('home.whatsNew');
+    $state.go('home.new');
   }
 
 }

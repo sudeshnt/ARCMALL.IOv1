@@ -10,29 +10,29 @@ shopModule.config(function config($stateProvider,$urlRouterProvider) {
       templateUrl: 'app/modules/shop/templates/home.html',
       controller: 'HomeCtrl'
     })
-    .state('home.whatsNew', {
-      url: "/whats-new",
+    .state('home.new', {
+      url: "/new",
       views: {
-        'whats-new-tab': {
-          templateUrl: "app/modules/shop/templates/home-tabs/whats-new.html",
+        'new-tab': {
+          templateUrl: "app/modules/shop/templates/home-tabs/new.html",
           // controller: 'HomeCtrl'
         }
       }
     })
-    .state('home.justForYou', {
-      url: "/just-for-you",
+    .state('home.outlets', {
+      url: "/outlets",
       views: {
-        'just-for-you-tab': {
-          templateUrl: "app/modules/shop/templates/home-tabs/just-for-you.html",
+        'outlets-tab': {
+          templateUrl: "app/modules/shop/templates/home-tabs/outlets.html",
           // controller: 'HomeCtrl'
         }
       }
     })
-    .state('home.mostTrending', {
-      url: "/most-trending",
+    .state('home.wholesale', {
+      url: "/wholesale",
       views: {
-        'most-trending-tab': {
-          templateUrl: "app/modules/shop/templates/home-tabs/most-trending.html",
+        'wholesale-tab': {
+          templateUrl: "app/modules/shop/templates/home-tabs/wholesale.html",
           // controller: 'HomeCtrl'
         }
       }

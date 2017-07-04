@@ -6,32 +6,39 @@ HomeCtrl.$inject = ['$scope','$state','$filter','$rootScope','$timeout','$mdSide
 
 function HomeCtrl($scope,$state,$filter,$rootScope,$timeout,$mdSidenav,$log,$mdBottomSheet, $mdToast,UserService,$ionicActionSheet,$ionicLoading) {
 
+  $scope.activeTabName = null;
+
   $scope.tabs = [
-    { index:0, heading: $filter('translate')('WHAT_S_NEW'), route:"#/home/whats-new", tabPage:'whats-new' ,active:true},
-    { index:1, heading: $filter('translate')('JUST_FOR_YOU'), route:"#/home/just-for-you", tabPage:'just-for-you',active:false},
-    { index:2, heading: $filter('translate')('MOST_TRENDING'), route:"#/home/most-trending", tabPage:'most-trending',active:false}
+    { index:0, heading: $filter('translate')('WHAT_S_NEW'), route:"#/home/new",state:'home.new', tabPage:'new' ,active:true},
+    { index:1, heading: $filter('translate')('JUST_FOR_YOU'), route:"#/home/outlets",state:'home.outlets', tabPage:'outlets',active:false},
+    { index:2, heading: $filter('translate')('MOST_TRENDING'), route:"#/home/wholesale",state:'home.wholesale', tabPage:'wholesale',active:false}
   ];
 
+  $scope.goToState = function(tab){
+     $state.go(tab.state ,{}, {reload:true});
+  };
+
   $scope.$on("$stateChangeSuccess", function(event,toState, toParams, fromState, fromParams) {
+    console.log(fromState,toState)
     switch(toState.name){
-      case 'home.whatsNew':
-        setActive('whats-new');
+      case 'home.new':
+        setActive('new');
         break;
-      case 'home.justForYou':
-        setActive('just-for-you');
+      case 'home.outlets':
+        setActive('outlets');
         break;
-      case 'home.mostTrending':
-        setActive('most-trending');
+      case 'home.wholesale':
+        setActive('wholesale');
         break;
     }
   });
 
   function setActive(activeTab) {
-    console.log(activeTab+'-tab');
     for(var i in $scope.tabs){
       if($scope.tabs[i].tabPage === activeTab){
         $scope.tabs[i].active = true;
         $scope.activeTabName = activeTab+'-tab';
+        console.log($scope.activeTabName);
       }else{
         $scope.tabs[i].active = false;
         // $scope.activeTabName = '';

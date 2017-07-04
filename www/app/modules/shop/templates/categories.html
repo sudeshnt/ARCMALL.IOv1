@@ -13,83 +13,127 @@
     </div>
   </div>
 </ion-header-bar>
-<div class="tabs-striped tabs-top tabs-background-dark tabs-color-light ">
-  <div class="tabs has-header-md tabs-darker">
-    <a class="tab-item active" href="">
-      <p class="capital">ALL</p>
-    </a>
-    <a class="tab-item" href="">
-      <p class="capital">MAN</p>
-    </a>
-     <a class="tab-item" href="">
-      <p class="capital">WOMAN</p>
-    </a>
-     <a class="tab-item" href="">
-      <p class="capital">KID</p>
-    </a>
-  </div>
-</div>
+<!--<div class="tabs-striped tabs-top tabs-background-dark tabs-color-light ">-->
+  <!--<div class="tabs has-header-md tabs-darker">-->
+    <!--<a class="tab-item active" href="">-->
+      <!--<p class="capital">ALL</p>-->
+    <!--</a>-->
+    <!--<a class="tab-item" href="">-->
+      <!--<p class="capital">MAN</p>-->
+    <!--</a>-->
+     <!--<a class="tab-item" href="">-->
+      <!--<p class="capital">WOMAN</p>-->
+    <!--</a>-->
+     <!--<a class="tab-item" href="">-->
+      <!--<p class="capital">KID</p>-->
+    <!--</a>-->
+  <!--</div>-->
+<!--</div>-->
 
 <ion-view>
-  <ion-content class="has-header-md-tab" overflow-scroll="true">
-    <div class="row" style="padding: 1px 5px 4px;" ng-click="openWishList()" >
-      <div class="list card card-margin" ng-click="goToItems()">
-        <div class="item item-image">
-          <img src="app/modules/shop/img/cat-3.jpg">
-          <div class="text-on-image card-title-shadow">
-            <h2>Women's Clothing & Accessories</h2>
-            <h3>Tuesday, 5th of November 2015</h3>
-          </div>
+  <ion-content class="has-header-md"  scroll="false">
+    <tab-slide-box tab="0">
+      <div class="tsb-icons">
+        <div class="tsb-ic-wrp">
+          <ion-scroll direction="x" class="tsb-hscroll">
+            <a href="javascript:;" class="{{tab.icon}}" ng-repeat="tab in tabs" on-finish-render="test()">{{tab.text}}</a>
+          </ion-scroll>
         </div>
       </div>
-    </div>
-    <div class="row ">
-      <div class="col zero-padding">
-        <div class="list card card-margin full-height" ng-click="goToItems()">
-          <div class="item item-image full-height" >
-            <img src="app/modules/shop/img/cat-6.jpg" class="full-height">
-            <div class="text-on-image card-title-shadow" >
-              <h2>Men Clothing & Accessories</h2>
-              <h3>Tuesday, 5th of November 2015</h3>
-            </div>
+      <ion-slide-box show-pager="false" on-slide-changed="slideHasChanged($index)">
+        <ion-slide>
+          <div style="width: 90%;">>
+            <ion-content>
+              <div class="row" style="padding: 1px 5px 4px;" ng-click="openWishList()" >
+                <div class="list card card-margin" ng-click="goToItems()">
+                  <div class="item item-image">
+                    <img src="app/modules/shop/img/cat-3.jpg">
+                    <div class="text-on-image card-title-shadow">
+                      <h2>Women's Clothing & Accessories</h2>
+                      <h3>Tuesday, 5th of November 2015</h3>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row ">
+                <div class="col zero-padding">
+                  <div class="list card card-margin full-height" ng-click="goToItems()">
+                    <div class="item item-image full-height" >
+                      <img src="app/modules/shop/img/cat-6.jpg" class="full-height">
+                      <div class="text-on-image card-title-shadow" >
+                        <h2>Men Clothing & Accessories</h2>
+                        <h3>Tuesday, 5th of November 2015</h3>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col zero-padding">
+                  <div class="list card card-margin full-height" ng-click="goToItems()">
+                    <div class="item item-image full-height" >
+                      <img src="app/modules/shop/img/cat-8.png" class="full-height">
+                      <div class="text-on-image card-title-shadow">
+                        <h2>Computers</h2>
+                        <h3>Tuesday, 5th of November 2015</h3>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row ">
+                <div class="col zero-padding">
+                  <div class="list card card-margin full-height" ng-click="goToItems()">
+                    <div class="item item-image full-height">
+                      <img src="app/modules/shop/img/cat-7.jpg" class="full-height">
+                      <div class="text-on-image card-title-shadow">
+                        <h2>Beauty & Health</h2>
+                        <h3>Tuesday, 5th of November 2015</h3>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col zero-padding">
+                  <div class="list card card-margin full-height" ng-click="goToItems()">
+                    <div class="item item-image full-height">
+                      <img src="app/modules/shop/img/cat-9.jpg" class="full-height">
+                      <div class="text-on-image card-title-shadow">
+                        <h2>Furniture</h2>
+                        <h3>Tuesday, 5th of November 2015</h3>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ion-content>
           </div>
-        </div>
-      </div>
-      <div class="col zero-padding">
-        <div class="list card card-margin full-height" ng-click="goToItems()">
-          <div class="item item-image full-height" >
-            <img src="app/modules/shop/img/cat-8.png" class="full-height">
-            <div class="text-on-image card-title-shadow">
-              <h2>Computers</h2>
-              <h3>Tuesday, 5th of November 2015</h3>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row ">
-      <div class="col zero-padding">
-        <div class="list card card-margin full-height" ng-click="goToItems()">
-          <div class="item item-image full-height">
-            <img src="app/modules/shop/img/cat-7.jpg" class="full-height">
-            <div class="text-on-image card-title-shadow">
-              <h2>Beauty & Health</h2>
-              <h3>Tuesday, 5th of November 2015</h3>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col zero-padding">
-        <div class="list card card-margin full-height" ng-click="goToItems()">
-          <div class="item item-image full-height">
-            <img src="app/modules/shop/img/cat-9.jpg" class="full-height">
-            <div class="text-on-image card-title-shadow">
-              <h2>Furniture</h2>
-              <h3>Tuesday, 5th of November 2015</h3>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+        </ion-slide>
+        <ion-slide>
+          <h3>Games content</h3>
+        </ion-slide>
+        <ion-slide>
+          <h3>Mail content</h3>
+        </ion-slide>
+        <ion-slide>
+          <h3>Car content</h3>
+        </ion-slide>
+        <ion-slide>
+          <h3>Profile content</h3>
+        </ion-slide>
+        <ion-slide>
+          <h3>Favourites content</h3>
+        </ion-slide>
+        <ion-slide>
+          <h3>Chats content</h3>
+        </ion-slide>
+        <ion-slide>
+          <h3>Settings content</h3>
+        </ion-slide>
+        <ion-slide>
+          <h3>Photos content</h3>
+        </ion-slide>
+        <ion-slide>
+          <h3>Pets content</h3>
+        </ion-slide>
+      </ion-slide-box>
+    </tab-slide-box>
   </ion-content>
 </ion-view>

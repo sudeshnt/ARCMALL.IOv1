@@ -113,3 +113,8 @@ ion-content{
 .padding-top-zero{
   padding-top: 0 !important;
 }
+
+.tab-item.tab-item-active, .tab-item.active, .tab-item.activated {
+  opacity: 1;
+  border-bottom: 2px solid white !important;
+}

@@ -1,7 +1,7 @@
 <ion-header-bar class="bar bar-header header-md bar-darker">
   <div style="width: 100%; display: inherit; margin-top: 0px !important;" >
     <div class="absolute back-icon-wrapper">
-      <a class="button button-icon row" href="/#/categories">
+      <a class="button button-icon row" ng-click="toggleSideBar();">
         <i class="ion-navicon-round font-L white"></i>
       </a>
     </div>
@@ -13,7 +13,7 @@
     </div>
     <div class="absolute filter-icon-wrapper">
       <a class="button button-icon row">
-        <i class="ion-android-cart font-L white" ></i>
+        <i class="ion-android-cart font-L white" ng-href="#/cart"></i>
       </a>
     </div>
   </div>
@@ -112,7 +112,7 @@
     <div class="row" style="height: 30px;"></div>
 
   </ion-content>
-  <md-sidenav class="md-sidenav-left md-whiteframe-4dp" md-component-id="right">
+  <md-sidenav class="md-sidenav-left md-whiteframe-4dp" md-component-id="left">
     <!--<md-toolbar class="md-theme-light sidenav-header">-->
     <!--<h1 class="md-toolbar-tools white">Touch2Buy</h1>-->
     <!--</md-toolbar>-->
@@ -120,8 +120,14 @@
       <img ng-src="app/modules/shop/img/home-slide-nav.jpg" style="width:100%">
       <md-list flex>
         <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;" >
-          <div class="md-list-item-text zero-margin" layout="column" ng-click="openCategories()">
-            <h4><i class="ion-home sidenav-icon"></i><span class="sidenav-options">{{'HOME' | translate}}</span></h4>
+          <div class="md-list-item-text zero-margin" layout="column" ng-click="openSignIn()">
+            <h4><i class="ion-person sidenav-icon"></i><span class="sidenav-options">{{'SIGN_IN' | translate}}</span></h4>
+          </div>
+        </md-list-item>
+        <md-divider ></md-divider>
+        <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;">
+          <div class="md-list-item-text zero-margin" layout="column"  ng-click="openHome()">
+            <h4><i class="ion-android-home sidenav-icon"></i><span class="sidenav-options">{{'HOME' | translate}}</span></h4>
           </div>
         </md-list-item>
         <md-divider ></md-divider>
@@ -132,13 +138,7 @@
         </md-list-item>
         <md-divider ></md-divider>
         <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;">
-          <div class="md-list-item-text zero-margin" layout="column"  ng-click="openWishList()">
-            <h4><i class="ion-ios-heart sidenav-icon"></i><span class="sidenav-options">{{'WISH_LIST' | translate}}</span></h4>
-          </div>
-        </md-list-item>
-        <md-divider ></md-divider>
-        <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;">
-          <div class="md-list-item-text zero-margin" layout="column"  ng-click="openWishList()">
+          <div class="md-list-item-text zero-margin" layout="column"  ng-click="">
             <h4><i class="ion-ios-albums sidenav-icon"></i><span class="sidenav-options">{{'ORDER_HISTORY' | translate}}</span></h4>
           </div>
         </md-list-item>

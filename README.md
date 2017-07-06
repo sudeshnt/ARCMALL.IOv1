@@ -21,13 +21,22 @@ App Name : ArcMall
 cordova plugin add cordova-plugin-facebook4 --save --variable APP_ID="1823221184659287" --variable APP_NAME="ArcMall" 
 refer to : https://github.com/jeduan/cordova-plugin-facebook4
 
+add keyHash to facebook developer console if you are building from a different machine
+
 // installed google-plus login
 
+*** when building for android or ios install the following plugin (cordova-plugin-googleplus)  with their relevant reversed client ids. ***
+
+
 cordova plugin add https://github.com/EddyVerbruggen/cordova-plugin-googleplus --save --variable REVERSED_CLIENT_ID=reversed_client_id
-reversed_client_id : com.googleusercontent.apps.itgqv3o8q200eeh6ov707hrd3vgc379t-683451474237
-refere to : https://github.com/EddyVerbruggen/cordova-plugin-googleplus
+
+reversed_client_id android : com.googleusercontent.apps.itgqv3o8q200eeh6ov707hrd3vgc379t-683451474237
+reversed_client_id ios : com.googleusercontent.apps.683451474237-kgbp6hbnbv3dtftbi3o1hmokm46od906
+
+refer to : https://github.com/EddyVerbruggen/cordova-plugin-googleplus
 
 keytool -list -v -keystore c:\users\SudeshNT\.android\debug.keystore -alias androiddebugkey -storepass android -keypass android
+
 SHA1 office lap : 45:8B:B7:FB:05:A8:8E:D3:4D:8B:7B:E0:65:91:20:3C:13:ED:68:9A
 
 Pages Required

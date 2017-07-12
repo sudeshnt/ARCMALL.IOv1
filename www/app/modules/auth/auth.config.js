@@ -19,5 +19,10 @@ authModule.config(function config($stateProvider,$urlRouterProvider) {
       templateUrl: 'app/modules/auth/templates/auth-sign-up.html',
       controller: 'AuthSignUpCtrl'
     })
+    .state('selectAccountRole', {
+      url: '/selectAccountRole',
+      templateUrl: 'app/modules/auth/templates/select-account-role.html',
+      controller: 'SelectAccountRoleCtrl'
+    })
     $urlRouterProvider.otherwise('/home/new');
 });

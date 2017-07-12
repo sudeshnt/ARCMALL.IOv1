@@ -1,7 +1,17 @@
 <ion-view>
   <ion-content class="">
     <div class="sign-in-background"></div>
-    <div class="contents padding">
+    <ion-header-bar class="bar bar-header header-md bar-darker half-opacity">
+      <div style="width: 100%; display: inherit; margin-top: 0px !important;" >
+        <div class="absolute back-icon-wrapper">
+          <a class="button button-icon row" ng-click="toggleSideBar();">
+            <i class="ion-close-round font-M white"></i>
+          </a>
+        </div>
+        <h4 class="white left-title">{{'SIGN_IN' | translate}}</h4>
+      </div>
+    </ion-header-bar>
+    <div class="contents padding has-header-md-search">
       <div class="list list-inset">
         <label class="item item-input text-md">
           <i class="icon ion-ios-email-outline placeholder-icon"></i>

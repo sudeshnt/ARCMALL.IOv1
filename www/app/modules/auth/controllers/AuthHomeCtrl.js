@@ -44,4 +44,7 @@ function AuthHomeCtrl($scope, $state, $q, UserService, $ionicLoading) {
   $scope.registerPage = function(){
     $state.go('authSignUp');
   };
+  $scope.selectRolePage = function(){
+    $state.go('selectAccountRole');
+  };
 }

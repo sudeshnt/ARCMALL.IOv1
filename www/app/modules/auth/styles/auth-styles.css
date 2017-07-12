@@ -29,3 +29,10 @@
   padding: 0 10px;
 }
 /*.contents > )*/
+.sign-up-fields{
+  background: rgba(255, 255, 255, 0);
+}
+.sign-up-fields > .text-xmd {
+  margin-top:1px;
+  margin-bottom:1px;
+}

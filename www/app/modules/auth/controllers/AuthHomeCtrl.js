@@ -6,11 +6,10 @@ AuthHomeCtrl.$inject = ['$scope', '$state', '$q', 'UserService', '$ionicLoading'
 
 function AuthHomeCtrl($scope, $state, $q, UserService, $ionicLoading,httpService,serverConfig) {
 
-
-  var extended_url = '/ip';
+  var extended_url = '/merchant/regions';
   httpService.getRequest(serverConfig.clientAPI,extended_url,{}).then(function(response){
-    if(response!=null){
-     console.log(response);
+    if(response.status === 200){
+       console.log(response.data);
     }
   });
 
@@ -26,6 +25,7 @@ function AuthHomeCtrl($scope, $state, $q, UserService, $ionicLoading,httpService
       }
     );
   };
+
   $scope.googlePlusLogin = function(){
     if(window.plugins.googleplus){
       window.plugins.googleplus.login(
@@ -46,12 +46,15 @@ function AuthHomeCtrl($scope, $state, $q, UserService, $ionicLoading,httpService
       );
     }
   };
+
   $scope.signInPage = function(){
     $state.go('authSignIn');
   };
+
   $scope.registerPage = function(){
     $state.go('authSignUp');
   };
+
   $scope.selectRolePage = function(){
     $state.go('selectAccountRole');
   };

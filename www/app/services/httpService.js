@@ -8,7 +8,6 @@
 
     function httpService($http, $q, $ionicLoading,pendingRequests,$filter){
     // function httpService($http, $q, $ionicLoading,pendingRequests,$cordovaToast,$filter){
-
     function getRequest(service,extended_url,config){
       var deferred = $q.defer();
       var url = service.serviceUrl+':'+service.port+service.base_url+extended_url;
@@ -17,25 +16,26 @@
       //     'Authorization': $scope.authUser.sessionId
       //   }
       // };
-      log(url,'GET',{},config);
+      // log(url,'GET',{},config);
       addToPendingRequests(url,deferred);
       showLoading();
       $http.get(url,config)
-        .success(function(response){
-          printresponse(response);
+        .success(function(data,status){
+          var response = log(url,'GET',{},config,data,status);
           hideLoading();
           removeFromPendingRequests(url);
           deferred.resolve(response);
         })
-        .error(function(data){
+        .error(function(data,status){
+          var response = log(url,'GET',{},config,data,status);
           hideLoading();
-          //$cordovaToast.showLongBottom($filter('translate')('CONNECTION_ERROR')).then();
-          deferred.reject(data);
+          //$cordovaToast.showLongBottom($filter('translate')('SERVER_ERROR')).then();
+          deferred.resolve(response);
         });
       return deferred.promise;
     }
 
-    function postRequest(service,extended_url,data,config){
+    function postRequest(service,extended_url,req,config){
       var deferred = $q.defer();
       var url = service.serviceUrl+':'+service.port+service.base_url+extended_url;
       // config = {
@@ -43,26 +43,24 @@
       //     'Authorization': $scope.authUser
       //   }
       // };
-      log(url,'POST',data,config);
       addToPendingRequests(url,deferred);
       showLoading();
-      $http.post(url,data,config)
-        .success(function(response){
-          printresponse(response);
+      $http.post(url,req,config)
+        .success(function(data,status){
+          var response = log(url,'POST',req,config,data,status);
           hideLoading();
           removeFromPendingRequests(url);
           deferred.resolve(response);
         })
         .error(function(data,status){
-          console.log(status);
           hideLoading();
-          //$cordovaToast.showLongBottom($filter('translate')('CONNECTION_ERROR')).then();
-          deferred.reject(data);
+          //$cordovaToast.showLongBottom($filter('translate')('SERVER_ERROR')).then();
+          deferred.resolve(data);
         });
       return deferred.promise;
     }
 
-    function putRequest(service,extended_url,data,config){
+    function putRequest(service,extended_url,req,config){
       var deferred = $q.defer();
       var url = service.serviceUrl+':'+service.port+service.base_url+extended_url;
       // config = {
@@ -70,20 +68,19 @@
       //     'Authorization': sessionId
       //   }
       // };
-      log(url,'PUT',data,config);
       addToPendingRequests(url,deferred);
       showLoading();
-      $http.put(url,data,config)
-        .success(function(response){
-          printresponse(response);
+      $http.put(url,req,config)
+        .success(function(data,status){
+          var response = log(url,'PUT',req,config,data,status);
           hideLoading();
           removeFromPendingRequests(url);
           deferred.resolve(response);
         })
         .error(function(data){
           hideLoading();
-          //$cordovaToast.showLongBottom($filter('translate')('CONNECTION_ERROR')).then();
-          deferred.reject(data);
+          //$cordovaToast.showLongBottom($filter('translate')('SERVER_ERROR')).then();
+          deferred.resolve(data);
         });
       return deferred.promise;
     }
@@ -96,20 +93,19 @@
       //     'Authorization': sessionId
       //   }
       // };
-      log(url,'DELETE',{},config);
       addToPendingRequests(url,deferred);
       showLoading();
       $http.delete(url,config)
-        .success(function(response){
-          printresponse(response);
+        .success(function(data,status){
+          var response = log(url,'DELETE',{},config,data,status);
           hideLoading();
           removeFromPendingRequests(url);
           deferred.resolve(response);
         })
         .error(function(data){
           hideLoading();
-          //$cordovaToast.showLongBottom($filter('translate')('CONNECTION_ERROR')).then();
-          deferred.reject(data);
+          //$cordovaToast.showLongBottom($filter('translate')('SERVER_ERROR')).then();
+          deferred.resolve(data);
         });
       return deferred.promise;
     }
@@ -136,13 +132,19 @@
       pendingRequests.remove(url);
     }
 
-    function log(url,method,data,config){
+    function log(url,method,req,config,response_data,status){
+      var response = {
+        data:response_data,
+        status:status
+      };
       console.log({
         "url" : url,
         "method" : method,
-        "data" : data,
-        "config" : config
+        "req" : req,
+        "config" : config,
+        "response" : response
       });
+      return response;
     }
     function printresponse(response){
       console.log({

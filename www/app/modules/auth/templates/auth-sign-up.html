@@ -4,7 +4,7 @@
     <ion-header-bar class="bar bar-header header-md bar-darker half-opacity">
       <div style="width: 100%; display: inherit; margin-top: 0px !important;" >
         <div class="absolute back-icon-wrapper">
-          <a class="button button-icon row" ng-click="toggleSideBar();">
+          <a class="button button-icon row" ng-click="goBack()">
             <i class="ion-close-round font-M white"></i>
           </a>
         </div>
@@ -13,7 +13,7 @@
     </ion-header-bar>
     <div class="contents padding has-header-md">
       <div class="list list-inset sign-up-fields">
-        <label class="item item-input text-xmd">
+        <label class="item item-input text-xmd" ng-if="selectedAccountType == appConfig.accountTypes.SELLER">
           <i class="icon ion-ios-home-outline placeholder-icon"></i>
           <input type="text" placeholder="{{'COMPANY_NAME' | translate}}" ng-model="user.email">
         </label>

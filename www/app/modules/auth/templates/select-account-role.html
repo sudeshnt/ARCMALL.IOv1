@@ -4,12 +4,12 @@
       <p class="align-center light">{{"PLEASE_SELECT_ACCOUNT_ROLE" | translate}}</p>
       <!--<a class="button custom-height-button button-sm square button-block button-positive icon ion-social-facebook" ng-click="facebookSignIn()"></a>-->
       <div>
-        <button class="button custom-height-button button-lg square button-block white" ng-click="signIn()" style="background: #f48347;">
+        <button class="button custom-height-button button-lg square button-block white" ng-click="signUpPage(appConfig.accountTypes.BUYER)" style="background: #f48347;">
           {{"I_AM_BUYER" | translate}}
         </button>
       </div>
       <div>
-        <button class="button custom-height-button button-lg square button-block button-light" ng-click="signIn()">
+        <button class="button custom-height-button button-lg square button-block button-light" ng-click="signUpPage(appConfig.accountTypes.SELLER)">
           {{"I_AM_SELLER" | translate}}
         </button>
       </div>

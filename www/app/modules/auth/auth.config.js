@@ -17,12 +17,13 @@ authModule.config(function config($stateProvider,$urlRouterProvider) {
     .state('authSignUp', {
       url: '/authSignUp',
       templateUrl: 'app/modules/auth/templates/auth-sign-up.html',
-      controller: 'AuthSignUpCtrl'
+      controller: 'AuthSignUpCtrl',
+      params : {account_type:null}
     })
     .state('selectAccountRole', {
       url: '/selectAccountRole',
       templateUrl: 'app/modules/auth/templates/select-account-role.html',
       controller: 'SelectAccountRoleCtrl'
-    })
+    });
     $urlRouterProvider.otherwise('/home/new');
 });

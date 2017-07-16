@@ -2,9 +2,17 @@
 
 angular.module('auth.module').controller('AuthHomeCtrl',AuthHomeCtrl );
 
-AuthHomeCtrl.$inject = ['$scope', '$state', '$q', 'UserService', '$ionicLoading'];
+AuthHomeCtrl.$inject = ['$scope', '$state', '$q', 'UserService', '$ionicLoading','httpService','serverConfig'];
 
-function AuthHomeCtrl($scope, $state, $q, UserService, $ionicLoading) {
+function AuthHomeCtrl($scope, $state, $q, UserService, $ionicLoading,httpService,serverConfig) {
+
+
+  var extended_url = '/ip';
+  httpService.getRequest(serverConfig.clientAPI,extended_url,{}).then(function(response){
+    if(response!=null){
+     console.log(response);
+    }
+  });
 
   // This is the success callback from the login method
   var fbLoginSuccess = function(userData){

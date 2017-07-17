@@ -1,34 +1,62 @@
 <ion-view>
-  <ion-content class="padding">
-    <a class="button button-icon row"  ng-click="toggleSideBar()">
-      <i class="ion-navicon white" style="font-size: 30px;"></i>
-    </a>
+  <ion-content class="">
+    <div class="sign-in-background"></div>
+    <ion-header-bar class="bar bar-header header-md bar-darker half-opacity">
+      <div style="width: 100%; display: inherit; margin-top: 0px !important;" >
+        <div class="absolute back-icon-wrapper">
+          <a class="button button-icon row" ng-click="goBack()">
+            <i class="ion-close-round font-M white"></i>
+          </a>
+        </div>
+        <h4 class="white left-title">{{'SIGN_UP' | translate}}</h4>
+      </div>
+    </ion-header-bar>
+    <div class="contents padding has-header-md">
+      <div class="list list-inset sign-up-fields">
+        <label class="item item-input text-xmd" ng-if="selectedAccountType == appConfig.accountTypes.SELLER">
+          <i class="icon ion-ios-home-outline placeholder-icon"></i>
+          <input type="text" placeholder="{{'COMPANY_NAME' | translate}}" ng-model="user.email">
+        </label>
+        <label class="item item-input text-xmd">
+          <i class="icon ion-android-person placeholder-icon"></i>
+          <input type="text" placeholder="{{'FIRST_NAME' | translate}}" ng-model="user.email">
+        </label>
+        <label class="item item-input text-xmd">
+          <i class="icon ion-android-person placeholder-icon"></i>
+          <input type="text" placeholder="{{'LAST_NAME' | translate}}" ng-model="user.email">
+        </label>
+        <label class="item item-input text-xmd">
+          <i class="icon ion-ios-email-outline placeholder-icon"></i>
+          <input type="email" placeholder="{{'EMAIL_ADDRESS' | translate}}" ng-model="user.email">
+        </label>
+        <label class="item item-input text-xmd">
+          <i class="icon ion-ios-locked-outline placeholder-icon"></i>
+          <input type="password" placeholder="{{'PASSWORD' | translate}}" ng-model="user.email">
+        </label>
+        <label class="item item-input text-xmd">
+          <i class="icon ion-ios-locked-outline placeholder-icon"></i>
+          <input type="password" placeholder="{{'PASSWORD' | translate}}" ng-model="user.email">
+        </label>
+      </div>
+      <div>
+        <button class="button custom-height-button button-sm square button-block button-orange capital" ng-click="signIn()">
+          {{"SIGN_UP" | translate}}
+        </button>
+      </div>
+      <div class="" style="bottom: 40px;">
+        <p class="align-center light">{{"SIGN_UP_WITH" | translate}}</p>
+        <div class="row">
+          <div class="col align-right">
+            <a class="button custom-height-button button-md square button-block button-positive icon ion-social-facebook" style="width:55px;margin-left: auto;"></a>
+          </div>
+          <div class="col">
+            <a class="button custom-height-button button-md square button-block button-assertive icon ion-social-googleplus"  style="width:55px;"></a>
+          </div>
+        </div>
+        <p class="align-center light">
+          <span>{{"ALREADY_REGISTERED" | translate}}</span> <a ng-click="" class="underlined">{{"SIGN_IN" | translate}}</a>
+        </p>
+      </div>
+    </div>
   </ion-content>
-
 </ion-view>
-<md-sidenav class="md-sidenav-left md-whiteframe-4dp" md-component-id="right">
-  <md-content >
-    <md-list flex>
-      <md-list-item class="md-3-line" style="height: 40px; min-height:0px; padding-top: 10px;">
-        <div class="md-list-item-text zero-margin" layout="column" ng-click="goToLogin()">
-          <h3><i class="ion-log-in"></i> Login</h3>
-        </div>
-      </md-list-item>
-      <md-list-item class="md-3-line" style="height: 40px; min-height:0px; padding-top: 10px;">
-        <div class="md-list-item-text zero-margin" layout="column" ng-click="goToRegistration()">
-          <h3><i class="ion-person-add"></i> Register</h3>
-        </div>
-      </md-list-item>
-      <md-list-item class="md-3-line" style="height: 40px; min-height:0px; padding-top: 10px;">
-        <div class="md-list-item-text zero-margin" layout="column" ng-click="goToOrderHistory()">
-          <h3><i class="ion-document-text"></i> Order History</h3>
-        </div>
-      </md-list-item>
-      <md-list-item class="md-3-line" style="height: 40px; min-height:0px; padding-top: 10px;">
-        <div class="md-list-item-text zero-margin" layout="column" ng-click="logOut()">
-          <h3><i class="ion-log-out"></i> Log Out</h3>
-        </div>
-      </md-list-item>
-    </md-list>
-  </md-content>
-</md-sidenav>

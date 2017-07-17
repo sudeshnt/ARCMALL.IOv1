@@ -24,7 +24,7 @@ function HomeCtrl($scope,$state,$filter,$rootScope,$timeout,$mdSidenav,$log,$mdB
   };
 
   $scope.$on("$stateChangeSuccess", function(event,toState, toParams, fromState, fromParams) {
-    console.log(fromState,toState)
+   // console.log(fromState,toState)
     switch(toState.name){
       case 'home.new':
         setActive('new');
@@ -43,7 +43,7 @@ function HomeCtrl($scope,$state,$filter,$rootScope,$timeout,$mdSidenav,$log,$mdB
       if($scope.tabs[i].tabPage === activeTab){
         $scope.tabs[i].active = true;
         $scope.activeTabName = activeTab+'-tab';
-        console.log($scope.activeTabName);
+        //console.log($scope.activeTabName);
       }else{
         $scope.tabs[i].active = false;
         // $scope.activeTabName = '';

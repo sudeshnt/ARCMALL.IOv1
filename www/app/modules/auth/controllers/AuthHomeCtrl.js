@@ -2,9 +2,16 @@
 
 angular.module('auth.module').controller('AuthHomeCtrl',AuthHomeCtrl );
 
-AuthHomeCtrl.$inject = ['$scope', '$state', '$q', 'UserService', '$ionicLoading'];
+AuthHomeCtrl.$inject = ['$scope', '$state', '$q', 'UserService', '$ionicLoading','httpService','serverConfig'];
 
-function AuthHomeCtrl($scope, $state, $q, UserService, $ionicLoading) {
+function AuthHomeCtrl($scope, $state, $q, UserService, $ionicLoading,httpService,serverConfig) {
+
+  var extended_url = '/merchant/regions';
+  httpService.getRequest(serverConfig.clientAPI,extended_url,{}).then(function(response){
+    if(response.status === 200){
+       console.log(response.data);
+    }
+  });
 
   // This is the success callback from the login method
   var fbLoginSuccess = function(userData){
@@ -18,6 +25,7 @@ function AuthHomeCtrl($scope, $state, $q, UserService, $ionicLoading) {
       }
     );
   };
+
   $scope.googlePlusLogin = function(){
     if(window.plugins.googleplus){
       window.plugins.googleplus.login(
@@ -38,10 +46,16 @@ function AuthHomeCtrl($scope, $state, $q, UserService, $ionicLoading) {
       );
     }
   };
+
   $scope.signInPage = function(){
     $state.go('authSignIn');
   };
+
   $scope.registerPage = function(){
     $state.go('authSignUp');
+  };
+
+  $scope.selectRolePage = function(){
+    $state.go('selectAccountRole');
   };
 }

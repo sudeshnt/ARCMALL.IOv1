@@ -5,8 +5,11 @@ angular.module('lang_en',['pascalprecht.translate','ngSanitize'])
   .config(['$translateProvider',function($translateProvider){
     $translateProvider.translations('en', {
       SIGN_IN_WITH: "Sign in with",
+      SIGN_UP_WITH: "Sign up with",
+      ALREADY_REGISTERED: "Already Registered ?",
       USE_EMAIL: "Use Email",
       SIGN_IN: "Sign In",
+      SIGN_UP: "Sign Up",
       REGISTER: "Register",
       EMAIL_ADDRESS: "Email Address",
       PASSWORD: "Password",
@@ -38,6 +41,14 @@ angular.module('lang_en',['pascalprecht.translate','ngSanitize'])
       OUTLETS:"outlets",
       WHOLESALE:"wholesale",
       HOME:"Home",
+      COMPANY_NAME:'Company Name',
+      FIRST_NAME:'First Name',
+      LAST_NAME:'Last Name',
+      CONFIRM_PASSWORD:'Confirm Password',
+      PLEASE_SELECT_ACCOUNT_ROLE:'Please select the role for your account',
+      I_AM_BUYER:"I'm a Buyer",
+      I_AM_SELLER:"I'm a Seller",
+      SERVER_ERROR:'Server Error'
     });
     $translateProvider.useSanitizeValueStrategy('escapeParameters');
   }]);

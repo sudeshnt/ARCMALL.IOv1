@@ -2,37 +2,19 @@
 
 angular.module('auth.module').controller('AuthSignUpCtrl', AuthSignUpCtrl);
 
-AuthSignUpCtrl.$inject = ['$scope','$rootScope','$mdSidenav','$log'];
+AuthSignUpCtrl.$inject = ['$scope','$rootScope','$state','$stateParams','appConfig'];
 
-function AuthSignUpCtrl($scope,$rootScope,$mdSidenav,$log) {
-  console.log('auth sign up');
-  $scope.toggleSideBar = buildToggler('right');
+function AuthSignUpCtrl($scope,$rootScope,$state,$stateParams,appConfig) {
 
-  function buildToggler(navID) {
-    return function() {
-      // Component lookup should always be available since we are not using `ng-if`
-      $mdSidenav(navID)
-        .toggle()
-        .then(function () {
-          $log.debug("toggle " + navID + " is done");
-        });
-    }
+  $scope.appConfig = appConfig;
+  if($stateParams.account_type!==null){
+    $scope.selectedAccountType = $stateParams.account_type;
+  }else{
+    $state.go('selectAccountRole');
   }
-  $scope.close = function () {
-    // Component lookup should always be available since we are not using `ng-if`
-    $mdSidenav('right').close()
-      .then(function () {
-        $log.debug("close RIGHT is done");
-      });
+
+  $scope.goBack = function () {
+    $state.go('selectAccountRole');
   };
 
-  var originatorEv;
-  $scope.openMenu = function($mdOpenMenu, ev) {
-    originatorEv = ev;
-    $mdOpenMenu(ev);
-  };
-
-  $scope.getNumber = function(num) {
-    return new Array(num);
-  }
 }

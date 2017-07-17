@@ -49,6 +49,17 @@ ion-content{
   height: 50px;
   line-height: 25px;
 }
+.button-md{
+  height: 55px;
+  line-height: 50px !important;
+}
+.button-md:before{
+  line-height: 48px !important;
+}
+.button-lg{
+  height: 65px;
+  line-height: 40px !important;
+}
 .button-orange{
   background-color: #f48420;
   color: #ffffff;
@@ -69,6 +80,9 @@ ion-content{
 .text-md{
   height: 50px;
 }
+.text-xmd{
+  height:55px;
+}
 .item-input > input {
   padding-left:10px !important;
 }
@@ -79,6 +93,9 @@ ion-content{
 }
 .underlined{
   text-decoration: underline;
+}
+.font-M{
+  font-size : 15px;
 }
 .font-L{
   font-size: 25px;
@@ -117,4 +134,9 @@ ion-content{
 .tab-item.tab-item-active, .tab-item.active, .tab-item.activated {
   opacity: 1;
   border-bottom: 2px solid white !important;
+}
+
+/*opacity*/
+.half-opacity{
+  opacity:0.5 !important;
 }

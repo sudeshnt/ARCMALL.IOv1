@@ -7,15 +7,20 @@ HomeCtrl.$inject = ['$scope','$state','$filter','$rootScope','$timeout','$mdSide
 function HomeCtrl($scope,$state,$filter,$rootScope,$timeout,$mdSidenav,$log,$mdBottomSheet, $mdToast,UserService,$ionicActionSheet,$ionicLoading) {
 
   $scope.activeTabName = null;
+  // $scope.tabs = [
+  //   {"text" : $filter('translate')('WHAT_S_NEW')},
+  //   {"text" : $filter('translate')('JUST_FOR_YOU')},
+  //   {"text" : $filter('translate')('MOST_TRENDING')}
+  // ];
 
   $scope.tabs = [
-    { index:0, heading: $filter('translate')('WHAT_S_NEW'), route:"#/home/new",state:'home.new', tabPage:'new' ,active:true},
-    { index:1, heading: $filter('translate')('JUST_FOR_YOU'), route:"#/home/outlets",state:'home.outlets', tabPage:'outlets',active:false},
-    { index:2, heading: $filter('translate')('MOST_TRENDING'), route:"#/home/wholesale",state:'home.wholesale', tabPage:'wholesale',active:false}
+    { index:0, heading: $filter('translate')('NEW'), route:"#/home/new",state:'home.new', tabPage:'new' ,active:true},
+    { index:1, heading: $filter('translate')('OUTLETS'), route:"#/home/outlets",state:'home.outlets', tabPage:'outlets',active:false},
+    { index:2, heading: $filter('translate')('WHOLESALE'), route:"#/home/wholesale",state:'home.wholesale', tabPage:'wholesale',active:false}
   ];
 
   $scope.goToState = function(tab){
-     $state.go(tab.state ,{}, {reload:true});
+     $state.go(tab.state);
   };
 
   $scope.$on("$stateChangeSuccess", function(event,toState, toParams, fromState, fromParams) {
@@ -47,12 +52,18 @@ function HomeCtrl($scope,$state,$filter,$rootScope,$timeout,$mdSidenav,$log,$mdB
   }
 
   $scope.openCategories = function (){
-    $mdSidenav('right').close();
+    //$mdSidenav('right').close();
+    $scope.close();
     $state.go('categories');
   };
   $scope.openWishList = function () {
-    $mdSidenav('right').close();
+    //$mdSidenav('right').close();
+    $scope.close();
     $state.go('wish-list');
+  };
+  $scope.openSignIn= function () {
+    $scope.close();
+    $state.go('authHome');
   };
 
   $scope.showListBottomSheet = function() {
@@ -77,7 +88,7 @@ function HomeCtrl($scope,$state,$filter,$rootScope,$timeout,$mdSidenav,$log,$mdB
     });
   };
 
-  $scope.toggleSideBar = buildToggler('right');
+  $scope.toggleSideBarHome = buildToggler('right');
 
   function buildToggler(navID) {
     return function() {

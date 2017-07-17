@@ -6,12 +6,12 @@ CategoryCtrl.$inject = ['$scope','$state','$rootScope'];
 
 function CategoryCtrl($scope,$state,$rootScope) {
   $scope.tabs = [
-    {"text" : "Home"},
-    {"text" : "Games"},
-    {"text" : "Mail"},
-    {"text" : "Car"},
-    {"text" : "Profile"},
-    {"text" : "Favourites"}
+    {"text" : "ALL"},
+    {"text" : "MEN"},
+    {"text" : "WOMEN"},
+    {"text" : "KIDS"},
+    {"text" : "ACCESSORIES"},
+    {"text" : "SUITS"}
   ];
   $scope.goHome = function () {
     $state.go('home.new');

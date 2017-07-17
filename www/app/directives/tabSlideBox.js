@@ -83,7 +83,11 @@ tabSlideBox.directive('tabSlideBox', [ '$timeout', '$window', '$ionicSlideBoxDel
                 }
                 //Use this scrollTo, so when scrolling tab manually will not flicker
                 $ionicScrollDelegate.scrollTo(Math.abs(leftStr), 0, true);
-
+              }else{
+                if(leftStr > 0){
+                  leftStr = 0;
+                }
+                $ionicScrollDelegate.scrollTo(Math.abs(leftStr), scope.scrollTop, true);
               }
               //$ionicScrollDelegate.scrollTo(Math.abs(leftStr), 0, true);
 

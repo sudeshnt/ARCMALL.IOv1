@@ -34,6 +34,10 @@ angular.module('lang_en',['pascalprecht.translate','ngSanitize'])
       RETURN_POLICY:"Return Policy",
       LOG_OUT:"Log Out",
       ORDER_HISTORY:"Order History",
+      NEW:"new",
+      OUTLETS:"outlets",
+      WHOLESALE:"wholesale",
+      HOME:"Home",
     });
     $translateProvider.useSanitizeValueStrategy('escapeParameters');
   }]);

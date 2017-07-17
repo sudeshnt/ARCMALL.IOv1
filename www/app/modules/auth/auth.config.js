@@ -19,5 +19,5 @@ authModule.config(function config($stateProvider,$urlRouterProvider) {
       templateUrl: 'app/modules/auth/templates/auth-sign-up.html',
       controller: 'AuthSignUpCtrl'
     })
-    $urlRouterProvider.otherwise('/authHome');
+    $urlRouterProvider.otherwise('/home/new');
 });

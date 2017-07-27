@@ -6,9 +6,9 @@
 
       clientAPI: {
         serviceName: 'Client API Services',
-        serviceUrl: 'http://payleq8.com',
-        port:'8080',
-        base_url: '/Paylegateway/rest'
+        serviceUrl: 'https://saasthara.com',
+        port:'',
+        base_url: '/i2cs/shops/demo/upload/index.php?route=api2'
       }
 
     });

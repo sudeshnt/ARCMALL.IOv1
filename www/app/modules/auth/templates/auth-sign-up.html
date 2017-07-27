@@ -15,15 +15,15 @@
       <div class="list list-inset sign-up-fields">
         <label class="item item-input text-xmd" ng-if="selectedAccountType == appConfig.accountTypes.SELLER">
           <i class="icon ion-ios-home-outline placeholder-icon"></i>
-          <input type="text" placeholder="{{'COMPANY_NAME' | translate}}" ng-model="user.email">
+          <input type="text" placeholder="{{'COMPANY_NAME' | translate}}" ng-model="user.companyname">
         </label>
         <label class="item item-input text-xmd">
           <i class="icon ion-android-person placeholder-icon"></i>
-          <input type="text" placeholder="{{'FIRST_NAME' | translate}}" ng-model="user.email">
+          <input type="text" placeholder="{{'FIRST_NAME' | translate}}" ng-model="user.firstname">
         </label>
         <label class="item item-input text-xmd">
           <i class="icon ion-android-person placeholder-icon"></i>
-          <input type="text" placeholder="{{'LAST_NAME' | translate}}" ng-model="user.email">
+          <input type="text" placeholder="{{'LAST_NAME' | translate}}" ng-model="user.lastname">
         </label>
         <label class="item item-input text-xmd">
           <i class="icon ion-ios-email-outline placeholder-icon"></i>
@@ -31,17 +31,17 @@
         </label>
         <label class="item item-input text-xmd">
           <i class="icon ion-ios-locked-outline placeholder-icon"></i>
-          <input type="password" placeholder="{{'PASSWORD' | translate}}" ng-model="user.email">
+          <input type="password" placeholder="{{'PASSWORD' | translate}}" ng-model="user.password">
         </label>
         <label class="item item-input text-xmd">
           <i class="icon ion-ios-locked-outline placeholder-icon"></i>
-          <input type="password" placeholder="{{'PASSWORD' | translate}}" ng-model="user.email">
+          <input type="password" placeholder="{{'PASSWORD' | translate}}" ng-model="user.confirm">
         </label>
       </div>
       <div>
-        <button class="button custom-height-button button-sm square button-block button-orange capital" ng-click="signIn()">
+        <a class="button custom-height-button button-sm square button-block button-orange capital" ng-click="signUp()">
           {{"SIGN_UP" | translate}}
-        </button>
+        </a>
       </div>
       <div class="" style="bottom: 40px;">
         <p class="align-center light">{{"SIGN_UP_WITH" | translate}}</p>
@@ -54,7 +54,7 @@
           </div>
         </div>
         <p class="align-center light">
-          <span>{{"ALREADY_REGISTERED" | translate}}</span> <a ng-click="" class="underlined">{{"SIGN_IN" | translate}}</a>
+          <span>{{"ALREADY_REGISTERED" | translate}}</span> <a ng-href="#/authSignIn" class="underlined">{{"SIGN_IN" | translate}}</a>
         </p>
       </div>
     </div>

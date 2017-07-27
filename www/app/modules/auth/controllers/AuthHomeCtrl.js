@@ -6,8 +6,8 @@ AuthHomeCtrl.$inject = ['$scope', '$state', '$q', 'UserService', '$ionicLoading'
 
 function AuthHomeCtrl($scope, $state, $q, UserService, $ionicLoading,httpService,serverConfig) {
 
-  var extended_url = '/merchant/regions';
-  httpService.getRequest(serverConfig.clientAPI,extended_url,{}).then(function(response){
+  var extended_url = '/category/all';
+  httpService.postRequest(serverConfig.clientAPI,extended_url,{},{}).then(function(response){
     if(response.status === 200){
        console.log(response.data);
     }

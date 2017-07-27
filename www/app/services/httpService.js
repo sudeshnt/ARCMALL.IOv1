@@ -16,7 +16,6 @@
       //     'Authorization': $scope.authUser.sessionId
       //   }
       // };
-      // log(url,'GET',{},config);
       addToPendingRequests(url,deferred);
       showLoading();
       $http.get(url,config)

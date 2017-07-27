@@ -47,7 +47,7 @@ ion-content{
 }
 .button-sm{
   height: 50px;
-  line-height: 25px;
+  line-height: 50px;
 }
 .button-md{
   height: 55px;
@@ -139,4 +139,8 @@ ion-content{
 /*opacity*/
 .half-opacity{
   opacity:0.5 !important;
+}
+
+.error-warning{
+  color:red;
 }

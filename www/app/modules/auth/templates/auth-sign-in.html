@@ -12,21 +12,35 @@
       </div>
     </ion-header-bar>
     <div class="contents padding has-header-md-search">
-      <div class="list list-inset">
-        <label class="item item-input text-md">
-          <i class="icon ion-ios-email-outline placeholder-icon"></i>
-          <input type="email" placeholder="{{'EMAIL_ADDRESS' | translate}}" ng-model="user.email">
-        </label>
-        <label class="item item-input text-md">
-          <i class="icon ion-ios-locked-outline placeholder-icon"></i>
-          <input type="email" placeholder="{{'PASSWORD' | translate}}" ng-model="user.email">
-        </label>
-      </div>
-      <div>
-        <button class="button custom-height-button button-sm square button-block button-orange capital" ng-click="signIn()">
-          {{"SIGN_IN" | translate}}
-        </button>
-      </div>
+      <form name="loginForm" novalidate>
+        <div class="list list-inset">
+          <label class="item item-input text-md">
+            <i class="icon ion-ios-email-outline placeholder-icon"></i>
+            <input type="email" placeholder="{{'EMAIL_ADDRESS' | translate}}" ng-model="user.email" name="email" required>
+            <span class="error-warning" data-ng-show="loginForm.$submitted">
+              <span class="error-warning" data-ng-show="loginForm.email.$error.required">This field is required.</span>
+              <span class="error-warning" data-ng-show="loginForm.email.$error.email">Enter a valid email.</span>
+            </span>
+          </label>
+          <label class="item item-input text-md">
+            <i class="icon ion-ios-locked-outline placeholder-icon"></i>
+            <input type="password" placeholder="{{'PASSWORD' | translate}}" ng-model="user.password" name="password" required>
+            <span class="error-warning" data-ng-show="loginForm.$submitted && loginForm.password.$error.required">
+                This field is required.
+            </span>
+          </label>
+        </div>
+        <span class="error-warning" data-ng-show="error">
+            {{error}}
+        </span>
+        <div>
+          <a class="button custom-height-button button-sm square button-block button-orange capital"
+             data-ng-disabled="disabledLoginBtn"
+             data-ng-click="loginForm.$setSubmitted(); loginForm.$valid && signIn();">
+            {{"SIGN_IN" | translate}}
+          </a>
+        </div>
+      </form>
       <div class="row" style="margin: 10px 0 10px 0;">
         <a ng-click="" class="underlined size-margin-auto" style="margin-top: 15px;margin-bottom: 15px;">{{"FORGET_PASSWORD" | translate}}</a>
       </div>
@@ -35,7 +49,7 @@
         <a class="button custom-height-button button-sm square button-block button-positive icon ion-social-facebook "></a>
         <a class="button custom-height-button button-sm square button-block button-assertive icon ion-social-googleplus "></a>
         <p class="align-center light">
-          <span>{{"NO_ACCOUNT" | translate}}</span> <a ng-click="" class="underlined">{{"REGISTER" | translate}}</a>
+          <span>{{"NO_ACCOUNT" | translate}}</span> <a ng-href="#/authSignUp" class="underlined">{{"REGISTER" | translate}}</a>
         </p>
       </div>
     </div>

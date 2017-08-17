@@ -36,13 +36,13 @@
       <div class="tsb-icons">
         <div class="tsb-ic-wrp">
           <ion-scroll direction="x" class="tsb-hscroll">
-            <a href="javascript:;" class="{{tab.icon}}" ng-repeat="tab in tabs" on-finish-render="test()">{{tab.text}}</a>
+            <a href="javascript:;" class="{{tab.icon}}" ng-repeat="tab in tabs track by $index" on-finish-render="test()">{{tab.text}}</a>
           </ion-scroll>
         </div>
       </div>
-      <ion-slide-box show-pager="false" on-slide-changed="slideHasChanged($index)">
+      <ion-slide-box show-pager="false" on-slide-changed="slideHasChanged()">
         <ion-slide>
-          <div style="width: 90%;">>
+          <div style="width: 90%;">
             <ion-content>
               <div class="row" style="padding: 1px 5px 4px;" ng-click="openWishList()" >
                 <div class="list card card-margin" ng-click="goToItems()">

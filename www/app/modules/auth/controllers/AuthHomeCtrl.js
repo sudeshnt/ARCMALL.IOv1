@@ -6,13 +6,6 @@ AuthHomeCtrl.$inject = ['$scope', '$state', '$q', 'UserService', '$ionicLoading'
 
 function AuthHomeCtrl($scope, $state, $q, UserService, $ionicLoading,httpService,serverConfig) {
 
-  var extended_url = '/category/all';
-  httpService.postRequest(serverConfig.clientAPI,extended_url,{},{}).then(function(response){
-    if(response.status === 200){
-       console.log(response.data);
-    }
-  });
-
   // This is the success callback from the login method
   var fbLoginSuccess = function(userData){
     console.log("UserInfo: ", userData);

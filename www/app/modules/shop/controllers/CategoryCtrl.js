@@ -6,6 +6,8 @@ CategoryCtrl.$inject = ['$scope','$state','$rootScope','httpService','serverConf
 
 function CategoryCtrl($scope,$state,$rootScope,httpService,serverConfig) {
 
+  console.log(JSON.parse(localStorage.getItem('SELECTED_CATEGORY')));
+
   function getAllCategories() {
     var extended_url = '/category/all';
     var req = {};

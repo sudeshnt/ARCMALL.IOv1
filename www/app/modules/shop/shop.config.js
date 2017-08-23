@@ -19,11 +19,11 @@ shopModule.config(function config($stateProvider,$urlRouterProvider) {
         }
       }
     })
-    .state('home.outlets', {
-      url: "/outlets",
+    .state('home.used', {
+      url: "/used",
       views: {
-        'outlets-tab': {
-          templateUrl: "app/modules/shop/templates/home-tabs/outlets.html",
+        'used-tab': {
+          templateUrl: "app/modules/shop/templates/home-tabs/used.html",
           // controller: 'HomeCtrl'
         }
       }

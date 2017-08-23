@@ -28,13 +28,16 @@
   <ion-content class="" overflow-scroll="true" style="top:5px;">
 
     <ion-tabs class="tabs-top tabs-darker capital" style="top:10px !important;">
-      <ion-tab title="NEW" href="#/home/new">
+      <!--<ion-tab ng-repeat="tab in tabs" title="{{tab.heading}}" href="{{tab.route}}" >-->
+        <!--<ion-nav-view name="{{tab.tabPage}}"></ion-nav-view>-->
+      <!--</ion-tab>-->
+      <ion-tab title="{{tabDetails.NEW.name}}" href="#/home/new">
         <ion-nav-view name="new-tab"></ion-nav-view>
       </ion-tab>
-      <ion-tab title="OUTLETS" href="#/home/outlets">
-        <ion-nav-view name="outlets-tab"></ion-nav-view>
+      <ion-tab title="{{tabDetails.USED.name}}" href="#/home/used">
+        <ion-nav-view name="used-tab"></ion-nav-view>
       </ion-tab>
-      <ion-tab title="WHOLESALE" href="#/home/wholesale">
+      <ion-tab title="{{tabDetails.WHOLESALE.name}}" href="#/home/wholesale">
         <ion-nav-view name="wholesale-tab"></ion-nav-view>
       </ion-tab>
     </ion-tabs>

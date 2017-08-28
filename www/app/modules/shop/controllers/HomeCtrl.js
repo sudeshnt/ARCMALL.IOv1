@@ -28,14 +28,13 @@ function HomeCtrl($scope,$state,$filter,$rootScope,$timeout,$mdSidenav,$log,$mdB
       for(var i in response.data.categories){
         tabName = response.data.categories[i].name.split(" ")[0].toUpperCase();
         $scope.tabDetails[tabName] = response.data.categories[i];
+        // getProductsByCategory(response.data.categories[i].category_id);
       }
       $scope.newCategories = $scope.getCategoryRows("NEW",2);
       $scope.usedCategories = $scope.getCategoryRows("USED",2);
       $scope.wholesaleCategories = $scope.getCategoryRows("WHOLESALE",2);
     }
   });
-
-
 
   $scope.getCategoryRows = function (key,size) {
     var newArr = [];
@@ -46,6 +45,23 @@ function HomeCtrl($scope,$state,$filter,$rootScope,$timeout,$mdSidenav,$log,$mdB
     }
     return newArr;
   };
+
+  function getProductsByCategory (id) {
+    var extended_url = '/category';
+    var reqObj = {
+      "path":id,
+      "search":"",
+      "sort":"",
+      "order":"",
+      "page":"1",
+      "limit":"100000",
+    }
+    httpService.postRequest(serverConfig.clientAPI,extended_url,reqObj,{}).then(function(response){
+      if(response.status === 200){
+
+      }
+    });
+  }
 
   // $scope.tabs = [
   //   { index:0, heading: $filter('translate')('NEW'), route:"#/home/new",state:'home.new', tabPage:'new' ,active:true},

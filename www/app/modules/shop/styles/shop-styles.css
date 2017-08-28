@@ -249,3 +249,18 @@ background-color: #f68469;
   font-size: 20px;
   color: #a6a5ab;
 }
+.slider-slides {
+  /*width: auto !important;*/
+}
+.overflow-scroll {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+  /*top: 0;*/
+  right: 0;
+  /*bottom: 0;*/
+  left: 0;
+  position: absolute;
+  /*margin-bottom: 10px;*/
+}

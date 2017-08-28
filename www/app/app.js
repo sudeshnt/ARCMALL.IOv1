@@ -9,7 +9,7 @@ var arcMall = angular.module('arcMall', [
   'pascalprecht.translate',
   'lang_en',
   'modules',
-  'tabSlideBox',
+  // 'tabSlideBox',
   'config.module'
 ]);
 

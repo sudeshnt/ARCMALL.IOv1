@@ -2,9 +2,9 @@
 
 angular.module('shop.module').controller('HomeCtrl',HomeCtrl );
 
-HomeCtrl.$inject = ['$scope','$state','$filter','$rootScope','$timeout','$mdSidenav','$log','$mdBottomSheet', '$mdToast','UserService','$ionicActionSheet','$ionicLoading','serverConfig','httpService'];
+HomeCtrl.$inject = ['$scope','$state','$filter','$rootScope','$timeout','$mdSidenav','$log','$mdBottomSheet', '$mdToast','UserService','$ionicActionSheet','$ionicLoading','serverConfig','httpService','$httpParamSerializer','publicFunc'];
 
-function HomeCtrl($scope,$state,$filter,$rootScope,$timeout,$mdSidenav,$log,$mdBottomSheet, $mdToast,UserService,$ionicActionSheet,$ionicLoading,serverConfig,httpService) {
+function HomeCtrl($scope,$state,$filter,$rootScope,$timeout,$mdSidenav,$log,$mdBottomSheet, $mdToast,UserService,$ionicActionSheet,$ionicLoading,serverConfig,httpService,$httpParamSerializer,publicFunc) {
 
   $scope.activeTabName = null;
 
@@ -17,24 +17,46 @@ function HomeCtrl($scope,$state,$filter,$rootScope,$timeout,$mdSidenav,$log,$mdB
   init();
 
   function init() {
-
+     initLatestProducts();
   }
 
-
-  var extended_url = '/category/all';
-  httpService.postRequest(serverConfig.clientAPI,extended_url,{},{}).then(function(response){
-    if(response.status === 200){
-      var tabName = '';
-      for(var i in response.data.categories){
-        tabName = response.data.categories[i].name.split(" ")[0].toUpperCase();
-        $scope.tabDetails[tabName] = response.data.categories[i];
-        // getProductsByCategory(response.data.categories[i].category_id);
+  function initLatestProducts(){
+    var extended_url = '/latest';
+    var reqObj = {
+      "start":0,
+      "limit":6,
+      "width":200,
+      "height":200,
+    };
+    var config = {
+      headers:{
+        'Content-Type': 'application/x-www-form-urlencoded'
       }
-      $scope.newCategories = $scope.getCategoryRows("NEW",2);
-      $scope.usedCategories = $scope.getCategoryRows("USED",2);
-      $scope.wholesaleCategories = $scope.getCategoryRows("WHOLESALE",2);
-    }
-  });
+    };
+    httpService.postRequest(serverConfig.clientAPI,extended_url, $httpParamSerializer(reqObj),config).then(function(response){
+      if(response.status === 200){
+        $scope.latestProducts = publicFunc.devideArray(response.data.products,2);
+      }
+    });
+  }
+
+  $scope.openItemDetails = function(product){
+    $state.go('item',{product:product});
+  };
+
+  // var extended_url = '/category/all';
+  // httpService.postRequest(serverConfig.clientAPI,extended_url,{},{}).then(function(response){
+  //   if(response.status === 200){
+  //     var tabName = '';
+  //     for(var i in response.data.categories){
+  //       tabName = response.data.categories[i].name.split(" ")[0].toUpperCase();
+  //       $scope.tabDetails[tabName] = response.data.categories[i];
+  //     }
+  //     $scope.newCategories = $scope.getCategoryRows("NEW",2);
+  //     $scope.usedCategories = $scope.getCategoryRows("USED",2);
+  //     $scope.wholesaleCategories = $scope.getCategoryRows("WHOLESALE",2);
+  //   }
+  // });
 
   $scope.getCategoryRows = function (key,size) {
     var newArr = [];
@@ -45,23 +67,6 @@ function HomeCtrl($scope,$state,$filter,$rootScope,$timeout,$mdSidenav,$log,$mdB
     }
     return newArr;
   };
-
-  function getProductsByCategory (id) {
-    var extended_url = '/category';
-    var reqObj = {
-      "path":id,
-      "search":"",
-      "sort":"",
-      "order":"",
-      "page":"1",
-      "limit":"100000",
-    }
-    httpService.postRequest(serverConfig.clientAPI,extended_url,reqObj,{}).then(function(response){
-      if(response.status === 200){
-
-      }
-    });
-  }
 
   // $scope.tabs = [
   //   { index:0, heading: $filter('translate')('NEW'), route:"#/home/new",state:'home.new', tabPage:'new' ,active:true},

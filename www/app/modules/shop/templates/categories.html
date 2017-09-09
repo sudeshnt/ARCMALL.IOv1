@@ -47,7 +47,7 @@
             </ion-list>
           </ion-list>
           <div class="row" style="padding: 1px 5px 4px;" ng-click="openWishList()"  ng-repeat="subCat_rows in catg.sub_cats track by $index">
-            <div class="list card card-margin" ng-click="goToItems()" ng-if="subCat_rows.length == 1">
+            <div class="list card card-margin" ng-click="goToItems(subCat_rows[0])" ng-if="subCat_rows.length == 1">
               <div class="item item-image">
                 <img src="app/modules/shop/img/cat-3.jpg">
                 <div class="text-on-image card-title-shadow">
@@ -56,7 +56,7 @@
               </div>
             </div>
             <div class="col zero-padding" ng-repeat="col in subCat_rows"  ng-if="subCat_rows.length > 1">
-              <div class="list card card-margin full-height" ng-click="goToItems()">
+              <div class="list card card-margin full-height" ng-click="goToItems(col)">
                 <div class="item item-image full-height" >
                   <img src="app/modules/shop/img/cat-6.jpg" class="full-height">
                   <div class="text-on-image card-title-shadow" >

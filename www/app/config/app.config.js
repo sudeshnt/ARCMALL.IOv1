@@ -5,8 +5,8 @@
     .constant('appConfig', {
 
       accountTypes : {
-        BUYER:1,
-        SELLER:2
+        BUYER:0,
+        SELLER:1
       }
 
     });

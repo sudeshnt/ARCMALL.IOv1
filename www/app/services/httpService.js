@@ -36,12 +36,9 @@
 
     function postRequest(service,extended_url,req,config){
       var deferred = $q.defer();
+      // var url = service.serviceUrl+service.base_url+extended_url;
       var url = service.serviceUrl+':'+service.port+service.base_url+extended_url;
-      // config = {
-      //   headers:{
-      //     'Authorization': $scope.authUser
-      //   }
-      // };
+
       addToPendingRequests(url,deferred);
       showLoading();
       $http.post(url,req,config)

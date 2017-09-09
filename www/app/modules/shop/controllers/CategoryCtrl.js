@@ -67,8 +67,8 @@ function CategoryCtrl($scope,$state,$rootScope,httpService,serverConfig,$ionicSl
   $scope.goHome = function () {
     $state.go('home.new');
   };
-  $scope.goToItems = function () {
-    $state.go('item-list');
+  $scope.goToItems = function (category) {
+    $state.go('item-list',{category_id:category.category_id});
   };
 
   init();

@@ -50,11 +50,13 @@ shopModule.config(function config($stateProvider,$urlRouterProvider) {
     .state('item-list', {
       url: '/item-list',
       templateUrl: 'app/modules/shop/templates/item-list.html',
-      controller: 'ItemListCtrl'
+      controller: 'ItemListCtrl',
+      params:{category_id:null}
     })
     .state('item', {
       url: '/item',
       templateUrl: 'app/modules/shop/templates/item.html',
-      controller: 'ItemCtrl'
+      controller: 'ItemCtrl',
+      params:{product:null}
     })
 });

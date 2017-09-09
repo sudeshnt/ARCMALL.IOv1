@@ -18,7 +18,7 @@ authModule.config(function config($stateProvider,$urlRouterProvider) {
       url: '/authSignUp',
       templateUrl: 'app/modules/auth/templates/auth-sign-up.html',
       controller: 'AuthSignUpCtrl',
-      params : {account_type:null}
+      params : {account_type:0}
     })
     .state('selectAccountRole', {
       url: '/selectAccountRole',

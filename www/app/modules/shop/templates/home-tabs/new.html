@@ -86,14 +86,14 @@
     <h4 class="align-center">LATEST ITEMS</h4>
     <hr width="100" size="2">
 
-      <div class="row" ng-repeat="row in newCategories">
-        <div class="col col-50 zero-padding" ng-repeat="category in row">
-          <div class="list card wish-list-card" ng-click="openCategoryPage(category)">
+      <div class="row" ng-repeat="product_row in latestProducts">
+        <div class="col col-50 zero-padding" ng-repeat="product in product_row">
+          <div class="list card wish-list-card" ng-click="openItemDetails(product)">
             <div class="item item-image" >
-              <img src="app/modules/shop/img/wish-1.jpg" class="full-width full-height">
+              <img src="{{product.thumb}}" class="full-width full-height">
             </div>
             <div class="item tabs-secondary tabs-icon-left white-tabs" style="padding: 10px;">
-              <h4 ng-bind-html="category.name"></h4>
+              <h4 ng-bind-html="product.name"></h4>
             </div>
           </div>
         </div>

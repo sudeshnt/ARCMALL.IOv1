@@ -10,9 +10,9 @@ function ItemListCtrl($scope,$state,$rootScope,$stateParams,serverConfig,httpSer
     $scope.category_id = $stateParams.category_id;
     init();
   }else{
-    $scope.category_id = '483';
-    init();
-    // $state.go('categories');
+    // $scope.category_id = '483';
+    // init();
+    $state.go('categories');
   }
 
   function getProductsByCategory (id) {

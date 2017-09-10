@@ -1,79 +1,21 @@
 <ion-view view-title="Wholesale" cache-view="false">
   <ion-content class="">
-    <div class="row">
-      <div class="col zero-padding">
-        <div class="list card wish-list-card" ng-click="openItemDetails()">
+    <div class="row" ng-repeat="productRow in products">
+      <div class="col zero-padding" ng-repeat="product in productRow" style="max-width:50%;">
+        <div class="list card wish-list-card" ng-click="openItemDetails(product.product_id)">
           <div class="item item-image" >
-            <img src="app/modules/shop/img/wish-5.jpg" class="full-width full-height">
+            <img ng-src="{{product.thumb}}" class="full-width full-height">
           </div>
           <div class="item tabs-secondary tabs-icon-left white-tabs" style="padding: 10px;">
-            <h2 class="align-center">Double Bed</h2>
-            <h3 class="align-center">$ 100</h3>
+            <h3 class="align-center" ng-bind-html="product.name"></h3>
+            <h3 class="align-center" ng-bind-html="product.price"></h3>
           </div>
         </div>
       </div>
-      <div class="col zero-padding">
-        <div class="list card wish-list-card" ng-click="openItemDetails()">
-          <div class="item item-image" >
-            <img src="app/modules/shop/img/wish-6.jpg" class="full-width full-height">
-          </div>
-          <div class="item tabs-secondary tabs-icon-left white-tabs" style="padding: 10px;">
-            <h2 class="align-center">Dining Table</h2>
-            <h3 class="align-center">$ 100</h3>
-          </div>
-        </div>
+      <div class="col zero-padding" ng-if="productRow.length==1">
       </div>
     </div>
-    <div class="row">
-      <div class="col zero-padding">
-        <div class="list card wish-list-card" ng-click="openItemDetails()">
-          <div class="item item-image" >
-            <img src="app/modules/shop/img/wish-1.jpg" class="full-width full-height">
-          </div>
-          <div class="item tabs-secondary tabs-icon-left white-tabs" style="padding: 10px;">
-            <h2 class="align-center">Casual Suit</h2>
-            <h3 class="align-center">$ 100</h3>
-          </div>
-        </div>
-      </div>
-      <div class="col zero-padding">
-        <div class="list card wish-list-card" ng-click="openItemDetails()">
-          <div class="item item-image" >
-            <img src="app/modules/shop/img/wish-2.jpg" class="full-width full-height">
-          </div>
-          <div class="item tabs-secondary tabs-icon-left white-tabs" style="padding: 10px;">
-            <h2 class="align-center">Formal Suit</h2>
-            <h3 class="align-center">$ 100</h3>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col zero-padding">
-        <div class="list card wish-list-card" ng-click="openItemDetails()">
-          <div class="item item-image" >
-            <img src="app/modules/shop/img/wish-3.png" class="full-width full-height">
-          </div>
-          <div class="item tabs-secondary tabs-icon-left white-tabs" style="padding: 10px;">
-            <h2 class="align-center">Women Frock</h2>
-            <h3 class="align-center">$ 100</h3>
-          </div>
-        </div>
-      </div>
-      <div class="col zero-padding">
-        <div class="list card wish-list-card" ng-click="openItemDetails()">
-          <div class="item item-image" >
-            <img src="app/modules/shop/img/wish-4.jpg" class="full-width full-height">
-          </div>
-          <div class="item tabs-secondary tabs-icon-left white-tabs" style="padding: 10px;">
-            <h2 class="align-center">Party Frock</h2>
-            <h3 class="align-center">$ 100</h3>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="row" style="height: 30px;"></div>
+    <div class="row" style="min-height: 25px;"></div>
   </ion-content>
 </ion-view>
 

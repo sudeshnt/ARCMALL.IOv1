@@ -22,6 +22,24 @@ function HomeCtrl($scope,$state,$filter,$rootScope,appConfig,$timeout,$mdSidenav
      initFeaturedProducts();
   }
 
+  function getProductsByCategory (id) {
+    var extended_url = '/category';
+    var reqObj = {
+      "path":id
+    };
+    var config = {
+      headers:{
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    };
+    httpService.postRequest(serverConfig.clientAPI,extended_url, $httpParamSerializer(reqObj),config).then(function(response){
+      if(response.status === 200){
+        $scope.products = publicFunc.devideArray(response.data.products,2);
+        console.log($scope.products);
+      }
+    });
+  }
+
   function initBanners(){
     var extended_url = '/design/banners';
     var config = {
@@ -77,8 +95,8 @@ function HomeCtrl($scope,$state,$filter,$rootScope,appConfig,$timeout,$mdSidenav
     });
   }
 
-  $scope.openItemDetails = function(product){
-    $state.go('item',{category_id:-1,product_id:product.product_id});
+  $scope.openItemDetails = function(product_id){
+    $state.go('item',{category_id:-1,product_id:product_id});
   };
 
   // var extended_url = '/category/all';
@@ -126,11 +144,13 @@ function HomeCtrl($scope,$state,$filter,$rootScope,appConfig,$timeout,$mdSidenav
       case 'home.new':
         setActive('new');
         break;
-      case 'home.outlets':
+      case 'home.used':
         setActive('outlets');
+        getProductsByCategory (76)
         break;
       case 'home.wholesale':
         setActive('wholesale');
+        getProductsByCategory (77)
         break;
     }
   });
@@ -161,6 +181,10 @@ function HomeCtrl($scope,$state,$filter,$rootScope,appConfig,$timeout,$mdSidenav
   $scope.openSignIn= function () {
     $scope.close();
     $state.go('authHome');
+  };
+  $scope.logOut = function () {
+    $scope.close();
+    $state.go('authSignIn');
   };
   $scope.showListBottomSheet = function() {
     $scope.alert = '';

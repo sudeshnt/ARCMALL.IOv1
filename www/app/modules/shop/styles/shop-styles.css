@@ -23,17 +23,22 @@
   padding-left: 5px;
 }
 .bar.bar-darker {
-  border-color: #111;
-  background-color: #2b3036;
-  background-image: linear-gradient(0deg, #2b3036, #2b3036 50%, transparent 50%);
+  border-color: #007fa3;
+  /*border-color: #111;*/
+  background-color: #007fa3;
+  /*background-color: #2b3036;*/
+  background-image: linear-gradient(0deg, #007fa3, #007fa3 50%, transparent 50%);
+  /*background-image: linear-gradient(0deg, #2b3036, #2b3036 50%, transparent 50%);*/
   color: #fff;
 }
 .tabs-darker{
-  background-color: #2b3036 !important;
+  background-color: #007fa3 !important;
+  /*background-color: #2b3036 !important;*/
   background-image: none;
 }
 .tabs-darker > .tabs {
-  background-color: #2b3036 !important;
+  background-color:#007fa3 !important;
+  /*background-color: #2b3036 !important;*/
   background-image: none;
   color: white;
 }

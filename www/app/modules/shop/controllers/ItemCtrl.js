@@ -11,9 +11,9 @@ function ItemCtrl($scope,$state,$rootScope,$filter,$stateParams,serverConfig,htt
       $scope.product_id = $stateParams.product_id;
       init();
     }else{
-      $scope.product_id = 214;
-      init();
-      // $state.go('home.new');
+      // $scope.product_id = 214;
+      // init();
+      $state.go('home.new');
     }
 
     $scope.goToItems = function () {

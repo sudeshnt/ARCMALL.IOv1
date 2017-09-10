@@ -6,52 +6,41 @@
       </a>
     </div>
     <h4 class="white left-title">{{'ALL_CATEGORIES' | translate}}</h4>
+    <div class="absolute" style="right:70px;">
+    <md-select ng-model="selectedMainCat" class="md-no-underline white" ng-change="selectedMainCatChange(selectedMainCat);" style="margin-top: 8px;">
+      <md-option ng-repeat="cat in mainCategoryDropDown" value="{{cat.value}}">{{cat.name}}</md-option>
+    </md-select>
+    </div>
     <div class="absolute cart-icon-wrapper">
+
       <a class="button button-icon row" href="/#/cart">
         <i class="ion-android-cart font-L white" ></i>
       </a>
     </div>
   </div>
 </ion-header-bar>
-<!--<div class="tabs-striped tabs-top tabs-background-dark tabs-color-light ">-->
-  <!--<div class="tabs has-header-md tabs-darker">-->
-    <!--<a class="tab-item active" href="">-->
-      <!--<p class="capital">ALL</p>-->
-    <!--</a>-->
-    <!--<a class="tab-item" href="">-->
-      <!--<p class="capital">MAN</p>-->
-    <!--</a>-->
-     <!--<a class="tab-item" href="">-->
-      <!--<p class="capital">WOMAN</p>-->
-    <!--</a>-->
-     <!--<a class="tab-item" href="">-->
-      <!--<p class="capital">KID</p>-->
-    <!--</a>-->
-  <!--</div>-->
-<!--</div>-->
-
 <ion-view>
   <ion-content class="has-header"  scroll="false">
-
     <ion-slide-box slide-tabs-scrollable="true" show-pager="false" on-slide-changed="changeSlide(index)" bounce="false" ion-slide-tabs>
-      <ion-slide ng-repeat="(key,catg) in cat_tabs.NEW.tabs" ion-slide-tab-label="{{catg.name}}" style="background-color:white; width:100%;">
+      <ion-slide ng-repeat="tab in selectedCatTabs.tabs  track by $index" ion-slide-tab-label="{{tab.name}}" style="background-color:white; width:100%;">
+      <!--<ion-slide ng-repeat="(key,catg) in selectedCatTabs.tabs  track by $index" ion-slide-tab-label="{{catg.name}}" style="background-color:white; width:100%;">-->
         <ion-content>
-          <ion-list>
-            <ion-list ng-if="ready[key]">
-              <ion-item class="item-avatar item-icon-right" ng-repeat="element in catg.items" type="item-text-wrap">
-                <img ng-src="{{element.img}}">
-                  <h2 style="color: #ef473a;">{{element.name}}</h2>
-                   <p>{{element.status}}</p>
-                   <i class="icon ion-chevron-right icon-accessory"></i>
-              </ion-item>
-            </ion-list>
-          </ion-list>
-          <div class="row" style="padding: 1px 5px 4px;" ng-click="openWishList()"  ng-repeat="subCat_rows in catg.sub_cats track by $index">
+          <!--<ion-list>-->
+            <!--<ion-list ng-if="ready[key]">-->
+              <!--<ion-item class="item-avatar item-icon-right" ng-repeat="element in catg.items" type="item-text-wrap">-->
+                <!--<img ng-src="{{element.img}}">-->
+                  <!--<h2 style="color: #ef473a;">{{element.name}}</h2>-->
+                   <!--<p>{{element.status}}</p>-->
+                   <!--<i class="icon ion-chevron-right icon-accessory"></i>-->
+              <!--</ion-item>-->
+            <!--</ion-list>-->
+          <!--</ion-list>-->
+          <div class="row" style="padding: 1px 5px 4px;" ng-repeat="subCat_rows in tab.sub_cats">
             <div class="list card card-margin" ng-click="goToItems(subCat_rows[0])" ng-if="subCat_rows.length == 1">
               <div class="item item-image">
                 <img src="app/modules/shop/img/cat-3.jpg">
                 <div class="text-on-image card-title-shadow">
-                  <h2 ng-bind-html="subCat_rows[0].name"></h2>
+                  <h4 ng-bind-html="subCat_rows[0].name"></h4>
                 </div>
               </div>
             </div>
@@ -60,7 +49,7 @@
                 <div class="item item-image full-height" >
                   <img src="app/modules/shop/img/cat-6.jpg" class="full-height">
                   <div class="text-on-image card-title-shadow" >
-                    <h2 ng-bind-html="col.name"></h2>
+                    <h4 ng-bind-html="col.name"></h4>
                   </div>
                 </div>
               </div>

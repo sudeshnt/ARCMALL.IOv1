@@ -6,12 +6,6 @@
   publicFunc.$inject = [];
 
   function publicFunc() {
-
-    var pending = [];
-    this.get = function() {
-      return pending;
-    };
-
     this.devideArray = function (inputArray,columns){
       var processedArray = [];
       var subArrayIndex = 0;
@@ -26,22 +20,6 @@
       }
       return processedArray;
     }
-
-    // this.add = function(request) {
-    //   pending.push(request);
-    // };
-    // this.remove = function(request) {
-    //   pending = _.filter(pending, function(p) {
-    //     return p.url !== request;
-    //   });
-    // };
-    // this.cancelAll = function() {
-    //   angular.forEach(pending, function(p) {
-    //     p.canceller.resolve();
-    //   });
-    //   pending.length = 0;
-    // };
-
   }
 })(angular);
 

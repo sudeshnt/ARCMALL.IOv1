@@ -2,9 +2,9 @@
 
 angular.module('shop.module').controller('HomeCtrl',HomeCtrl );
 
-HomeCtrl.$inject = ['$scope','$state','$filter','$rootScope','$timeout','$mdSidenav','$log','$mdBottomSheet', '$mdToast','UserService','$ionicActionSheet','$ionicLoading','serverConfig','httpService','$httpParamSerializer','publicFunc'];
+HomeCtrl.$inject = ['$scope','$state','$filter','$rootScope','appConfig','$timeout','$mdSidenav','$log','$mdBottomSheet', '$mdToast','UserService','$ionicActionSheet','$ionicLoading','serverConfig','httpService','$httpParamSerializer','publicFunc','GooglePlus'];
 
-function HomeCtrl($scope,$state,$filter,$rootScope,$timeout,$mdSidenav,$log,$mdBottomSheet, $mdToast,UserService,$ionicActionSheet,$ionicLoading,serverConfig,httpService,$httpParamSerializer,publicFunc) {
+function HomeCtrl($scope,$state,$filter,$rootScope,appConfig,$timeout,$mdSidenav,$log,$mdBottomSheet, $mdToast,UserService,$ionicActionSheet,$ionicLoading,serverConfig,httpService,$httpParamSerializer,publicFunc,GooglePlus) {
 
   $scope.activeTabName = null;
 
@@ -17,14 +17,30 @@ function HomeCtrl($scope,$state,$filter,$rootScope,$timeout,$mdSidenav,$log,$mdB
   init();
 
   function init() {
+     // initBanners();
      initLatestProducts();
+     initFeaturedProducts();
+  }
+
+  function initBanners(){
+    var extended_url = '/design/banners';
+    var config = {
+      headers:{
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    };
+    httpService.postRequest(serverConfig.clientAPI,extended_url, {},config).then(function(response){
+      if(response.status === 200){
+       console.log(response);
+      }
+    });
   }
 
   function initLatestProducts(){
     var extended_url = '/latest';
     var reqObj = {
       "start":0,
-      "limit":6,
+      "limit":4,
       "width":200,
       "height":200,
     };
@@ -40,8 +56,29 @@ function HomeCtrl($scope,$state,$filter,$rootScope,$timeout,$mdSidenav,$log,$mdB
     });
   }
 
+  function initFeaturedProducts(){
+    var extended_url = '/latest';
+    // var extended_url = '/featured';
+    var reqObj = {
+      "start":5,
+      "limit":4,
+      "width":200,
+      "height":200,
+    };
+    var config = {
+      headers:{
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    };
+    httpService.postRequest(serverConfig.clientAPI,extended_url, $httpParamSerializer(reqObj),config).then(function(response){
+      if(response.status === 200){
+        $scope.featuredProducts = publicFunc.devideArray(response.data.products,2);
+      }
+    });
+  }
+
   $scope.openItemDetails = function(product){
-    $state.go('item',{product:product});
+    $state.go('item',{category_id:-1,product_id:product.product_id});
   };
 
   // var extended_url = '/category/all';

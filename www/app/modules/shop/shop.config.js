@@ -57,6 +57,7 @@ shopModule.config(function config($stateProvider,$urlRouterProvider) {
       url: '/item',
       templateUrl: 'app/modules/shop/templates/item.html',
       controller: 'ItemCtrl',
-      params:{product:null}
+      cache:false,
+      params:{category_id:null,product_id:null}
     })
 });

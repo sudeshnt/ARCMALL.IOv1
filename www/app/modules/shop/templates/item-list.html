@@ -16,8 +16,8 @@
 
   <ion-content class="has-header" overflow-scroll="true">
     <div class="row" ng-repeat="productRow in category.products">
-      <div class="col zero-padding" ng-repeat="product in productRow">
-        <div class="list card wish-list-card" ng-click="openItemDetails(product)">
+      <div class="col zero-padding" ng-repeat="product in productRow" style="max-width:50%;">
+        <div class="list card wish-list-card" ng-click="openItemDetails(product.product_id)">
           <div class="item item-image" >
             <img ng-src="{{product.thumb}}" class="full-width full-height">
           </div>
@@ -30,6 +30,8 @@
       <div class="col zero-padding" ng-if="productRow.length==1">
       </div>
     </div>
+    <div class="row" style="min-height: 25px;"></div>
+
     <!--<div class="row">-->
       <!--<div class="col zero-padding">-->
         <!--<div class="list card wish-list-card" ng-click="openItemDetails()">-->

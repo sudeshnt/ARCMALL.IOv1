@@ -6,11 +6,23 @@ ItemCtrl.$inject = ['$scope','$state','$rootScope','$filter','$stateParams','ser
 
 function ItemCtrl($scope,$state,$rootScope,$filter,$stateParams,serverConfig,httpService,$httpParamSerializer) {
 
-    if($stateParams.product){
-      $scope.product = $stateParams.product;
+    if($stateParams.product_id){
+      $scope.category_id = $stateParams.category_id;
+      $scope.product_id = $stateParams.product_id;
+      init();
     }else{
-      $state.go('home.new');
+      $scope.product_id = 214;
+      init();
+      // $state.go('home.new');
     }
+
+    $scope.goToItems = function () {
+      if(!$scope.category_id || $scope.category_id==-1){
+        $state.go('home.new');
+      }else{
+        $state.go('item-list',{category_id:$scope.category_id});
+      }
+    };
 
     $scope.openCartPage = function () {
       $state.go('cart');
@@ -66,7 +78,24 @@ function ItemCtrl($scope,$state,$rootScope,$filter,$stateParams,serverConfig,htt
       };
       httpService.postRequest(serverConfig.clientAPI,extended_url, $httpParamSerializer(reqObj),config).then(function(response){
         if(response.status === 200){
-          console.log(XML.parse(response.data));
+          $scope.product = response.data;
+        }
+      });
+    }
+
+    function getProductReview() {
+      var extended_url = '/product/getreviews';
+      var reqObj = {
+        "product_id":$scope.product_id
+      };
+      var config = {
+        headers:{
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      };
+      httpService.postRequest(serverConfig.clientAPI,extended_url, $httpParamSerializer(reqObj),config).then(function(response){
+        if(response.status === 200){
+          console.log(response);
         }
       });
     }
@@ -75,5 +104,6 @@ function ItemCtrl($scope,$state,$rootScope,$filter,$stateParams,serverConfig,htt
 
     function init(){
       initProduct();
+      getProductReview()
     }
 }

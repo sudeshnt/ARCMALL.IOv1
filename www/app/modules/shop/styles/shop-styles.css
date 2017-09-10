@@ -106,6 +106,12 @@
   padding-left: 3px;
   font-weight: 300;
 }
+.text-on-image h4
+{
+  color: #fff;
+  padding-left: 3px;
+  font-weight: 300;
+}
 .white-tabs
 {
 background: #fff !important;
@@ -263,4 +269,9 @@ background-color: #f68469;
   left: 0;
   position: absolute;
   /*margin-bottom: 10px;*/
+}
+
+md-select.md-default-theme:not([disabled]):focus .md-select-value, md-select:not([disabled]):focus .md-select-value {
+  border-bottom-color: rgb(63,81,181);
+  color: rgba(255, 255, 255, 0.87);
 }

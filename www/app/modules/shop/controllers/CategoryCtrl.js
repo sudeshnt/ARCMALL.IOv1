@@ -2,9 +2,9 @@
 
 angular.module('shop.module').controller('CategoryCtrl',CategoryCtrl );
 
-CategoryCtrl.$inject = ['$scope','$state','$rootScope','httpService','serverConfig','$ionicSlideBoxDelegate','$window', '$ionicGesture'];
+CategoryCtrl.$inject = ['$scope','$state','$rootScope','httpService','serverConfig','$ionicSlideBoxDelegate','$window', '$ionicGesture','$timeout'];
 
-function CategoryCtrl($scope,$state,$rootScope,httpService,serverConfig,$ionicSlideBoxDelegate,$window, $ionicGesture) {
+function CategoryCtrl($scope,$state,$rootScope,httpService,serverConfig,$ionicSlideBoxDelegate,$window, $ionicGesture,$timeout) {
 
   console.log(JSON.parse(localStorage.getItem('SELECTED_CATEGORY')));
 
@@ -14,16 +14,44 @@ function CategoryCtrl($scope,$state,$rootScope,httpService,serverConfig,$ionicSl
     httpService.postRequest(serverConfig.clientAPI,extended_url,req,{}).then(function(response){
       if(response.status === 200 && !response.error_warning){
         $scope.cat_tabs = {};
+        $scope.mainCategoryDropDown = [
+          {
+            "id":response.data.categories[0].id,
+            "name":response.data.categories[0].name,
+            "value":"NEW"
+          },{
+            "id":response.data.categories[1].id,
+            "name":response.data.categories[1].name,
+            "value":"USED"
+          },{
+            "id":response.data.categories[2].id,
+            "name":response.data.categories[2].name,
+            "value":"WHOLESALE"
+          }
+        ];
+        $scope.selectedMainCat = $scope.mainCategoryDropDown[0].value;
         // get processed categories
         $scope.cat_tabs["NEW"] = $scope.getSubCategories(response.data.categories[0],2) ;
         $scope.cat_tabs["USED"] = $scope.getSubCategories(response.data.categories[1],2);
         $scope.cat_tabs["WHOLESALE"] = $scope.getSubCategories(response.data.categories[2],2)
+
+        $scope.selectedCatTabs = $scope.cat_tabs["NEW"];
         $ionicSlideBoxDelegate.update();
       }else{
         $scope.error = response.error_warning;
       }
     });
   }
+
+  $scope.selectedMainCatChange = function(value){
+    // $scope.selectedCatTabs={};
+    // $timeout(function(){
+    //   $ionicSlideBoxDelegate._instances[0].kill();
+    //   $scope.selectedCatTabs = $scope.cat_tabs[value];
+    //   $ionicSlideBoxDelegate.slide(0);
+    //   $ionicSlideBoxDelegate.update();
+    // }, 500);
+  };
 
   $scope.getSubCategories = function (arr,size) {
     var newNameArr = [];
@@ -48,7 +76,6 @@ function CategoryCtrl($scope,$state,$rootScope,httpService,serverConfig,$ionicSl
         );
         newArr.push(tempArr);
       }
-      console.log(newNameArr);
     }
     return {
       "tabs" : newNameArr,

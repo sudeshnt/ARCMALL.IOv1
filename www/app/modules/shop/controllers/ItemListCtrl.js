@@ -33,8 +33,8 @@ function ItemListCtrl($scope,$state,$rootScope,$stateParams,serverConfig,httpSer
     });
   }
 
-  $scope.openItemDetails = function(product){
-    $state.go('item',{product:product});
+  $scope.openItemDetails = function(product_id){
+    $state.go('item',{category_id:$scope.category_id,product_id:product_id});
   };
 
   function initCategory(){

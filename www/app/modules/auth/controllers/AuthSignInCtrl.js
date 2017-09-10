@@ -20,7 +20,7 @@ function AuthSignInCtrl($scope,$state,$rootScope,httpService,serverConfig,$httpP
       }
     };
     httpService.postRequest(serverConfig.clientAPI,extended_url,$httpParamSerializer(req),config).then(function(response){
-      if(response.status === 200 && response.error_warning == ""){
+      if(response.status === 200){
         localStorage.setItem('loginStatus',true);
         localStorage.setItem('authResponse',JSON.stringify(response.customer_info));
         $state.go('home.new');

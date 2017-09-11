@@ -11,7 +11,7 @@ var arcMall = angular.module('arcMall', [
   'modules',
   // 'tabSlideBox',
   'config.module',
-  'googleplus',
+  // 'googleplus'
   // 'faceboook'
 ]);
 
@@ -22,13 +22,13 @@ arcMall.config(function($translateProvider) {
     $translateProvider.fallbackLanguage("en");
 });
 
-
-arcMall.config(['GooglePlusProvider', function(GooglePlusProvider) {
-  GooglePlusProvider.init({
-    clientId: 'com.googleusercontent.apps.683451474237-kgbp6hbnbv3dtftbi3o1hmokm46od906'
-    // apiKey: 'AIzaSyBjWo11coJyU3CeABuuSdBDzjq7xh-EPPE'
-  });
-}]);
+//
+// arcMall.config(['GooglePlusProvider', function(GooglePlusProvider) {
+//   GooglePlusProvider.init({
+//     clientId: 'com.googleusercontent.apps.683451474237-kgbp6hbnbv3dtftbi3o1hmokm46od906'
+//     // apiKey: 'AIzaSyBjWo11coJyU3CeABuuSdBDzjq7xh-EPPE'
+//   });
+// }]);
 
 arcMall.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {

@@ -27,23 +27,24 @@
     </label>
     <label class="item item-input text-xmd add-item-textbox">
       <!--<i class="icon ion-ios-home-outline placeholder-icon"></i>-->
-      <input type="text" placeholder="{{'WHAT_IS_THE_PRICE_OF_YOUR_PRODUCT' | translate}}" ng-model="item.companyname">
+      <input type="text" placeholder="{{'WHAT_IS_THE_PRICE_OF_YOUR_PRODUCT' | translate}}" ng-model="item.price">
     </label>
     <label class="item item-input text-xmd add-item-textbox">
       <!--<i class="icon ion-ios-home-outline placeholder-icon"></i>-->
-      <input type="text" placeholder="{{'QUANTITY_AVAILABLE' | translate}}" ng-model="item.companyname">
+      <input type="text" placeholder="{{'QUANTITY_AVAILABLE' | translate}}" ng-model="item.quantity">
     </label>
-    <select class="multi-select" ng-model="" multiple="multiple" style="width:100%;">
+    <select class="multi-select" ng-model="item.category.level_1" style="width:100%;">
+    <!--<select class="multi-select" ng-model="item.category.level_1" multiple="multiple" style="width:100%;">-->
       <option>Blue</option>
       <option>Green</option>
       <option>Red</option>
     </select>
-    <select class="multi-select" ng-model="" multiple="multiple" style="width:100%;">
+    <select class="multi-select" ng-model="item.category.level_2" multiple="multiple" style="width:100%;">
       <option>Blue</option>
       <option>Green</option>
       <option>Red</option>
     </select>
-    <select class="multi-select" ng-model="" multiple="multiple" style="width:100%;">
+    <select class="multi-select" ng-model="item.category.level_3" multiple="multiple" style="width:100%;">
       <option>Blue</option>
       <option>Green</option>
       <option>Red</option>

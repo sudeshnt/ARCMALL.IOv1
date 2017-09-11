@@ -17,10 +17,28 @@
       <!--<i class="icon ion-ios-home-outline placeholder-icon"></i>-->
       <input type="text" placeholder="{{'WHAT_IS_YOUR_PRODUCT_NAME' | translate}}" ng-model="item.name">
     </label>
-    <label class="item item-input text-xmd add-item-textbox" >
+    <label class="item item-input text-xmd add-item-textbox" style="height:100px;">
       <!--<i class="icon ion-ios-home-outline placeholder-icon"></i>-->
-      <input type="text" placeholder="{{'TELL_US_ABOUT_YOUR_ITEM' | translate}}" ng-model="item.description">
+      <textarea type="text" rows="4" placeholder="{{'TELL_US_ABOUT_YOUR_ITEM' | translate}}" ng-model="item.description"></textarea>
     </label>
+    <div layout="row" layout-align="space-between center">
+      <md-select ng-model="category.catLevel1" placeholder="Please select type of item" class="md-no-underline category-select">
+        <md-option ng-repeat="cat_level_1 in cat_tabs track by $index" value="{{$index}}">{{cat_level_1.name}}</md-option>
+      </md-select>
+    </div>
+    <div layout="row" layout-align="space-between center" ng-if="category.catLevel1">
+      <md-select ng-model="category.catLevel2" placeholder="Please select a main category" class="md-no-underline category-select">
+        <md-option ng-repeat="cat_level_2 in cat_tabs[category.catLevel1].categories track by $index" value="{{$index}}">{{cat_level_2.name}}</md-option>
+      </md-select>
+    </div>
+    <div layout="row" layout-align="space-between center" ng-if="category.catLevel2">
+      <md-select ng-model="category.catLevel3"  ng-change="setItemCategory()" placeholder="Please select a sub category" class="md-no-underline category-select">
+        <md-option ng-repeat="cat_level_3 in cat_tabs[category.catLevel1].categories[category.catLevel2].categories track by $index" value="{{$index}}">{{cat_level_3.name}}</md-option>
+      </md-select>
+    </div>
+    <div class="square category-chip" ng-click="signUp()" ng-repeat="category in item.category">
+      {{category.name}}
+    </div>
     <label class="item item-input text-xmd add-item-textbox">
       <!--<i class="icon ion-ios-home-outline placeholder-icon"></i>-->
       <input type="text" placeholder="{{'WHAT_IS_THE_MODEL_OF_YOUR_PRODUCT' | translate}}" ng-model="item.model">
@@ -33,22 +51,12 @@
       <!--<i class="icon ion-ios-home-outline placeholder-icon"></i>-->
       <input type="text" placeholder="{{'QUANTITY_AVAILABLE' | translate}}" ng-model="item.quantity">
     </label>
-    <select class="multi-select" ng-model="item.category.level_1" style="width:100%;">
-    <!--<select class="multi-select" ng-model="item.category.level_1" multiple="multiple" style="width:100%;">-->
-      <option>Blue</option>
-      <option>Green</option>
-      <option>Red</option>
-    </select>
-    <select class="multi-select" ng-model="item.category.level_2" multiple="multiple" style="width:100%;">
-      <option>Blue</option>
-      <option>Green</option>
-      <option>Red</option>
-    </select>
-    <select class="multi-select" ng-model="item.category.level_3" multiple="multiple" style="width:100%;">
-      <option>Blue</option>
-      <option>Green</option>
-      <option>Red</option>
-    </select>
+    {{item.images}}
+    <img ng-repeat="image in item.images track by $index" ng-src="{{image}}" style="width: 70px;height: 70px;margin: 5px;">
+
+    <a class="button square" ng-click="getPicture()" style="width:70px;height:70px; line-height: 70px;margin: 5px;">
+      <i class="ion-plus-round" style="font-size: 30px;"></i>
+    </a>
     <div>
       <a class="button custom-height-button button-sm square button-block button-orange capital" ng-click="signUp()">
         {{"SAVE_ITEM" | translate}}

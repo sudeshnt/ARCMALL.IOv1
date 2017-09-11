@@ -55,6 +55,7 @@ angular.module('lang_en',['pascalprecht.translate','ngSanitize'])
       WHAT_IS_THE_MODEL_OF_YOUR_PRODUCT:'What is the model of your product',
       WHAT_IS_THE_PRICE_OF_YOUR_PRODUCT:'What is the price of your product',
       QUANTITY_AVAILABLE:'Quantity available',
+      SAVE_ITEM:'Save Item',
     });
     $translateProvider.useSanitizeValueStrategy('escapeParameters');
   }]);

@@ -186,6 +186,10 @@ function HomeCtrl($scope,$state,$filter,$rootScope,appConfig,$timeout,$mdSidenav
     $scope.close();
     $state.go('authSignIn');
   };
+  $scope.openAddItem = function () {
+    $state.go('sellerHome');
+  };
+
   $scope.showListBottomSheet = function() {
     $scope.alert = '';
     $mdBottomSheet.show({

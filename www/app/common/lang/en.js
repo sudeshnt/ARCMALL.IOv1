@@ -48,7 +48,13 @@ angular.module('lang_en',['pascalprecht.translate','ngSanitize'])
       PLEASE_SELECT_ACCOUNT_ROLE:'Please select the role for your account',
       I_AM_BUYER:"I'm a Buyer",
       I_AM_SELLER:"I'm a Seller",
-      SERVER_ERROR:'Server Error'
+      SERVER_ERROR:'Server Error',
+      ADD_ITEM:'Add Item',
+      WHAT_IS_YOUR_PRODUCT_NAME:'What is your product name',
+      TELL_US_ABOUT_YOUR_ITEM:'Tell us about your item',
+      WHAT_IS_THE_MODEL_OF_YOUR_PRODUCT:'What is the model of your product',
+      WHAT_IS_THE_PRICE_OF_YOUR_PRODUCT:'What is the price of your product',
+      QUANTITY_AVAILABLE:'Quantity available',
     });
     $translateProvider.useSanitizeValueStrategy('escapeParameters');
   }]);

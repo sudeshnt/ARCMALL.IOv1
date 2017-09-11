@@ -2,9 +2,9 @@
 
 angular.module('shop.module').controller('HomeCtrl',HomeCtrl );
 
-HomeCtrl.$inject = ['$scope','$state','$filter','$rootScope','appConfig','$timeout','$mdSidenav','$log','$mdBottomSheet', '$mdToast','UserService','$ionicActionSheet','$ionicLoading','serverConfig','httpService','$httpParamSerializer','publicFunc','GooglePlus'];
+HomeCtrl.$inject = ['$scope','$state','$filter','$rootScope','appConfig','$timeout','$mdSidenav','$log','$mdBottomSheet', '$mdToast','UserService','$ionicActionSheet','$ionicLoading','serverConfig','httpService','$httpParamSerializer','publicFunc'];
 
-function HomeCtrl($scope,$state,$filter,$rootScope,appConfig,$timeout,$mdSidenav,$log,$mdBottomSheet, $mdToast,UserService,$ionicActionSheet,$ionicLoading,serverConfig,httpService,$httpParamSerializer,publicFunc,GooglePlus) {
+function HomeCtrl($scope,$state,$filter,$rootScope,appConfig,$timeout,$mdSidenav,$log,$mdBottomSheet, $mdToast,UserService,$ionicActionSheet,$ionicLoading,serverConfig,httpService,$httpParamSerializer,publicFunc) {
 
   $scope.activeTabName = null;
 

@@ -47,6 +47,11 @@ shopModule.config(function config($stateProvider,$urlRouterProvider) {
       templateUrl: 'app/modules/shop/templates/wish-list.html',
       controller: 'WishListCtrl'
     })
+    .state('order-history', {
+      url: '/order-history',
+      templateUrl: 'app/modules/shop/templates/order-history.html',
+      controller: 'OrderHistoryCtrl'
+    })
     .state('item-list', {
       url: '/item-list',
       templateUrl: 'app/modules/shop/templates/item-list.html',
@@ -57,7 +62,6 @@ shopModule.config(function config($stateProvider,$urlRouterProvider) {
       url: '/item',
       templateUrl: 'app/modules/shop/templates/item.html',
       controller: 'ItemCtrl',
-      cache:false,
       params:{category_id:null,product_id:null}
     })
 });

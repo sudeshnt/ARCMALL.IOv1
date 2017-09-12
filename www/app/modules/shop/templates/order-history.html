@@ -1,0 +1,53 @@
+<ion-header-bar class="bar bar-header header-md bar-darker">
+  <div style="width: 100%; display: inherit; margin-top: 0px !important;" >
+    <div class="absolute back-icon-wrapper">
+      <a class="button button-icon row" ng-click="toggleSideBar();">
+        <i class="ion-navicon-round font-L white"></i>
+      </a>
+    </div>
+    <h4 class="white left-title">{{'ORDER_HISTORY' | translate}}</h4>
+  </div>
+</ion-header-bar>
+<ion-view>
+
+  <ion-content class="has-heade-md" overflow-scroll="true">
+
+  </ion-content>
+  <md-sidenav class="md-sidenav-left md-whiteframe-4dp" md-component-id="left" style="margin-top: 55px !important;">
+    <md-content >
+      <img ng-src="app/modules/shop/img/home-slide-nav.jpg" style="width:100%">
+      <md-list flex>
+        <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;" >
+          <div class="md-list-item-text zero-margin" layout="column" ng-click="openSignIn()">
+            <h4><i class="ion-person sidenav-icon"></i><span class="sidenav-options">{{'SIGN_IN' | translate}}</span></h4>
+          </div>
+        </md-list-item>
+        <md-divider ></md-divider>
+        <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;">
+          <div class="md-list-item-text zero-margin" layout="column"  ng-click="openHome()">
+            <h4><i class="ion-android-home sidenav-icon"></i><span class="sidenav-options">{{'HOME' | translate}}</span></h4>
+          </div>
+        </md-list-item>
+        <md-divider ></md-divider>
+        <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;" >
+          <div class="md-list-item-text zero-margin" layout="column" ng-click="openCategories()">
+            <h4><i class="ion-ios-browsers sidenav-icon"></i><span class="sidenav-options">{{'ALL_CATEGORIES' | translate}}</span></h4>
+          </div>
+        </md-list-item>
+        <md-divider ></md-divider>
+        <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;">
+          <div class="md-list-item-text zero-margin" layout="column"  ng-click="">
+            <h4><i class="ion-ios-albums sidenav-icon"></i><span class="sidenav-options">{{'ORDER_HISTORY' | translate}}</span></h4>
+          </div>
+        </md-list-item>
+        <md-divider ></md-divider>
+        <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;">
+          <div class="md-list-item-text zero-margin" layout="column" ng-click="logOut()">
+            <h4><i class="ion-android-hand sidenav-icon"></i><span class="sidenav-options">{{'LOG_OUT' | translate}}</span></h4>
+          </div>
+        </md-list-item>
+        <md-divider ></md-divider>
+      </md-list>
+    </md-content>
+  </md-sidenav>
+</ion-view>

@@ -22,7 +22,9 @@ function AuthSignInCtrl($scope,$state,$rootScope,httpService,serverConfig,$httpP
     httpService.postRequest(serverConfig.clientAPI,extended_url,$httpParamSerializer(req),config).then(function(response){
       if(response.status === 200){
         localStorage.setItem('loginStatus',true);
-        localStorage.setItem('authResponse',JSON.stringify(response.customer_info));
+        var authResponse = response.data.customer_info;
+        authResponse.ispartner = response.data.ispartner;
+        localStorage.setItem('authResponse',JSON.stringify(authResponse));
         $state.go('home.new');
       }else{
         $scope.error = response.error_warning;

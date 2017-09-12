@@ -278,5 +278,24 @@ background-color: #f68469;
 
 md-select.md-default-theme:not([disabled]):focus .md-select-value, md-select:not([disabled]):focus .md-select-value {
   border-bottom-color: rgb(63,81,181);
-  color: rgba(255, 255, 255, 0.87);
+  color: rgba(86, 86, 86, 0.87);
+}
+.category-select{
+  margin: 5px 0 10px !important;
+  width: 100%;
+  background: white;
+  height: 50px;
+  padding-left: 25px;
+}
+.category-chip{
+  background: #403e3e;
+  color: white;
+  min-height: 0;
+  height: 35px;
+  line-height: 20px;
+  font-size: 15px;
+  margin: 5px;
+  /* width: auto; */
+  display: inline-block;
+  padding: 7px;
 }

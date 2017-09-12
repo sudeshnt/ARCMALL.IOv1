@@ -26,7 +26,6 @@ function InitialCtrl($scope,$rootScope,$state,$ionicHistory,$ionicLoading,server
               // if(checkAuthUser(JSON.parse(localStorage.getItem('authResponse')))){
               $rootScope.loginStatus = true;
               $rootScope.authResponse = JSON.parse(localAuthResponse);
-              console.log($rootScope.authResponse);
             }else{
               $scope.logOut(event,toState);
             }
@@ -42,7 +41,7 @@ function InitialCtrl($scope,$rootScope,$state,$ionicHistory,$ionicLoading,server
     }
 
     $rootScope.$on('$stateChangeSuccess', function () {
-      $ionicLoading.hide();
+      // $ionicLoading.hide();
       // $scope.serviceLocator;
     });
 

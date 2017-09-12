@@ -43,22 +43,46 @@
       <!--<i class="icon ion-ios-home-outline placeholder-icon"></i>-->
       <input type="text" placeholder="{{'WHAT_IS_THE_MODEL_OF_YOUR_PRODUCT' | translate}}" ng-model="item.model">
     </label>
+    <div class="row zero-padding">
+      <div class="col zero-padding" style="max-width:153px;margin-right: 5px;">
+        <div layout="row" layout-align="space-between center">
+          <md-select ng-model="item.currency_code"  placeholder="Currency" class="md-no-underline category-select">
+            <md-option ng-repeat="currency in currencies track by $index" value="{{currency.code}}">{{currency.title}}</md-option>
+          </md-select>
+        </div>
+      </div>
+      <div class="col zero-padding">
+        <label class="item item-input text-xmd add-item-textbox" style=" height: 51px;">
+          <input type="number" placeholder="{{'WHAT_IS_THE_PRICE_OF_YOUR_PRODUCT' | translate}}" ng-model="item.price">
+        </label>
+      </div>
+    </div>
     <label class="item item-input text-xmd add-item-textbox">
       <!--<i class="icon ion-ios-home-outline placeholder-icon"></i>-->
-      <input type="text" placeholder="{{'WHAT_IS_THE_PRICE_OF_YOUR_PRODUCT' | translate}}" ng-model="item.price">
+      <input type="number" placeholder="{{'QUANTITY_AVAILABLE' | translate}}" ng-model="item.quantity">
     </label>
-    <label class="item item-input text-xmd add-item-textbox">
-      <!--<i class="icon ion-ios-home-outline placeholder-icon"></i>-->
-      <input type="text" placeholder="{{'QUANTITY_AVAILABLE' | translate}}" ng-model="item.quantity">
-    </label>
-    {{item.images}}
-    <img ng-repeat="image in item.images track by $index" ng-src="{{image}}" style="width: 70px;height: 70px;margin: 5px;">
+    <!--<img ng-repeat="image in item.images track by $index" ng-src="{{image}}" style="width: 70px;height: 70px;margin: 5px;">-->
+    <div ng-show="product.product_id">
+      <label class="grey-text">Main Image</label>
+      <div class="full-width" ng-show="item.mainImage">
+        <img ng-src="{{pathForImage(item.mainImage)}}" style="height: 100px;margin:5px;">
+      </div>
+      <div ng-show="!item.mainImage">
+        <a class="button square main-image-btn" ng-click="getPicture('Main')">
+          <i class="ion-plus-round" style="font-size: 30px;"></i>
+        </a><br><br>
+      </div>
+    </div>
+    <div ng-show="product.product_id">
+      <label class="grey-text full-width">Sub Images</label><br>
+      <img ng-repeat="image in item.images" ng-src="{{pathForImage(image)}}" style="width: 100px; height: 100px;margin:5px;">
+      <a class="button square sub-image-btn" ng-click="getPicture('Product')" ng-show="item.images.length<7">
+        <i class="ion-plus-round" style="font-size: 30px;"></i>
+      </a>
+    </div>
 
-    <a class="button square" ng-click="getPicture()" style="width:70px;height:70px; line-height: 70px;margin: 5px;">
-      <i class="ion-plus-round" style="font-size: 30px;"></i>
-    </a>
     <div>
-      <a class="button custom-height-button button-sm square button-block button-orange capital" ng-click="signUp()">
+      <a class="button custom-height-button button-sm square button-block button-orange capital" ng-disabled="product.product_id" ng-click="addItem()">
         {{"SAVE_ITEM" | translate}}
       </a>
     </div>
@@ -68,17 +92,42 @@
     <md-content>
       <img ng-src="app/modules/shop/img/home-slide-nav.jpg" style="width:100%">
       <md-list flex>
-        <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;" >
+        <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;" ng-show="!loginStatus">
           <div class="md-list-item-text zero-margin" layout="column" ng-click="openSignIn()">
-            <h4><i class="ion-person sidenav-icon"></i><span class="sidenav-options">{{'ADD_ITEM' | translate}}</span></h4>
+            <h4><i class="ion-person sidenav-icon"></i><span class="sidenav-options">{{'SIGN_IN' | translate}}</span></h4>
+          </div>
+        </md-list-item>
+        <md-divider></md-divider>
+        <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;"  ng-show="authResponse.ispartner=='true'">
+          <div class="md-list-item-text zero-margin" layout="column" ng-click="openAddItem()">
+            <h4><i class="ion-android-hand sidenav-icon"></i><span class="sidenav-options">{{'ADD_ITEM' | translate}}</span></h4>
+          </div>
+        </md-list-item>
+        <md-divider ></md-divider>
+        <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;" >
+          <div class="md-list-item-text zero-margin" layout="column" ng-click="openCategories()">
+            <h4><i class="ion-ios-browsers sidenav-icon"></i><span class="sidenav-options">{{'ALL_CATEGORIES' | translate}}</span></h4>
           </div>
         </md-list-item>
         <md-divider ></md-divider>
         <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;">
+          <div class="md-list-item-text zero-margin" layout="column"  ng-click="openWishList()">
+            <h4><i class="ion-ios-heart sidenav-icon"></i><span class="sidenav-options">{{'WISH_LIST' | translate}}</span></h4>
+          </div>
+        </md-list-item>
+        <md-divider ></md-divider>
+        <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;">
+          <div class="md-list-item-text zero-margin" layout="column"  ng-click="openOrderHistory();">
+            <h4><i class="ion-ios-albums sidenav-icon"></i><span class="sidenav-options">{{'ORDER_HISTORY' | translate}}</span></h4>
+          </div>
+        </md-list-item>
+        <md-divider ></md-divider>
+        <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;"  ng-show="loginStatus">
           <div class="md-list-item-text zero-margin" layout="column" ng-click="logOut()">
             <h4><i class="ion-android-hand sidenav-icon"></i><span class="sidenav-options">{{'LOG_OUT' | translate}}</span></h4>
           </div>
         </md-list-item>
+        <md-divider ></md-divider>
       </md-list>
     </md-content>
   </md-sidenav>

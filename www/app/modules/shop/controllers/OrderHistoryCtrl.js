@@ -6,6 +6,8 @@ OrderHistoryCtrl.$inject = ['$scope','$state','$rootScope','$mdSidenav','$log'];
 
 function OrderHistoryCtrl($scope,$state,$rootScope,$mdSidenav,$log) {
 
+  console.log($rootScope.authResponse);
+
   $scope.openItemDetails = function(){
     $state.go('item');
   };

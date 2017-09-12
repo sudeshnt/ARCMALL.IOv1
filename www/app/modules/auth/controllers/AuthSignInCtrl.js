@@ -7,11 +7,10 @@ AuthSignInCtrl.$inject = ['$scope','$state','$rootScope','httpService','serverCo
 function AuthSignInCtrl($scope,$state,$rootScope,httpService,serverConfig,$httpParamSerializer) {
   //console.log('auth sign in');
   $scope.user = {
-    'email' : 'sudeshnt93@live.com',
-    'password' : '444444'
+    'email' : 'harindamail@gmail.com',
+    'password' : 'benzc180'
   };
   $scope.signIn = function () {
-    // var extended_url = '/login_mobile';
     var extended_url = '/user_login';
     var req = angular.copy($scope.user);
     var config = {

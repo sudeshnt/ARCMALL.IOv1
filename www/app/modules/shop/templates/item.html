@@ -1,21 +1,21 @@
 <ion-header-bar class="bar bar-header header-md bar-darker">
   <div style="width: 100%; display: inherit; margin-top: 0px !important;" >
     <div class="absolute back-icon-wrapper">
-      <a class="button button-icon row">
-        <i class="ion-android-arrow-back font-L black"></i>
+      <a class="button button-icon row" ng-click="goToItems();">
+        <i class="ion-android-arrow-back font-L white"></i>
       </a>
     </div>
-    <h4 class="white left-title">Men , Dresses</h4>
+    <h4 class="white left-title"  ng-bind-html="product.heading_title"></h4>
     <div class="absolute cart-icon-wrapper">
       <a class="button button-icon row">
-        <i class="ion-android-cart font-L black" ></i>
+        <i class="ion-android-cart font-L white" ></i>
       </a>
     </div>
   </div>
 </ion-header-bar>
 
 <ion-view>
-  <div class="" style="background-color: #2b3036;margin-top:55px;">
+  <div class="" style="background-color: #007fa3;margin-top:55px;">
     <div class="full-width">
       <div class="row padding-top-zero">
         <div class="col padding-top-zero">
@@ -40,29 +40,29 @@
               <ion-slide>
                 <div id="shop" ng-click="openCategories()" style="height: 300px;">
                   <div class="content">
-                    <img class="full-height" src="app/modules/shop/img/item-slide-pink-1.jpg"/>
+                    <img style="height: 300px;width: auto;" ng-src="{{product.thumb}}"/>
                   </div>
                 </div>
               </ion-slide>
               <ion-slide>
                 <div id="shop" style="height: 300px;">
                   <div class="content">
-                    <img class="full-height"  src="app/modules/shop/img/item-slide-pink-2.jpg"/>
+                    <img  style="height: 300px;width: auto;" ng-src="{{product.thumb}}"/>
                   </div>
                 </div>
               </ion-slide>
               <ion-slide>
                 <div id="shop" style="height: 300px;">
                   <div class="content">
-                    <img class="full-height"  src="app/modules/shop/img/item-slide-pink-3.jpg"/>
+                    <img  style="height: 300px;width: auto;" ng-src="{{product.thumb}}"/>
                   </div>
                 </div>
               </ion-slide>
             </ion-slide-box>
           </div>
           <div class="item tabs-secondary tabs-icon-left white-tabs" style="padding: 10px;">
-            <h2 class="align-center">Blue </h2>
-            <h3 class="align-center">$ 100</h3>
+            <h2 class="align-center" ng-bind-html="product.heading_title"></h2>
+            <h3 class="align-center" ng-bind-html="product.price"></h3>
           </div>
         </div>
 
@@ -81,10 +81,11 @@
         </ion-item>
         <ion-item class="card item-accordion"
                   ng-show="isGroupShown(group)">
-          asdsad
+          -- text --
         </ion-item>
       </div>
     </ion-list>
+    <div class="row" style="min-height: 25px;"></div>
 
   </ion-content>
 </ion-view>

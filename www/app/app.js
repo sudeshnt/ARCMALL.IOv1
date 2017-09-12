@@ -9,8 +9,10 @@ var arcMall = angular.module('arcMall', [
   'pascalprecht.translate',
   'lang_en',
   'modules',
-  'tabSlideBox',
-  'config.module'
+  // 'tabSlideBox',
+  'config.module',
+  'googleplus',
+  // 'faceboook'
 ]);
 
 // translation config
@@ -19,6 +21,14 @@ arcMall.config(function($translateProvider) {
     $translateProvider.forceAsyncReload(true);
     $translateProvider.fallbackLanguage("en");
 });
+
+
+arcMall.config(['GooglePlusProvider', function(GooglePlusProvider) {
+  GooglePlusProvider.init({
+    clientId: 'com.googleusercontent.apps.683451474237-kgbp6hbnbv3dtftbi3o1hmokm46od906'
+    // apiKey: 'AIzaSyBjWo11coJyU3CeABuuSdBDzjq7xh-EPPE'
+  });
+}]);
 
 arcMall.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {

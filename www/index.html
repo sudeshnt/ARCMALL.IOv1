@@ -18,6 +18,8 @@
 
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+    <link href="css/slidingTabs.css" rel="stylesheet">
+
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet">
@@ -31,6 +33,13 @@
     <!--libraries-->
     <script src="lib/angular-translate/angular-translate.min.js"></script> <!-- translate -->
     <script src="lib/underscore/underscore-min.js"></script> <!-- underscore -->
+    <script src="lib/slidingTabsDirective.js"></script> <!-- underscore -->
+    <script src="lib/angular-google-plus.js"></script> <!-- google plus -->
+    <!--<script src="https://rawgithub.com/mrzmyr/angular-google-plus/master/dist/angular-google-plus.min.js"></script>-->
+
+    <script src="lib/angular-facebook.js"></script> <!-- facebook provider -->
+
+    <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
 
     <!--material-->
     <!-- Angular Material requires Angular.js Libraries -->
@@ -39,12 +48,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
     <!-- Angular Material Library -->
     <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
-
     <!--common-->
     <script src="app/common/lang/en.js"></script>
     <!--directives-->
-    <script src="app/directives/tabSlideBox.js"></script>
-    <link href="app/directives/tabSlideBox.css" rel="stylesheet">
+    <!--<script src="app/directives/tabSlideBox.js"></script>-->
+    <!--<link href="app/directives/tabSlideBox.css" rel="stylesheet">-->
+
     <!--config files-->
     <script src="app/config/config.module.js"></script>
     <script src="app/config/app.config.js"></script>
@@ -75,11 +84,11 @@
     <script src="app/modules/test/test.config.js"></script>
     <script src="app/modules/test/controllers/TestCtrl.js"></script>
     <link href="app/modules/test/styles/test-styles.css" rel="stylesheet">
-
     <!--services-->
     <script src="app/services/userService.js"></script>
     <script src="app/services/pendingRequestsService.js"></script>
     <script src="app/services/httpService.js"></script>
+    <script src="app/services/publicFunctions.js"></script>
 
   </head>
   <body ng-app="arcMall">
@@ -92,6 +101,7 @@
         <ion-nav-view cache-view="false">
 
         </ion-nav-view>
+
       </ion-content>
     </ion-pane>
   </body>

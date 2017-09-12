@@ -47,7 +47,7 @@ ion-content{
 }
 .button-sm{
   height: 50px;
-  line-height: 25px;
+  line-height: 50px;
 }
 .button-md{
   height: 55px;
@@ -61,12 +61,15 @@ ion-content{
   line-height: 40px !important;
 }
 .button-orange{
-  background-color: #f48420;
+  background-color: #007fa3;
+  /*background-color: #f48420;*/
   color: #ffffff;
 }
 .button-orange.activated{
-  border-color: #d8851e !important;
-  background-color: #ea7000 !important;
+  border-color: #1886a3 !important;
+  background-color: #007fa3 !important;
+  /*border-color: #d8851e !important;*/
+  /*background-color: #ea7000 !important;*/
   color: #ffffff  !important;
 }
 .button-orange:hover{
@@ -124,7 +127,8 @@ ion-content{
   margin-left: 60px;
 }
 .bar-subheader{
-  background-color:#fc8d33;
+  background-color: #007fa3;
+  /*background-color:#fc8d33;*/
   box-shadow: 2px 3px 3px 0px rgba(41, 41, 41, .3);
 }
 .padding-top-zero{
@@ -139,4 +143,8 @@ ion-content{
 /*opacity*/
 .half-opacity{
   opacity:0.5 !important;
+}
+
+.error-warning{
+  color:red;
 }

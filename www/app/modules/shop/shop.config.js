@@ -19,11 +19,11 @@ shopModule.config(function config($stateProvider,$urlRouterProvider) {
         }
       }
     })
-    .state('home.outlets', {
-      url: "/outlets",
+    .state('home.used', {
+      url: "/used",
       views: {
-        'outlets-tab': {
-          templateUrl: "app/modules/shop/templates/home-tabs/outlets.html",
+        'used-tab': {
+          templateUrl: "app/modules/shop/templates/home-tabs/used.html",
           // controller: 'HomeCtrl'
         }
       }
@@ -50,11 +50,14 @@ shopModule.config(function config($stateProvider,$urlRouterProvider) {
     .state('item-list', {
       url: '/item-list',
       templateUrl: 'app/modules/shop/templates/item-list.html',
-      controller: 'ItemListCtrl'
+      controller: 'ItemListCtrl',
+      params:{category_id:null}
     })
     .state('item', {
       url: '/item',
       templateUrl: 'app/modules/shop/templates/item.html',
-      controller: 'ItemCtrl'
+      controller: 'ItemCtrl',
+      cache:false,
+      params:{category_id:null,product_id:null}
     })
 });

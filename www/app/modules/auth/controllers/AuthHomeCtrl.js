@@ -6,20 +6,18 @@ AuthHomeCtrl.$inject = ['$scope', '$state', '$q', 'UserService', '$ionicLoading'
 
 function AuthHomeCtrl($scope, $state, $q, UserService, $ionicLoading,httpService,serverConfig) {
 
-  var extended_url = '/merchant/regions';
-  httpService.getRequest(serverConfig.clientAPI,extended_url,{}).then(function(response){
-    if(response.status === 200){
-       console.log(response.data);
-    }
-  });
-
-  // This is the success callback from the login method
-  var fbLoginSuccess = function(userData){
-    console.log("UserInfo: ", userData);
-    $state.go('home.new');
-  };
   $scope.facebookLogIn = function(){
-    facebookConnectPlugin.login(["public_profile"], fbLoginSuccess,
+    facebookConnectPlugin.login(["public_profile"], function(userData){
+        var extended_url = '/me?fields=email,first_name,last_name,picture,id,gender,birthday&access_token='+userData.authResponse.accessToken;
+        httpService.getRequest(serverConfig.facebookAPI,extended_url,{}).then(function(response){
+          if(response.status === 200 && response.error_warning == ""){
+            console.log(response);
+            $state.go('home.new');
+          }else{
+            $scope.error = response.error_warning;
+          }
+        });
+      },
       function loginError (error) {
         console.error(error)
       }
@@ -35,13 +33,18 @@ function AuthHomeCtrl($scope, $state, $q, UserService, $ionicLoading,httpService
           'offline': true // optional, but requires the webClientId - if set to true the plugin will also return a serverAuthCode, which can be used to grant offline access to a non-Google server
         },
         function (obj) {
-          console.log(obj);
-          $state.go('home.new');
-          // alert(JSON.stringify(obj)); // do something useful instead of alerting
+          var extended_url = '/plus/v1/people/me?access_token='+obj.accessToken;
+          httpService.getRequest(serverConfig.googleAPI,extended_url,{}).then(function(response){
+            if(response.status === 200 && response.error_warning == ""){
+              $state.go('home.new');
+              console.log(response);
+            }else{
+              $scope.error = response.error_warning;
+            }
+          });
         },
         function (msg){
           console.log(msg);
-          //alert('error: ' + msg);
         }
       );
     }

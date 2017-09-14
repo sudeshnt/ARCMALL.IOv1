@@ -8,7 +8,7 @@ function SellerHomeCtrl($scope, $rootScope, $state , httpService,serverConfig,$h
 
   $scope.toggleSideBarHome = buildToggler('left');
 
-  console.log($scope.authResponse);
+  // console.log($scope.authResponse);
 
   $scope.goHome = function () {
     $state.go('home.new');
@@ -96,7 +96,7 @@ function SellerHomeCtrl($scope, $rootScope, $state , httpService,serverConfig,$h
     for(var i in $scope.item.category){
       req.category.push($scope.item.category[i].category_id);
     }
-    console.log(req);
+    // console.log(req);
     var config = {
       headers:{
         'Content-Type': 'application/x-www-form-urlencoded'

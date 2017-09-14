@@ -35,7 +35,7 @@ function HomeCtrl($scope,$state,$filter,$rootScope,appConfig,$timeout,$mdSidenav
     httpService.postRequest(serverConfig.clientAPI,extended_url, $httpParamSerializer(reqObj),config).then(function(response){
       if(response.status === 200){
         $scope.products = publicFunc.devideArray(response.data.products,2);
-        console.log($scope.products);
+        // console.log($scope.products);
       }
     });
   }
@@ -49,7 +49,7 @@ function HomeCtrl($scope,$state,$filter,$rootScope,appConfig,$timeout,$mdSidenav
     };
     httpService.postRequest(serverConfig.clientAPI,extended_url, {},config).then(function(response){
       if(response.status === 200){
-       console.log(response);
+       // console.log(response);
       }
     });
   }

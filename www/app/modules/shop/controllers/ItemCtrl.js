@@ -23,7 +23,7 @@ function ItemCtrl($scope,$state,$rootScope,$filter,$stateParams,serverConfig,htt
         cartSev.shoppingCart.initCartValue();
       }
       cartSev.shoppingCart.addItem($scope.product);
-      console.log(cartSev.shoppingCart)
+      // console.log(JSON.stringify(cartSev.shoppingCart));
     };
 
     $scope.goToItems = function () {
@@ -105,7 +105,7 @@ function ItemCtrl($scope,$state,$rootScope,$filter,$stateParams,serverConfig,htt
       };
       httpService.postRequest(serverConfig.clientAPI,extended_url, $httpParamSerializer(reqObj),config).then(function(response){
         if(response.status === 200){
-          console.log(response);
+          // console.log(response);
         }
       });
     }

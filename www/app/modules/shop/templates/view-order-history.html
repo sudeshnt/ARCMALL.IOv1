@@ -1,7 +1,7 @@
 <ion-header-bar class="bar bar-header header-md bar-darker">
   <div style="width: 100%; display: inherit; margin-top: 0px !important;" >
     <div class="absolute back-icon-wrapper">
-      <a class="button button-icon row" ng-click="goHome()">
+      <a class="button button-icon row" ng-click="goBack()">
         <i class="ion-android-arrow-back font-L white"></i>
       </a>
     </div>
@@ -14,41 +14,42 @@
 
     <ion-list show-delete="false" can-swipe="true"  class="list card cart-item" style="margin:0;">
 
-      <ion-item class="card item item-avatar history-item">
-        <div class="circle" style="background-image:url('app/modules/checkout/img/cart-item-1.jpg')">
+      <ion-item class="card item item-avatar history-item" ng-repeat="item in order.cart.itemList">
+        <div class="circle" ng-style="{'background-image':'url({{item.thumb}})'}">
         </div>
-        <h2 class="cart-item-title">Toy Car</h2>
-        <p>For kids</p>
-        <span class="history-price">$ 100.00</span>
+        <h2 class="cart-item-title" ng-bind-html="item.heading_title"></h2>
+        <p ng-bind-html="item.description"></p>
+        <span class="history-price" ng-bind-html="item.price"></span>
+        <!--<a class="item-close-btn ion-close-round"></a>-->
         <div class="chip capital">{{"SIZE" | translate}} : 8</div>
-        <div class="chip align-center">x1</div>
+        <div class="chip align-center">x {{item.quantity}}</div>
         <!--<ion-option-button class="button-assertive icon ion-trash-a"></ion-option-button>-->
       </ion-item>
 
-      <ion-item  class="card item item-avatar history-item">
-        <div class="circle" style="background-image:url('app/modules/checkout/img/cart-item-2.jpg')">
-        </div>
-        <h2 class="cart-item-title">Sun Glasses</h2>
-        <p>Unisex</p>
-        <span class="history-price">$ 100.00</span>
-        <div class="chip capital">{{"SIZE" | translate}} : 8</div>
-        <div class="chip align-center">x1</div>
-        <!--<ion-option-button class="button-assertive icon ion-trash-a"></ion-option-button>-->
-      </ion-item>
+      <!--<ion-item  class="card item item-avatar history-item">-->
+        <!--<div class="circle" style="background-image:url('app/modules/checkout/img/cart-item-2.jpg')">-->
+        <!--</div>-->
+        <!--<h2 class="cart-item-title">Sun Glasses</h2>-->
+        <!--<p>Unisex</p>-->
+        <!--<span class="history-price">$ 100.00</span>-->
+        <!--<div class="chip capital">{{"SIZE" | translate}} : 8</div>-->
+        <!--<div class="chip align-center">x1</div>-->
+        <!--&lt;!&ndash;<ion-option-button class="button-assertive icon ion-trash-a"></ion-option-button>&ndash;&gt;-->
+      <!--</ion-item>-->
 
-      <ion-item class="card item item-avatar history-item">
-        <div class="circle" style="background-image:url('app/modules/checkout/img/cart-item-3.jpg')">
-        </div>
-        <h2 class="cart-item-title">GoPro Camera</h2>
-        <p>13 Mega Pixels</p>
-        <span class="history-price">$ 100.00</span>
-        <div class="chip capital">{{"SIZE" | translate}} : 8</div>
-        <div class="chip align-center">x1</div>
-        <!--<ion-option-button class="button-assertive icon ion-trash-a"></ion-option-button>-->
-      </ion-item>
-    </ion-list>
+      <!--<ion-item class="card item item-avatar history-item">-->
+        <!--<div class="circle" style="background-image:url('app/modules/checkout/img/cart-item-3.jpg')">-->
+        <!--</div>-->
+        <!--<h2 class="cart-item-title">GoPro Camera</h2>-->
+        <!--<p>13 Mega Pixels</p>-->
+        <!--<span class="history-price">$ 100.00</span>-->
+        <!--<div class="chip capital">{{"SIZE" | translate}} : 8</div>-->
+        <!--<div class="chip align-center">x1</div>-->
+        <!--&lt;!&ndash;<ion-option-button class="button-assertive icon ion-trash-a"></ion-option-button>&ndash;&gt;-->
+      <!--</ion-item>-->
+    <!--</ion-list>-->
 
-    <ion-item class="card item">
+    <ion-item class="card item" style="height:auto;">
       <div class="row">
         <div class="col capital" style="font-size: 15px;font-weight:700;padding: 12px 0 0 0px;">
           {{"SHIPPING_AND_HANDLING" | translate}}
@@ -67,6 +68,7 @@
         </div>
       </div>
     </ion-item>
+      <div class="row" style="min-height: 15px;"></div>
 
   </ion-content>
 </ion-view>

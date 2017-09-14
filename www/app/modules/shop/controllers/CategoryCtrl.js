@@ -7,7 +7,7 @@ CategoryCtrl.$inject = ['$scope','$state','$rootScope','$stateParams','httpServi
 function CategoryCtrl($scope,$state,$rootScope,$stateParams,httpService,serverConfig,$ionicSlideBoxDelegate,$window, $ionicGesture,$timeout) {
 
   var type = $stateParams.type;
-  console.log(type);
+  // console.log(type);
 
   function getAllCategories() {
     var extended_url = '/category/all';

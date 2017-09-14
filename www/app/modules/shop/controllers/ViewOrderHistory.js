@@ -2,12 +2,19 @@
 
 angular.module('shop.module').controller('ViewOrderHistoryCtrl',ViewOrderHistoryCtrl );
 
-ViewOrderHistoryCtrl.$inject = ['$scope','$state','$rootScope','$mdSidenav','$log'];
+ViewOrderHistoryCtrl.$inject = ['$scope','$state','$stateParams','$rootScope','$mdSidenav','$log'];
 
-function ViewOrderHistoryCtrl($scope,$state,$rootScope,$mdSidenav,$log) {
+function ViewOrderHistoryCtrl($scope,$state,$stateParams,$rootScope,$mdSidenav,$log) {
+  // console.log($stateParams.order);
 
-  $scope.goHome = function () {
-    $state.go('home.new');
+  if($stateParams.order){
+    $scope.order = $stateParams.order;
+  }else{
+    $state.go('order-history');
+  }
+
+  $scope.goBack = function () {
+    $state.go('order-history');
   };
 
 }

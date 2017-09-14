@@ -6,6 +6,7 @@ CartCtrl.$inject = ['$scope','$state','$rootScope','$timeout', '$mdBottomSheet',
 
 function CartCtrl($scope,$state,$rootScope, $timeout, $mdBottomSheet, $mdToast,cartSev) {
 
+
   $scope.cart = cartSev.shoppingCart.cart;
 
   if(cartSev.shoppingCart.isEmpty){

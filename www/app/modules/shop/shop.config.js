@@ -51,12 +51,13 @@ shopModule.config(function config($stateProvider,$urlRouterProvider) {
     .state('order-history', {
       url: '/order-history',
       templateUrl: 'app/modules/shop/templates/order-history.html',
-      controller: 'OrderHistoryCtrl'
+      controller: 'OrderHistoryCtrl',
     })
     .state('view-order-history', {
       url: '/view-order-history',
       templateUrl: 'app/modules/shop/templates/view-order-history.html',
-      controller: 'ViewOrderHistoryCtrl'
+      controller: 'ViewOrderHistoryCtrl',
+      params:{order:null}
     })
     .state('item-list', {
       url: '/item-list',

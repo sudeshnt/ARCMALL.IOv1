@@ -52,6 +52,11 @@ shopModule.config(function config($stateProvider,$urlRouterProvider) {
       templateUrl: 'app/modules/shop/templates/order-history.html',
       controller: 'OrderHistoryCtrl'
     })
+    .state('view-order-history', {
+      url: '/view-order-history',
+      templateUrl: 'app/modules/shop/templates/view-order-history.html',
+      controller: 'ViewOrderHistoryCtrl'
+    })
     .state('item-list', {
       url: '/item-list',
       templateUrl: 'app/modules/shop/templates/item-list.html',
@@ -63,5 +68,10 @@ shopModule.config(function config($stateProvider,$urlRouterProvider) {
       templateUrl: 'app/modules/shop/templates/item.html',
       controller: 'ItemCtrl',
       params:{category_id:null,product_id:null}
+    })
+    .state('my-profile', {
+      url: '/my-profile',
+      templateUrl: 'app/modules/shop/templates/my-profile.html',
+      controller: 'MyProfileCtrl'
     })
 });

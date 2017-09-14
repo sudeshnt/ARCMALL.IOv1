@@ -66,6 +66,12 @@
       <md-list flex>
 
         <!--<md-divider ></md-divider>-->
+        <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;" ng-show="loginStatus">
+          <div class="md-list-item-text zero-margin" layout="column" ng-click="openMyProfile()">
+            <h4><i class="ion-person sidenav-icon"></i><span class="sidenav-options">{{'MY_PROFILE' | translate}}</span></h4>
+          </div>
+        </md-list-item>
+        <md-divider></md-divider>
         <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;" ng-show="!loginStatus">
           <div class="md-list-item-text zero-margin" layout="column" ng-click="openSignIn()">
             <h4><i class="ion-person sidenav-icon"></i><span class="sidenav-options">{{'SIGN_IN' | translate}}</span></h4>

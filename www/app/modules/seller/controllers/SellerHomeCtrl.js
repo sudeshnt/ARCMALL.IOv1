@@ -10,6 +10,9 @@ function SellerHomeCtrl($scope, $rootScope, $state , httpService,serverConfig,$h
 
   console.log($scope.authResponse);
 
+  $scope.goHome = function () {
+    $state.go('home.new');
+  };
   // $scope.product = {
   //   "product_id":248
   // }
@@ -218,7 +221,9 @@ function SellerHomeCtrl($scope, $rootScope, $state , httpService,serverConfig,$h
     if (image === null) {
       return '';
     } else {
-      return cordova.file.dataDirectory + image;
+      if(cordova){
+        return cordova.file.dataDirectory + image;
+      }
     }
   };
 

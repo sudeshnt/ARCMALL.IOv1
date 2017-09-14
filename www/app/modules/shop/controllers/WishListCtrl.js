@@ -6,6 +6,10 @@ WishListCtrl.$inject = ['$scope','$state','$rootScope','$mdSidenav','$log'];
 
 function WishListCtrl($scope,$state,$rootScope,$mdSidenav,$log) {
 
+  $scope.goHome = function () {
+    $state.go('home.new');
+  };
+
   $scope.openItemDetails = function(){
     $state.go('item');
   };

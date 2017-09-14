@@ -186,6 +186,13 @@ function HomeCtrl($scope,$state,$filter,$rootScope,appConfig,$timeout,$mdSidenav
     $scope.close();
     $state.go('order-history');
   };
+  $scope.openAddItem = function () {
+    $state.go('sellerHome');
+  };
+  $scope.openMyProfile = function () {
+    $scope.close();
+    $state.go('my-profile');
+  };
   $scope.logOut = function () {
     $scope.close();
     localStorage.setItem('loginStatus',false);
@@ -194,9 +201,7 @@ function HomeCtrl($scope,$state,$filter,$rootScope,appConfig,$timeout,$mdSidenav
     $rootScope.authResponse = null;
     $state.go('authSignIn');
   };
-  $scope.openAddItem = function () {
-    $state.go('sellerHome');
-  };
+
 
   $scope.showListBottomSheet = function() {
     $scope.alert = '';
@@ -239,8 +244,6 @@ function HomeCtrl($scope,$state,$filter,$rootScope,appConfig,$timeout,$mdSidenav
         $log.debug("close RIGHT is done");
       });
   };
-
-  $scope.user = UserService.getUser();
 
   $scope.showLogOutMenu = function() {
     var hideSheet = $ionicActionSheet.show({

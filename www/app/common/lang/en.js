@@ -56,6 +56,10 @@ angular.module('lang_en',['pascalprecht.translate','ngSanitize'])
       WHAT_IS_THE_PRICE_OF_YOUR_PRODUCT:'price of your product',
       QUANTITY_AVAILABLE:'Quantity available',
       SAVE_ITEM:'Save Item',
+      MY_PROFILE:'My Profile',
+      CHANGE_PASSWORD:'Change Password',
+      MOBILE:'Mobile Number',
+      EMAIL:'Email Address',
     });
     $translateProvider.useSanitizeValueStrategy('escapeParameters');
   }]);

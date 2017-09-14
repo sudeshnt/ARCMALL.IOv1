@@ -72,46 +72,51 @@ function SellerHomeCtrl($scope, $rootScope, $state , httpService,serverConfig,$h
   };
 
   $scope.addItem = function () {
-    var extended_url = '/product/addproduct';
-    var req = {
-      "model" : $scope.item.model,
-      "weight" : '',
-      "height" : '',
-      "name" : $scope.item.name,
-      "quantity" : $scope.item.quantity,
-      "price" : $scope.item.price,
-      "description" : $scope.item.description,
-      "mainimage" : '',
-      "image1" : '',
-      "image2" : '',
-      "image3" : '',
-      "image4" : '',
-      "image5" : '',
-      "image6" : '',
-      "image7" : '',
-      "category" : [],
-      "customer_id" : $rootScope.authResponse.customer_id,
-      "currency_code" :$scope.item.currency_code,
-    }
-    for(var i in $scope.item.category){
-      req.category.push($scope.item.category[i].category_id);
-    }
-    // console.log(req);
-    var config = {
-      headers:{
-        'Content-Type': 'application/x-www-form-urlencoded'
+    // product.product_id ? goHome(); :
+    if(!$scope.product){
+      var extended_url = '/product/addproduct';
+      var req = {
+        "model" : $scope.item.model,
+        "weight" : '',
+        "height" : '',
+        "name" : $scope.item.name,
+        "quantity" : $scope.item.quantity,
+        "price" : $scope.item.price,
+        "description" : $scope.item.description,
+        "mainimage" : '',
+        "image1" : '',
+        "image2" : '',
+        "image3" : '',
+        "image4" : '',
+        "image5" : '',
+        "image6" : '',
+        "image7" : '',
+        "category" : [],
+        "customer_id" : $rootScope.authResponse.customer_id,
+        "currency_code" :$scope.item.currency_code,
       }
-    };
-    httpService.postRequest(serverConfig.clientAPI,extended_url,$httpParamSerializer(req),config).then(function(response){
-      if(response.status === 200){
-        $scope.product = {
-          "product_id" : response.data.product_id
+      for(var i in $scope.item.category){
+        req.category.push($scope.item.category[i].category_id);
+      }
+      // console.log(req);
+      var config = {
+        headers:{
+          'Content-Type': 'application/x-www-form-urlencoded'
         }
-        // console.log(response.data.product_id); // product id =248/249/250
-      }else{
-        $scope.error = response.error_warning;
-      }
-    });
+      };
+      httpService.postRequest(serverConfig.clientAPI,extended_url,$httpParamSerializer(req),config).then(function(response){
+        if(response.status === 200){
+          $scope.product = {
+            "product_id" : response.data.product_id
+          }
+          // console.log(response.data.product_id); // product id =248/249/250
+        }else{
+          $scope.error = response.error_warning;
+        }
+      });
+    }else{
+      $state.go('home.new');
+    }
   }
 
   $scope.getPicture = function (image_type) {

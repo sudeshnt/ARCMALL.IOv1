@@ -11,7 +11,82 @@
 <ion-view>
 
   <ion-content class="has-heade-md" overflow-scroll="true">
+    <div class="card row" ng-repeat="order in orderHistory track by $index">
+      <div class="col zero-padding" style="max-width: 100px;" ng-if="order.orders.length>=4">
+        <div class="row">
+          <div class="col" style="padding: 2px; height:42px; max-width:42px; vertical-align: middle; overflow: hidden;">
+            <img ng-src="{{order.orders[0].product.imageUrl}}" style="height:42px;">
+          </div>
+          <div class="col" style="padding: 2px; height:42px; max-width:42px; vertical-align: middle; overflow: hidden;" >
+            <img ng-src="{{order.orders[1].product.imageUrl}}"  style="height:42px;">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col" style="padding: 2px; height:42px; max-width:42px; vertical-align: middle; overflow: hidden;">
+            <img ng-src="{{order.orders[2].product.imageUrl}}" style="height:42px;">
+          </div>
+          <div class="col image" style="padding: 2px; height:42px; max-width:42px; vertical-align: middle; overflow: hidden;">
+            <img ng-src="{{order.orders[3].product.imageUrl}}" style="height:42px;" ng-class="order.orders.length>4?'opacity-half':''">
+            <span ng-if="order.orders.length>4">...</span>
+          </div>
+        </div>
+      </div>
+      <div class="col zero-padding" style="max-width: 100px;"  ng-if="order.orders.length==3">
+        <div class="row">
+          <div class="col" style="padding: 2px; height:42px; max-width:42px; vertical-align: middle; overflow: hidden;">
+            <img ng-src="{{order.orders[0].product.imageUrl}}" style="height:40px;">
+          </div>
+          <div class="col" style="padding: 2px; height:42px; max-width:42px; vertical-align: middle; overflow: hidden;" >
+            <img ng-src="{{order.orders[1].product.imageUrl}}"  style="height:40px;">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col" style="padding: 2px; height:42px; max-width:84px; vertical-align: middle; overflow: hidden; margin-top: 2px;">
+            <img ng-src="{{order.orders[2].product.imageUrl}}" style="height:84px;margin-top: -20px;">
+          </div>
+        </div>
+      </div>
 
+      <div class="col zero-padding" style="max-width: 100px;"  ng-if="order.orders.length==2">
+        <div class="row">
+          <div class="col" style="padding: 2px; height:84px; max-width:42px; vertical-align: middle; overflow: hidden; margin-right: 2px;">
+            <img ng-src="{{order.orders[0].product.imageUrl}}" style="height:84px;margin-left: -20px;">
+          </div>
+          <div class="col" style="padding: 2px; height:84px; max-width:42px; vertical-align: middle; overflow: hidden;" >
+            <img ng-src="{{order.orders[1].product.imageUrl}}"  style="height:84px;margin-left: -20px;">
+          </div>
+        </div>
+      </div>
+
+      <div class="col zero-padding" style="max-width: 100px;" ng-if="order.orders.length==1">
+        <div class="row">
+          <div class="col" style="padding: 2px; height:84px; max-width:84px; max-height:84px; vertical-align: middle; overflow: hidden;">
+            <img ng-src="{{order.orders[0].product.imageUrl}}" style="height:84px;">
+          </div>
+        </div>
+      </div>
+
+      <div class="col " style="padding: 10px 0px">
+        <div class="row zero-padding">
+            <span class="">
+              <img ng-src="{{order.organization.images[order.organization.images.length-1].imageUri}}" style="height:25px; vertical-align: middle;">
+              <span> {{order.organization.orgName}} </span> <span style="position: absolute;right: 5px;"> Rs.{{order.finalValue}} </span><br>
+              <span> {{order.orders.length}} {{order.orders.length==1?'item':'items'}} </span><br>
+            </span>
+        </div>
+        <div class="row" style="padding: 5px 0px">
+          <span>channel : {{order.channel}}</span>
+          <span class="delivery-tag">Delivered</span>
+        </div>
+        <div class="row" style="padding: 5px 0px">
+          {{order.orderDate}}<span ng-if="$index%2==0">
+            <a ng-if="!order.isRatingSeen || closeAllRatings" ng-click="showRating(order)" style="position: absolute;right: 5px; width: 50px;text-align: center;margin-top: -9px;font-size: 12px;line-height: 12px;">
+              rate this order<br>
+            </a>
+            <ionic-ratings ng-if="order.isRatingSeen && !closeAllRatings" ratingsobj='ratingsObject' index='$index' style="font-size: x-large;position: absolute;right: 5px;margin-top: -5px;"></ionic-ratings><br ng-if="!isRatingSeen">
+        </div>
+      </div>
+    </div>
   </ion-content>
   <md-sidenav class="md-sidenav-left md-whiteframe-4dp" md-component-id="left" style="margin-top: 55px !important;">
     <md-content >

@@ -88,7 +88,7 @@
 
       <div class="row" ng-repeat="product_row in latestProducts">
         <div class="col col-50 zero-padding" ng-repeat="product in product_row">
-          <div class="list card wish-list-card" ng-click="openItemDetails(product)" style="margin:10px 5px 15px 5px;">
+          <div class="list card wish-list-card" ng-click="openItemDetails(product.product_id)" style="margin:10px 5px 15px 5px;">
             <div class="item item-image" >
               <img ng-src="{{product.thumb}}" class="full-width full-height">
             </div>
@@ -105,7 +105,7 @@
 
     <div class="row" ng-repeat="product_row in featuredProducts">
       <div class="col col-50 zero-padding" ng-repeat="product in product_row">
-        <div class="list card wish-list-card" ng-click="openItemDetails(product)" style="margin:10px 5px 15px 5px;">
+        <div class="list card wish-list-card" ng-click="openItemDetails(product.product_id)" style="margin:10px 5px 15px 5px;">
           <div class="item item-image" >
             <img ng-src="{{product.thumb}}" class="full-width full-height">
           </div>

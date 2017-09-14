@@ -7,26 +7,27 @@
     </div>
     <h4 class="white left-title"  ng-bind-html="product.heading_title"></h4>
     <div class="absolute cart-icon-wrapper">
-      <a class="button button-icon row">
+      <a class="button button-icon row" ng-click="viewCart()">
         <i class="ion-android-cart font-L white" ></i>
+        <i class="cart-item-count" ng-show="cartSev.shoppingCart.cart.itemList.length>0">{{cartSev.shoppingCart.cart.itemList.length}}</i>
       </a>
     </div>
   </div>
 </ion-header-bar>
 
-<ion-view>
+<ion-view cache-view="false">
   <div class="" style="background-color: #007fa3;margin-top:55px;">
     <div class="full-width">
       <div class="row padding-top-zero">
         <div class="col padding-top-zero">
-          <button class="button square button-block button-light zero-margin capital white" style="background-color:#4e636c; " ng-click="">
+          <a class="button square button-block button-light zero-margin capital white" style="background-color:#4e636c; " ng-click="">
             {{"ADD_TO_WISH_LIST" | translate}}
-          </button>
+          </a>
         </div>
         <div class="col padding-top-zero">
-          <button class="button square button-block button-light zero-margin capital white" style="background-color:#f48347; " ng-click="openCartPage();">
+          <a class="button square button-block button-light zero-margin capital white" style="background-color:#f48347; " ng-click="addItemToCart();">
             {{"ADD_TO_CART" | translate}}
-          </button>
+          </a>
         </div>
       </div>
     </div>

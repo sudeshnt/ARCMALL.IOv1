@@ -18,42 +18,41 @@
   <ion-content class="has-subheader">
     <!--<md-button flex="50" class="md-primary md-raised" ng-click="showListBottomSheet()">Show as List</md-button>-->
     <ion-list show-delete="false" can-swipe="true"  class="list card cart-item" style="margin:0;">
-
-      <ion-item href="#" class="card item item-avatar">
-        <div class="circle" style="background-image:url('app/modules/checkout/img/cart-item-1.jpg')">
+      <ion-item class="card item item-avatar history-item" ng-repeat="item in cart.itemList">
+        <div class="circle" ng-style="{'background-image':'url({{item.thumb}})'}">
         </div>
-        <h2 class="cart-item-title">Toy Car</h2>
-        <p>For kids</p>
-        <span class="price">$ 100.00</span>
-        <a class="item-close-btn ion-close-round"></a>
+        <h2 class="cart-item-title" ng-bind-html="item.heading_title"></h2>
+        <p ng-bind-html="item.description"></p>
+        <span class="history-price" ng-bind-html="item.price"></span>
+        <!--<a class="item-close-btn ion-close-round"></a>-->
         <div class="chip capital">{{"SIZE" | translate}} : 8</div>
-        <div class="chip align-center">x1</div>
-        <ion-option-button class="button-assertive icon ion-trash-a"></ion-option-button>
+        <div class="chip align-center">x {{item.quantity}}</div>
+        <ion-option-button class="button-assertive icon ion-trash-a" ng-click="removeItemFromCart(item.product_id);"></ion-option-button>
       </ion-item>
 
-      <ion-item href="#" class="card item item-avatar">
-        <div class="circle" style="background-image:url('app/modules/checkout/img/cart-item-2.jpg')">
-        </div>
-        <h2 class="cart-item-title">Sun Glasses</h2>
-        <p>Unisex</p>
-        <span class="price">$ 100.00</span>
-        <a class="item-close-btn ion-close-round"></a>
-        <div class="chip capital">{{"SIZE" | translate}} : 8</div>
-        <div class="chip align-center">x1</div>
-        <ion-option-button class="button-assertive icon ion-trash-a"></ion-option-button>
-      </ion-item>
+      <!--<ion-item  class="card item item-avatar history-item">-->
+        <!--<div class="circle" style="background-image:url('app/modules/checkout/img/cart-item-2.jpg')">-->
+        <!--</div>-->
+        <!--<h2 class="cart-item-title">Sun Glasses</h2>-->
+        <!--<p>Unisex</p>-->
+        <!--<span class="price">$ 100.00</span>-->
+        <!--<a class="item-close-btn ion-close-round"></a>-->
+        <!--<div class="chip capital">{{"SIZE" | translate}} : 8</div>-->
+        <!--<div class="chip align-center">x1</div>-->
+        <!--<ion-option-button class="button-assertive icon ion-trash-a"></ion-option-button>-->
+      <!--</ion-item>-->
 
-      <ion-item href="#" class="card item item-avatar">
-        <div class="circle" style="background-image:url('app/modules/checkout/img/cart-item-3.jpg')">
-        </div>
-        <h2 class="cart-item-title">GoPro Camera</h2>
-        <p>13 Mega Pixels</p>
-        <span class="price">$ 100.00</span>
-        <a class="item-close-btn ion-close-round"></a>
-        <div class="chip capital">{{"SIZE" | translate}} : 8</div>
-        <div class="chip align-center">x1</div>
-        <ion-option-button class="button-assertive icon ion-trash-a"></ion-option-button>
-      </ion-item>
+      <!--<ion-item class="card item item-avatar history-item">-->
+        <!--<div class="circle" style="background-image:url('app/modules/checkout/img/cart-item-3.jpg')">-->
+        <!--</div>-->
+        <!--<h2 class="cart-item-title">GoPro Camera</h2>-->
+        <!--<p>13 Mega Pixels</p>-->
+        <!--<span class="price">$ 100.00</span>-->
+        <!--<a class="item-close-btn ion-close-round"></a>-->
+        <!--<div class="chip capital">{{"SIZE" | translate}} : 8</div>-->
+        <!--<div class="chip align-center">x1</div>-->
+        <!--<ion-option-button class="button-assertive icon ion-trash-a"></ion-option-button>-->
+      <!--</ion-item>-->
     </ion-list>
 
     <ion-item class="card item">

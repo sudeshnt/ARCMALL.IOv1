@@ -57,7 +57,7 @@ function HomeCtrl($scope,$state,$filter,$rootScope,appConfig,$timeout,$mdSidenav
   function initLatestProducts(){
     var extended_url = '/latest';
     var reqObj = {
-      "start":0,
+      "start":2,
       "limit":4,
       "width":200,
       "height":200,

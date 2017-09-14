@@ -5,22 +5,19 @@
         <a class="button button-icon row" ng-click="goHome()">
           <i class="ion-android-arrow-back font-L white"></i>
         </a>
-        <!--<a class="button button-icon row"  ng-click="toggleSideBarHome()">-->
-          <!--<i class="ion-navicon-round white" style="font-size: 20px;"></i>-->
-        <!--</a>-->
       </div>
     </div>
     <h4 class="white size-margin-auto">{{'MY_PROFILE' | translate}}</h4>
-    <div class="absolute cart-icon-wrapper">
-      <a class="button button-icon row" ng-show="!edit" ng-click="edit=true" >
-        <i class="ion-edit font-L white"></i>
-      </a>
-    </div>
-    <div class="absolute cart-icon-wrapper">
-      <a class="button button-icon row" ng-show="edit" ng-click="saveProfile();" >
-        <i class="ion-compose font-L white"> Save</i>
-      </a>
-    </div>
+    <!--<div class="absolute cart-icon-wrapper">-->
+      <!--<a class="button button-icon row" ng-show="!edit" ng-click="edit=true" >-->
+        <!--<i class="ion-edit font-L white"></i>-->
+      <!--</a>-->
+    <!--</div>-->
+    <!--<div class="absolute cart-icon-wrapper">-->
+      <!--<a class="button button-icon row" ng-show="edit" ng-click="saveProfile();" >-->
+        <!--<i class="ion-compose font-L white"> Save</i>-->
+      <!--</a>-->
+    <!--</div>-->
   </div>
 </ion-header-bar>
 
@@ -68,10 +65,10 @@
           <input ng-model="userProfile.companyname">
         </md-input-container>
       </li>
-      <li class="item">
-        <label class="profile-field-lable">{{'PASSWORD' | translate}} :</label>
-        <a class="profile-field-value">{{'CHANGE_PASSWORD' | translate}}</a><i class="ion-ios-arrow-right" style="float:right;font-size: 30px;"></i>
-      </li>
+      <!--<li class="item">-->
+        <!--<label class="profile-field-lable">{{'PASSWORD' | translate}} :</label>-->
+        <!--<a class="profile-field-value">{{'CHANGE_PASSWORD' | translate}}</a><i class="ion-ios-arrow-right" style="float:right;font-size: 30px;"></i>-->
+      <!--</li>-->
     </ul>
   </ion-content>
   <md-sidenav class="md-sidenav-left md-whiteframe-4dp" md-component-id="left" style="margin-top: 55px !important;">

@@ -151,3 +151,16 @@ ion-content{
 .grey-text{
   color:#5a5757
 }
+
+.cart-item-count{
+  background: red;
+  width: 25px;
+  height: 25px;
+  line-height: 25px;
+  color: white;
+  border-radius: 15px;
+  position: absolute;
+  top: 11px;
+  right: -10px;
+  font-size: 10px;
+}

@@ -12,7 +12,7 @@ function ItemListCtrl($scope,$state,$rootScope,$stateParams,serverConfig,httpSer
   }else{
     // $scope.category_id = '483';
     // init();
-    $state.go('categories');
+    $state.go('home.new');
   }
 
   function getProductsByCategory (id) {

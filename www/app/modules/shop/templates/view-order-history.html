@@ -5,89 +5,68 @@
         <i class="ion-android-arrow-back font-L white"></i>
       </a>
     </div>
-    <h4 class="white left-title">{{'ORDER_HISTORY' | translate}}</h4>
+    <h4 class="white left-title">{{'ORDER_ID' | translate}} : 431</h4>
   </div>
 </ion-header-bar>
 <ion-view>
 
   <ion-content class="has-heade-md" overflow-scroll="true">
 
-    <div class="card row" ng-repeat="order in orderHistory track by $index">
-      <div class="col zero-padding" style="max-width: 100px;" ng-if="order.orders.length>=4">
-        <div class="row">
-          <div class="col" style="padding: 2px; height:42px; max-width:42px; vertical-align: middle; overflow: hidden;">
-            <img ng-src="{{order.orders[0].product.imageUrl}}" style="height:42px;">
-          </div>
-          <div class="col" style="padding: 2px; height:42px; max-width:42px; vertical-align: middle; overflow: hidden;" >
-            <img ng-src="{{order.orders[1].product.imageUrl}}"  style="height:42px;">
-          </div>
-        </div>
-        <div class="row">
-          <div class="col" style="padding: 2px; height:42px; max-width:42px; vertical-align: middle; overflow: hidden;">
-            <img ng-src="{{order.orders[2].product.imageUrl}}" style="height:42px;">
-          </div>
-          <div class="col image" style="padding: 2px; height:42px; max-width:42px; vertical-align: middle; overflow: hidden;">
-            <img ng-src="{{order.orders[3].product.imageUrl}}" style="height:42px;" ng-class="order.orders.length>4?'opacity-half':''">
-            <span ng-if="order.orders.length>4">...</span>
-          </div>
-        </div>
-      </div>
-      <div class="col zero-padding" style="max-width: 100px;"  ng-if="order.orders.length==3">
-        <div class="row">
-          <div class="col" style="padding: 2px; height:42px; max-width:42px; vertical-align: middle; overflow: hidden;">
-            <img ng-src="{{order.orders[0].product.imageUrl}}" style="height:40px;">
-          </div>
-          <div class="col" style="padding: 2px; height:42px; max-width:42px; vertical-align: middle; overflow: hidden;" >
-            <img ng-src="{{order.orders[1].product.imageUrl}}"  style="height:40px;">
-          </div>
-        </div>
-        <div class="row">
-          <div class="col" style="padding: 2px; height:42px; max-width:84px; vertical-align: middle; overflow: hidden; margin-top: 2px;">
-            <img ng-src="{{order.orders[2].product.imageUrl}}" style="height:84px;margin-top: -20px;">
-          </div>
-        </div>
-      </div>
+    <ion-list show-delete="false" can-swipe="true"  class="list card cart-item" style="margin:0;">
 
-      <div class="col zero-padding" style="max-width: 100px;"  ng-if="order.orders.length==2">
-        <div class="row">
-          <div class="col" style="padding: 2px; height:84px; max-width:42px; vertical-align: middle; overflow: hidden; margin-right: 2px;">
-            <img ng-src="{{order.orders[0].product.imageUrl}}" style="height:84px;margin-left: -20px;">
-          </div>
-          <div class="col" style="padding: 2px; height:84px; max-width:42px; vertical-align: middle; overflow: hidden;" >
-            <img ng-src="{{order.orders[1].product.imageUrl}}"  style="height:84px;margin-left: -20px;">
-          </div>
+      <ion-item class="card item item-avatar history-item">
+        <div class="circle" style="background-image:url('app/modules/checkout/img/cart-item-1.jpg')">
         </div>
-      </div>
+        <h2 class="cart-item-title">Toy Car</h2>
+        <p>For kids</p>
+        <span class="history-price">$ 100.00</span>
+        <div class="chip capital">{{"SIZE" | translate}} : 8</div>
+        <div class="chip align-center">x1</div>
+        <!--<ion-option-button class="button-assertive icon ion-trash-a"></ion-option-button>-->
+      </ion-item>
 
-      <div class="col zero-padding" style="max-width: 100px;" ng-if="order.orders.length==1">
-        <div class="row">
-          <div class="col" style="padding: 2px; height:84px; max-width:84px; max-height:84px; vertical-align: middle; overflow: hidden;">
-            <img ng-src="{{order.orders[0].product.imageUrl}}" style="height:84px;">
-          </div>
+      <ion-item  class="card item item-avatar history-item">
+        <div class="circle" style="background-image:url('app/modules/checkout/img/cart-item-2.jpg')">
         </div>
-      </div>
+        <h2 class="cart-item-title">Sun Glasses</h2>
+        <p>Unisex</p>
+        <span class="history-price">$ 100.00</span>
+        <div class="chip capital">{{"SIZE" | translate}} : 8</div>
+        <div class="chip align-center">x1</div>
+        <!--<ion-option-button class="button-assertive icon ion-trash-a"></ion-option-button>-->
+      </ion-item>
 
-      <div class="col " style="padding: 10px 0px">
-        <div class="row zero-padding">
-            <span class="">
-              <img ng-src="{{order.organization.images[order.organization.images.length-1].imageUri}}" style="height:25px; vertical-align: middle;">
-              <span> {{order.organization.orgName}} </span> <span style="position: absolute;right: 5px;"> Rs.{{order.finalValue}} </span><br>
-              <span> {{order.orders.length}} {{order.orders.length==1?'item':'items'}} </span><br>
-            </span>
+      <ion-item class="card item item-avatar history-item">
+        <div class="circle" style="background-image:url('app/modules/checkout/img/cart-item-3.jpg')">
         </div>
-        <div class="row" style="padding: 5px 0px">
-          <span>channel : {{order.channel}}</span>
-          <span class="delivery-tag">Delivered</span>
+        <h2 class="cart-item-title">GoPro Camera</h2>
+        <p>13 Mega Pixels</p>
+        <span class="history-price">$ 100.00</span>
+        <div class="chip capital">{{"SIZE" | translate}} : 8</div>
+        <div class="chip align-center">x1</div>
+        <!--<ion-option-button class="button-assertive icon ion-trash-a"></ion-option-button>-->
+      </ion-item>
+    </ion-list>
+
+    <ion-item class="card item">
+      <div class="row">
+        <div class="col capital" style="font-size: 15px;font-weight:700;padding: 12px 0 0 0px;">
+          {{"SHIPPING_AND_HANDLING" | translate}}
         </div>
-        <div class="row" style="padding: 5px 0px">
-            {{order.orderDate}}<span ng-if="$index%2==0">
-            <a ng-if="!order.isRatingSeen || closeAllRatings" ng-click="showRating(order)" style="position: absolute;right: 5px; width: 50px;text-align: center;margin-top: -9px;font-size: 12px;line-height: 12px;">
-              rate this order<br>
-            </a>
-            <ionic-ratings ng-if="order.isRatingSeen && !closeAllRatings" ratingsobj='ratingsObject' index='$index' style="font-size: x-large;position: absolute;right: 5px;margin-top: -5px;"></ionic-ratings><br ng-if="!isRatingSeen">
+        <div class="col align-right">
+          <div class="chip success capital" style="width:auto;color: white;">FREE SHIPPING</div>
         </div>
       </div>
-    </div>
+      <hr>
+      <div class="row">
+        <div class="col capital" style="font-size: 15px;font-weight:700;padding: 5px 0 15px 0px;">
+          {{"ORDER_TOTAL" | translate}}
+        </div>
+        <div class="col align-right bill-price">
+          <span>$ 327.00</span>
+        </div>
+      </div>
+    </ion-item>
 
   </ion-content>
 </ion-view>

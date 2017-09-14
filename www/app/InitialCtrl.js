@@ -2,9 +2,9 @@
 
 angular.module('arcMall').controller('InitialCtrl',InitialCtrl);
 
-InitialCtrl.$inject = ['$scope','$rootScope','$state','$ionicHistory','$ionicLoading','serverConfig','httpService'];
+InitialCtrl.$inject = ['$scope','$rootScope','$state','$ionicHistory','$ionicLoading','serverConfig','httpService','cartSev'];
 
-function InitialCtrl($scope,$rootScope,$state,$ionicHistory,$ionicLoading,serverConfig,httpService) {
+function InitialCtrl($scope,$rootScope,$state,$ionicHistory,$ionicLoading,serverConfig,httpService,cartSev) {
 
   $rootScope.$on('$stateChangeStart', function (event,toState,toParams, fromState, fromParams) {
     $ionicLoading.show({
@@ -40,29 +40,34 @@ function InitialCtrl($scope,$rootScope,$state,$ionicHistory,$ionicLoading,server
       }
     }
 
-    $rootScope.$on('$stateChangeSuccess', function () {
-      // $ionicLoading.hide();
-      // $scope.serviceLocator;
-    });
-
-    function checkAuthUser(authResponse){
-      return authResponse.shopId != undefined && authResponse.shopId != null && authResponse.shopId != ''
-        && authResponse.branchId != undefined && authResponse.branchId != null && authResponse.branchId != ''
-        && authResponse.sessionId != undefined && authResponse.sessionId != null && authResponse.sessionId != ''
-    }
-
-    $scope.logOut = function(event,toState){
-      localStorage.setItem('loginStatus',false);
-      localStorage.setItem('authResponse',null);
-      $rootScope.loginStatus = false;
-      $rootScope.authResponse = null;
-      // if (toState.name !== 'authSignIn') {
-        // $ionicHistory.clearHistory();
-        // $ionicHistory.clearCache();
-        // $state.go('authSignIn');
-        // event.preventDefault();
-      // }
-    }
-
   });
+
+  $rootScope.$on('$stateChangeSuccess', function () {
+    $rootScope.cartItemCount = cartSev.shoppingCart.cart.itemList.length;
+  });
+
+  function checkAuthUser(authResponse){
+    return authResponse.shopId != undefined && authResponse.shopId != null && authResponse.shopId != ''
+      && authResponse.branchId != undefined && authResponse.branchId != null && authResponse.branchId != ''
+      && authResponse.sessionId != undefined && authResponse.sessionId != null && authResponse.sessionId != ''
+  }
+
+  $scope.logOut = function(event,toState){
+    localStorage.setItem('loginStatus',false);
+    localStorage.setItem('authResponse',null);
+    $rootScope.loginStatus = false;
+    $rootScope.authResponse = null;
+    // if (toState.name !== 'authSignIn') {
+    // $ionicHistory.clearHistory();
+    // $ionicHistory.clearCache();
+    // $state.go('authSignIn');
+    // event.preventDefault();
+    // }
+  }
+
+  $scope.viewCart = function () {
+    if(cartSev.shoppingCart.isEmpty==false){
+      $state.go('cart');
+    }
+  }
 }

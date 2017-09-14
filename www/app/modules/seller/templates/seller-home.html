@@ -82,7 +82,7 @@
     </div>
 
     <div>
-      <a class="button custom-height-button button-sm square button-block button-orange capital" ng-disabled="product.product_id" ng-click="addItem()">
+      <a class="button custom-height-button button-sm square button-block button-orange capital" ng-click="product.product_id ? goHome(); : addItem();">
         {{"SAVE_ITEM" | translate}}
       </a>
     </div>

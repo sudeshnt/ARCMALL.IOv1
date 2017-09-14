@@ -60,6 +60,7 @@ angular.module('lang_en',['pascalprecht.translate','ngSanitize'])
       CHANGE_PASSWORD:'Change Password',
       MOBILE:'Mobile Number',
       EMAIL:'Email Address',
+      ORDER_ID:'Order Id',
     });
     $translateProvider.useSanitizeValueStrategy('escapeParameters');
   }]);

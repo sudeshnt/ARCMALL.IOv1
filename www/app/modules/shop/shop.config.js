@@ -40,7 +40,8 @@ shopModule.config(function config($stateProvider,$urlRouterProvider) {
     .state('categories', {
       url: '/categories',
       templateUrl: 'app/modules/shop/templates/categories.html',
-      controller: 'CategoryCtrl'
+      controller: 'CategoryCtrl',
+      params : {type:'NEW'}
     })
     .state('wish-list', {
       url: '/wish-list',

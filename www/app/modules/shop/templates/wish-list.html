@@ -1,8 +1,8 @@
 <ion-header-bar class="bar bar-header header-md bar-darker">
   <div style="width: 100%; display: inherit; margin-top: 0px !important;" >
     <div class="absolute back-icon-wrapper">
-      <a class="button button-icon row" ng-click="goHome()">
-        <i class="ion-android-arrow-back font-L white"></i>
+      <a class="button button-icon row" ng-click="toggleSideBar();">
+        <i class="ion-navicon-round font-L white"></i>
       </a>
       <!--<a class="button button-icon row" ng-click="toggleSideBar();">-->
         <!--<i class="ion-navicon-round font-L white"></i>-->
@@ -15,8 +15,9 @@
       </a>
     </div>
     <div class="absolute filter-icon-wrapper">
-      <a class="button button-icon row">
-        <i class="ion-android-cart font-L white" ng-href="#/cart"></i>
+      <a class="button button-icon row" ng-click="viewCart()">
+        <i class="ion-android-cart font-L white" ></i>
+        <i class="cart-item-count" ng-show="cartItemCount>0">{{cartItemCount}}</i>
       </a>
     </div>
   </div>

@@ -40,12 +40,24 @@ shopModule.config(function config($stateProvider,$urlRouterProvider) {
     .state('categories', {
       url: '/categories',
       templateUrl: 'app/modules/shop/templates/categories.html',
-      controller: 'CategoryCtrl'
+      controller: 'CategoryCtrl',
+      params : {type:'NEW'}
     })
     .state('wish-list', {
       url: '/wish-list',
       templateUrl: 'app/modules/shop/templates/wish-list.html',
       controller: 'WishListCtrl'
+    })
+    .state('order-history', {
+      url: '/order-history',
+      templateUrl: 'app/modules/shop/templates/order-history.html',
+      controller: 'OrderHistoryCtrl',
+    })
+    .state('view-order-history', {
+      url: '/view-order-history',
+      templateUrl: 'app/modules/shop/templates/view-order-history.html',
+      controller: 'ViewOrderHistoryCtrl',
+      params:{order:null}
     })
     .state('item-list', {
       url: '/item-list',
@@ -57,7 +69,11 @@ shopModule.config(function config($stateProvider,$urlRouterProvider) {
       url: '/item',
       templateUrl: 'app/modules/shop/templates/item.html',
       controller: 'ItemCtrl',
-      cache:false,
       params:{category_id:null,product_id:null}
+    })
+    .state('my-profile', {
+      url: '/my-profile',
+      templateUrl: 'app/modules/shop/templates/my-profile.html',
+      controller: 'MyProfileCtrl'
     })
 });

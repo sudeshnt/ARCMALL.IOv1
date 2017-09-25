@@ -11,7 +11,7 @@ function AuthHomeCtrl($scope, $state, $q, UserService, $ionicLoading,httpService
         var extended_url = '/me?fields=email,first_name,last_name,picture,id,gender,birthday&access_token='+userData.authResponse.accessToken;
         httpService.getRequest(serverConfig.facebookAPI,extended_url,{}).then(function(response){
           if(response.status === 200 && response.error_warning == ""){
-            console.log(response);
+            // console.log(response);
             $state.go('home.new');
           }else{
             $scope.error = response.error_warning;
@@ -37,7 +37,7 @@ function AuthHomeCtrl($scope, $state, $q, UserService, $ionicLoading,httpService
           httpService.getRequest(serverConfig.googleAPI,extended_url,{}).then(function(response){
             if(response.status === 200 && response.error_warning == ""){
               $state.go('home.new');
-              console.log(response);
+              // console.log(response);
             }else{
               $scope.error = response.error_warning;
             }

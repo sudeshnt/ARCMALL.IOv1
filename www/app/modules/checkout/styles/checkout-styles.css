@@ -106,6 +106,12 @@ ion-option-button{
   right: 10px;
   color: #a8a7af;
 }
+.history-price{
+  position: absolute;
+  top: 15px;
+  right: 10px;
+  color: #a8a7af;
+}
 .item-close-btn{
   position: absolute;
   top: 5px;
@@ -125,4 +131,7 @@ ion-option-button{
   font-size: 20px;
   font-weight: 600;
   color:#f4866b;
+}
+.history-item.item-avatar .item-content {
+  padding-left: 90px;
 }

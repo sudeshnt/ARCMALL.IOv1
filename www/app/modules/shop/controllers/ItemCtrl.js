@@ -2,9 +2,11 @@
 
 angular.module('shop.module').controller('ItemCtrl',ItemCtrl );
 
-ItemCtrl.$inject = ['$scope','$state','$rootScope','$filter','$stateParams','serverConfig','httpService','$httpParamSerializer'];
+ItemCtrl.$inject = ['$scope','$state','$rootScope','$filter','$stateParams','serverConfig','httpService','$httpParamSerializer','cartSev'];
 
-function ItemCtrl($scope,$state,$rootScope,$filter,$stateParams,serverConfig,httpService,$httpParamSerializer) {
+function ItemCtrl($scope,$state,$rootScope,$filter,$stateParams,serverConfig,httpService,$httpParamSerializer,cartSev) {
+
+    $scope.cartSev = cartSev;
 
     if($stateParams.product_id){
       $scope.category_id = $stateParams.category_id;
@@ -15,6 +17,14 @@ function ItemCtrl($scope,$state,$rootScope,$filter,$stateParams,serverConfig,htt
       // init();
       $state.go('home.new');
     }
+
+    $scope.addItemToCart = function () {
+      if(!cartSev.shoppingCart.cart.itemList){
+        cartSev.shoppingCart.initCartValue();
+      }
+      cartSev.shoppingCart.addItem($scope.product);
+      // console.log(JSON.stringify(cartSev.shoppingCart));
+    };
 
     $scope.goToItems = function () {
       if(!$scope.category_id || $scope.category_id==-1){
@@ -95,7 +105,7 @@ function ItemCtrl($scope,$state,$rootScope,$filter,$stateParams,serverConfig,htt
       };
       httpService.postRequest(serverConfig.clientAPI,extended_url, $httpParamSerializer(reqObj),config).then(function(response){
         if(response.status === 200){
-          console.log(response);
+          // console.log(response);
         }
       });
     }

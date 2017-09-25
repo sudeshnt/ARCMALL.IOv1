@@ -2,11 +2,12 @@
 
 angular.module('shop.module').controller('CategoryCtrl',CategoryCtrl );
 
-CategoryCtrl.$inject = ['$scope','$state','$rootScope','httpService','serverConfig','$ionicSlideBoxDelegate','$window', '$ionicGesture','$timeout'];
+CategoryCtrl.$inject = ['$scope','$state','$rootScope','$stateParams','httpService','serverConfig','$ionicSlideBoxDelegate','$window', '$ionicGesture','$timeout'];
 
-function CategoryCtrl($scope,$state,$rootScope,httpService,serverConfig,$ionicSlideBoxDelegate,$window, $ionicGesture,$timeout) {
+function CategoryCtrl($scope,$state,$rootScope,$stateParams,httpService,serverConfig,$ionicSlideBoxDelegate,$window, $ionicGesture,$timeout) {
 
-  console.log(JSON.parse(localStorage.getItem('SELECTED_CATEGORY')));
+  var type = $stateParams.type;
+  // console.log(type);
 
   function getAllCategories() {
     var extended_url = '/category/all';
@@ -16,26 +17,27 @@ function CategoryCtrl($scope,$state,$rootScope,httpService,serverConfig,$ionicSl
         $scope.cat_tabs = {};
         $scope.mainCategoryDropDown = [
           {
-            "id":response.data.categories[0].id,
+            "id":response.data.categories[0].category_id,
             "name":response.data.categories[0].name,
             "value":"NEW"
           },{
-            "id":response.data.categories[1].id,
+            "id":response.data.categories[1].category_id,
             "name":response.data.categories[1].name,
             "value":"USED"
           },{
-            "id":response.data.categories[2].id,
+            "id":response.data.categories[2].category_id,
             "name":response.data.categories[2].name,
             "value":"WHOLESALE"
           }
         ];
-        $scope.selectedMainCat = $scope.mainCategoryDropDown[0].value;
+
+        setSelectedMainCategory();
         // get processed categories
         $scope.cat_tabs["NEW"] = $scope.getSubCategories(response.data.categories[0],2) ;
         $scope.cat_tabs["USED"] = $scope.getSubCategories(response.data.categories[1],2);
         $scope.cat_tabs["WHOLESALE"] = $scope.getSubCategories(response.data.categories[2],2)
 
-        $scope.selectedCatTabs = $scope.cat_tabs["NEW"];
+        $scope.selectedCatTabs = $scope.cat_tabs[type];
         $ionicSlideBoxDelegate.update();
       }else{
         $scope.error = response.error_warning;
@@ -43,7 +45,17 @@ function CategoryCtrl($scope,$state,$rootScope,httpService,serverConfig,$ionicSl
     });
   }
 
+  function setSelectedMainCategory () {
+    for(var i in $scope.mainCategoryDropDown){
+      if($scope.mainCategoryDropDown[i].value == type){
+        $scope.selectedMainCat = $scope.mainCategoryDropDown[i].value;
+        break;
+      }
+    }
+  }
+
   $scope.selectedMainCatChange = function(value){
+    $state.go($state.current, {type:value}, {reload: true});
     // $scope.selectedCatTabs={};
     // $timeout(function(){
     //   $ionicSlideBoxDelegate._instances[0].kill();

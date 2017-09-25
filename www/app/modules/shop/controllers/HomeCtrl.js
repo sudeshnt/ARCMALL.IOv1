@@ -35,7 +35,7 @@ function HomeCtrl($scope,$state,$filter,$rootScope,appConfig,$timeout,$mdSidenav
     httpService.postRequest(serverConfig.clientAPI,extended_url, $httpParamSerializer(reqObj),config).then(function(response){
       if(response.status === 200){
         $scope.products = publicFunc.devideArray(response.data.products,2);
-        console.log($scope.products);
+        // console.log($scope.products);
       }
     });
   }
@@ -49,7 +49,7 @@ function HomeCtrl($scope,$state,$filter,$rootScope,appConfig,$timeout,$mdSidenav
     };
     httpService.postRequest(serverConfig.clientAPI,extended_url, {},config).then(function(response){
       if(response.status === 200){
-       console.log(response);
+       // console.log(response);
       }
     });
   }
@@ -57,7 +57,7 @@ function HomeCtrl($scope,$state,$filter,$rootScope,appConfig,$timeout,$mdSidenav
   function initLatestProducts(){
     var extended_url = '/latest';
     var reqObj = {
-      "start":0,
+      "start":2,
       "limit":4,
       "width":200,
       "height":200,
@@ -182,13 +182,26 @@ function HomeCtrl($scope,$state,$filter,$rootScope,appConfig,$timeout,$mdSidenav
     $scope.close();
     $state.go('authHome');
   };
-  $scope.logOut = function () {
+  $scope.openOrderHistory = function () {
     $scope.close();
-    $state.go('authSignIn');
+    $state.go('order-history');
   };
   $scope.openAddItem = function () {
     $state.go('sellerHome');
   };
+  $scope.openMyProfile = function () {
+    $scope.close();
+    $state.go('my-profile');
+  };
+  $scope.logOut = function () {
+    $scope.close();
+    localStorage.setItem('loginStatus',false);
+    localStorage.setItem('authResponse',null);
+    $rootScope.loginStatus = false;
+    $rootScope.authResponse = null;
+    $state.go('authSignIn');
+  };
+
 
   $scope.showListBottomSheet = function() {
     $scope.alert = '';
@@ -231,8 +244,6 @@ function HomeCtrl($scope,$state,$filter,$rootScope,appConfig,$timeout,$mdSidenav
         $log.debug("close RIGHT is done");
       });
   };
-
-  $scope.user = UserService.getUser();
 
   $scope.showLogOutMenu = function() {
     var hideSheet = $ionicActionSheet.show({

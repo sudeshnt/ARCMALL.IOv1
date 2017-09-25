@@ -2,9 +2,25 @@
 
 angular.module('checkout.module').controller('CartCtrl',CartCtrl );
 
-CartCtrl.$inject = ['$scope','$state','$rootScope','$timeout', '$mdBottomSheet', '$mdToast'];
+CartCtrl.$inject = ['$scope','$state','$rootScope','$timeout', '$mdBottomSheet', '$mdToast','cartSev'];
 
-function CartCtrl($scope,$state,$rootScope, $timeout, $mdBottomSheet, $mdToast) {
+function CartCtrl($scope,$state,$rootScope, $timeout, $mdBottomSheet, $mdToast,cartSev) {
+
+
+  $scope.cart = cartSev.shoppingCart.cart;
+
+  if(cartSev.shoppingCart.isEmpty){
+    $state.go('home.new');
+  }
+
+  $scope.removeItemFromCart = function (product_id) {
+    cartSev.shoppingCart.removeItem(product_id);
+    if(cartSev.shoppingCart.isEmpty){
+      $state.go('home.new');
+    }
+  };
+
+
   $scope.alert = '';
 
   $scope.showListBottomSheet = function() {

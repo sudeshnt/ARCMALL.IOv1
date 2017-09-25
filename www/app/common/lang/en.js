@@ -53,9 +53,14 @@ angular.module('lang_en',['pascalprecht.translate','ngSanitize'])
       WHAT_IS_YOUR_PRODUCT_NAME:'What is your product name',
       TELL_US_ABOUT_YOUR_ITEM:'Tell us about your item',
       WHAT_IS_THE_MODEL_OF_YOUR_PRODUCT:'What is the model of your product',
-      WHAT_IS_THE_PRICE_OF_YOUR_PRODUCT:'What is the price of your product',
+      WHAT_IS_THE_PRICE_OF_YOUR_PRODUCT:'price of your product',
       QUANTITY_AVAILABLE:'Quantity available',
       SAVE_ITEM:'Save Item',
+      MY_PROFILE:'My Profile',
+      CHANGE_PASSWORD:'Change Password',
+      MOBILE:'Mobile Number',
+      EMAIL:'Email Address',
+      ORDER_ID:'Order Id',
     });
     $translateProvider.useSanitizeValueStrategy('escapeParameters');
   }]);

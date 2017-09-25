@@ -29,6 +29,7 @@
     <script src="lib/ionic/js/ionic.bundle.js"></script>
 
     <!-- cordova script (this will be a 404 during development) -->
+    <script src="lib/ngCordova/ng-cordova.js"></script>
     <script src="cordova.js"></script>
     <!--libraries-->
     <script src="lib/angular-translate/angular-translate.min.js"></script> <!-- translate -->
@@ -60,6 +61,7 @@
     <script src="app/config/server.config.js"></script>
     <!-- your app's js -->
     <script src="app/app.js"></script>
+    <script src="app/InitialCtrl.js"></script>
     <script src="app/modules/modules.js"></script>
     <!--authentication-->
     <script src="app/modules/auth/auth.config.js"></script>
@@ -73,8 +75,11 @@
     <script src="app/modules/shop/controllers/HomeCtrl.js"></script>
     <script src="app/modules/shop/controllers/CategoryCtrl.js"></script>
     <script src="app/modules/shop/controllers/WishListCtrl.js"></script>
+    <script src="app/modules/shop/controllers/OrderHistoryCtrl.js"></script>
     <script src="app/modules/shop/controllers/ItemListCtrl.js"></script>
     <script src="app/modules/shop/controllers/ItemCtrl.js"></script>
+    <script src="app/modules/shop/controllers/MyProfile.js"></script>
+    <script src="app/modules/shop/controllers/ViewOrderHistory.js"></script>
     <link href="app/modules/shop/styles/shop-styles.css" rel="stylesheet">
     <!--checkout-->
     <script src="app/modules/checkout/checkout.config.js"></script>
@@ -93,9 +98,10 @@
     <script src="app/services/pendingRequestsService.js"></script>
     <script src="app/services/httpService.js"></script>
     <script src="app/services/publicFunctions.js"></script>
+    <script src="app/services/cartService.js"></script>
 
   </head>
-  <body ng-app="arcMall">
+  <body ng-app="arcMall"  ng-controller="InitialCtrl">
 
     <ion-pane>
       <!--<ion-header-bar class="bar-stable">-->

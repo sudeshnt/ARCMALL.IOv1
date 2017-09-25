@@ -133,19 +133,19 @@
         data:response_data,
         status:status
       };
-      console.log({
-        "url" : url,
-        "method" : method,
-        "req" : req,
-        "config" : config,
-        "response" : response
-      });
+      // console.log({
+      //   "url" : url,
+      //   "method" : method,
+      //   "req" : req,
+      //   "config" : config,
+      //   "response" : response
+      // });
       return response;
     }
     function printresponse(response){
-      console.log({
-        "data" : response
-      });
+      // console.log({
+      //   "data" : response
+      // });
     }
 
     return {

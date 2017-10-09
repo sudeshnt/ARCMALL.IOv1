@@ -23,8 +23,26 @@ function ItemCtrl($scope,$state,$rootScope,$filter,$stateParams,serverConfig,htt
         cartSev.shoppingCart.initCartValue();
       }
       cartSev.shoppingCart.addItem($scope.product);
-      // console.log(JSON.stringify(cartSev.shoppingCart));
+      addProductToCartAPI();
     };
+
+    function addProductToCartAPI() {
+        var extended_url = '/cart/add';
+        var reqObj = {
+          "product_id":$scope.product.product_id,
+          "quantity":1,
+        };
+        var config = {
+          headers:{
+            'Content-Type': 'application/x-www-form-urlencoded'
+          }
+        };
+        httpService.postRequest(serverConfig.clientAPI,extended_url, $httpParamSerializer(reqObj),config).then(function(response){
+          if(response.status === 200){
+            console.log(response);
+          }
+        });
+    }
 
     $scope.goToItems = function () {
       if(!$scope.category_id || $scope.category_id==-1){

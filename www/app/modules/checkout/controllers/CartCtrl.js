@@ -2,12 +2,12 @@
 
 angular.module('checkout.module').controller('CartCtrl',CartCtrl );
 
-CartCtrl.$inject = ['$scope','$state','$rootScope','$timeout', '$mdBottomSheet', '$mdToast','cartSev'];
+CartCtrl.$inject = ['$scope','$state','$rootScope','$timeout', '$mdBottomSheet', '$mdToast','cartSev','serverConfig','httpService','$httpParamSerializer'];
 
-function CartCtrl($scope,$state,$rootScope, $timeout, $mdBottomSheet, $mdToast,cartSev) {
+function CartCtrl($scope,$state,$rootScope, $timeout, $mdBottomSheet, $mdToast,cartSev,serverConfig,httpService,$httpParamSerializer) {
 
-
-  $scope.cart = cartSev.shoppingCart.cart;
+  // $scope.cart = cartSev.shoppingCart.cart;
+  getProductsOfCart();
 
   if(cartSev.shoppingCart.isEmpty){
     $state.go('home.new');
@@ -15,11 +15,66 @@ function CartCtrl($scope,$state,$rootScope, $timeout, $mdBottomSheet, $mdToast,c
 
   $scope.removeItemFromCart = function (product_id) {
     cartSev.shoppingCart.removeItem(product_id);
+    removeProductFromCartAPI(product_id);
     if(cartSev.shoppingCart.isEmpty){
       $state.go('home.new');
     }
   };
 
+  function getProductsOfCart() {
+    var extended_url = '/cart/products';
+    var reqObj = {};
+    var config = {
+      headers:{
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    };
+    httpService.postRequest(serverConfig.clientAPI,extended_url, $httpParamSerializer(reqObj),config).then(function(response){
+      if(response.status === 200){
+        $scope.cart = response.data;
+      }
+    });
+  }
+
+  $scope.updateCart = function (product,type) {
+    if(type=='minus'){
+      product.quantity = product.quantity > 1 ? product.quantity -= 1 : product.quantity;
+    }else if(type=='plus'){
+      product.quantity += 1;
+    }
+    var extended_url = '/cart/edit';
+    var reqObj = {
+      "key" : product.product_id,
+      "quantity" : product.quantity,
+    };
+    var config = {
+      headers:{
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    };
+    httpService.postRequest(serverConfig.clientAPI,extended_url, $httpParamSerializer(reqObj),config).then(function(response){
+      if(response.status === 200){
+
+      }
+    });
+  };
+
+  function removeProductFromCartAPI(product_id) {
+    var extended_url = '/cart/remove';
+    var reqObj = {
+      "key":product_id
+    };
+    var config = {
+      headers:{
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    };
+    httpService.postRequest(serverConfig.clientAPI,extended_url, $httpParamSerializer(reqObj),config).then(function(response){
+      if(response.status === 200){
+        console.log(response);
+      }
+    });
+  }
 
   $scope.alert = '';
 
@@ -44,5 +99,8 @@ function CartCtrl($scope,$state,$rootScope, $timeout, $mdBottomSheet, $mdToast,c
       // User clicked outside or hit escape
     });
   };
+
+
+
 }
 

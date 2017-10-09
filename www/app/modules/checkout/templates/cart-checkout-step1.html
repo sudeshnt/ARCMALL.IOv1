@@ -1,0 +1,92 @@
+<ion-header-bar class="bar bar-header header-md bar-darker">
+  <div style="width: 100%; display: inherit; margin-top: 0px !important;" >
+    <div class="absolute back-icon-wrapper">
+      <a class="button button-icon row" ng-href="#/cart">
+        <i class="ion-android-arrow-back font-L white"></i>
+      </a>
+    </div>
+    <h4 class="white left-title">{{'BILLING_DETAILS' | translate}}</h4>
+    <div class="absolute cart-icon-wrapper">
+
+    </div>
+  </div>
+</ion-header-bar>
+<ion-view cache-view="false">
+    <ion-content  class="has-header-md" style="background: #ffffff !important;">
+        <ion-list>
+            <form name="forms.checkoutForm" novalidate>
+                <div class="item item-divider divider-topic">Your Personal Details</div>
+                <div class="row no-padding item item-input item-floating-label item-double-col checkout-double-col">
+                    <label class="item item-input item-floating-label col-50 checkout-label">
+                        <span class="input-label">First Name</span>
+                        <input type="text" ng-model="checkout.firstname" placeholder="First Name" name="firstname" required>
+                    </label>
+                    <label class="item item-input item-floating-label col-50 checkout-label">
+                        <span class="input-label">Last Name</span>
+                        <input type="text"  ng-model="checkout.lastname" placeholder="Last Name" name="lastname" required>
+                    </label>
+                </div>
+                <label class="item item-input item-floating-label checkout-label separate-border">
+                    <span class="input-label">Email</span>
+                    <input type="email" ng-model="checkout.email" placeholder="Email" name="email" required>
+                </label>
+                <label class="item item-input item-floating-label checkout-label separate-border">
+                    <span class="input-label">Telephone</span>
+                    <input type="tel"  ng-model="checkout.telephone" placeholder="Telephone" name="telephone" required>
+                </label>
+
+                <div class="item item-divider">
+                    <span class="divider-topic">Your Address</span>
+                    <geolocation-address style="float:right" line1="checkout.address_1"
+                                         line2="checkout.address_2"
+                                         city="checkout.city"
+                                         postalcode="checkout.postcode"
+                                         country="checkout.country_id"
+                                         state="checkout.zone_id"></geolocation-address>
+                </div>
+
+                <label class="item item-input item-floating-label checkout-label separate-border">
+                    <span class="input-label">Address Line 1</span>
+                    <input type="text"  ng-model="checkout.address_1" name="address_1" placeholder="Address Line 1" required>
+                </label>
+                <label class="item item-input item-floating-label checkout-label separate-border">
+                    <span class="input-label">Address Line 2</span>
+                    <input type="text"  ng-model="checkout.address_2" name="address_2" placeholder="Address Line 2">
+                </label>
+
+                <div class="row no-padding item item-input item-floating-label item-double-col checkout-double-col separate-border">
+                    <label class="item item-input item-floating-label col-50 checkout-label">
+                        <span class="input-label">City</span>
+                        <input type="text" ng-model="checkout.city" name="city" placeholder="City" required>
+                    </label>
+                    <label class="item item-input item-floating-label col-50 checkout-label">
+                        <span class="input-label">Postal Code</span>
+                        <input type="text" ng-model="checkout.postcode" maxlength="10" minlength="5" name="postal_code" placeholder="Postal Code" required>
+                    </label>
+                </div>
+                <div class="row no-padding item item-double-col checkout-double-col ">
+                    <label class="item item-input item-select col-50 checkout-label">
+                        <div class="input-label">Country</div>
+                        <select ng-model="checkout.country_id" ng-change="countryChanged()" name="country_id" placeholder="Country" required>
+                            <option value="{{::country.country_id}}" ng-selected="country.country_id == checkout.country_id" ng-repeat="country in countries">{{::country.name}}</option>
+                        </select>
+                    </label>
+                    <label class="item item-input item-select col-50 checkout-label">
+                        <div class="input-label">Region</div>
+                        <select ng-model="checkout.zone_id" name="zone_id" required ng-init="countryChanged()">
+                            <option value="{{::zone.zone_id}}" ng-selected="zone.zone_id == checkout.zone_id" ng-repeat="zone in zones">{{::zone.name}}</option>
+                        </select>
+                    </label>
+                </div>
+            </form>
+        </ion-list>
+    </ion-content>
+
+    <ion-footer-bar align-title="left" ng-class="'bar-positive'">
+    <!--<ion-footer-bar align-title="left" ng-class="{'bar-assertive':forms.checkoutForm.$invalid, 'bar-positive':forms.checkoutForm.$valid}">-->
+        <h2 class="title">$122</h2>
+        <div class="buttons">
+            <a class="button" ng-click="savePersonalInfo()" >next</a>
+        </div>
+    </ion-footer-bar>
+</ion-view>

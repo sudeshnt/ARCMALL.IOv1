@@ -18,15 +18,23 @@
   <ion-content class="has-subheader">
     <!--<md-button flex="50" class="md-primary md-raised" ng-click="showListBottomSheet()">Show as List</md-button>-->
     <ion-list show-delete="false" can-swipe="true"  class="list card cart-item" style="margin:0;">
-      <ion-item class="card item item-avatar history-item" ng-repeat="item in cart.itemList">
+      <ion-item class="card item item-avatar history-item" ng-repeat="item in cart.products">
+      <!--<ion-item class="card item item-avatar history-item" ng-repeat="item in cart.itemList">-->
         <div class="circle" ng-style="{'background-image':'url({{item.thumb}})'}">
         </div>
-        <h2 class="cart-item-title" ng-bind-html="item.heading_title"></h2>
-        <p ng-bind-html="item.description"></p>
+        <h2 class="cart-item-title" ng-bind-html="item.name"></h2>
+        <p ng-bind-html="item.model"></p>
+        <!--<p ng-bind-html="item.description"></p>-->
         <span class="history-price" ng-bind-html="item.price"></span>
+        <div class="row qty-spinner">
+          <input type='button' value='-' class='qtyminus' ng-click="updateCart(item,'minus')"/>
+          <input type='number' name='quantity' ng-model="item.quantity" class='qty' />
+          <input type='button' value='+' class='qtyplus' ng-click="updateCart(item,'plus')"/>
+        </div>
         <!--<a class="item-close-btn ion-close-round"></a>-->
         <div class="chip capital">{{"SIZE" | translate}} : 8</div>
         <div class="chip align-center">x {{item.quantity}}</div>
+
         <ion-option-button class="button-assertive icon ion-trash-a" ng-click="removeItemFromCart(item.product_id);"></ion-option-button>
       </ion-item>
 
@@ -65,12 +73,12 @@
         </div>
       </div>
       <hr>
-      <div class="row">
+      <div class="row" ng-repeat="total in cart.totals">
         <div class="col capital" style="font-size: 15px;font-weight:700;padding: 5px 0 15px 0px;">
-          {{"ORDER_TOTAL" | translate}}
+          {{total.title}}
         </div>
         <div class="col align-right bill-price">
-          <span>$ 327.00</span>
+          <span>{{total.text}}</span>
         </div>
       </div>
     </ion-item>

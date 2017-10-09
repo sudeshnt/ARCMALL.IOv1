@@ -23,6 +23,10 @@ arcMall.config(function($translateProvider) {
     $translateProvider.fallbackLanguage("en");
 });
 
+arcMall.config(function ($httpProvider) {
+  $httpProvider.defaults.withCredentials = true;
+});
+
 //
 // arcMall.config(['GooglePlusProvider', function(GooglePlusProvider) {
 //   GooglePlusProvider.init({

@@ -2,9 +2,11 @@
 
 angular.module('shop.module').controller('OrderHistoryCtrl',OrderHistoryCtrl );
 
-OrderHistoryCtrl.$inject = ['$scope','$state','$rootScope','$mdSidenav','$log'];
+OrderHistoryCtrl.$inject = ['$scope','$state','$rootScope','$mdSidenav','$log','serverConfig','httpService','$httpParamSerializer'];
 
-function OrderHistoryCtrl($scope,$state,$rootScope,$mdSidenav,$log) {
+function OrderHistoryCtrl($scope,$state,$rootScope,$mdSidenav,$log,serverConfig,httpService,$httpParamSerializer) {
+
+  init();
 
   $scope.orders = [
     {
@@ -288,5 +290,23 @@ function OrderHistoryCtrl($scope,$state,$rootScope,$mdSidenav,$log) {
       });
   };
 
+  function initOrderHistory(){
+    var extended_url = '/order_history';
+    var reqObj = {};
+    var config = {
+      headers:{
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    };
+    httpService.postRequest(serverConfig.clientAPI,extended_url, $httpParamSerializer(reqObj),config).then(function(response){
+      if(response.status === 200){
+        console.log(response);
+      }
+    });
+  }
+
+  function init() {
+    initOrderHistory();
+  }
 
 }

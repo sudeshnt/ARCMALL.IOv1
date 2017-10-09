@@ -135,3 +135,42 @@ ion-option-button{
 .history-item.item-avatar .item-content {
   padding-left: 90px;
 }
+.item-avatar .item-content {
+  min-height: 90px !important;
+}
+
+#myform {
+  text-align: center;
+  padding: 5px;
+  border: 1px dotted #ccc;
+  margin: 2%;
+}
+.qty {
+  width: 40px;
+  height: 25px !important;
+  text-align: center;
+}
+input.qtyplus { width:25px; height:25px;}
+input.qtyminus { width:25px; height:25px;}
+
+.qty-spinner{
+  width: fit-content;
+  position: absolute;
+  right: 5px;
+  bottom: 12px;
+}
+
+.checkout-label{
+  border-color: #ffffff;
+  background-color: #ffffff;
+}
+.checkout-double-col{
+  border-color: #fff !important;
+}
+.separate-border{
+  border-color: #d2d0d0;
+}
+.divider-topic{
+  font-size: large;
+  font-weight: 100;
+}

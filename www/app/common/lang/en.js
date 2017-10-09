@@ -61,6 +61,9 @@ angular.module('lang_en',['pascalprecht.translate','ngSanitize'])
       MOBILE:'Mobile Number',
       EMAIL:'Email Address',
       ORDER_ID:'Order Id',
+      CHECKOUT_STEP_ONE:'Checkout - Step 1',
+      CHECKOUT_STEP_TWO:'Checkout - Step 2',
+      CHECKOUT_STEP_THREE:'Checkout - Step 3',
     });
     $translateProvider.useSanitizeValueStrategy('escapeParameters');
   }]);

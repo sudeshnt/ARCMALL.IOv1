@@ -22,6 +22,6 @@ checkoutModule.config(function config($stateProvider,$urlRouterProvider) {
     .state('checkout-step-3', {
       url: '/checkout-step-3',
       templateUrl: 'app/modules/checkout/templates/cart-checkout-step3.html',
-      controller: 'CheckoutdddCtrl'
+      controller: 'CheckoutCtrl'
     })
 });

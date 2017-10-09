@@ -1,7 +1,16 @@
-<ion-view view-title="{{ 'cart.title_invoice' | i18n }}" cache-view="false">
-    <ion-nav-buttons side="right">
-        <a class="button button-positive" ng-click="openLoginModal()"><i class="icon ion-ios-person-outline"></i></a>
-    </ion-nav-buttons>
+<ion-header-bar class="bar bar-header header-md bar-darker">
+  <div style="width: 100%; display: inherit; margin-top: 0px !important;" >
+    <div class="absolute back-icon-wrapper">
+      <a class="button button-icon row" ng-href="#/checkout-step-2">
+        <i class="ion-android-arrow-back font-L white"></i>
+      </a>
+    </div>
+    <h4 class="white left-title">{{'CHECKOUT_STEP_THREE' | translate}}</h4>
+    <div class="absolute cart-icon-wrapper">
+    </div>
+  </div>
+</ion-header-bar>
+<ion-view cache-view="false">
     <ion-content>
         <ion-list>
             <ion-item class="details-items"><p>Phone <span class="cart-item-total">{{checkout.telephone}}</span></p></ion-item>
@@ -39,7 +48,7 @@
     <ion-footer-bar align-title="left" class="bar-positive">
         <h2 class="title">{{total_amount}}</h2>
         <div class="buttons">
-            <a class="button" ng-click="confirmOrder()" i18n="cart.button_confirm"></a>
+            <a class="button" ng-click="confirmOrder()" i18n="cart.button_confirm">CONFIRM</a>
         </div>
     </ion-footer-bar>
 </ion-view>

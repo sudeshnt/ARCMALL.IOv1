@@ -1,84 +1,84 @@
 {
-  "name": "arcmall.iov1",
-  "version": "1.1.1",
-  "description": "ARCMALL.IOv1: An Ionic project",
-  "dependencies": {
-    "cordova-android": "^6.2.3",
-    "cordova-ios": "^4.4.0",
-    "cordova-plugin-actionsheet": "^2.3.3",
-    "cordova-plugin-camera": "^2.4.1",
-    "cordova-plugin-compat": "^1.1.0",
-    "cordova-plugin-console": "^1.0.5",
-    "cordova-plugin-device": "^1.1.4",
-    "cordova-plugin-facebook4": "^1.9.1",
-    "cordova-plugin-file": "^4.3.3",
-    "cordova-plugin-file-transfer": "^1.6.3",
-    "cordova-plugin-filepath": "^1.0.2",
-    "cordova-plugin-googleplus": "git+https://github.com/EddyVerbruggen/cordova-plugin-googleplus.git",
-    "cordova-plugin-splashscreen": "^4.0.3",
-    "cordova-plugin-statusbar": "^2.2.1",
-    "cordova-plugin-whitelist": "^1.3.1",
-    "cordova-plugin-x-toast": "git+https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git",
-    "gulp": "^3.5.6",
-    "gulp-concat": "^2.2.0",
-    "gulp-minify-css": "^0.3.0",
-    "gulp-rename": "^1.2.0",
-    "gulp-sass": "^2.0.4",
-    "ionic-plugin-keyboard": "^2.2.1"
-  },
-  "devDependencies": {
-    "@ionic/cli-plugin-cordova": "1.5.0",
-    "@ionic/cli-plugin-gulp": "1.1.0",
-    "@ionic/cli-plugin-ionic1": "2.1.0",
-    "bower": "^1.3.3",
-    "gulp-util": "^2.2.14",
-    "ionic": "3.12.0",
-    "shelljs": "^0.3.0"
-  },
-  "cordovaPlugins": [
-    "cordova-plugin-whitelist",
-    "cordova-plugin-console",
-    "cordova-plugin-device",
-    "cordova-plugin-statusbar",
-    "cordova-plugin-splashscreen",
-    "ionic-plugin-keyboard"
-  ],
-  "cordovaPlatforms": [
-    "ios",
-    {
-      "platform": "ios",
-      "version": "",
-      "locator": "ios"
-    }
-  ],
-  "cordova": {
-    "plugins": {
-      "cordova-plugin-console": {},
-      "cordova-plugin-device": {},
-      "cordova-plugin-splashscreen": {},
-      "cordova-plugin-statusbar": {},
-      "cordova-plugin-whitelist": {},
-      "ionic-plugin-keyboard": {},
-      "cordova-plugin-facebook4": {
-        "APP_ID": "1823221184659287",
-        "APP_NAME": "ArcMall"
-      },
-      "cordova-plugin-googleplus": {
-        "REVERSED_CLIENT_ID": "com.googleusercontent.apps.683451474237-kgbp6hbnbv3dtftbi3o1hmokm46od906"
-      },
-      "cordova-plugin-x-toast": {},
-      "cordova-plugin-camera": {
-        "CAMERA_USAGE_DESCRIPTION": " ",
-        "PHOTOLIBRARY_USAGE_DESCRIPTION": " "
-      },
-      "cordova-plugin-file": {},
-      "cordova-plugin-file-transfer": {},
-      "cordova-plugin-filepath": {},
-      "cordova-plugin-actionsheet": {}
+    "name": "arcmall.iov1",
+    "version": "1.1.1",
+    "description": "ARCMALL.IOv1: An Ionic project",
+    "dependencies": {
+        "cordova-android": "^6.2.3",
+        "cordova-ios": "^4.4.0",
+        "cordova-plugin-actionsheet": "^2.3.3",
+        "cordova-plugin-camera": "^2.4.1",
+        "cordova-plugin-compat": "^1.1.0",
+        "cordova-plugin-console": "^1.0.5",
+        "cordova-plugin-device": "^1.1.4",
+        "cordova-plugin-facebook4": "^1.9.1",
+        "cordova-plugin-file": "^4.3.3",
+        "cordova-plugin-file-transfer": "^1.6.3",
+        "cordova-plugin-filepath": "^1.0.2",
+        "cordova-plugin-googleplus": "git+https://github.com/EddyVerbruggen/cordova-plugin-googleplus.git",
+        "cordova-plugin-splashscreen": "^4.0.3",
+        "cordova-plugin-statusbar": "^2.2.1",
+        "cordova-plugin-whitelist": "^1.3.1",
+        "cordova-plugin-x-toast": "git+https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git",
+        "gulp": "^3.5.6",
+        "gulp-concat": "^2.2.0",
+        "gulp-minify-css": "^0.3.0",
+        "gulp-rename": "^1.2.0",
+        "gulp-sass": "^2.0.4",
+        "ionic-plugin-keyboard": "^2.2.1"
     },
-    "platforms": [
-      "android",
-      "ios"
-    ]
-  }
+    "devDependencies": {
+        "@ionic/cli-plugin-cordova": "1.5.0",
+        "@ionic/cli-plugin-gulp": "1.1.0",
+        "@ionic/cli-plugin-ionic1": "2.1.0",
+        "bower": "^1.3.3",
+        "gulp-util": "^2.2.14",
+        "ionic": "3.13.0",
+        "shelljs": "^0.3.0"
+    },
+    "cordovaPlugins": [
+        "cordova-plugin-whitelist",
+        "cordova-plugin-console",
+        "cordova-plugin-device",
+        "cordova-plugin-statusbar",
+        "cordova-plugin-splashscreen",
+        "ionic-plugin-keyboard"
+    ],
+    "cordovaPlatforms": [
+        "ios",
+        {
+            "platform": "ios",
+            "version": "",
+            "locator": "ios"
+        }
+    ],
+    "cordova": {
+        "plugins": {
+            "cordova-plugin-console": {},
+            "cordova-plugin-device": {},
+            "cordova-plugin-splashscreen": {},
+            "cordova-plugin-statusbar": {},
+            "cordova-plugin-whitelist": {},
+            "ionic-plugin-keyboard": {},
+            "cordova-plugin-facebook4": {
+                "APP_ID": "1823221184659287",
+                "APP_NAME": "ArcMall"
+            },
+            "cordova-plugin-googleplus": {
+                "REVERSED_CLIENT_ID": "com.googleusercontent.apps.683451474237-kgbp6hbnbv3dtftbi3o1hmokm46od906"
+            },
+            "cordova-plugin-x-toast": {},
+            "cordova-plugin-camera": {
+                "CAMERA_USAGE_DESCRIPTION": " ",
+                "PHOTOLIBRARY_USAGE_DESCRIPTION": " "
+            },
+            "cordova-plugin-file": {},
+            "cordova-plugin-file-transfer": {},
+            "cordova-plugin-filepath": {},
+            "cordova-plugin-actionsheet": {}
+        },
+        "platforms": [
+            "android",
+            "ios"
+        ]
+    }
 }

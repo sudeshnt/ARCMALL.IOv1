@@ -17,11 +17,11 @@ checkoutModule.config(function config($stateProvider,$urlRouterProvider) {
     .state('checkout-step-2', {
       url: '/checkout-step-2',
       templateUrl: 'app/modules/checkout/templates/cart-checkout-step2.html',
-      controller: 'CheckoutCtrl'
+      controller: 'CheckoutStep2Ctrl'
     })
     .state('checkout-step-3', {
       url: '/checkout-step-3',
       templateUrl: 'app/modules/checkout/templates/cart-checkout-step3.html',
-      controller: 'CheckoutCtrl'
+      controller: 'CheckoutStep3Ctrl'
     })
 });

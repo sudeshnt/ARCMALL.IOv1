@@ -174,3 +174,6 @@ input.qtyminus { width:25px; height:25px;}
   font-size: large;
   font-weight: 100;
 }
+.cart-item-total{
+  float: right;
+}

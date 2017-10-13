@@ -30,16 +30,16 @@
         </ion-list>
 
         <ion-list>
-            <ion-item class="item item-thumbnail-left cart-item" ng-repeat="item in items">
+            <ion-item class="item item-thumbnail-left cart-item" ng-repeat="item in cart.products">
                 <img class="cart-image" ng-src="{{::item.thumb}}">
                 <h3 class="cart-item-title" ng-bind-html="::item.name"></h3>
-                <h5 class="cart-item-title" i18n="cart.product_code" data-code="item.model"></h5>
+                <h5 class="cart-item-title" ng-bind-html="item.model"></h5>
                 <ul class="cart-item-options">
                     <li ng-repeat="opt in item.option">{{::opt.name}}:{{::opt.value}}</li>
                 </ul>
                 <p>{{::item.quantity}} x {{::item.price}} <span class="cart-item-total">{{::item.total}}</span></p>
             </ion-item>
-            <ion-item class="cart-totals-item" ng-repeat="total in totals">
+            <ion-item class="cart-totals-item" ng-repeat="total in cart.totals">
                 <p>{{::total.title}} <span class="cart-item-total">{{::total.text}}</span></p>
             </ion-item>
         </ion-list>

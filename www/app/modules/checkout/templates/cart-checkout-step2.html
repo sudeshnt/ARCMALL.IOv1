@@ -21,10 +21,14 @@
                 <ion-radio ng-repeat="method in paymentMethods" name="payment_method" ng-change="paymentMethodChanged()" ng-model="paymentAndShipping.payment_method" ng-value="'{{method.code}}'" ng-required="true">{{method.title}}</ion-radio>
 
                 <div class="item item-divider divider-topic">Additional Comments/Instructions </div>
-                <label class="item item-input item-floating-label">
-                    <span class="input-label" i18n="cart.comments"></span>
-                    <textarea data-i18n-attr="{placeholder: 'cart.comments'}" ng-model="paymentAndShipping.comment" name="comment"></textarea>
-                </label>
+              <label class="item item-input text-xmd">
+                <i class="icon ion-document-text placeholder-icon"></i>
+                <input type="text" placeholder="{{'COMMENTS' | translate}}" ng-model="user.confirm">
+              </label>
+                <!--<label class="item item-input item-floating-label">-->
+                    <!--<span class="input-label" i18n="cart.comments"></span>-->
+                    <!--<textarea data-i18n-attr="{placeholder: 'cart.comments'}" ng-model="paymentAndShipping.comment" name="comment"></textarea>-->
+                <!--</label>-->
             </form>
         </ion-list>
     </ion-content>

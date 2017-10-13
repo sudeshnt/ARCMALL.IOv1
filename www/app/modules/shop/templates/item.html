@@ -20,7 +20,7 @@
     <div class="full-width">
       <div class="row padding-top-zero">
         <div class="col padding-top-zero">
-          <a class="button square button-block button-light zero-margin capital white" style="background-color:#4e636c; " ng-click="">
+          <a class="button square button-block button-light zero-margin capital white" style="background-color:#4e636c;" ng-disabled="availability_in_wishlist" ng-click="addItemToWishList()">
             {{"ADD_TO_WISH_LIST" | translate}}
           </a>
         </div>
@@ -62,8 +62,9 @@
             </ion-slide-box>
           </div>
           <div class="item tabs-secondary tabs-icon-left white-tabs" style="padding: 10px;">
-            <h2 class="align-center" ng-bind-html="product.heading_title"></h2>
-            <h3 class="align-center" ng-bind-html="product.price"></h3>
+            <h2 class="align-left" ng-bind-html="product.heading_title"></h2>
+            <h3 class="align-left" ng-bind-html="product.price"></h3>
+            <a class="absolute" style="top:20px; right: 15px;" ng-click="toggleBottomSheet()">Options</a>
           </div>
         </div>
 

@@ -2,9 +2,9 @@
 
 angular.module('shop.module').controller('ItemCtrl',ItemCtrl );
 
-ItemCtrl.$inject = ['$scope','$state','$rootScope','$filter','$stateParams','serverConfig','httpService','$httpParamSerializer','cartSev'];
+ItemCtrl.$inject = ['$scope','$state','$rootScope','$filter','$stateParams','serverConfig','httpService','$httpParamSerializer','cartSev','$mdBottomSheet'];
 
-function ItemCtrl($scope,$state,$rootScope,$filter,$stateParams,serverConfig,httpService,$httpParamSerializer,cartSev) {
+function ItemCtrl($scope,$state,$rootScope,$filter,$stateParams,serverConfig,httpService,$httpParamSerializer,cartSev,$mdBottomSheet) {
 
     $scope.cartSev = cartSev;
 
@@ -13,9 +13,9 @@ function ItemCtrl($scope,$state,$rootScope,$filter,$stateParams,serverConfig,htt
       $scope.product_id = $stateParams.product_id;
       init();
     }else{
-      // $scope.product_id = 214;
-      // init();
-      $state.go('home.new');
+      $scope.product_id = 214;
+      init();
+      // $state.go('home.new');
     }
 
     $scope.addItemToCart = function () {
@@ -84,7 +84,62 @@ function ItemCtrl($scope,$state,$rootScope,$filter,$stateParams,serverConfig,htt
       group.show = !group.show;
     };
 
-    $scope.isGroupShown = function(group) {
+  $scope.toggleBottomSheet = function() {
+    $scope.alert = '';
+    $mdBottomSheet.show({
+      templateUrl:'app/modules/shop/templates/itemOptions.html',
+      scope: $scope
+    }).then(function(clickedItem) {
+
+    }).catch(function(error) {
+
+    });
+  };
+
+  $scope.closeBottomSheet = function () {
+    console.log('asdsad')
+    $mdBottomSheet.hide();
+  };
+
+  $scope.addItemToWishList = function (){
+      var wishList = JSON.parse(localStorage.getItem('wish_list'));
+      var availability = false;
+      if(!wishList){
+        wishList = [];
+      }else{
+        if(wishList.length>0){
+          for(var i in wishList){
+            if(wishList[i].product_id == $scope.product.product_id){
+              availability = true;
+              break;
+            }
+          }
+        }
+      }
+      if(!$scope.availability_in_wishlist){
+        wishList.push($scope.product);
+        localStorage.setItem('wish_list',JSON.stringify(wishList));
+        $scope.availability_in_wishlist = true;
+      }
+  };
+
+  function initAvailabilityInWIshList() {
+    var wishList = JSON.parse(localStorage.getItem('wish_list'));
+    var availability = false;
+    if(wishList){
+      if(wishList.length>0){
+        for(var i in wishList){
+          if(wishList[i].product_id == $scope.product.product_id){
+            availability = true;
+            break;
+          }
+        }
+      }
+    }
+    return availability;
+  }
+
+  $scope.isGroupShown = function(group) {
       return group.show;
     };
 
@@ -107,6 +162,7 @@ function ItemCtrl($scope,$state,$rootScope,$filter,$stateParams,serverConfig,htt
       httpService.postRequest(serverConfig.clientAPI,extended_url, $httpParamSerializer(reqObj),config).then(function(response){
         if(response.status === 200){
           $scope.product = response.data;
+          $scope.availability_in_wishlist = initAvailabilityInWIshList();
         }
       });
     }

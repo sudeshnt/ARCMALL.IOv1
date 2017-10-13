@@ -200,7 +200,8 @@ function SellerHomeCtrl($scope, $rootScope, $state , httpService,serverConfig,$h
       fileKey: "file",
       fileName: filename,
       chunkedMode: false,
-      mimeType: "multipart/form-data",
+      mimeType: "image/jpeg",
+      // mimeType: "multipart/form-data",
       params : {'product_id': $scope.product.product_id}
       // params : {'product_id': filename}
     };
@@ -212,6 +213,7 @@ function SellerHomeCtrl($scope, $rootScope, $state , httpService,serverConfig,$h
 
     $cordovaFileTransfer.upload(url, targetPath, options).then(function(result) {
       if($scope.selected_image_type==='Main'){
+        console.log(JSON.stringify(result));
         $scope.item.mainImage = newFileName;
       }else if($scope.selected_image_type==='Product'){
         pushImage(newFileName);

@@ -61,21 +61,24 @@
 
   </ion-content>
   <md-sidenav class="md-sidenav-left md-whiteframe-4dp" md-component-id="left">
-    <!--<md-toolbar class="md-theme-light sidenav-header">-->
-    <!--<h1 class="md-toolbar-tools white">Touch2Buy</h1>-->
-    <!--</md-toolbar>-->
     <md-content >
       <img ng-src="app/modules/shop/img/home-slide-nav.jpg" style="width:100%">
       <md-list flex>
-        <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;" >
+        <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;" ng-show="loginStatus">
+          <div class="md-list-item-text zero-margin" layout="column" ng-click="openMyProfile()">
+            <h4><i class="ion-person sidenav-icon"></i><span class="sidenav-options">{{'MY_PROFILE' | translate}}</span></h4>
+          </div>
+        </md-list-item>
+        <md-divider></md-divider>
+        <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;" ng-show="!loginStatus">
           <div class="md-list-item-text zero-margin" layout="column" ng-click="openSignIn()">
             <h4><i class="ion-person sidenav-icon"></i><span class="sidenav-options">{{'SIGN_IN' | translate}}</span></h4>
           </div>
         </md-list-item>
-        <md-divider ></md-divider>
-        <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;">
-          <div class="md-list-item-text zero-margin" layout="column"  ng-click="openHome()">
-            <h4><i class="ion-android-home sidenav-icon"></i><span class="sidenav-options">{{'HOME' | translate}}</span></h4>
+        <md-divider></md-divider>
+        <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;"  ng-show="authResponse.ispartner=='true'">
+          <div class="md-list-item-text zero-margin" layout="column" ng-click="openAddItem()">
+            <h4><i class="ion-android-hand sidenav-icon"></i><span class="sidenav-options">{{'ADD_ITEM' | translate}}</span></h4>
           </div>
         </md-list-item>
         <md-divider ></md-divider>
@@ -86,21 +89,24 @@
         </md-list-item>
         <md-divider ></md-divider>
         <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;">
-          <div class="md-list-item-text zero-margin" layout="column"  ng-click="">
-            <h4><i class="ion-ios-albums sidenav-icon"></i><span class="sidenav-options">{{'ORDER_HISTORY' | translate}}</span></h4>
+          <div class="md-list-item-text zero-margin" layout="column"  ng-click="openWishList()">
+            <h4><i class="ion-ios-heart sidenav-icon"></i><span class="sidenav-options">{{'WISH_LIST' | translate}}</span></h4>
           </div>
         </md-list-item>
         <md-divider ></md-divider>
         <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;">
+          <div class="md-list-item-text zero-margin" layout="column"  ng-click="openOrderHistory();">
+            <h4><i class="ion-ios-albums sidenav-icon"></i><span class="sidenav-options">{{'ORDER_HISTORY' | translate}}</span></h4>
+          </div>
+        </md-list-item>
+        <md-divider ></md-divider>
+        <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;"  ng-show="loginStatus">
           <div class="md-list-item-text zero-margin" layout="column" ng-click="logOut()">
             <h4><i class="ion-android-hand sidenav-icon"></i><span class="sidenav-options">{{'LOG_OUT' | translate}}</span></h4>
           </div>
         </md-list-item>
         <md-divider ></md-divider>
       </md-list>
-      <!--<md-button ng-click="close()" class="md-primary">-->
-      <!--Close Sidenav Right-->
-      <!--</md-button>-->
     </md-content>
   </md-sidenav>
 </ion-view>

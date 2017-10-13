@@ -1,0 +1,33 @@
+<md-bottom-sheet class="md-list md-has-header item-options-bottom-sheet">
+<md-subheader>
+<!--<md-subheader ng-cloak>-->
+  <div class="absolute bottom-sheet-close">
+    <a class="button button-icon row" ng-click="hideBottomSheet();">
+      <i class="ion-close-round font-L"></i>
+    </a>
+  </div>
+  <h4 class="align-center">Product Options {{alert}}</h4>
+</md-subheader>
+<md-list ng-cloak>
+  <ion-list>
+    <ion-item class="item item-thumbnail-left cart-item">
+      <img class="cart-image" ng-src="{{::product.thumb}}">
+      <h3 class="cart-item-title" ng-bind-html="::product.heading_title"></h3>
+      <h5 class="cart-item-title" ng-bind-html="product.model"></h5>
+      <!--<ul class="cart-item-options">-->
+        <!--<li ng-repeat="opt in product.options">{{::opt.name}}:{{::opt.value}}</li>-->
+      <!--</ul>-->
+      <p>{{::product.quantity}} x {{::product.price}} <span class="cart-item-total">{{::product.total}}</span></p>
+    </ion-item>
+    <ion-item class="cart-totals-item" ng-repeat="total in cart.totals">
+      <p>{{::total.title}} <span class="cart-item-total">{{::total.text}}</span></p>
+    </ion-item>
+  </ion-list>
+    <!--<md-list-item ng-repeat="item in items">-->
+      <!--<md-button ng-click="listItemClick($index)" md-autofocus="$index == 2" class="md-list-item-content">-->
+        <!--<md-icon md-svg-src="{{item.icon}}"></md-icon>-->
+        <!--<span class="md-inline-list-icon-label">{{ item.name }}</span>-->
+      <!--</md-button>-->
+    <!--</md-list-item>-->
+  </md-list>
+</md-bottom-sheet>

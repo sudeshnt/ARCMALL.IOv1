@@ -28,23 +28,16 @@ function WishListCtrl($scope,$state,$rootScope,$mdSidenav,$log,publicFunc,filter
   }
 
   $scope.searchItem = function () {
-    console.log($scope.search.heading_title);
-
     if($scope.search.heading_title){
       $scope.wishList = filterFilter($scope.initialWishList, $scope.search)
     }else if($scope.search.heading_title == ''){
       $scope.wishList = angular.copy($scope.initialWishList);
     }
     $scope.wishListRows = publicFunc.devideArray($scope.wishList,2)
-    console.log($scope.wishListRows);
   }
 
   $scope.openItemDetails = function(product_id){
     $state.go('item',{category_id:$scope.category_id,product_id:product_id});
-  };
-
-  $scope.goHome = function () {
-    $state.go('home.new');
   };
 
   $scope.openCategories = function (){
@@ -52,14 +45,33 @@ function WishListCtrl($scope,$state,$rootScope,$mdSidenav,$log,publicFunc,filter
     $scope.close();
     $state.go('categories');
   };
-  $scope.openHome = function () {
+  $scope.openWishList = function () {
     //$mdSidenav('right').close();
     $scope.close();
-    $state.go('home.new');
+    $state.go('wish-list');
   };
   $scope.openSignIn= function () {
     $scope.close();
     $state.go('authHome');
+  };
+  $scope.openOrderHistory = function () {
+    $scope.close();
+    $state.go('order-history');
+  };
+  $scope.openAddItem = function () {
+    $state.go('sellerHome');
+  };
+  $scope.openMyProfile = function () {
+    $scope.close();
+    $state.go('my-profile');
+  };
+  $scope.logOut = function () {
+    $scope.close();
+    localStorage.setItem('loginStatus',false);
+    localStorage.setItem('authResponse',null);
+    $rootScope.loginStatus = false;
+    $rootScope.authResponse = null;
+    $state.go('authSignIn');
   };
 
   $scope.toggleSideBar = buildToggler('left');

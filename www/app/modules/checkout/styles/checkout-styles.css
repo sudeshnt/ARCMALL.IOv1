@@ -150,8 +150,8 @@ ion-option-button{
   height: 25px !important;
   text-align: center;
 }
-input.qtyplus { width:25px; height:25px;}
-input.qtyminus { width:25px; height:25px;}
+input.qtyplus { width:30px; height:30px;}
+input.qtyminus { width:30px; height:30px;}
 
 .qty-spinner{
   width: fit-content;

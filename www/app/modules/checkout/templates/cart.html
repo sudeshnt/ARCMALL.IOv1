@@ -1,7 +1,7 @@
 <ion-header-bar class="bar bar-header header-md bar-darker">
   <div style="width: 100%; display: inherit; margin-top: 0px !important;" >
     <div class="absolute back-icon-wrapper">
-      <a class="button button-icon row" ng-href="#/categories">
+      <a class="button button-icon row" ng-href="#/home/new">
         <i class="ion-android-arrow-back font-L white"></i>
       </a>
     </div>
@@ -14,7 +14,7 @@
 <div class="bar bar-subheader">
   <h2 class="title white">{{"YOUR_ORDER" | translate}}</h2>
 </div>
-<ion-view>
+<ion-view cache-view="false">
   <ion-content class="has-subheader">
     <!--<md-button flex="50" class="md-primary md-raised" ng-click="showListBottomSheet()">Show as List</md-button>-->
     <ion-list show-delete="false" can-swipe="true"  class="list card cart-item" style="margin:0;">

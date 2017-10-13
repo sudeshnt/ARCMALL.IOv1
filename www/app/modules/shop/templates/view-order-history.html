@@ -14,57 +14,58 @@
 
     <ion-list show-delete="false" can-swipe="true"  class="list card cart-item" style="margin:0;">
 
-      <ion-item class="card item item-avatar history-item" ng-repeat="item in order.cart.itemList">
-        <div class="circle" ng-style="{'background-image':'url({{item.thumb}})'}">
-        </div>
-        <h2 class="cart-item-title" ng-bind-html="item.heading_title"></h2>
-        <p ng-bind-html="item.description"></p>
-        <span class="history-price" ng-bind-html="item.price"></span>
-        <!--<a class="item-close-btn ion-close-round"></a>-->
-        <div class="chip capital">{{"SIZE" | translate}} : 8</div>
-        <div class="chip align-center">x {{item.quantity}}</div>
-        <!--<ion-option-button class="button-assertive icon ion-trash-a"></ion-option-button>-->
-      </ion-item>
+    <ion-item class="card item  history-item" ng-repeat="item in order.products">
+      <!--<div class="circle" ng-style="{'background-image':'url({{item.thumb}})'}">-->
+      <!--</div>-->
+      <p class="cart-item-title" ng-bind-html="item.name"></p>
+      <p ng-bind-html="item.model"></p>
+      <span class="history-price" ng-bind-html="item.price"></span>
+      <!--<a class="item-close-btn ion-close-round"></a>-->
+      <!--<div class="chip capital">{{"SIZE" | translate}} : 8</div>-->
+      <div class="chip align-center">x {{item.quantity}}</div>
+      <!--<ion-option-button class="button-assertive icon ion-trash-a"></ion-option-button>-->
+    </ion-item>
 
-      <!--<ion-item  class="card item item-avatar history-item">-->
-        <!--<div class="circle" style="background-image:url('app/modules/checkout/img/cart-item-2.jpg')">-->
-        <!--</div>-->
-        <!--<h2 class="cart-item-title">Sun Glasses</h2>-->
-        <!--<p>Unisex</p>-->
-        <!--<span class="history-price">$ 100.00</span>-->
-        <!--<div class="chip capital">{{"SIZE" | translate}} : 8</div>-->
-        <!--<div class="chip align-center">x1</div>-->
-        <!--&lt;!&ndash;<ion-option-button class="button-assertive icon ion-trash-a"></ion-option-button>&ndash;&gt;-->
-      <!--</ion-item>-->
 
-      <!--<ion-item class="card item item-avatar history-item">-->
-        <!--<div class="circle" style="background-image:url('app/modules/checkout/img/cart-item-3.jpg')">-->
-        <!--</div>-->
-        <!--<h2 class="cart-item-title">GoPro Camera</h2>-->
-        <!--<p>13 Mega Pixels</p>-->
-        <!--<span class="history-price">$ 100.00</span>-->
-        <!--<div class="chip capital">{{"SIZE" | translate}} : 8</div>-->
-        <!--<div class="chip align-center">x1</div>-->
-        <!--&lt;!&ndash;<ion-option-button class="button-assertive icon ion-trash-a"></ion-option-button>&ndash;&gt;-->
-      <!--</ion-item>-->
-    <!--</ion-list>-->
+    <div class="card">
+      <div class="row capital" style="font-size: 15px;font-weight:700;padding: 12px 0 0 8px;">
+        {{"SHIPPING_ADDRESS" | translate}}
+      </div>
+      <div class="row">
+        <div class="col"  ng-bind-html="order.shipping_address"></div>
+      </div>
+      <div class="row capital" style="font-size: 15px;font-weight:700;padding: 12px 0 0 8px;">
+        {{"BILLING_ADDRESS" | translate}}
+      </div>
+      <div class="row">
+        <div class="col"  ng-bind-html="order.payment_address"></div>
+      </div>
+    </div>
 
-    <ion-item class="card item" style="height:auto;">
+    <ion-item class="card item" style="height:auto; padding-right: 0;" >
       <div class="row">
         <div class="col capital" style="font-size: 15px;font-weight:700;padding: 12px 0 0 0px;">
           {{"SHIPPING_AND_HANDLING" | translate}}
         </div>
         <div class="col align-right">
-          <div class="chip success capital" style="width:auto;color: white;">FREE SHIPPING</div>
+          <div class="chip success capital" style="width:auto;color: white;">{{order.shipping_method}}</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col capital" style="font-size: 15px;font-weight:700;padding: 12px 0 0 0px;">
+          {{"PAYMENT_METHOD" | translate}}
+        </div>
+        <div class="col align-right">
+          <div class="chip success capital" style="width:auto;color: white;">{{order.payment_method}}</div>
         </div>
       </div>
       <hr>
-      <div class="row">
+      <div class="row" ng-repeat="total in order.totals">
         <div class="col capital" style="font-size: 15px;font-weight:700;padding: 5px 0 15px 0px;">
-          {{"ORDER_TOTAL" | translate}}
+          {{total.title}}
         </div>
         <div class="col align-right bill-price">
-          <span>$ 327.00</span>
+          <span>{{total.text}}</span>
         </div>
       </div>
     </ion-item>

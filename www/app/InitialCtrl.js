@@ -2,9 +2,9 @@
 
 angular.module('arcMall').controller('InitialCtrl',InitialCtrl);
 
-InitialCtrl.$inject = ['$scope','$rootScope','$state','$ionicHistory','$ionicLoading','serverConfig','httpService','cartSev'];
+InitialCtrl.$inject = ['$scope','$rootScope','$state','$ionicHistory','$ionicLoading','serverConfig','httpService','$httpParamSerializer','cartSev'];
 
-function InitialCtrl($scope,$rootScope,$state,$ionicHistory,$ionicLoading,serverConfig,httpService,cartSev) {
+function InitialCtrl($scope,$rootScope,$state,$ionicHistory,$ionicLoading,serverConfig,httpService,$httpParamSerializer,cartSev) {
 
   $rootScope.$on('$stateChangeStart', function (event,toState,toParams, fromState, fromParams) {
     $ionicLoading.show({
@@ -43,7 +43,20 @@ function InitialCtrl($scope,$rootScope,$state,$ionicHistory,$ionicLoading,server
   });
 
   $rootScope.$on('$stateChangeSuccess', function () {
-    $rootScope.cartItemCount = cartSev.shoppingCart.cart.itemList.length;
+    //get cart item count
+    var extended_url = '/cart/products';
+    var reqObj = {};
+    var config = {
+      headers:{
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    };
+    httpService.postRequest(serverConfig.clientAPI,extended_url, $httpParamSerializer(reqObj),config).then(function(response){
+      if(response.status === 200){
+        $rootScope.cartItemCount = response.data.products.length;
+      }
+    });
+    // $rootScope.cartItemCount = cartSev.shoppingCart.cart.itemList.length;
   });
 
   function checkAuthUser(authResponse){

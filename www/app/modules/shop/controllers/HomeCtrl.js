@@ -11,7 +11,7 @@ function HomeCtrl($scope,$state,$filter,$rootScope,appConfig,$timeout,$mdSidenav
   $scope.activeTabName = null;
   $scope.moreDataCanBeLoaded = false;
   var latestProductsStart = 0;
-  var latestProductsLimit = 10;
+  var latestProductsLimit = 100;
 
   $scope.latestProducts = [];
 

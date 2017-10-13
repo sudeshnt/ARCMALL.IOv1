@@ -2,15 +2,22 @@
 
 angular.module('shop.module').controller('HomeCtrl',HomeCtrl );
 
-HomeCtrl.$inject = ['$scope','$state','$filter','$rootScope','appConfig','$timeout','$mdSidenav','$log','$mdBottomSheet', '$mdToast','UserService','$ionicActionSheet','$ionicLoading','serverConfig','httpService','$httpParamSerializer','publicFunc'];
+HomeCtrl.$inject = ['$scope','$state','$filter','$rootScope','appConfig','$timeout','$mdSidenav','$log','$mdBottomSheet', '$mdToast','UserService','$ionicActionSheet','$ionicLoading','serverConfig','httpService','$httpParamSerializer','publicFunc','$ionicScrollDelegate','$window'];
 
-function HomeCtrl($scope,$state,$filter,$rootScope,appConfig,$timeout,$mdSidenav,$log,$mdBottomSheet, $mdToast,UserService,$ionicActionSheet,$ionicLoading,serverConfig,httpService,$httpParamSerializer,publicFunc) {
+function HomeCtrl($scope,$state,$filter,$rootScope,appConfig,$timeout,$mdSidenav,$log,$mdBottomSheet, $mdToast,UserService,$ionicActionSheet,$ionicLoading,serverConfig,httpService,$httpParamSerializer,publicFunc,$ionicScrollDelegate,$window) {
+
+  // console.log(JSON.parse("a:5:{s:40:"YToxOntzOjEwOiJwcm9kdWN0X2lkIjtpOjIxMzt9";i:5;s:40:"YToxOntzOjEwOiJwcm9kdWN0X2lkIjtpOjIxNDt9";i:1;s:40:"YToxOntzOjEwOiJwcm9kdWN0X2lkIjtpOjI2Mzt9";i:2;s:40:"YToxOntzOjEwOiJwcm9kdWN0X2lkIjtpOjIwOTt9";i:1;s:40:"YToxOntzOjEwOiJwcm9kdWN0X2lkIjtpOjIxMDt9";i:7;}"));
 
   $scope.activeTabName = null;
+  $scope.moreDataCanBeLoaded = false;
+  var latestProductsStart = 0;
+  var latestProductsLimit = 10;
+
+  $scope.latestProducts = [];
 
   $scope.tabDetails = {
     "NEW":{"name":"NEW"},
-    "USED":{"name":"USED"},
+    "USED":{"name":"OUTLET"},
     "WHOLESALE":{"name":"WHOLESALE"}
   };
 
@@ -57,8 +64,8 @@ function HomeCtrl($scope,$state,$filter,$rootScope,appConfig,$timeout,$mdSidenav
   function initLatestProducts(){
     var extended_url = '/latest';
     var reqObj = {
-      "start":2,
-      "limit":4,
+      "start":latestProductsStart,
+      "limit":latestProductsLimit,
       "width":200,
       "height":200,
     };
@@ -69,16 +76,34 @@ function HomeCtrl($scope,$state,$filter,$rootScope,appConfig,$timeout,$mdSidenav
     };
     httpService.postRequest(serverConfig.clientAPI,extended_url, $httpParamSerializer(reqObj),config).then(function(response){
       if(response.status === 200){
-        $scope.latestProducts = publicFunc.devideArray(response.data.products,2);
+        for(var i in response.data.products){
+          $scope.latestProducts.push(response.data.products[i])
+        }
+        $scope.latestProductRows = publicFunc.devideArray($scope.latestProducts,2);
+        $scope.$broadcast('scroll.infiniteScrollComplete');
+        if(response.data.products.length==0 || response.data.products.length<latestProductsLimit){
+          $scope.moreDataCanBeLoaded = false;
+        }else{
+          $scope.moreDataCanBeLoaded = true;
+        }
+        if(latestProductsStart!=0){
+          $ionicScrollDelegate.scrollTo(0,200,true);
+        }
       }
     });
   }
 
+  $scope.loadMoreLatestProducts = function () {
+    latestProductsStart +=  latestProductsLimit;
+    initLatestProducts();
+    console.log(latestProductsStart);
+  }
+
   function initFeaturedProducts(){
+    // var extended_url = '/latest';
     var extended_url = '/latest';
-    // var extended_url = '/featured';
     var reqObj = {
-      "start":5,
+      "start":50,
       "limit":4,
       "width":200,
       "height":200,
@@ -98,6 +123,8 @@ function HomeCtrl($scope,$state,$filter,$rootScope,appConfig,$timeout,$mdSidenav
   $scope.openItemDetails = function(product_id){
     $state.go('item',{category_id:-1,product_id:product_id});
   };
+
+
 
   // var extended_url = '/category/all';
   // httpService.postRequest(serverConfig.clientAPI,extended_url,{},{}).then(function(response){

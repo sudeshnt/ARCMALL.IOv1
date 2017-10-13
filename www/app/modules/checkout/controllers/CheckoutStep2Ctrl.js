@@ -29,4 +29,48 @@ function CheckoutStep2Ctrl($scope,$state,$rootScope,serverConfig,httpService,$ht
       "text" : "Card"
     }
   ]
+
+  function getShippingMethods() {
+
+    function getProductsOfCart() {
+      var extended_url = '/shipping/methods';
+      var reqObj = {};
+      var config = {
+        headers:{
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      };
+      httpService.postRequest(serverConfig.clientAPI,extended_url, $httpParamSerializer(reqObj),config).then(function(response){
+        if(response.status === 200){
+          console.log(response);
+        }
+      });
+    }
+  }
+
+  function getPaymentMethods() {
+
+    function getProductsOfCart() {
+      var extended_url = '/payment/methods';
+      var reqObj = {};
+      var config = {
+        headers:{
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      };
+      httpService.postRequest(serverConfig.clientAPI,extended_url, $httpParamSerializer(reqObj),config).then(function(response){
+        if(response.status === 200){
+          console.log(response);
+        }
+      });
+    }
+  }
+
+  init();
+
+  function init() {
+    getShippingMethods();
+    getPaymentMethods();
+  }
+
 }

@@ -63,8 +63,6 @@ function OrderHistoryCtrl($scope,$state,$rootScope,$mdSidenav,$log,serverConfig,
     };
     httpService.postRequest(serverConfig.clientAPI,extended_url, $httpParamSerializer(reqObj),config).then(function(response){
       if(response.status === 200){
-        console.log(response);
-
         $scope.orders = response.data.orders;
       }
     });

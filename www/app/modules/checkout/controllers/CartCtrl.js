@@ -44,7 +44,7 @@ function CartCtrl($scope,$state,$rootScope, $timeout, $mdBottomSheet, $mdToast,c
     }
     var extended_url = '/cart/edit';
     var reqObj = {
-      "key" : product.product_id,
+      "key" : product.cart_id,
       "quantity" : product.quantity,
     };
     var config = {
@@ -59,10 +59,10 @@ function CartCtrl($scope,$state,$rootScope, $timeout, $mdBottomSheet, $mdToast,c
     });
   };
 
-  function removeProductFromCartAPI(product_id) {
+  function removeProductFromCartAPI(cart_id) {
     var extended_url = '/cart/remove';
     var reqObj = {
-      "key":product_id
+      "key": cart_id
     };
     var config = {
       headers:{
@@ -71,7 +71,12 @@ function CartCtrl($scope,$state,$rootScope, $timeout, $mdBottomSheet, $mdToast,c
     };
     httpService.postRequest(serverConfig.clientAPI,extended_url, $httpParamSerializer(reqObj),config).then(function(response){
       if(response.status === 200){
-        console.log(response);
+        for(var i in $scope.cart.products){
+          if($scope.cart.products[i].cart_id==cart_id){
+            $scope.cart.products.splice(i,1);
+            break;
+          }
+        }
       }
     });
   }

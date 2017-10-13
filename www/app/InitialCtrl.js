@@ -43,7 +43,12 @@ function InitialCtrl($scope,$rootScope,$state,$ionicHistory,$ionicLoading,server
   });
 
   $rootScope.$on('$stateChangeSuccess', function () {
-    //get cart item count
+    initCartItemCount();
+    // $rootScope.cartItemCount = cartSev.shoppingCart.cart.itemList.length;
+  });
+
+  //get cart item count
+  function initCartItemCount() {
     var extended_url = '/cart/products';
     var reqObj = {};
     var config = {
@@ -53,11 +58,11 @@ function InitialCtrl($scope,$rootScope,$state,$ionicHistory,$ionicLoading,server
     };
     httpService.postRequest(serverConfig.clientAPI,extended_url, $httpParamSerializer(reqObj),config).then(function(response){
       if(response.status === 200){
+        $rootScope.cart = response.data;
         $rootScope.cartItemCount = response.data.products.length;
       }
     });
-    // $rootScope.cartItemCount = cartSev.shoppingCart.cart.itemList.length;
-  });
+  }
 
   function checkAuthUser(authResponse){
     return authResponse.shopId != undefined && authResponse.shopId != null && authResponse.shopId != ''

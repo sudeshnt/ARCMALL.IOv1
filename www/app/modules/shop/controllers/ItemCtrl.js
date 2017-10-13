@@ -19,11 +19,10 @@ function ItemCtrl($scope,$state,$rootScope,$filter,$stateParams,serverConfig,htt
     }
 
     $scope.addItemToCart = function () {
-      console.log($scope.product);
       if(!cartSev.shoppingCart.cart.itemList){
         cartSev.shoppingCart.initCartValue();
       }
-      cartSev.shoppingCart.addItem($scope.product);
+      // cartSev.shoppingCart.addItem($scope.product);
       addProductToCartAPI();
     };
 
@@ -43,29 +42,41 @@ function ItemCtrl($scope,$state,$rootScope,$filter,$stateParams,serverConfig,htt
         // "option_value_id": JSON.parse(selectedOption).option_value_id
         "option_value_id": JSON.parse(selectedOption).product_option_value_id
       });
-      console.log($scope.product.selected_options);
     }
 
     function addProductToCartAPI() {
+        var itemAvailability = false;
+        for(var i in $rootScope.cart.products){
+          if($rootScope.cart.products[i].product_id == $scope.product.product_id){
+            itemAvailability = true;
+            break;
+          }
+        }
+
         var extended_url = '/cart/add';
         var reqObj = {
           "product_id":$scope.product.product_id,
           "quantity":$scope.product.quantity,
+          "option":[]
         };
         if($scope.product.selected_options.length>0){
           for(var i in $scope.product.selected_options){
-            reqObj.option = $scope.product.selected_options[i].option_value_id
+            reqObj.option = [$scope.product.selected_options[i].option_value_id]
+            // reqObj.option.push($scope.product.selected_options[i].option_value_id)
             // reqObj[$scope$scope.product.selected_options[i].option_id] = $scope.product.selected_options[i].option_value_id;
           }
         }
+        console.log(reqObj);
         var config = {
           headers:{
             'Content-Type': 'application/x-www-form-urlencoded'
           }
         };
+
         httpService.postRequest(serverConfig.clientAPI,extended_url, $httpParamSerializer(reqObj),config).then(function(response){
           if(response.status === 200){
-            console.log(response);
+
+            $rootScope.cartItemCount = !itemAvailability ? $rootScope.cartItemCount+=1 : $rootScope.cartItemCount;
           }
         });
     }

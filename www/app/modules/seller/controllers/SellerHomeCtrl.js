@@ -213,7 +213,6 @@ function SellerHomeCtrl($scope, $rootScope, $state , httpService,serverConfig,$h
 
     $cordovaFileTransfer.upload(url, targetPath, options).then(function(result) {
       if($scope.selected_image_type==='Main'){
-        console.log(JSON.stringify(result));
         $scope.item.mainImage = newFileName;
       }else if($scope.selected_image_type==='Product'){
         pushImage(newFileName);

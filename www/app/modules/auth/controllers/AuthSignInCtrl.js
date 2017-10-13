@@ -20,6 +20,7 @@ function AuthSignInCtrl($scope,$state,$rootScope,httpService,serverConfig,$httpP
     };
     httpService.postRequest(serverConfig.clientAPI,extended_url,$httpParamSerializer(req),config).then(function(response){
       if(response.status === 200){
+        console.log(JSON.stringify())
         localStorage.setItem('loginStatus',true);
         var authResponse = response.data.customer_info;
         authResponse.ispartner = response.data.ispartner;

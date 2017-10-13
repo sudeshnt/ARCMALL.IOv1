@@ -36,6 +36,17 @@ function WishListCtrl($scope,$state,$rootScope,$mdSidenav,$log,publicFunc,filter
     $scope.wishListRows = publicFunc.devideArray($scope.wishList,2)
   }
 
+  $scope.removeItemFromWishList = function (product_id) {
+    for(var i in $scope.wishList){
+      if($scope.wishList[i].product_id == product_id) {
+        $scope.wishList.splice(i, 1);
+        localStorage.setItem('wish_list',JSON.stringify($scope.wishList));
+        break;
+      }
+    }
+    $scope.wishListRows = publicFunc.devideArray($scope.wishList,2)
+  }
+
   $scope.openItemDetails = function(product_id){
     $state.go('item',{category_id:$scope.category_id,product_id:product_id});
   };
@@ -64,6 +75,10 @@ function WishListCtrl($scope,$state,$rootScope,$mdSidenav,$log,publicFunc,filter
   $scope.openMyProfile = function () {
     $scope.close();
     $state.go('my-profile');
+  };
+  $scope.openHome = function () {
+    $scope.close();
+    $state.go('home.new');
   };
   $scope.logOut = function () {
     $scope.close();

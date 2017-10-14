@@ -21,12 +21,13 @@ checkoutModule.config(function config($stateProvider,$urlRouterProvider) {
       url: '/checkout-step-2',
       templateUrl: 'app/modules/checkout/templates/cart-checkout-step2.html',
       controller: 'CheckoutStep2Ctrl',
-      params: {'persoanal_info':null}
+      params: {'personal_info':null}
     })
     .state('checkout-step-3', {
       cache:false,
       url: '/checkout-step-3',
       templateUrl: 'app/modules/checkout/templates/cart-checkout-step3.html',
-      controller: 'CheckoutStep3Ctrl'
+      controller: 'CheckoutStep3Ctrl',
+      params: {'personal_info':null}
     })
 });

@@ -11,19 +11,19 @@
   </div>
 </ion-header-bar>
 <ion-view cache-view="false">
-    <ion-content>
+    <ion-content class="has-header-md">
         <ion-list>
-            <ion-item class="details-items"><p>Phone <span class="cart-item-total">{{checkout.telephone}}</span></p></ion-item>
-            <ion-item class="details-items"><p>Name <span class="cart-item-total">{{checkout.firstname}} {{checkout.lastname}}</span></p></ion-item>
-            <ion-item class="details-items"><p>Email <span class="cart-item-total">{{checkout.email}}</span></p></ion-item>
-            <ion-item class="details-items">
+            <ion-item class="details-items detail"><p>Phone <span class="cart-item-total">{{personal_info.telephone}}</span></p></ion-item>
+            <ion-item class="details-items detail"><p>Name <span class="cart-item-total">{{personal_info.firstname}} {{checkout.lastname}}</span></p></ion-item>
+            <ion-item class="details-items detail"><p>Email <span class="cart-item-total">{{personal_info.email}}</span></p></ion-item>
+            <ion-item class="details-items detail">
                 <p>
-                    <span i18n="cart.invoice_address"></span>
-                    <span class="cart-item-total">
-                        {{checkout.address_1}}<br />
-                        {{checkout.address_2}}<br />
-                        {{checkout.city}}<br />
-                        {{checkout.postal_code}}
+                    <span>Address </span>
+                    <span class="cart-item-total align-right">
+                        {{personal_info.address_1}}<br />
+                        {{personal_info.address_2}}<br />
+                        {{personal_info.city}}<br />
+                        {{personal_info.postal_code}}
                     </span>
                 </p>
             </ion-item>
@@ -46,9 +46,9 @@
     </ion-content>
 
     <ion-footer-bar align-title="left" class="bar-positive">
-        <h2 class="title">{{total_amount}}</h2>
+        <h2 class="title">{{cart.total}}</h2>
         <div class="buttons">
-            <a class="button" ng-click="confirmOrder()" i18n="cart.button_confirm">CONFIRM</a>
+            <a class="button" ng-click="confirmOrder()">CONFIRM</a>
         </div>
     </ion-footer-bar>
 </ion-view>

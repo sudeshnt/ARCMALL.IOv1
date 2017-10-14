@@ -15,7 +15,7 @@
         <ion-list>
             <form name="forms.checkoutForm" novalidate>
                 <div class="item item-divider divider-topic">Delivery Method</div>
-                <ion-radio ng-repeat="method in shippingMethods" name="shipping_method" ng-change="shippingMethodChanged()" ng-model="paymentAndShipping.shipping_method" ng-value="'{{method.code}}'" ng-required="true">{{method.title}}</ion-radio>
+                <ion-radio ng-repeat="method in shippingMethods" name="shipping_method" ng-change="shippingMethodChanged()" ng-model="paymentAndShipping.shipping_method" ng-value="'{{method}}'" ng-required="true">{{method.code}}{{method.title}}</ion-radio>
 
                 <div class="item item-divider divider-topic">Payment Method</div>
                 <ion-radio ng-repeat="method in paymentMethods" name="payment_method" ng-change="paymentMethodChanged()" ng-model="paymentAndShipping.payment_method" ng-value="'{{method.code}}'" ng-required="true">{{method.title}}</ion-radio>
@@ -23,7 +23,7 @@
                 <div class="item item-divider divider-topic">Additional Comments/Instructions </div>
               <label class="item item-input text-xmd">
                 <i class="icon ion-document-text placeholder-icon"></i>
-                <input type="text" placeholder="{{'COMMENTS' | translate}}" ng-model="user.confirm">
+                <input type="text" placeholder="{{'COMMENTS' | translate}}" ng-model="personal_info.comment">
               </label>
                 <!--<label class="item item-input item-floating-label">-->
                     <!--<span class="input-label" i18n="cart.comments"></span>-->
@@ -34,9 +34,9 @@
     </ion-content>
 
     <ion-footer-bar align-title="left" ng-class="'bar-positive'">
-        <h2 class="title">{{total_amount}}</h2>
+        <h2 class="title">{{cart.total}}</h2>
         <div class="buttons">
-            <a class="button" ng-href="#/checkout-step-3">NEXT</a>
+            <a class="button" ng-click="nextStep()">NEXT</a>
         </div>
     </ion-footer-bar>
 </ion-view>

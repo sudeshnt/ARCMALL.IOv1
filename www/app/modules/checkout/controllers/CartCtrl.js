@@ -7,7 +7,7 @@ CartCtrl.$inject = ['$scope','$state','$rootScope','$timeout', '$mdBottomSheet',
 function CartCtrl($scope,$state,$rootScope, $timeout, $mdBottomSheet, $mdToast,cartSev,serverConfig,httpService,$httpParamSerializer) {
 
   // $scope.cart = cartSev.shoppingCart.cart;
-  getProductsOfCart();
+  // getProductsOfCart();
 
   if(cartSev.shoppingCart.isEmpty){
     $state.go('home.new');

@@ -58,6 +58,11 @@ function InitialCtrl($scope,$rootScope,$state,$ionicHistory,$ionicLoading,server
     };
     httpService.postRequest(serverConfig.clientAPI,extended_url, $httpParamSerializer(reqObj),config).then(function(response){
       if(response.status === 200){
+        for(var i in response.data.totals){
+          if(response.data.totals[i].title == "Total"){
+            response.data.total = response.data.totals[i].text
+          }
+        }
         $rootScope.cart = response.data;
         $rootScope.cartItemCount = response.data.products.length;
       }

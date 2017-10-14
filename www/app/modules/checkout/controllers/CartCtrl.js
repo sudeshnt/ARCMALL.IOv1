@@ -54,7 +54,7 @@ function CartCtrl($scope,$state,$rootScope, $timeout, $mdBottomSheet, $mdToast,c
     };
     httpService.postRequest(serverConfig.clientAPI,extended_url, $httpParamSerializer(reqObj),config).then(function(response){
       if(response.status === 200){
-
+        getProductsOfCart();
       }
     });
   };

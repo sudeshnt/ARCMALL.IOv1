@@ -323,3 +323,12 @@ md-select.md-default-theme:not([disabled]):focus .md-select-value, md-select:not
   left: -17px;
   top: -17px;
 }
+.accordian-text  {
+  width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+  text-overflow: ellipsis;
+  border: 1px solid #ddd;
+  margin: 0;
+}

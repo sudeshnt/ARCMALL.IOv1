@@ -29,11 +29,14 @@ angular.module('lang_en',['pascalprecht.translate','ngSanitize'])
       YOUR_ORDER:"Your Order",
       SELECT_A_PAYMENT_METHOD:"select a payment method",
       SIZE:"size",
-      SHIPPING_AND_HANDLING:"shipping and handling",
+      SHIPPING_AND_HANDLING:"shipping method",
+      PAYMENT_METHOD:"payment method",
       ORDER_TOTAL:"order total",
       DESCRIPTION:"Description",
       REVIEWS:"Reviews",
       SHIPPING_INFORMATION:"Shipping Information",
+      SHIPPING_ADDRESS:"Shipping Address",
+      BILLING_ADDRESS:"Billing Address",
       RETURN_POLICY:"Return Policy",
       LOG_OUT:"Log Out",
       ORDER_HISTORY:"Order History",
@@ -61,6 +64,10 @@ angular.module('lang_en',['pascalprecht.translate','ngSanitize'])
       MOBILE:'Mobile Number',
       EMAIL:'Email Address',
       ORDER_ID:'Order Id',
+      CHECKOUT_STEP_ONE:'Checkout - Step 1',
+      CHECKOUT_STEP_TWO:'Checkout - Step 2',
+      CHECKOUT_STEP_THREE:'Checkout - Step 3',
+      COMMENTS: "Comments",
     });
     $translateProvider.useSanitizeValueStrategy('escapeParameters');
   }]);

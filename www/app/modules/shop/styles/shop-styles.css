@@ -299,7 +299,6 @@ md-select.md-default-theme:not([disabled]):focus .md-select-value, md-select:not
   display: inline-block;
   padding: 7px;
 }
-
 .profile-field-lable{
   font-weight: 400;
   font-size: 17px;
@@ -316,4 +315,11 @@ md-select.md-default-theme:not([disabled]):focus .md-select-value, md-select:not
 }
 .md-input-has-value > label{
   display: none;
+}
+.item-options-bottom-sheet{
+  height: calc(101% + 70px);
+}
+.bottom-sheet-close{
+  left: -17px;
+  top: -17px;
 }

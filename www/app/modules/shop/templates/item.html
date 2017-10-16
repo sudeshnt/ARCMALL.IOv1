@@ -9,7 +9,7 @@
     <div class="absolute cart-icon-wrapper">
       <a class="button button-icon row" ng-click="viewCart()">
         <i class="ion-android-cart font-L white" ></i>
-        <i class="cart-item-count" ng-show="cartSev.shoppingCart.cart.itemList.length>0">{{cartSev.shoppingCart.cart.itemList.length}}</i>
+        <i class="cart-item-count" ng-show="cartItemCount>0">{{cartItemCount}}</i>
       </a>
     </div>
   </div>
@@ -20,7 +20,7 @@
     <div class="full-width">
       <div class="row padding-top-zero">
         <div class="col padding-top-zero">
-          <a class="button square button-block button-light zero-margin capital white" style="background-color:#4e636c; " ng-click="">
+          <a class="button square button-block button-light zero-margin capital white" style="background-color:#4e636c;" ng-disabled="availability_in_wishlist" ng-click="addItemToWishList()">
             {{"ADD_TO_WISH_LIST" | translate}}
           </a>
         </div>
@@ -62,12 +62,28 @@
             </ion-slide-box>
           </div>
           <div class="item tabs-secondary tabs-icon-left white-tabs" style="padding: 10px;">
-            <h2 class="align-center" ng-bind-html="product.heading_title"></h2>
-            <h3 class="align-center" ng-bind-html="product.price"></h3>
+            <h2 class="align-left" ng-bind-html="product.heading_title"></h2>
+            <h3 class="align-left" ng-bind-html="product.price"></h3>
+            <div class="row qty-spinner" >
+              <input type='button' value='-' class='qtyminus' ng-click="updateQuantity(product,'minus')"/>
+              <input type='number' name='quantity'  ng-model="product.quantity" class='qty' />
+              <input type='button' value='+' class='qtyplus' ng-click="updateQuantity(product,'plus')"/>
+            </div>
+            <!--<a class="absolute" style="top:20px; right: 15px;" ng-click="toggleBottomSheet()">Options</a>-->
           </div>
         </div>
-
     </div>
+    <div class="row" ng-repeat="option in product.options track by $index"  style="padding-left: 10px; padding-right: 10px;">
+      <div class="col align-center" style="max-width: 100px;">
+        <h4 style="margin-top: 20px;">{{option.name}}</h4>
+      </div>
+      <div class="col">
+        <md-select ng-model="product.selectedOption" ng-change="setSelectedOption(option,product.selectedOption)" placeholder="Currency" class="md-no-underline category-select">
+          <md-option ng-repeat="option_value in option.product_option_value track by $index" value="{{option_value}}">{{option_value.name}}</md-option>
+        </md-select>
+      </div>
+    </div>
+
 
     <ion-list>
       <div ng-repeat="group in groups">

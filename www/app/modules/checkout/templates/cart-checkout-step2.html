@@ -1,0 +1,42 @@
+<ion-header-bar class="bar bar-header header-md bar-darker">
+  <div style="width: 100%; display: inherit; margin-top: 0px !important;" >
+    <div class="absolute back-icon-wrapper">
+      <a class="button button-icon row" ng-href="#/checkout-step-1">
+        <i class="ion-android-arrow-back font-L white"></i>
+      </a>
+    </div>
+    <h4 class="white left-title">{{'CHECKOUT_STEP_TWO' | translate}}</h4>
+    <div class="absolute cart-icon-wrapper">
+    </div>
+  </div>
+</ion-header-bar>
+<ion-view cache-view="false">
+    <ion-content class="has-header-md">
+        <ion-list>
+            <form name="forms.checkoutForm" novalidate>
+                <div class="item item-divider divider-topic">Delivery Method</div>
+                <ion-radio ng-repeat="method in shippingMethods" name="shipping_method" ng-change="shippingMethodChanged()" ng-model="paymentAndShipping.shipping_method" ng-value="'{{method}}'" ng-required="true">{{method.code}}{{method.title}}</ion-radio>
+
+                <div class="item item-divider divider-topic">Payment Method</div>
+                <ion-radio ng-repeat="method in paymentMethods" name="payment_method" ng-change="paymentMethodChanged()" ng-model="paymentAndShipping.payment_method" ng-value="'{{method.code}}'" ng-required="true">{{method.title}}</ion-radio>
+
+                <div class="item item-divider divider-topic">Additional Comments/Instructions </div>
+              <label class="item item-input text-xmd">
+                <i class="icon ion-document-text placeholder-icon"></i>
+                <input type="text" placeholder="{{'COMMENTS' | translate}}" ng-model="personal_info.comment">
+              </label>
+                <!--<label class="item item-input item-floating-label">-->
+                    <!--<span class="input-label" i18n="cart.comments"></span>-->
+                    <!--<textarea data-i18n-attr="{placeholder: 'cart.comments'}" ng-model="paymentAndShipping.comment" name="comment"></textarea>-->
+                <!--</label>-->
+            </form>
+        </ion-list>
+    </ion-content>
+
+    <ion-footer-bar align-title="left" ng-class="'bar-positive'">
+        <h2 class="title">{{cart.total}}</h2>
+        <div class="buttons">
+            <a class="button" ng-click="nextStep()">NEXT</a>
+        </div>
+    </ion-footer-bar>
+</ion-view>

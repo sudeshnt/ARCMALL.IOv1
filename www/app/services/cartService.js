@@ -49,7 +49,7 @@
         var already_exists = false;
         for(var i=0; i<this.cart.itemList.length; i++){
             if(item.product_id == this.cart.itemList[i].product_id){
-                this.cart.itemList[i].quantity += 1;
+                this.cart.itemList[i].quantity = item.quantity;
                 // this.cart.itemList[i].quantity = this.cart.itemList[i].option.quantity + item.option.quantity;
                 // this.cart.itemList[i].status = item.status || -1;
                 if(this.cart.itemList[i].quantity <= 0){
@@ -60,7 +60,7 @@
             }
         }
         if(!already_exists){
-            item.quantity = 1;
+            // item.quantity = qty;
             this.cart.itemList.push(item);
         }
         this.isEmpty = false;

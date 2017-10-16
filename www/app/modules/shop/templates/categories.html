@@ -20,7 +20,7 @@
     </div>
   </div>
 </ion-header-bar>
-<ion-view>
+<ion-view cache-view="false">
   <ion-content class="has-header"  scroll="false">
     <ion-slide-box slide-tabs-scrollable="true" show-pager="false" on-slide-changed="changeSlide(index)" bounce="false" ion-slide-tabs>
       <ion-slide ng-repeat="tab in selectedCatTabs.tabs  track by $index" ion-slide-tab-label="{{tab.name}}" style="background-color:white; width:100%;">

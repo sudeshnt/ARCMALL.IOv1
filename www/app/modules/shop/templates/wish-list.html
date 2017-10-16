@@ -1,20 +1,20 @@
 <ion-header-bar class="bar bar-header header-md bar-darker">
   <div style="width: 100%; display: inherit; margin-top: 0px !important;" >
     <div class="absolute back-icon-wrapper">
-      <a class="button button-icon row" ng-click="toggleSideBar();">
-        <i class="ion-navicon-round font-L white"></i>
+      <a class="button button-icon row" ng-href="#/home/new">
+        <i class="ion-android-arrow-back font-L white"></i>
       </a>
       <!--<a class="button button-icon row" ng-click="toggleSideBar();">-->
         <!--<i class="ion-navicon-round font-L white"></i>-->
       <!--</a>-->
     </div>
     <h4 class="white left-title">{{'WISH_LIST' | translate}}</h4>
-    <div class="absolute cart-icon-wrapper">
+    <div class="absolute filter-icon-wrapper">
       <a class="button button-icon row">
         <i class="ion-ios-settings-strong font-L white" ></i>
       </a>
     </div>
-    <div class="absolute filter-icon-wrapper">
+    <div class="absolute cart-icon-wrapper">
       <a class="button button-icon row" ng-click="viewCart()">
         <i class="ion-android-cart font-L white" ></i>
         <i class="cart-item-count" ng-show="cartItemCount>0">{{cartItemCount}}</i>
@@ -24,114 +24,66 @@
 </ion-header-bar>
 <label class="item item-input" style="height:55px;top: 55px;">
   <i class="icon ion-android-search placeholder-icon font-L" ></i>
-  <input type="email" placeholder="{{'SEARCH_AN_ITEM' | translate}}" ng-model="user.email">
+  <input type="text" placeholder="{{'SEARCH_AN_ITEM' | translate}}" ng-change="searchItem()" ng-model="search.heading_title">
 </label>
-<ion-view>
-
+<ion-view cache-view="false">
   <ion-content class="has-header-md-search" overflow-scroll="true">
-    <div class="row">
-      <div class="col zero-padding">
-        <div class="list card wish-list-card" ng-click="openItemDetails()">
-          <div class="item item-image" >
-            <img src="app/modules/shop/img/wish-1.jpg" class="full-width full-height">
+    <div class="row" ng-repeat="wishListRow in wishListRows">
+      <div class="col-50 zero-padding" ng-repeat="product in wishListRow">
+        <div class="list card wish-list-card" >
+          <div class="item item-image" ng-click="openItemDetails(product.product_id)">
+            <img ng-src="{{product.thumb}}" class="full-width full-height">
           </div>
-            <div class="fab-zone">
-              <button class="fab">New</button>
+          <!--<div class="fab-zone">-->
+            <!--<button class="fab">New</button>-->
+          <!--</div>-->
+          <div class="item tabs-secondary tabs-icon-left white-tabs" style="padding: 5px 10px !important;">
+            <h3 class="align-left" ng-bind-html="product.heading_title"></h3>
+            <h3 class="align-left" ng-bind-html="product.price"></h3>
+            <div class="row qty-spinner" style="bottom: 0;">
+              <a class="button button-icon row" style="color: #ff5348" ng-click="removeItemFromWishList(product.product_id)">
+                <i class="ion-trash-b font-L"></i>
+              </a>
             </div>
-          <div class="item tabs-secondary tabs-icon-left white-tabs" style="padding: 10px;">
-            <h2 class="align-center">Casual Suit</h2>
-            <h3 class="align-center">$ 100</h3>
           </div>
         </div>
-      </div>
-      <div class="col zero-padding">
-        <div class="list card wish-list-card" >
-          <div class="item item-image" >
-            <img src="app/modules/shop/img/wish-2.jpg" class="full-width full-height">
-          </div>
-          <div class="item tabs-secondary tabs-icon-left white-tabs" style="padding: 10px;">
-            <h2 class="align-center">Formal Suit</h2>
-            <h3 class="align-center">$ 100</h3>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col zero-padding">
-        <div class="list card wish-list-card" >
-          <div class="item item-image" >
-            <img src="app/modules/shop/img/wish-3.png" class="full-width full-height">
-          </div>
-          <div class="item tabs-secondary tabs-icon-left white-tabs" style="padding: 10px;">
-            <h2 class="align-center">Women Frock</h2>
-            <h3 class="align-center">$ 100</h3>
-          </div>
-        </div>
-      </div>
-      <div class="col zero-padding">
-        <div class="list card wish-list-card" >
-          <div class="item item-image" >
-            <img src="app/modules/shop/img/wish-4.jpg" class="full-width full-height">
-          </div>
-          <div class="fab-zone">
-            <button class="fab">New</button>
-          </div>
-          <div class="item tabs-secondary tabs-icon-left white-tabs" style="padding: 10px;">
-            <h2 class="align-center">Party Frock</h2>
-            <h3 class="align-center">$ 100</h3>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col zero-padding">
-        <div class="list card wish-list-card" >
-          <div class="item item-image" >
-            <img src="app/modules/shop/img/wish-5.jpg" class="full-width full-height">
-          </div>
-          <div class="fab-zone">
-            <button class="fab">New</button>
-          </div>
-          <div class="item tabs-secondary tabs-icon-left white-tabs" style="padding: 10px;">
-            <h2 class="align-center">Double Bed</h2>
-            <h3 class="align-center">$ 100</h3>
-          </div>
-        </div>
-      </div>
-      <div class="col zero-padding">
-        <div class="list card wish-list-card">
-          <div class="item item-image" >
-            <img src="app/modules/shop/img/wish-6.jpg" class="full-width full-height">
-          </div>
-          <div class="fab-zone">
-            <button class="fab">New</button>
-          </div>
-          <div class="item tabs-secondary tabs-icon-left white-tabs" style="padding: 10px;">
-            <h2 class="align-center">Dining Table</h2>
-            <h3 class="align-center">$ 100</h3>
-          </div>
-        </div>
+
+        <!--<div class="list card wish-list-card" ng-click="openItemDetails()">-->
+          <!--<div class="item item-image" >-->
+            <!--<img src="app/modules/shop/img/wish-1.jpg" class="full-width full-height">-->
+          <!--</div>-->
+            <!--<div class="fab-zone">-->
+              <!--<button class="fab">New</button>-->
+            <!--</div>-->
+          <!--<div class="item tabs-secondary tabs-icon-left white-tabs" style="padding: 10px;">-->
+            <!--<h2 class="align-center">Casual Suit</h2>-->
+            <!--<h3 class="align-center">$ 100</h3>-->
+          <!--</div>-->
+        <!--</div>-->
       </div>
     </div>
     <div class="row" style="height: 30px;"></div>
 
   </ion-content>
   <md-sidenav class="md-sidenav-left md-whiteframe-4dp" md-component-id="left">
-    <!--<md-toolbar class="md-theme-light sidenav-header">-->
-    <!--<h1 class="md-toolbar-tools white">Touch2Buy</h1>-->
-    <!--</md-toolbar>-->
     <md-content >
       <img ng-src="app/modules/shop/img/home-slide-nav.jpg" style="width:100%">
       <md-list flex>
-        <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;" >
+        <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;" ng-show="loginStatus">
+          <div class="md-list-item-text zero-margin" layout="column" ng-click="openMyProfile()">
+            <h4><i class="ion-person sidenav-icon"></i><span class="sidenav-options">{{'MY_PROFILE' | translate}}</span></h4>
+          </div>
+        </md-list-item>
+        <md-divider></md-divider>
+        <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;" ng-show="!loginStatus">
           <div class="md-list-item-text zero-margin" layout="column" ng-click="openSignIn()">
             <h4><i class="ion-person sidenav-icon"></i><span class="sidenav-options">{{'SIGN_IN' | translate}}</span></h4>
           </div>
         </md-list-item>
-        <md-divider ></md-divider>
-        <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;">
-          <div class="md-list-item-text zero-margin" layout="column"  ng-click="openHome()">
-            <h4><i class="ion-android-home sidenav-icon"></i><span class="sidenav-options">{{'HOME' | translate}}</span></h4>
+        <md-divider></md-divider>
+        <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;"  ng-show="authResponse.ispartner=='true'">
+          <div class="md-list-item-text zero-margin" layout="column" ng-click="openAddItem()">
+            <h4><i class="ion-android-hand sidenav-icon"></i><span class="sidenav-options">{{'ADD_ITEM' | translate}}</span></h4>
           </div>
         </md-list-item>
         <md-divider ></md-divider>
@@ -142,21 +94,24 @@
         </md-list-item>
         <md-divider ></md-divider>
         <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;">
-          <div class="md-list-item-text zero-margin" layout="column"  ng-click="">
-            <h4><i class="ion-ios-albums sidenav-icon"></i><span class="sidenav-options">{{'ORDER_HISTORY' | translate}}</span></h4>
+          <div class="md-list-item-text zero-margin" layout="column"  ng-click="openWishList()">
+            <h4><i class="ion-ios-heart sidenav-icon"></i><span class="sidenav-options">{{'WISH_LIST' | translate}}</span></h4>
           </div>
         </md-list-item>
         <md-divider ></md-divider>
         <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;">
+          <div class="md-list-item-text zero-margin" layout="column"  ng-click="openOrderHistory();">
+            <h4><i class="ion-ios-albums sidenav-icon"></i><span class="sidenav-options">{{'ORDER_HISTORY' | translate}}</span></h4>
+          </div>
+        </md-list-item>
+        <md-divider ></md-divider>
+        <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;"  ng-show="loginStatus">
           <div class="md-list-item-text zero-margin" layout="column" ng-click="logOut()">
             <h4><i class="ion-android-hand sidenav-icon"></i><span class="sidenav-options">{{'LOG_OUT' | translate}}</span></h4>
           </div>
         </md-list-item>
         <md-divider ></md-divider>
       </md-list>
-      <!--<md-button ng-click="close()" class="md-primary">-->
-      <!--Close Sidenav Right-->
-      <!--</md-button>-->
     </md-content>
   </md-sidenav>
 </ion-view>

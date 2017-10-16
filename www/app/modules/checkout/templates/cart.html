@@ -1,7 +1,7 @@
 <ion-header-bar class="bar bar-header header-md bar-darker">
   <div style="width: 100%; display: inherit; margin-top: 0px !important;" >
     <div class="absolute back-icon-wrapper">
-      <a class="button button-icon row" ng-href="#/categories">
+      <a class="button button-icon row" ng-href="#/home/new">
         <i class="ion-android-arrow-back font-L white"></i>
       </a>
     </div>
@@ -18,16 +18,25 @@
   <ion-content class="has-subheader">
     <!--<md-button flex="50" class="md-primary md-raised" ng-click="showListBottomSheet()">Show as List</md-button>-->
     <ion-list show-delete="false" can-swipe="true"  class="list card cart-item" style="margin:0;">
-      <ion-item class="card item item-avatar history-item" ng-repeat="item in cart.itemList">
-        <div class="circle" ng-style="{'background-image':'url({{item.thumb}})'}">
+      <ion-item class="card item item-avatar history-item" ng-repeat="item in cart.products">
+      <!--<ion-item class="card item item-avatar history-item" ng-repeat="item in cart.itemList">-->
+        <!--<div class="circle" ng-style="{'background-image':'url(\'{{item.thumb}}\')'}">-->
+        <!--</div>-->
+        <img  class="circle" ng-src="{{item.thumb}}">
+        <h2 class="cart-item-title" ng-bind-html="item.name"></h2>
+        <p ng-bind-html="item.model"></p>
+        <!--<p ng-bind-html="item.description"></p>-->
+        <span class="history-price" ng-bind-html="item.total"></span>
+        <div class="row qty-spinner">
+          <input type='button' value='-' class='qtyminus' ng-click="updateCart(item,'minus')"/>
+          <input type='number' name='quantity' ng-model="item.quantity" class='qty' />
+          <input type='button' value='+' class='qtyplus' ng-click="updateCart(item,'plus')"/>
         </div>
-        <h2 class="cart-item-title" ng-bind-html="item.heading_title"></h2>
-        <p ng-bind-html="item.description"></p>
-        <span class="history-price" ng-bind-html="item.price"></span>
         <!--<a class="item-close-btn ion-close-round"></a>-->
         <div class="chip capital">{{"SIZE" | translate}} : 8</div>
         <div class="chip align-center">x {{item.quantity}}</div>
-        <ion-option-button class="button-assertive icon ion-trash-a" ng-click="removeItemFromCart(item.product_id);"></ion-option-button>
+
+        <ion-option-button class="button-assertive icon ion-trash-a" ng-click="removeItemFromCart(item.cart_id);"></ion-option-button>
       </ion-item>
 
       <!--<ion-item  class="card item item-avatar history-item">-->
@@ -56,29 +65,29 @@
     </ion-list>
 
     <ion-item class="card item">
-      <div class="row">
-        <div class="col capital" style="font-size: 15px;font-weight:700;padding: 12px 0 0 0px;">
-          {{"SHIPPING_AND_HANDLING" | translate}}
-        </div>
-        <div class="col align-right">
-          <div class="chip success capital" style="width:auto;color: white;">FREE SHIPPING</div>
-        </div>
-      </div>
+      <!--<div class="row">-->
+        <!--<div class="col capital" style="font-size: 15px;font-weight:700;padding: 12px 0 0 0px;">-->
+          <!--{{"SHIPPING_AND_HANDLING" | translate}}-->
+        <!--</div>-->
+        <!--<div class="col align-right">-->
+          <!--<div class="chip success capital" style="width:auto;color: white;">FREE SHIPPING</div>-->
+        <!--</div>-->
+      <!--</div>-->
       <hr>
-      <div class="row">
+      <div class="row" ng-repeat="total in cart.totals">
         <div class="col capital" style="font-size: 15px;font-weight:700;padding: 5px 0 15px 0px;">
-          {{"ORDER_TOTAL" | translate}}
+          {{total.title}}
         </div>
         <div class="col align-right bill-price">
-          <span>$ 327.00</span>
+          <span>{{total.text}}</span>
         </div>
       </div>
     </ion-item>
 
     <div class="bottom-button">
-      <button class="button custom-height-button button-sm square button-block button-black capital" ng-click="signIn()">
-        {{"SELECT_A_PAYMENT_METHOD" | translate}}
-      </button>
+      <a class="button custom-height-button button-sm square button-block button-black capital" ng-href="#/checkout-step-1">
+        {{"CHECKOUT" | translate}}
+      </a>
     </div>
 
   </ion-content>

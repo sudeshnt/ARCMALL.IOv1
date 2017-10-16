@@ -200,7 +200,8 @@ function SellerHomeCtrl($scope, $rootScope, $state , httpService,serverConfig,$h
       fileKey: "file",
       fileName: filename,
       chunkedMode: false,
-      mimeType: "multipart/form-data",
+      mimeType: "image/jpeg",
+      // mimeType: "multipart/form-data",
       params : {'product_id': $scope.product.product_id}
       // params : {'product_id': filename}
     };

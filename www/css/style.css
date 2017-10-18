@@ -164,3 +164,7 @@ ion-content{
   right: -10px;
   font-size: 10px;
 }
+
+.multi-line-text{
+  white-space: pre-wrap !important;
+}

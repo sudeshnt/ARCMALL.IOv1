@@ -6,7 +6,7 @@
       </a>
     </div>
     <h4 class="white left-title">{{'ALL_CATEGORIES' | translate}}</h4>
-    <div class="absolute" style="right:70px;">
+    <div class="absolute" style="right:50px;">
     <md-select ng-model="selectedMainCat" class="md-no-underline white" ng-change="selectedMainCatChange(selectedMainCat);" style="margin-top: 8px;">
       <md-option ng-repeat="cat in mainCategoryDropDown" value="{{cat.value}}">{{cat.name}}</md-option>
     </md-select>
@@ -36,21 +36,25 @@
               <!--</ion-item>-->
             <!--</ion-list>-->
           <!--</ion-list>-->
-          <div class="row" style="padding: 1px 5px 4px;" ng-repeat="subCat_rows in tab.sub_cats">
-            <div class="list card card-margin" ng-click="goToItems(subCat_rows[0])" ng-if="subCat_rows.length == 1">
-              <div class="item item-image">
-                <img src="app/modules/shop/img/cat-3.jpg">
-                <div class="text-on-image card-title-shadow">
-                  <h4 ng-bind-html="subCat_rows[0].name"></h4>
+          <div class="row" style="padding: 1px 5px 4px;" ng-repeat="subCat_rows in tab.sub_cats track by $index">
+            <!--<div class="list card card-margin" ng-click="goToItems(subCat_rows[0])" ng-if="subCat_rows.length == 1">-->
+            <div class="col zero-padding" ng-class="{'list card card-margin' : subCat_rows.length == 1 && $index==0}" ng-click="goToItems(subCat_rows[0])" ng-if="subCat_rows.length == 1">
+              <div ng-class="{'list card card-margin full-height' : $index>0 }">
+                <div class="item item-image full-height">
+                  <img ng-src="{{$index==0 ? 'app/modules/shop/img/cat-3.jpg' : 'app/modules/shop/img/cat-6.jpg'}}" class="full-height">
+                  <div class="text-on-image card-title-shadow">
+                    <h4 ng-bind-html="subCat_rows[0].name" class="multi-line-text"></h4>
+                  </div>
                 </div>
               </div>
             </div>
+            <div class="col zero-padding" ng-if="subCat_rows.length == 1 && $index>0"></div>
             <div class="col zero-padding" ng-repeat="col in subCat_rows"  ng-if="subCat_rows.length > 1">
               <div class="list card card-margin full-height" ng-click="goToItems(col)">
                 <div class="item item-image full-height" >
                   <img src="app/modules/shop/img/cat-6.jpg" class="full-height">
                   <div class="text-on-image card-title-shadow" >
-                    <h4 ng-bind-html="col.name"></h4>
+                    <h4 ng-bind-html="col.name" class="multi-line-text"></h4>
                   </div>
                 </div>
               </div>

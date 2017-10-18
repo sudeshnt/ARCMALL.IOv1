@@ -114,14 +114,14 @@
         </div>
       </div>
     </div>
-    <div class="row" style="min-height: 25px;"></div>
+    <!--<div class="row" style="min-height: 25px;"></div>-->
 
-    <!--<ion-infinite-scroll-->
-      <!--ng-if="moreDataCanBeLoaded"-->
-      <!--immediate-check="false"-->
-      <!--on-infinite="loadMoreLatestProducts()"-->
-      <!--distance="0%">-->
-    <!--</ion-infinite-scroll>-->
+    <ion-infinite-scroll
+      ng-if="moreDataCanBeLoaded"
+      immediate-check="false"
+      on-infinite="loadMoreLatestProducts()"
+      distance="5%">
+    </ion-infinite-scroll>
   </ion-content>
 </ion-view>
 

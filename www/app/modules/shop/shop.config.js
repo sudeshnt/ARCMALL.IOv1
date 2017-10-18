@@ -71,6 +71,11 @@ shopModule.config(function config($stateProvider,$urlRouterProvider) {
       controller: 'ItemCtrl',
       params:{category_id:null,product_id:null}
     })
+    .state('item-search', {
+      url: '/item-search',
+      templateUrl: 'app/modules/shop/templates/itemSearch.html',
+      controller: 'ItemSearchCtrl'
+    })
     .state('my-profile', {
       url: '/my-profile',
       templateUrl: 'app/modules/shop/templates/my-profile.html',

@@ -7,7 +7,6 @@ CategoryCtrl.$inject = ['$scope','$state','$rootScope','$stateParams','httpServi
 function CategoryCtrl($scope,$state,$rootScope,$stateParams,httpService,serverConfig,$ionicSlideBoxDelegate,$window, $ionicGesture,$timeout) {
 
   var type = $stateParams.type;
-  // console.log(type);
 
   function getAllCategories() {
     var extended_url = '/category/all';
@@ -38,6 +37,7 @@ function CategoryCtrl($scope,$state,$rootScope,$stateParams,httpService,serverCo
         $scope.cat_tabs["WHOLESALE"] = $scope.getSubCategories(response.data.categories[2],2)
 
         $scope.selectedCatTabs = $scope.cat_tabs[type];
+        console.log( $scope.cat_tabs);
         $ionicSlideBoxDelegate.update();
       }else{
         $scope.error = response.error_warning;
@@ -56,28 +56,20 @@ function CategoryCtrl($scope,$state,$rootScope,$stateParams,httpService,serverCo
 
   $scope.selectedMainCatChange = function(value){
     $state.go($state.current, {type:value}, {reload: true});
-    // $scope.selectedCatTabs={};
-    // $timeout(function(){
-    //   $ionicSlideBoxDelegate._instances[0].kill();
-    //   $scope.selectedCatTabs = $scope.cat_tabs[value];
-    //   $ionicSlideBoxDelegate.slide(0);
-    //   $ionicSlideBoxDelegate.update();
-    // }, 500);
   };
 
   $scope.getSubCategories = function (arr,size) {
     var newNameArr = [];
     var newArr = [];
     var tempArr = []
-    // newNameArr.push(arr.categories[0].name);
     if(arr.categories){
       for(var i=0; i<arr.categories.length; i++){
         tempArr = [];
-        tempArr.push([arr.categories[i].categories[0]]);
-        for (var j=1; j<arr.categories[i].categories.length; j+=size) {
-          // newNameArr.push(arr.categories[i].name);
-          // if(arr.categories[i+1])  newNameArr.push(arr.categories[i+1].name);
-          tempArr.push(arr.categories[i].categories.slice(j, j+size));
+        if(arr.categories[i].categories.length>0){
+          tempArr.push([arr.categories[i].categories[0]]);
+          for (var j=1; j<arr.categories[i].categories.length; j+=size) {
+            tempArr.push(arr.categories[i].categories.slice(j, j+size));
+          }
         }
         newNameArr.push(
           {

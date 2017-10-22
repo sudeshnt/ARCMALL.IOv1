@@ -77,6 +77,7 @@ function CartCtrl($scope,$state,$rootScope, $timeout, $mdBottomSheet, $mdToast,c
             break;
           }
         }
+        getProductsOfCart();
       }
     });
   }

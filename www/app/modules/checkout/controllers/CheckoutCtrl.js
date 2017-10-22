@@ -26,6 +26,7 @@ function CheckoutCtrl($scope,$state,$rootScope,serverConfig,httpService,$httpPar
       "city":$scope.personal_details.city,
       "postcode":$scope.personal_details.postcode,
       "country_id":$scope.personal_details.country_id,
+      // "customer_id":$rootScope.authResponse.customer_id,
       "zone_id":$scope.personal_details.zone_id,
     };
     var config = {

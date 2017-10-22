@@ -1,18 +1,16 @@
 <ion-header-bar class="bar bar-header header-md bar-darker">
   <div style="width: 100%; display: inherit; margin-top: 0px !important;" >
-    <div class="absolute back-icon-wrapper">
-      <a class="button button-icon row" ng-click="goHome()">
-      <i class="ion-android-arrow-back font-L white"></i>
-      </a>
-    </div>
-    <h4 class="white left-title">{{'ALL_CATEGORIES' | translate}}</h4>
-    <div class="absolute" style="right:50px;">
-    <md-select ng-model="selectedMainCat" class="md-no-underline white" ng-change="selectedMainCatChange(selectedMainCat);" style="margin-top: 8px;">
-      <md-option ng-repeat="cat in mainCategoryDropDown" value="{{cat.value}}">{{cat.name}}</md-option>
-    </md-select>
+    <div class="search-box-wrapper">
+      <div class="absolute toggle-side-wrapper">
+        <a class="button button-icon row"  ng-click="toggleSideBarHome()">
+          <i class="ion-navicon-round font-L white"></i>
+        </a>
+      </div>
+      <label class="item item-input search-box">
+        <input type="text" placeholder="{{'I_AM_SHOPPING_FOR' | translate}}" ng-model="search" ng-focus="goToSearch()">
+      </label>
     </div>
     <div class="absolute cart-icon-wrapper">
-
       <a class="button button-icon row" ng-click="viewCart()">
         <i class="ion-android-cart font-L white" ></i>
         <i class="cart-item-count" ng-show="cartItemCount>0">{{cartItemCount}}</i>
@@ -20,24 +18,37 @@
     </div>
   </div>
 </ion-header-bar>
+<!--<ion-header-bar class="bar bar-header header-md bar-darker">-->
+  <!--<div style="width: 100%; display: inherit; margin-top: 0px !important;" >-->
+    <!--<div class="absolute back-icon-wrapper">-->
+      <!--<a class="button button-icon row" ng-click="goHome()">-->
+      <!--<i class="ion-android-arrow-back font-L white"></i>-->
+      <!--</a>-->
+    <!--</div>-->
+    <!--<h4 class="white left-title">{{'ALL_CATEGORIES' | translate}}</h4>-->
+    <!--<div class="absolute" style="right:50px;">-->
+    <!--&lt;!&ndash;<md-select ng-model="selectedMainCat" class="md-no-underline white" ng-change="selectedMainCatChange(selectedMainCat);" style="margin-top: 8px;">&ndash;&gt;-->
+      <!--&lt;!&ndash;<md-option ng-repeat="cat in mainCategoryDropDown" value="{{cat.value}}">{{cat.name}}</md-option>&ndash;&gt;-->
+    <!--&lt;!&ndash;</md-select>&ndash;&gt;-->
+    <!--</div>-->
+    <!--<div class="absolute cart-icon-wrapper">-->
+      <!--<a class="button button-icon row" ng-click="viewCart()">-->
+        <!--<i class="ion-android-cart font-L white" ></i>-->
+        <!--<i class="cart-item-count" ng-show="cartItemCount>0">{{cartItemCount}}</i>-->
+      <!--</a>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</ion-header-bar>-->
+<!--<label class="item item-input" style="height:55px;top: 55px;">-->
+  <!--<i class="icon ion-android-search placeholder-icon font-L" ></i>-->
+  <!--<input type="text" placeholder="{{'SEARCH_AN_ITEM' | translate}}" ng-focus="goToSearch()">-->
+<!--</label>-->
 <ion-view cache-view="false">
-  <ion-content class="has-header"  scroll="false">
+  <ion-content class="has-header-md"  scroll="false">
     <ion-slide-box slide-tabs-scrollable="true" show-pager="false" on-slide-changed="changeSlide(index)" bounce="false" ion-slide-tabs>
       <ion-slide ng-repeat="tab in selectedCatTabs.tabs  track by $index" ion-slide-tab-label="{{tab.name}}" style="background-color:white; width:100%;">
-      <!--<ion-slide ng-repeat="(key,catg) in selectedCatTabs.tabs  track by $index" ion-slide-tab-label="{{catg.name}}" style="background-color:white; width:100%;">-->
         <ion-content>
-          <!--<ion-list>-->
-            <!--<ion-list ng-if="ready[key]">-->
-              <!--<ion-item class="item-avatar item-icon-right" ng-repeat="element in catg.items" type="item-text-wrap">-->
-                <!--<img ng-src="{{element.img}}">-->
-                  <!--<h2 style="color: #ef473a;">{{element.name}}</h2>-->
-                   <!--<p>{{element.status}}</p>-->
-                   <!--<i class="icon ion-chevron-right icon-accessory"></i>-->
-              <!--</ion-item>-->
-            <!--</ion-list>-->
-          <!--</ion-list>-->
           <div class="row" style="padding: 1px 5px 4px;" ng-repeat="subCat_rows in tab.sub_cats track by $index">
-            <!--<div class="list card card-margin" ng-click="goToItems(subCat_rows[0])" ng-if="subCat_rows.length == 1">-->
             <div class="col zero-padding" ng-class="{'list card card-margin' : subCat_rows.length == 1 && $index==0}" ng-click="goToItems(subCat_rows[0])" ng-if="subCat_rows.length == 1">
               <div ng-class="{'list card card-margin full-height' : $index>0 }">
                 <div class="item item-image full-height">
@@ -61,68 +72,57 @@
             </div>
           </div>
           <div class="row" style="min-height: 55px;"></div>
-
-          <!--<ion-list>-->
-          <!--<ion-list ng-if="ready[key]">-->
-            <!--<ion-item class="item-avatar item-icon-right" ng-repeat="element in catg.items" type="item-text-wrap">-->
-              <!--<img ng-src="{{element.img}}">-->
-              <!--<h2 style="color: #ef473a;">{{element.name}}</h2>-->
-              <!--<p>{{element.status}}</p>-->
-              <!--<i class="icon ion-chevron-right icon-accessory"></i>-->
-            <!--</ion-item>-->
-          <!--</ion-list>-->
-          <!--</ion-list>-->
-
-          <!--<center ng-if="!ready[key]">-->
-            <!--<br>-->
-            <!--<ion-spinner></ion-spinner>-->
-          <!--</center>-->
-
         </ion-content>
       </ion-slide>
     </ion-slide-box>
-
-    <!--<tab-slide-box tab="0">-->
-      <!--<div class="tsb-icons">-->
-        <!--<div class="tsb-ic-wrp">-->
-          <!--<ion-scroll direction="x" class="tsb-hscroll">-->
-            <!--<a href="javascript:;" class="{{tab.icon}}" ng-repeat="tab in cat_tabs.NEW.tabs track by $index" on-finish-render="test()"> <span ng-bind-html="tab"></span></a>-->
-          <!--</ion-scroll>-->
-        <!--</div>-->
-      <!--</div>-->
-      <!--<ion-slide-box show-pager="false" on-slide-changed="slideHasChanged()">-->
-        <!--<ion-slide ng-repeat="slideContent in cat_tabs.NEW.content">-->
-
-          <!--<div style="width: 90%;">-->
-            <!--<ion-content>-->
-              <!--<div class="row" style="padding: 1px 5px 4px;" ng-click="openWishList()"  ng-repeat="subCat_rows in slideContent">-->
-                <!--{{asdas}}-->
-                <!--<div class="list card card-margin" ng-click="goToItems()" ng-if="subCat_rows.length == 1">-->
-                 <!--<div class="item item-image">-->
-                   <!--<img src="app/modules/shop/img/cat-3.jpg">-->
-                   <!--<div class="text-on-image card-title-shadow">-->
-                     <!--<h2 ng-bind-html="subCat_rows[0].name"></h2>-->
-                       <!--&lt;!&ndash;<h3>Tuesday, 5th of November 2015</h3>&ndash;&gt;-->
-                   <!--</div>-->
-                 <!--</div>-->
-                <!--</div>-->
-                <!--<div class="col zero-padding" ng-repeat="col in subCat_rows"  ng-if="subCat_rows.length > 1">-->
-                  <!--<div class="list card card-margin full-height" ng-click="goToItems()">-->
-                    <!--<div class="item item-image full-height" >-->
-                      <!--<img src="app/modules/shop/img/cat-6.jpg" class="full-height">-->
-                      <!--<div class="text-on-image card-title-shadow" >-->
-                        <!--<h2 ng-bind-html="col.name"></h2>-->
-                        <!--&lt;!&ndash;<h3>Tuesday, 5th of November 2015</h3>&ndash;&gt;-->
-                      <!--</div>-->
-                    <!--</div>-->
-                  <!--</div>-->
-                <!--</div>-->
-              <!--</div>-->
-            <!---->
-            <!--</ion-content>-->
-          <!--</div>-->
-        <!--</ion-slide>-->
-      <!--</ion-slide-box>-->
-    <!--</tab-slide-box>-->
   </ion-content>
+  <md-sidenav class="md-sidenav-left md-whiteframe-4dp" md-component-id="right">
+    <md-content >
+      <img ng-src="app/modules/shop/img/home-slide-nav.jpg" style="width:100%">
+      <md-list flex>
+        <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;" ng-show="loginStatus">
+          <div class="md-list-item-text zero-margin" layout="column" ng-click="openMyProfile()">
+            <h4><i class="ion-person sidenav-icon"></i><span class="sidenav-options">{{'MY_PROFILE' | translate}}</span></h4>
+          </div>
+        </md-list-item>
+        <md-divider></md-divider>
+        <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;" ng-show="!loginStatus">
+          <div class="md-list-item-text zero-margin" layout="column" ng-click="openSignIn()">
+            <h4><i class="ion-person sidenav-icon"></i><span class="sidenav-options">{{'SIGN_IN' | translate}}</span></h4>
+          </div>
+        </md-list-item>
+        <md-divider></md-divider>
+        <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;"  ng-show="authResponse.ispartner=='true'">
+          <div class="md-list-item-text zero-margin" layout="column" ng-click="openAddItem()">
+            <h4><i class="ion-android-hand sidenav-icon"></i><span class="sidenav-options">{{'ADD_ITEM' | translate}}</span></h4>
+          </div>
+        </md-list-item>
+        <md-divider ></md-divider>
+        <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;" >
+          <div class="md-list-item-text zero-margin" layout="column" ng-click="openCategories()">
+            <h4><i class="ion-ios-browsers sidenav-icon"></i><span class="sidenav-options">{{'ALL_CATEGORIES' | translate}}</span></h4>
+          </div>
+        </md-list-item>
+        <md-divider ></md-divider>
+        <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;">
+          <div class="md-list-item-text zero-margin" layout="column"  ng-click="openWishList()">
+            <h4><i class="ion-ios-heart sidenav-icon"></i><span class="sidenav-options">{{'WISH_LIST' | translate}}</span></h4>
+          </div>
+        </md-list-item>
+        <md-divider ></md-divider>
+        <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;">
+          <div class="md-list-item-text zero-margin" layout="column"  ng-click="openOrderHistory();">
+            <h4><i class="ion-ios-albums sidenav-icon"></i><span class="sidenav-options">{{'ORDER_HISTORY' | translate}}</span></h4>
+          </div>
+        </md-list-item>
+        <md-divider ></md-divider>
+        <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;"  ng-show="loginStatus">
+          <div class="md-list-item-text zero-margin" layout="column" ng-click="logOut()">
+            <h4><i class="ion-android-hand sidenav-icon"></i><span class="sidenav-options">{{'LOG_OUT' | translate}}</span></h4>
+          </div>
+        </md-list-item>
+        <md-divider ></md-divider>
+      </md-list>
+    </md-content>
+  </md-sidenav>
 </ion-view>

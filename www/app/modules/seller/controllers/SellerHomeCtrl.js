@@ -11,7 +11,8 @@ function SellerHomeCtrl($scope, $rootScope, $state , httpService,serverConfig,$h
   // console.log($scope.authResponse);
 
   $scope.goHome = function () {
-    $state.go('home.new');
+    $state.go('categories');
+    // $state.go('home.new');
   };
   // $scope.product = {
   //   "product_id":248

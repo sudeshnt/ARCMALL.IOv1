@@ -13,8 +13,6 @@ function CheckoutStep3Ctrl($scope,$state,$rootScope,$stateParams,serverConfig,ht
   }
 
   $scope.confirmOrder = function () {
-      console.log($scope.personal_info);
-      console.log($rootScope.authResponse);
       var extended_url = '/order/add';
       var reqObj = {
         "shipping_method":"",
@@ -28,8 +26,9 @@ function CheckoutStep3Ctrl($scope,$state,$rootScope,$stateParams,serverConfig,ht
         }
       };
       httpService.postRequest(serverConfig.clientAPI,extended_url, $httpParamSerializer(reqObj),config).then(function(response){
-        if(response.status === 200){
-          $scope.shippingMethods = response.data.shipping_methods;
+        console.log(response);
+        if(response.status === 200 && !response.data.error){
+          $state.go('categories');
         }
       });
   }

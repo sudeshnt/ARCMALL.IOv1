@@ -2,47 +2,76 @@
 
 angular.module('shop.module').controller('CategoryCtrl',CategoryCtrl );
 
-CategoryCtrl.$inject = ['$scope','$state','$rootScope','$stateParams','httpService','serverConfig','$ionicSlideBoxDelegate','$window', '$ionicGesture','$timeout'];
+CategoryCtrl.$inject = ['$scope','$state','$rootScope','$stateParams','httpService','serverConfig','$ionicSlideBoxDelegate','$window', '$ionicGesture','$timeout','$mdSidenav','$log'];
 
-function CategoryCtrl($scope,$state,$rootScope,$stateParams,httpService,serverConfig,$ionicSlideBoxDelegate,$window, $ionicGesture,$timeout) {
+function CategoryCtrl($scope,$state,$rootScope,$stateParams,httpService,serverConfig,$ionicSlideBoxDelegate,$window, $ionicGesture,$timeout,$mdSidenav,$log) {
 
   var type = $stateParams.type;
+
+  $scope.toggleSideBarHome = buildToggler('right');
+
+  // refresh time in minutes
+  var refresh_after = 30;
+
+  function buildToggler(navID) {
+    return function() {
+      $mdSidenav(navID)
+        .toggle()
+        .then(function () {
+          $log.debug("toggle " + navID + " is done");
+        });
+    }
+  }
+  $scope.close = function () {
+    $mdSidenav('right').close()
+      .then(function () {
+        $log.debug("close RIGHT is done");
+      });
+  };
 
   function getAllCategories() {
     var extended_url = '/category/all';
     var req = {};
     httpService.postRequest(serverConfig.clientAPI,extended_url,req,{}).then(function(response){
       if(response.status === 200 && !response.error_warning){
-        $scope.cat_tabs = {};
-        $scope.mainCategoryDropDown = [
-          {
-            "id":response.data.categories[0].category_id,
-            "name":response.data.categories[0].name,
-            "value":"NEW"
-          },{
-            "id":response.data.categories[1].category_id,
-            "name":response.data.categories[1].name,
-            "value":"USED"
-          },{
-            "id":response.data.categories[2].category_id,
-            "name":response.data.categories[2].name,
-            "value":"WHOLESALE"
-          }
-        ];
-
-        setSelectedMainCategory();
-        // get processed categories
-        $scope.cat_tabs["NEW"] = $scope.getSubCategories(response.data.categories[0],2) ;
-        $scope.cat_tabs["USED"] = $scope.getSubCategories(response.data.categories[1],2);
-        $scope.cat_tabs["WHOLESALE"] = $scope.getSubCategories(response.data.categories[2],2)
-
-        $scope.selectedCatTabs = $scope.cat_tabs[type];
-        console.log( $scope.cat_tabs);
-        $ionicSlideBoxDelegate.update();
+        localStorage.setItem('cat_tabs',JSON.stringify({
+          "categories" : response.data.categories,
+          "last_saved_at" : Date.parse(new Date())
+        }));
+        initTabs(response.data.categories);
       }else{
         $scope.error = response.error_warning;
       }
     });
+  }
+
+  function initTabs(categories){
+    $scope.cat_tabs = {};
+    $scope.mainCategoryDropDown = [
+      {
+        "id":categories[0].category_id,
+        "name":categories[0].name,
+        "value":"NEW"
+      },{
+        "id":categories[1].category_id,
+        "name":categories[1].name,
+        "value":"USED"
+      },{
+        "id":categories[2].category_id,
+        "name":categories[2].name,
+        "value":"WHOLESALE"
+      }
+    ];
+
+    setSelectedMainCategory();
+    // get processed categories
+    $scope.cat_tabs["NEW"] = $scope.getSubCategories(categories[0],2) ;
+    $scope.cat_tabs["USED"] = $scope.getSubCategories(categories[1],2);
+    $scope.cat_tabs["WHOLESALE"] = $scope.getSubCategories(categories[2],2)
+
+
+    $scope.selectedCatTabs = $scope.cat_tabs[type];
+    $ionicSlideBoxDelegate.update();
   }
 
   function setSelectedMainCategory () {
@@ -101,893 +130,65 @@ function CategoryCtrl($scope,$state,$rootScope,$stateParams,httpService,serverCo
   $scope.goToItems = function (category) {
     $state.go('item-list',{category_id:category.category_id});
   };
+  $scope.goToSearch = function () {
+    $state.go('item-search');
+  }
+
+  $scope.openCategories = function (){
+    $scope.close();
+    $state.go('categories');
+  };
+  $scope.openWishList = function () {
+    $scope.close();
+    $state.go('wish-list');
+  };
+  $scope.openSignIn= function () {
+    $scope.close();
+    $state.go('authHome');
+  };
+  $scope.openOrderHistory = function () {
+    $scope.close();
+    $state.go('order-history');
+  };
+  $scope.openAddItem = function () {
+    $state.go('sellerHome');
+  };
+  $scope.openMyProfile = function () {
+    $scope.close();
+    $state.go('my-profile');
+  };
+  $scope.logOut = function () {
+    $scope.close();
+    localStorage.setItem('loginStatus',false);
+    localStorage.setItem('authResponse',null);
+    $rootScope.loginStatus = false;
+    $rootScope.authResponse = null;
+    $state.go('authSignIn');
+  };
 
   init();
 
   function init() {
-    getAllCategories();
+    var localCategories = localStorage.getItem('cat_tabs');
+    if(localCategories!=null && localCategories!=undefined && localCategories!=""){
+      var tempTabs = JSON.parse(localCategories);
+      if(tempTabs!=null && tempTabs!=undefined && tempTabs!=""){
+        if(tempTabs.categories.length>0 && Date.parse(new Date)-tempTabs.last_saved_at < refresh_after*60*1000){
+          initTabs(tempTabs.categories)
+        }else {
+          getAllCategories();
+        }
+      }else{
+        getAllCategories();
+      }
+    }else{
+      getAllCategories();
+    }
   }
 
   //new slider
 
   $scope.ready = [];
-  $scope.catgs = [
-    {
-    id: 0,
-    name: 'CATG1',
-    items: [{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I2.png',
-      name:'category1Item2',
-      status:'CLOSED'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I2.png',
-      name:'category1Item2',
-      status:'CLOSED'
-
-    },{
-      img:'img/G1I2.png',
-      name:'category1Item2',
-      status:'CLOSED'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I2.png',
-      name:'category1Item2',
-      status:'CLOSED'
-
-    },{
-      img:'img/G1I2.png',
-      name:'category1Item2',
-      status:'CLOSED'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I2.png',
-      name:'category1Item2',
-      status:'CLOSED'
-
-    },{
-      img:'img/G1I2.png',
-      name:'category1Item2',
-      status:'CLOSED'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I2.png',
-      name:'category1Item2',
-      status:'CLOSED'
-
-    },{
-      img:'img/G1I2.png',
-      name:'category1Item2',
-      status:'CLOSED'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I1.png',
-      name:'category1Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G1I2.png',
-      name:'category1Item2',
-      status:'CLOSED'
-
-    }]
-  },
-    {
-    id: 1,
-    name: 'CATG2',
-    items: [{
-      img:'img/G2I1.png',
-      name:'category2Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G2I2.png',
-      name:'category2Item2',
-      status:'CLOSED'
-
-    }]
-  },{
-    id: 2,
-    name: 'CATG3',
-    items: [{
-      img:'img/G3I1.png',
-      name:'category3Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G3I2.png',
-      name:'category3Item2',
-      status:'CLOSED'
-
-    }]
-  },{
-    id: 3,
-    name: 'CATG4',
-    items: [{
-      img:'img/G3I1.png',
-      name:'category3Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G3I2.png',
-      name:'category3Item2',
-      status:'CLOSED'
-
-    }]
-  },{
-    id: 4,
-    name: 'CATG5',
-    items: [{
-      img:'img/G3I1.png',
-      name:'category3Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G3I2.png',
-      name:'category3Item2',
-      status:'CLOSED'
-
-    }]
-  },{
-    id: 5,
-    name: 'CATG6',
-    items: [{
-      img:'img/G3I1.png',
-      name:'category3Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G3I2.png',
-      name:'category3Item2',
-      status:'CLOSED'
-
-    }]
-  },{
-    id: 6,
-    name: 'CATG7',
-    items: [{
-      img:'img/G3I1.png',
-      name:'category3Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G3I2.png',
-      name:'category3Item2',
-      status:'CLOSED'
-
-    }]
-  },{
-    id: 7,
-    name: 'CATG8',
-    items: [{
-      img:'img/G3I1.png',
-      name:'category3Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G3I2.png',
-      name:'category3Item2',
-      status:'CLOSED'
-
-    }]
-  },{
-    id: 8,
-    name: 'CATG9',
-    items: [{
-      img:'img/G3I1.png',
-      name:'category3Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G3I2.png',
-      name:'category3Item2',
-      status:'CLOSED'
-
-    }]
-  },{
-    id: 9,
-    name: 'CATG10',
-    items: [{
-      img:'img/G3I1.png',
-      name:'category3Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G3I2.png',
-      name:'category3Item2',
-      status:'CLOSED'
-
-    }]
-  },{
-    id: 10,
-    name: 'CATG11',
-    items: [{
-      img:'img/G3I1.png',
-      name:'category3Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G3I2.png',
-      name:'category3Item2',
-      status:'CLOSED'
-
-    }]
-  },{
-    id: 11,
-    name: 'CATG12',
-    items: [{
-      img:'img/G3I1.png',
-      name:'category3Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G3I2.png',
-      name:'category3Item2',
-      status:'CLOSED'
-
-    }]
-  },{
-    id: 12,
-    name: 'CATG13',
-    items: [{
-      img:'img/G3I1.png',
-      name:'category3Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G3I2.png',
-      name:'category3Item2',
-      status:'CLOSED'
-
-    }]
-  },{
-    id: 13,
-    name: 'CATG14',
-    items: [{
-      img:'img/G3I1.png',
-      name:'category3Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G3I2.png',
-      name:'category3Item2',
-      status:'CLOSED'
-
-    }]
-  },{
-    id: 14,
-    name: 'CATG15',
-    items: [{
-      img:'img/G3I1.png',
-      name:'category3Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G3I2.png',
-      name:'category3Item2',
-      status:'CLOSED'
-
-    }]
-  },{
-    id: 15,
-    name: 'CATG16',
-    items: [{
-      img:'img/G3I1.png',
-      name:'category3Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G3I2.png',
-      name:'category3Item2',
-      status:'CLOSED'
-
-    }]
-  },{
-    id: 16,
-    name: 'CATG17',
-    items: [{
-      img:'img/G3I1.png',
-      name:'category3Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G3I2.png',
-      name:'category3Item2',
-      status:'CLOSED'
-
-    }]
-  },{
-    id: 17,
-    name: 'CATG18',
-    items: [{
-      img:'img/G3I1.png',
-      name:'category3Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G3I2.png',
-      name:'category3Item2',
-      status:'CLOSED'
-
-    }]
-  },{
-    id: 18,
-    name: 'CATG19',
-    items: [{
-      img:'img/G3I1.png',
-      name:'category3Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G3I2.png',
-      name:'category3Item2',
-      status:'CLOSED'
-
-    }]
-  },{
-    id: 19,
-    name: 'CATG20',
-    items: [{
-      img:'img/G3I1.png',
-      name:'category3Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G3I2.png',
-      name:'category3Item2',
-      status:'CLOSED'
-
-    }]
-  },{
-    id: 20,
-    name: 'CATG21',
-    items: [{
-      img:'img/G3I1.png',
-      name:'category3Item1',
-      status:'OPEN'
-
-    },{
-      img:'img/G3I2.png',
-      name:'category3Item2',
-      status:'CLOSED'
-
-    }]
-  }];
 
 
   $scope.$on("$ionicView.afterEnter", function (event, data) {

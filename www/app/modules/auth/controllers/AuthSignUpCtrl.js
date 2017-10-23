@@ -42,7 +42,8 @@ function AuthSignUpCtrl($scope,$rootScope,$state,$stateParams,appConfig,httpServ
       if (response.status === 200 && response.error_warning == "") {
         localStorage.setItem('loginStatus', true);
         localStorage.setItem('authResponse', JSON.stringify(response.customer_info));
-        $state.go('home.new');
+        $state.go('categories');
+        // $state.go('home.new');
       } else {
         $scope.error = response.error_warning;
       }

@@ -38,6 +38,7 @@ angular.module('lang_en',['pascalprecht.translate','ngSanitize'])
       SHIPPING_ADDRESS:"Shipping Address",
       BILLING_ADDRESS:"Billing Address",
       RETURN_POLICY:"Return Policy",
+      BUYER_PROTECTION:"Buyer Protection",
       LOG_OUT:"Log Out",
       ORDER_HISTORY:"Order History",
       NEW:"new",

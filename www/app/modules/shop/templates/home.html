@@ -10,7 +10,7 @@
         <!--<a ng-click="toggleSideBar()" class="sidebar-toggle"><i class="icon ion-navicon-round placeholder-icon font-L"></i></a>-->
 
         <label class="item item-input search-box">
-          <input type="email" placeholder="{{'I_AM_SHOPPING_FOR' | translate}}" ng-model="user.email">
+          <input type="text" placeholder="{{'I_AM_SHOPPING_FOR' | translate}}" ng-model="search" ng-focus="goToSearch()">
         </label>
         <!--<i class="ion-android-arrow-back white" style="font-size: 20px;"></i>-->
       <!--</a>-->
@@ -60,14 +60,9 @@
 
   </ion-content>
   <md-sidenav class="md-sidenav-left md-whiteframe-4dp" md-component-id="right">
-    <!--<md-toolbar class="md-theme-light sidenav-header">-->
-    <!--<h1 class="md-toolbar-tools white">Touch2Buy</h1>-->
-    <!--</md-toolbar>-->
     <md-content >
       <img ng-src="app/modules/shop/img/home-slide-nav.jpg" style="width:100%">
       <md-list flex>
-
-        <!--<md-divider ></md-divider>-->
         <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;" ng-show="loginStatus">
           <div class="md-list-item-text zero-margin" layout="column" ng-click="openMyProfile()">
             <h4><i class="ion-person sidenav-icon"></i><span class="sidenav-options">{{'MY_PROFILE' | translate}}</span></h4>
@@ -110,11 +105,7 @@
           </div>
         </md-list-item>
         <md-divider ></md-divider>
-
       </md-list>
-      <!--<md-button ng-click="close()" class="md-primary">-->
-      <!--Close Sidenav Right-->
-      <!--</md-button>-->
     </md-content>
   </md-sidenav>
 

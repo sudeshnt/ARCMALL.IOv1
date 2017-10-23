@@ -75,7 +75,6 @@ function ItemCtrl($scope,$state,$rootScope,$filter,$stateParams,serverConfig,htt
 
         httpService.postRequest(serverConfig.clientAPI,extended_url, $httpParamSerializer(reqObj),config).then(function(response){
           if(response.status === 200){
-
             $rootScope.cartItemCount = !itemAvailability ? $rootScope.cartItemCount+=1 : $rootScope.cartItemCount;
           }
         });
@@ -93,23 +92,6 @@ function ItemCtrl($scope,$state,$rootScope,$filter,$stateParams,serverConfig,htt
       $state.go('cart');
     }
 
-    $scope.groups = [
-      {
-        name: $filter('translate')('DESCRIPTION'),
-        show: false
-      },{
-        name: $filter('translate')('REVIEWS'),
-        show: false
-      },
-      {
-        name: $filter('translate')('SHIPPING_INFORMATION'),
-        show: false
-      },
-      {
-        name: $filter('translate')('RETURN_POLICY'),
-        show: false
-      }
-    ];
     /*
      * if given group is the selected group, deselect it
      * else, select the given group
@@ -200,6 +182,36 @@ function ItemCtrl($scope,$state,$rootScope,$filter,$stateParams,serverConfig,htt
           $scope.product.quantity = 1;
           $scope.product.selected_options = [];
           $scope.availability_in_wishlist = initAvailabilityInWIshList();
+
+          $scope.groups = [
+            {
+              name: $filter('translate')('DESCRIPTION'),
+              show: false,
+              content: $scope.product.description
+            },{
+              name: $filter('translate')('REVIEWS'),
+              show: false,
+              content: $scope.product.reviews
+            },
+            {
+              name: $filter('translate')('SHIPPING_INFORMATION'),
+              show: false,
+              content: ''
+            },
+            {
+              name: $filter('translate')('RETURN_POLICY'),
+              show: false,
+              content: "Returns accepted if the product is not as described or is damaged"
+            },
+            {
+              name: $filter('translate')('BUYER_PROTECTION'),
+              show: false,
+              content: "To ensure that every buyer is protected when purchasing from Arcmall, we have the following refund options: \n" +
+              "- Full refund if you don't receive your item\n" +
+              "- Full or partial refund if the item is not as described or is damaged"
+            }
+          ];
+          getProductReview();
         }
       });
     }
@@ -225,6 +237,5 @@ function ItemCtrl($scope,$state,$rootScope,$filter,$stateParams,serverConfig,htt
 
     function init(){
       initProduct();
-      getProductReview()
     }
 }

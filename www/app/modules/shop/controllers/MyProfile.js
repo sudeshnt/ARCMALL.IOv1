@@ -15,7 +15,8 @@ function MyProfileCtrl($scope,$state,$rootScope,$mdSidenav,$log) {
   }
 
   $scope.goHome = function () {
-    $state.go('home.new');
+    $state.go('categories');
+    // $state.go('home.new');
   };
 
   $scope.openCategories = function (){

@@ -240,14 +240,14 @@ background-color: #f68469;
 }
 .search-box{
   height:45px;
-  margin-left: 40px;
+  margin-left: 50px;
 }
 .sidebar-toggle{
   position: absolute;
   top:8px;
 }
 .md-sidenav-left{
-  margin-top: 97px;
+  margin-top: 56px;
   min-width: 0px;
   width: 250px !important;
 }
@@ -322,4 +322,13 @@ md-select.md-default-theme:not([disabled]):focus .md-select-value, md-select:not
 .bottom-sheet-close{
   left: -17px;
   top: -17px;
+}
+.accordian-text  {
+  width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+  text-overflow: ellipsis;
+  border: 1px solid #ddd;
+  margin: 0;
 }

@@ -11,7 +11,7 @@ function HomeCtrl($scope,$state,$filter,$rootScope,appConfig,$timeout,$mdSidenav
   $scope.activeTabName = null;
   $scope.moreDataCanBeLoaded = false;
   var latestProductsStart = 0;
-  var latestProductsLimit = 100;
+  var latestProductsLimit = 10;
 
   $scope.latestProducts = [];
 
@@ -62,6 +62,7 @@ function HomeCtrl($scope,$state,$filter,$rootScope,appConfig,$timeout,$mdSidenav
   }
 
   function initLatestProducts(){
+    $scope.moreDataCanBeLoaded = false;
     var extended_url = '/latest';
     var reqObj = {
       "start":latestProductsStart,
@@ -80,15 +81,15 @@ function HomeCtrl($scope,$state,$filter,$rootScope,appConfig,$timeout,$mdSidenav
           $scope.latestProducts.push(response.data.products[i])
         }
         $scope.latestProductRows = publicFunc.devideArray($scope.latestProducts,2);
-        $scope.$broadcast('scroll.infiniteScrollComplete');
+        // $scope.$broadcast('scroll.infiniteScrollComplete');
         if(response.data.products.length==0 || response.data.products.length<latestProductsLimit){
           $scope.moreDataCanBeLoaded = false;
         }else{
           $scope.moreDataCanBeLoaded = true;
         }
-        if(latestProductsStart!=0){
-          $ionicScrollDelegate.scrollTo(0,200,true);
-        }
+        // if(latestProductsStart!=0){
+        //   $ionicScrollDelegate.scrollTo(0,200,true);
+        // }
       }
     });
   }
@@ -193,6 +194,10 @@ function HomeCtrl($scope,$state,$filter,$rootScope,appConfig,$timeout,$mdSidenav
         // $scope.activeTabName = '';
       }
     }
+  }
+
+  $scope.goToSearch = function () {
+    $state.go('item-search');
   }
 
   $scope.openCategories = function (){

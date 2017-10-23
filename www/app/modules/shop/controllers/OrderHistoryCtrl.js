@@ -13,7 +13,8 @@ function OrderHistoryCtrl($scope,$state,$rootScope,$mdSidenav,$log,serverConfig,
   }
 
   $scope.goHome = function () {
-    $state.go('home.new');
+    $state.go('categories');
+    // $state.go('home.new');
   };
 
   $scope.openItemDetails = function(){

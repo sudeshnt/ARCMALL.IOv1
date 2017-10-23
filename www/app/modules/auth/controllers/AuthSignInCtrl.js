@@ -7,8 +7,10 @@ AuthSignInCtrl.$inject = ['$scope','$state','$rootScope','httpService','serverCo
 function AuthSignInCtrl($scope,$state,$rootScope,httpService,serverConfig,$httpParamSerializer) {
   //console.log('auth sign in');
   $scope.user = {
-    'email' : 'harindamail@gmail.com',
-    'password' : 'benzc180'
+    'email' : '',
+    // 'email' : 'harindamail@gmail.com',
+    'password' : ''
+    // 'password' : 'benzc180'
   };
   $scope.signIn = function () {
     var extended_url = '/user_login';
@@ -20,12 +22,12 @@ function AuthSignInCtrl($scope,$state,$rootScope,httpService,serverConfig,$httpP
     };
     httpService.postRequest(serverConfig.clientAPI,extended_url,$httpParamSerializer(req),config).then(function(response){
       if(response.status === 200){
-        console.log(JSON.stringify())
         localStorage.setItem('loginStatus',true);
         var authResponse = response.data.customer_info;
         authResponse.ispartner = response.data.ispartner;
         localStorage.setItem('authResponse',JSON.stringify(authResponse));
-        $state.go('home.new');
+        $state.go('categories');
+        // $state.go('home.new');
       }else{
         $scope.error = response.error_warning;
       }

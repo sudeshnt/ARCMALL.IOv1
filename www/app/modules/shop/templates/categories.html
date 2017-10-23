@@ -52,7 +52,8 @@
             <div class="col zero-padding" ng-class="{'list card card-margin' : subCat_rows.length == 1 && $index==0}" ng-click="goToItems(subCat_rows[0])" ng-if="subCat_rows.length == 1">
               <div ng-class="{'list card card-margin full-height' : $index>0 }">
                 <div class="item item-image full-height">
-                  <img ng-src="{{$index==0 ? 'app/modules/shop/img/cat-3.jpg' : 'app/modules/shop/img/cat-6.jpg'}}" class="full-height">
+                  <img ng-src="{{$index==0 ? subCat_rows[0].image : 'app/modules/shop/img/cat-6.jpg'}}" class="full-height" ng-if="subCat_rows[0].image != ''">
+                  <img ng-src="{{$index==0 ? 'app/modules/shop/img/cat-6.jpg' : 'app/modules/shop/img/cat-6.jpg'}}" class="full-height" ng-if="subCat_rows[0].image == ''">
                   <div class="text-on-image card-title-shadow">
                     <h4 ng-bind-html="subCat_rows[0].name" class="multi-line-text"></h4>
                   </div>
@@ -62,7 +63,13 @@
             <div class="col zero-padding" ng-if="subCat_rows.length == 1 && $index>0"></div>
             <div class="col zero-padding" ng-repeat="col in subCat_rows"  ng-if="subCat_rows.length > 1">
               <div class="list card card-margin full-height" ng-click="goToItems(col)">
-                <div class="item item-image full-height" >
+                <div class="item item-image full-height" ng-if="col.image != ''">
+                  <img src="{{col.image}}" class="full-height">
+                  <div class="text-on-image card-title-shadow" >
+                    <h4 ng-bind-html="col.name" class="multi-line-text"></h4>
+                  </div>
+                </div>
+                <div class="item item-image full-height" ng-if="col.image == ''">
                   <img src="app/modules/shop/img/cat-6.jpg" class="full-height">
                   <div class="text-on-image card-title-shadow" >
                     <h4 ng-bind-html="col.name" class="multi-line-text"></h4>

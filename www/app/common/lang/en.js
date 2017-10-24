@@ -58,6 +58,8 @@ angular.module('lang_en',['pascalprecht.translate','ngSanitize'])
       TELL_US_ABOUT_YOUR_ITEM:'Tell us about your item',
       WHAT_IS_THE_MODEL_OF_YOUR_PRODUCT:'What is the model of your product',
       WHAT_IS_THE_PRICE_OF_YOUR_PRODUCT:'price of your product',
+      WHAT_IS_THE_HEIGHT_OF_YOUR_PRODUCT:'height of your product',
+      WHAT_IS_THE_WEIGHT_OF_YOUR_PRODUCT:'weight of your product',
       QUANTITY_AVAILABLE:'Quantity available',
       SAVE_ITEM:'Save Item',
       MY_PROFILE:'My Profile',

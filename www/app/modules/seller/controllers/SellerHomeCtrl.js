@@ -22,7 +22,20 @@ function SellerHomeCtrl($scope, $rootScope, $state , httpService,serverConfig,$h
     "catLevel1" : null,
     "catLevel2" : null,
     "catLevel3" : null,
-  }
+  };
+
+   $scope.weightMeasures =  [
+    "Kilogram",
+    "Gram",
+    "Pound",
+    "Ounce"
+  ];
+
+  $scope.dimensionMeasures =  [
+    "Centimeter",
+    "Millimeter",
+    "Inch"
+  ];
 
   $scope.item = {
     "category" : [],
@@ -78,8 +91,8 @@ function SellerHomeCtrl($scope, $rootScope, $state , httpService,serverConfig,$h
       var extended_url = '/product/addproduct';
       var req = {
         "model" : $scope.item.model,
-        "weight" : '',
-        "height" : '',
+        "weight" : $scope.item.weight+' '+$scope.item.weightMeasureUnit,
+        "height" : $scope.item.height+' '+$scope.item.dimensionMeasureUnit,
         "name" : $scope.item.name,
         "quantity" : $scope.item.quantity,
         "price" : $scope.item.price,

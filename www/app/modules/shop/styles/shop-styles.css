@@ -239,8 +239,10 @@ background-color: #f68469;
   display: block !important;
 }
 .search-box{
-  height:45px;
+  height: 43px;
+  margin-top: 3px;
   margin-left: 50px;
+  margin-right: 20px;
 }
 .sidebar-toggle{
   position: absolute;

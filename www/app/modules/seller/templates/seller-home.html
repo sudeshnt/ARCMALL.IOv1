@@ -57,6 +57,35 @@
         </label>
       </div>
     </div>
+    <div class="row zero-padding">
+      <div class="col zero-padding">
+        <label class="item item-input text-xmd add-item-textbox" style=" height: 51px;">
+          <input type="number" placeholder="{{'WHAT_IS_THE_HEIGHT_OF_YOUR_PRODUCT' | translate}}" ng-model="item.height">
+        </label>
+      </div>
+      <div class="col zero-padding" style="max-width:153px;margin-left: 5px;">
+        <div layout="row" layout-align="space-between center">
+          <md-select ng-model="item.dimensionMeasureUnit"  placeholder="Measure Unit" class="md-no-underline category-select">
+            <md-option ng-repeat="measure in dimensionMeasures track by $index" value="{{measure}}">{{measure}}</md-option>
+          </md-select>
+        </div>
+      </div>
+    </div>
+    <div class="row zero-padding">
+      <div class="col zero-padding">
+        <label class="item item-input text-xmd add-item-textbox" style=" height: 51px;">
+          <input type="number" placeholder="{{'WHAT_IS_THE_WEIGHT_OF_YOUR_PRODUCT' | translate}}" ng-model="item.weight">
+        </label>
+      </div>
+      <div class="col zero-padding" style="max-width:153px;margin-left: 5px;">
+        <div layout="row" layout-align="space-between center">
+          <md-select ng-model="item.weightMeasureUnit"  placeholder="Measure Unit" class="md-no-underline category-select">
+            <md-option ng-repeat="measure in weightMeasures track by $index" value="{{measure}}">{{measure}}</md-option>
+          </md-select>
+        </div>
+      </div>
+    </div>
+
     <label class="item item-input text-xmd add-item-textbox">
       <!--<i class="icon ion-ios-home-outline placeholder-icon"></i>-->
       <input type="number" placeholder="{{'QUANTITY_AVAILABLE' | translate}}" ng-model="item.quantity">

@@ -43,17 +43,58 @@
   <!--<i class="icon ion-android-search placeholder-icon font-L" ></i>-->
   <!--<input type="text" placeholder="{{'SEARCH_AN_ITEM' | translate}}" ng-focus="goToSearch()">-->
 <!--</label>-->
+
+
+
 <ion-view cache-view="false">
-  <ion-content class="has-header-md"  scroll="false">
-    <ion-slide-box slide-tabs-scrollable="true" show-pager="false" on-slide-changed="changeSlide(index)" bounce="false" ion-slide-tabs>
+  <ion-slide-box on-slide-changed="slideChanged2(index)" delegate-handle="banners" auto-play="true" does-continue="true" slide-interval="4000" style="height:auto !important; top:56px;">
+    <ion-slide>
+      <div id="shop">
+        <div class="content">
+          <img class="full-width" style="height: 220px;" src="app/modules/shop/img/slide-show-1.jpg"/>
+          <div class="desc">
+            <h3 style="color: #617e89;">New Collection</h3>
+            <p>THis crisp white cotton poplin<br> shirt has wide cuffs</p>
+            <a class="button  button-assertive capital">{{'DISCOVER' | translate}}</a>
+          </div>
+        </div>
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <div id="shop">
+        <div class="content">
+          <img class="full-width" style="height: 220px;" src="app/modules/shop/img/slide-show-2.jpg"/>
+          <div class="desc">
+            <h3 style="color: #617e89;">New Collection</h3>
+            <p>THis crisp white cotton poplin<br> shirt has wide cuffs</p>
+            <a class="button  button-assertive capital">{{'DISCOVER' | translate}}</a>
+          </div>
+        </div>
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <div id="shop">
+        <div class="content">
+          <img class="full-width" style="height: 220px;" src="app/modules/shop/img/slide-show-3.jpg"/>
+          <div class="desc">
+            <h3 style="color: #617e89;">New Collection</h3>
+            <p>THis crisp white cotton poplin<br> shirt has wide cuffs</p>
+            <a class="button  button-assertive capital">{{'DISCOVER' | translate}}</a>
+          </div>
+        </div>
+      </div>
+    </ion-slide>
+  </ion-slide-box>
+  <ion-content class="has-header-md-banner"  scroll="false">
+    <ion-slide-box slide-tabs-scrollable="true"  delegate-handle="categories" show-pager="false" on-slide-changed="changeSlide(index)" bounce="false" ion-slide-tabs>
       <ion-slide ng-repeat="tab in selectedCatTabs.tabs  track by $index" ion-slide-tab-label="{{tab.name}}" style="background-color:white; width:100%;">
         <ion-content>
           <div class="row" style="padding: 1px 5px 4px;" ng-repeat="subCat_rows in tab.sub_cats track by $index">
             <div class="col zero-padding" ng-class="{'list card card-margin' : subCat_rows.length == 1 && $index==0}" ng-click="goToItems(subCat_rows[0])" ng-if="subCat_rows.length == 1">
               <div ng-class="{'list card card-margin full-height' : $index>0 }">
                 <div class="item item-image full-height">
-                  <img ng-src="{{$index==0 ? subCat_rows[0].image : 'app/modules/shop/img/cat-6.jpg'}}" class="full-height" ng-if="subCat_rows[0].image != ''">
-                  <img ng-src="{{$index==0 ? 'app/modules/shop/img/cat-6.jpg' : 'app/modules/shop/img/cat-6.jpg'}}" class="full-height" ng-if="subCat_rows[0].image == ''">
+                  <img ng-src="{{$index==0 ? subCat_rows[0].image : 'app/modules/shop/img/slide-show-2.jpg'}}" class="full-height" ng-if="subCat_rows[0].image != ''" style="max-height: 200px;">
+                  <img ng-src="{{$index==0 ? 'app/modules/shop/img/slide-show-2.jpg' : 'app/modules/shop/img/cat-6.jpg'}}" class="full-height" ng-if="subCat_rows[0].image == ''" style=" max-height: 200px;">
                   <div class="text-on-image card-title-shadow">
                     <h4 ng-bind-html="subCat_rows[0].name" class="multi-line-text"></h4>
                   </div>

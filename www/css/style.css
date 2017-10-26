@@ -123,6 +123,9 @@ ion-content{
 .has-header-md-search {
   top: 110px !important;
 }
+.has-header-md-banner{
+  top: 280px !important;
+}
 .left-title{
   margin-left: 60px;
 }

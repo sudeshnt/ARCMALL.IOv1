@@ -21,7 +21,6 @@
     <div class="row">
         <div class="list card item-card full-width" ng-click="openItemDetails()">
           <div class="item item-image" style="height:auto;">
-            <!--<img src="app/modules/shop/img/wish-2.jpg" class="full-width full-height">-->
             <ion-slide-box on-slide-changed="slideChanged(index)" slide-interval="1000" class="item-slide">
               <ion-slide>
                 <div id="shop" ng-click="openCategories()" style="height: 300px;">
@@ -58,6 +57,30 @@
           </div>
         </div>
     </div>
+    <div class="row">
+      <div class="tabs-secondary tabs-icon-left white-tabs" style="padding: 15px 0 0 10px;">
+        <h2 class="align-left" ng-bind-html="product.heading_title"></h2>
+        <h3 class="align-left new-price" ng-bind-html="product.price"></h3>
+        <strike><h3 class="align-left old-price" ng-bind-html="product.price"></h3></strike>
+        <div class="row discount-review" >
+          <div class="chip capital discount-chip">60% Off</div>
+          <div style="padding-top: 20px;text-align: right;">
+            51 Reviews<br>
+            <i class="star ion-android-star star-active"></i>
+            <i class="star ion-android-star star-active"></i>
+            <i class="star ion-android-star star-active"></i>
+            <i class="star ion-android-star-outline star-disabled"></i>
+            <i class="star ion-android-star-outline star-disabled"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="product-details-topic zero-padding" style="border: none;">
+      <h3 class="capital full-width">description</h3>
+      <p style="margin-top:15px">
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type.
+      </p>
+    </div>
     <div class="row" ng-repeat="option in product.options track by $index"  style="padding-left: 10px; padding-right: 10px;">
       <div class="col align-center" style="max-width: 100px;">
         <h4 style="margin-top: 20px;">{{option.name}}</h4>
@@ -68,27 +91,18 @@
         </md-select>
       </div>
     </div>
-    <!--<ion-list>-->
-      <!--<div ng-repeat="group in groups">-->
-        <!--<ion-item class="item-stable card item-details-collapse"-->
-                  <!--ng-click="toggleGroup(group)"-->
-                  <!--ng-class="{active: isGroupShown(group)}">-->
-          <!--<div style="margin-top: 17px;">-->
-            <!--<i class="icon" ng-class="isGroupShown(group) ? 'ion-minus-round' : 'ion-plus-round'"></i>-->
-            <!--&nbsp;-->
-            <!--<span>{{group.name}}</span>-->
-          <!--</div>-->
-        <!--</ion-item>-->
-        <!--<ion-item class="card item-accordion"-->
-                  <!--ng-show="isGroupShown(group)">-->
-          <!--<div style="white-space: pre-wrap;">{{group.content}}</div>-->
-        <!--</ion-item>-->
-      <!--</div>-->
-    <!--</ion-list>-->
-    <div class="product-details-topic zero-padding">
+    <div class="product-details-topic zero-padding" style="border: none;">
       <h3 class="capital full-width">recent reviews</h3>
       <p style="margin-top:15px">
-
+        <i class="star ion-android-star star-active"></i>
+        <i class="star ion-android-star star-active"></i>
+        <i class="star ion-android-star star-active"></i>
+        <i class="star ion-android-star-outline star-disabled"></i>
+        <i class="star ion-android-star-outline star-disabled"></i>
+        <br>
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+        <br>
+        <div class="full-width align-center"><a ng-click="" class="size-margin-auto">View More</a></div>
       </p>
     </div>
     <div class="product-details-topic zero-padding">

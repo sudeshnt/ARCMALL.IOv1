@@ -119,8 +119,8 @@
 }
 .white-tabs
 {
-background: #fff !important;
-border-top: 1px solid #ddd !important;
+/*background: #fff !important;*/
+/*border-top: 1px solid #ddd !important;*/
 }
 .white-tabs > h2{
   font-size: 18px;
@@ -130,6 +130,18 @@ border-top: 1px solid #ddd !important;
   margin-top: 5px;
   font-size: 15px;
   color: #acabb9;
+}
+.white-tabs > strike > h3{
+  margin-top: 5px;
+  font-size: 15px;
+  color: #acabb9;
+}
+.white-tabs > .old-price{
+  color: #acabb9;
+}
+.white-tabs > .new-price{
+  color: #8e1318;
+  font-size: 25px;
 }
 .white-tabs-text
 {
@@ -349,4 +361,21 @@ md-select.md-default-theme:not([disabled]):focus .md-select-value, md-select:not
   width:30px;
   vertical-align: middle;
   margin-right: 12px;
+}
+.star{
+  color: #f3d97e;
+}
+.discount-chip{
+  background: #960b0e !important;
+  color: white !important;
+  font-size: medium !important;
+  font-weight: 500 !important;
+  width: fit-content !important;
+}
+.discount-review{
+  display: inline-block;
+  width: fit-content;
+  position: absolute;
+  right: 8px;
+  bottom: -30px;
 }

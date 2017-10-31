@@ -62,7 +62,7 @@
 }
 #shop .content div {
   position:absolute;
-  bottom:50px;
+  top:15px;
   right: 10px;
   color:#FFF;
 }
@@ -333,4 +333,20 @@ md-select.md-default-theme:not([disabled]):focus .md-select-value, md-select:not
   text-overflow: ellipsis;
   border: 1px solid #ddd;
   margin: 0;
+}
+.product-details-topic{
+  margin: 5px 15px 0 15px;
+  border-top: solid;
+  border-top-width: 1px;
+  border-top-color: #a7a6ac;
+  width: auto;
+}
+.product-details-topic > h3 {
+  font-size: 15px;
+  margin:10px 0 0 0
+}
+.product-details-topic > h3 > img {
+  width:30px;
+  vertical-align: middle;
+  margin-right: 12px;
 }

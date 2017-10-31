@@ -13,9 +13,9 @@ function ItemCtrl($scope,$state,$rootScope,$filter,$stateParams,serverConfig,htt
       $scope.product_id = $stateParams.product_id;
       init();
     }else{
-      // $scope.product_id = 212;
-      // init();
-      $state.go('categories');
+      $scope.product_id = 174;
+      init();
+      // $state.go('categories');
     }
 
     $scope.addItemToCart = function () {

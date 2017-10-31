@@ -68,71 +68,23 @@
         </md-select>
       </div>
     </div>
-    <!--<ion-list>-->
-      <!--<div ng-repeat="group in groups">-->
-        <!--<ion-item class="item-stable card item-details-collapse"-->
-                  <!--ng-click="toggleGroup(group)"-->
-                  <!--ng-class="{active: isGroupShown(group)}">-->
-          <!--<div style="margin-top: 17px;">-->
-            <!--<i class="icon" ng-class="isGroupShown(group) ? 'ion-minus-round' : 'ion-plus-round'"></i>-->
-            <!--&nbsp;-->
-            <!--<span>{{group.name}}</span>-->
-          <!--</div>-->
-        <!--</ion-item>-->
-        <!--<ion-item class="card item-accordion"-->
-                  <!--ng-show="isGroupShown(group)">-->
-          <!--<div style="white-space: pre-wrap;">{{group.content}}</div>-->
-        <!--</ion-item>-->
-      <!--</div>-->
-    <!--</ion-list>-->
-    <div class="product-details-topic zero-padding">
-      <h3 class="capital full-width">recent reviews</h3>
-      <p style="margin-top:15px">
-
-      </p>
-    </div>
-    <div class="product-details-topic zero-padding">
-      <h3 class="capital full-width">Shipping</h3>
-      <p style="margin-top:15px">
-        <span style="color:#a56a6c">$4.50</span> - To Sri Lanka via China Post
-        <a ng-click="" style="float:right">change</a>
-      </p>
-    </div>
-    <div class="product-details-topic zero-padding">
-      <h3 class="capital full-width">
-        <img ng-src="app/modules/shop/img/buyerprotection.png">Return Policy
-      </h3><br>
-      <div style="white-space: pre-wrap;">Returns accepted if the product is not as described or is damaged</div>
-      <h3 class="capital full-width">
-        <img ng-src="app/modules/shop/img/buyerprotection.png">
-        buyer protection
-      </h3><br>
-      <div style="white-space: pre-wrap;">To ensure that every buyer is protected when purchasing from Arcmall, we have the following refund options:<br><br>- Full refund if you don't receive your item<br>- Full or partial refund if the item is not as described or is damaged</div>
-      <h3 class="capital full-width">
-        <img ng-src="app/modules/shop/img/buyerprotection.png">
-        payment methods
-      </h3>
-    </div>
-    <div class="row product-details-topic zero-padding">
-      <h3 class="capital">Related Products
-      </h3>
-    </div>
-    <div class="row" ng-repeat="x in [1,2]">
-      <div class="col zero-padding" ng-repeat="y in [1,2]" style="max-width:50%;">
-        <div class="list card wish-list-card" ng-click="openItemDetails(product.product_id)">
-          <div class="item item-image" >
-            <img ng-src="{{product.thumb}}" class="full-width full-height">
+    <ion-list>
+      <div ng-repeat="group in groups">
+        <ion-item class="item-stable card item-details-collapse"
+                  ng-click="toggleGroup(group)"
+                  ng-class="{active: isGroupShown(group)}">
+          <div style="margin-top: 17px;">
+            <i class="icon" ng-class="isGroupShown(group) ? 'ion-minus-round' : 'ion-plus-round'"></i>
+            &nbsp;
+            <span>{{group.name}}</span>
           </div>
-          <div class="item tabs-secondary tabs-icon-left white-tabs" style="padding: 10px;">
-            <h3 class="align-center" ng-bind-html="product.heading_title"></h3>
-            <h3 class="align-center" ng-bind-html="product.price"></h3>
-          </div>
-        </div>
+        </ion-item>
+        <ion-item class="card item-accordion"
+                  ng-show="isGroupShown(group)">
+          <div style="white-space: pre-wrap;">{{group.content}}</div>
+        </ion-item>
       </div>
-      <div class="col zero-padding" ng-if="productRow.length==1">
-      </div>
-    </div>
-
+    </ion-list>
     <div class="row" style="min-height: 25px;"></div>
   </ion-content>
 </ion-view>

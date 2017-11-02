@@ -377,5 +377,18 @@ md-select.md-default-theme:not([disabled]):focus .md-select-value, md-select:not
   width: fit-content;
   position: absolute;
   right: 8px;
-  bottom: -30px;
+  bottom: 115px;
+}
+.option-select{
+  margin: 0px 0 0px !important;
+  width: 100%;
+  background: #e8e8e8;
+  height: 40px;
+  padding-left: 25px;
+}
+.option-select-row{
+  width: 95%;
+  margin: 0 auto 20px auto;
+  border-top: #d4d4d4 1px solid;
+  border-bottom: #d4d4d4 1px solid;
 }

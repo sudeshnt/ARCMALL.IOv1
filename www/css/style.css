@@ -45,6 +45,10 @@ ion-content{
   min-height: 0 !important;
   padding: 0 !important;
 }
+.button-xsm {
+  height: 40px;
+  line-height: 40px;
+}
 .button-sm{
   height: 50px;
   line-height: 50px;
@@ -99,6 +103,9 @@ ion-content{
 }
 .font-M{
   font-size : 15px;
+}
+.font-XM{
+  font-size : 20px;
 }
 .font-L{
   font-size: 25px;

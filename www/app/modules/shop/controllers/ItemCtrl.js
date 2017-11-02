@@ -2,9 +2,9 @@
 
 angular.module('shop.module').controller('ItemCtrl',ItemCtrl );
 
-ItemCtrl.$inject = ['$scope','$state','$rootScope','$filter','$stateParams','serverConfig','httpService','$httpParamSerializer','cartSev','$mdBottomSheet','$timeout'];
+ItemCtrl.$inject = ['$scope','$state','$rootScope','$filter','$stateParams','serverConfig','httpService','$httpParamSerializer','cartSev','$mdBottomSheet','$timeout','publicFunc'];
 
-function ItemCtrl($scope,$state,$rootScope,$filter,$stateParams,serverConfig,httpService,$httpParamSerializer,cartSev,$mdBottomSheet,$timeout) {
+function ItemCtrl($scope,$state,$rootScope,$filter,$stateParams,serverConfig,httpService,$httpParamSerializer,cartSev,$mdBottomSheet,$timeout,publicFunc) {
 
     $scope.cartSev = cartSev;
 
@@ -13,9 +13,9 @@ function ItemCtrl($scope,$state,$rootScope,$filter,$stateParams,serverConfig,htt
       $scope.product_id = $stateParams.product_id;
       init();
     }else{
-      $scope.product_id = 174;
-      init();
-      // $state.go('categories');
+      // $scope.product_id = 174;
+      // init();
+      $state.go('categories');
     }
 
     $scope.addItemToCart = function () {
@@ -212,6 +212,7 @@ function ItemCtrl($scope,$state,$rootScope,$filter,$stateParams,serverConfig,htt
             }
           ];
           getProductReview();
+          initRelatedProducts();
         }
       });
     }
@@ -233,7 +234,29 @@ function ItemCtrl($scope,$state,$rootScope,$filter,$stateParams,serverConfig,htt
       });
     }
 
-    // init();
+    function initRelatedProducts(){
+      var extended_url = '/latest';
+      var reqObj = {
+        "start":50,
+        "limit":4,
+        "width":200,
+        "height":200,
+      };
+      var config = {
+        headers:{
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      };
+      httpService.postRequest(serverConfig.clientAPI,extended_url, $httpParamSerializer(reqObj),config).then(function(response){
+        if(response.status === 200){
+          $scope.relatedProducts = publicFunc.devideArray(response.data.products,2);
+        }
+      });
+    }
+
+    $scope.openItemDetails = function(product_id){
+      $state.go('item',{category_id:$scope.category_id,product_id:product_id});
+    };
 
     function init(){
       initProduct();

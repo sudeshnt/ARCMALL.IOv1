@@ -17,12 +17,35 @@
 
 <ion-view cache-view="false">
 
-  <ion-content class="has-header-md" overflow-scroll="true" style="bottom:50px;">
-    <div id="shop" ng-click="openCategories()" style="height: 250px;">
-      <div class="content">
-        <img style="height: 250px;width: 100%;" ng-src="{{product.thumb}}"/>
-      </div>
-    </div>
+  <ion-content class="has-header-md" overflow-scroll="true" style="bottom:50px;background: #edebeb;">
+    <!--<div id="shop" ng-click="openCategories()" style="height: 250px;">-->
+      <!--<div class="content">-->
+        <!--<img style="height: 250px;width: 100%;" ng-src="{{product.thumb}}"/>-->
+      <!--</div>-->
+    <!--</div>-->
+    <ion-slide-box on-slide-changed="slideChanged(index)" slide-interval="1000" class="item-slide"  style="height: 250px;">
+      <ion-slide>
+        <div id="shop" ng-click="openCategories()" style="height: 250px;">
+          <div class="content align-center" style="background: white;">
+            <img style="height: 250px;width: auto;" ng-src="{{product.thumb}}"/>
+          </div>
+        </div>
+      </ion-slide>
+      <ion-slide>
+        <div id="shop" style="height: 250px;">
+          <div class="content align-center" style="background: white;">
+            <img  style="height: 250px;width: auto;" ng-src="{{product.thumb}}"/>
+          </div>
+        </div>
+      </ion-slide>
+      <ion-slide>
+        <div id="shop" style="height: 250px;">
+          <div class="content align-center" style="background: white;">
+            <img  style="height: 250px;width: auto;" ng-src="{{product.thumb}}"/>
+          </div>
+        </div>
+      </ion-slide>
+    </ion-slide-box>
     <!--<div class="row">-->
         <!--<div class="list card item-card full-width" ng-click="openItemDetails()">-->
           <!--<div class="item item-image" style="height:auto;">-->
@@ -107,31 +130,50 @@
       </div>
     </div>
     <div class="row option-select-row" style="padding:0px 0 !important;">
-      <div class="col zero-padding">
+      <div class="col zero-padding" ng-repeat="option in product.options track by $index">
         <div layout="row" layout-align="space-between center">
-          <md-select ng-model="item.currency_code"  placeholder="Colour" class="md-no-underline option-select">
-            <md-option ng-repeat="currency in currencies track by $index" value="{{currency.code}}">{{currency.title}}</md-option>
+          <md-select ng-model="product.selectedOption"  placeholder="{{option.name}}" ng-change="setSelectedOption(option,product.selectedOption)" class="md-no-underline option-select">
+            <md-option ng-repeat="option_value in option.product_option_value track by $index" value="{{option_value}}">{{option_value.name}}</md-option>
           </md-select>
         </div>
       </div>
-      <div class="col zero-padding">
-        <div layout="row" layout-align="space-between center">
-          <md-select ng-model="item.currency_code"  placeholder="Size" class="md-no-underline option-select">
-            <md-option ng-repeat="currency in currencies track by $index" value="{{currency.code}}">{{currency.title}}</md-option>
-          </md-select>
-        </div>
-      </div>
+      <!--<div class="col zero-padding">-->
+        <!--<div layout="row" layout-align="space-between center">-->
+          <!--<md-select ng-model="item.currency_code"  placeholder="Size" class="md-no-underline option-select">-->
+            <!--<md-option ng-repeat="currency in currencies track by $index" value="{{currency.code}}">{{currency.title}}</md-option>-->
+          <!--</md-select>-->
+        <!--</div>-->
+      <!--</div>-->
     </div>
-    <div class="row" ng-repeat="option in product.options track by $index"  style="padding-left: 10px; padding-right: 10px;">
-      <div class="col align-center" style="max-width: 100px;">
-        <h4 style="margin-top: 20px;">{{option.name}}</h4>
-      </div>
-      <div class="col">
-        <md-select ng-model="product.selectedOption" ng-change="setSelectedOption(option,product.selectedOption)" placeholder="Currency" class="md-no-underline category-select">
-          <md-option ng-repeat="option_value in option.product_option_value track by $index" value="{{option_value}}">{{option_value.name}}</md-option>
-        </md-select>
-      </div>
-    </div>
+    <!--<div class="row option-select-row" style="padding:0px 0 !important;">-->
+      <!--<div class="col zero-padding">-->
+        <!--<div layout="row" layout-align="space-between center">-->
+          <!--<md-select ng-model="item.currency_code"  placeholder="Colour" class="md-no-underline option-select">-->
+            <!--<md-option ng-repeat="currency in currencies track by $index" value="{{currency.code}}">{{currency.title}}</md-option>-->
+          <!--</md-select>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="col zero-padding">-->
+        <!--<div layout="row" layout-align="space-between center">-->
+          <!--<md-select ng-model="item.currency_code"  placeholder="Size" class="md-no-underline option-select">-->
+            <!--<md-option ng-repeat="currency in currencies track by $index" value="{{currency.code}}">{{currency.title}}</md-option>-->
+          <!--</md-select>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+
+    <!--options-->
+
+    <!--<div class="row" ng-repeat="option in product.options track by $index"  style="padding-left: 10px; padding-right: 10px;">-->
+      <!--<div class="col align-center" style="max-width: 100px;">-->
+        <!--<h4 style="margin-top: 20px;">{{option.name}}</h4>-->
+      <!--</div>-->
+      <!--<div class="col">-->
+        <!--<md-select ng-model="product.selectedOption" ng-change="setSelectedOption(option,product.selectedOption)" placeholder="Currency" class="md-no-underline category-select">-->
+          <!--<md-option ng-repeat="option_value in option.product_option_value track by $index" value="{{option_value}}">{{option_value.name}}</md-option>-->
+        <!--</md-select>-->
+      <!--</div>-->
+    <!--</div>-->
     <div class="product-details-topic zero-padding" style="border: none;">
       <h3 class="capital full-width">recent reviews</h3>
       <p style="margin-top:15px">

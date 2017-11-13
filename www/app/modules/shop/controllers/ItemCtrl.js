@@ -57,11 +57,13 @@ function ItemCtrl($scope,$state,$rootScope,$filter,$stateParams,serverConfig,htt
         var reqObj = {
           "product_id":$scope.product.product_id,
           "quantity":$scope.product.quantity,
-          "option":[]
+          "option":{}
+          // "option":[]
         };
         if($scope.product.selected_options.length>0){
           for(var i in $scope.product.selected_options){
-            reqObj.option = [$scope.product.selected_options[i].option_value_id]
+            reqObj.option[$scope.product.selected_options[i].option_id] = parseInt($scope.product.selected_options[i].option_value_id)
+            // reqObj.option = [$scope.product.selected_options[i].option_value_id]
             // reqObj.option.push($scope.product.selected_options[i].option_value_id)
             // reqObj[$scope$scope.product.selected_options[i].option_id] = $scope.product.selected_options[i].option_value_id;
           }

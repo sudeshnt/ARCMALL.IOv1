@@ -10,15 +10,15 @@ function CartCtrl($scope,$state,$rootScope, $timeout, $mdBottomSheet, $mdToast,c
   // getProductsOfCart();
 
   if(cartSev.shoppingCart.isEmpty){
-    $state.go('home.new');
+    // $state.go('home.new');
   }
 
   $scope.removeItemFromCart = function (product_id) {
     cartSev.shoppingCart.removeItem(product_id);
     removeProductFromCartAPI(product_id);
-    if(cartSev.shoppingCart.isEmpty){
-      $state.go('home.new');
-    }
+    // if(cartSev.shoppingCart.isEmpty){
+    //   $state.go('home.new');
+    // }
   };
 
   function getProductsOfCart() {

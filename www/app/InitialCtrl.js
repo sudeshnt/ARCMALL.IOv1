@@ -89,8 +89,8 @@ function InitialCtrl($scope,$rootScope,$state,$ionicHistory,$ionicLoading,server
   }
 
   $scope.viewCart = function () {
-    if(cartSev.shoppingCart.isEmpty==false){
+    // if(cartSev.shoppingCart.isEmpty==false){
       $state.go('cart');
-    }
+    // }
   }
 }

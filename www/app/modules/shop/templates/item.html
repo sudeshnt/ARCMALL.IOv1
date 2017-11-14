@@ -17,7 +17,7 @@
 
 <ion-view cache-view="false">
 
-  <ion-content class="has-header-md" overflow-scroll="true" style="bottom:50px;background: #edebeb;">
+  <ion-content class="has-header-md" overflow-scroll="true" style="bottom:50px;background: #F5F6F7;">
     <!--<div id="shop" ng-click="openCategories()" style="height: 250px;">-->
       <!--<div class="content">-->
         <!--<img style="height: 250px;width: 100%;" ng-src="{{product.thumb}}"/>-->
@@ -220,6 +220,25 @@
 
     </div>
     <div class="row product-details-topic zero-padding">
+      <h3 class="capital">STORE DETAILS </h3>
+    </div>
+    <div class="row" style="margin: 5px 0 0 10px;">
+      <h4 class="capital">Daisy Jones Bakery </h4>
+    </div>
+    <div style="margin-left:15px;">
+      <i class="star font-XM ion-android-star star-active"></i>
+      <i class="star font-XM ion-android-star star-active"></i>
+      <i class="star font-XM ion-android-star star-active"></i>
+      <i class="star font-XM ion-android-star-outline star-disabled"></i>
+      <i class="star font-XM ion-android-star-outline star-disabled"></i> (41 Reviews)<br>
+    </div>
+    <div class="row align-center">
+      <a class="button button-outline button-positive visit-store-btn size-margin-auto" ng-href="#/seller-profile/{{product.product_id}}/{{product.seller_id}}">
+        Visit Store
+      </a>
+    </div>
+
+    <div class="row product-details-topic zero-padding">
       <h3 class="capital">Related Products
       </h3>
     </div>
@@ -230,7 +249,7 @@
             <img ng-src="{{relatedProduct.thumb}}" class="full-width full-height">
           </div>
           <div class="item tabs-secondary tabs-icon-left white-tabs" style="padding: 10px;">
-            <h3 class="align-center" ng-bind-html="relatedProduct.heading_title"></h3>
+            <h3 class="align-center" ng-bind-html="relatedProduct.name"></h3>
             <h3 class="align-center" ng-bind-html="relatedProduct.price"></h3>
           </div>
         </div>
@@ -249,7 +268,8 @@
         <div class="col padding-top-zero" style="border-right: white 1px solid;">
           <a class="button square button-block button-light zero-margin capital white" style="background-color:#007fa3;" ng-disabled="availability_in_wishlist" ng-click="addItemToWishList()">
           <!--<a class="button square button-block button-light zero-margin capital white" style="background-color:#4e636c;" ng-disabled="availability_in_wishlist" ng-click="addItemToWishList()">-->
-            {{"ADD_TO_WISH_LIST" | translate}}
+            <span ng-if="!availability_in_wishlist">{{"ADD_TO_WISH_LIST" | translate}}</span>
+            <span ng-if="availability_in_wishlist">{{"ADDED_TO_WISH_LIST" | translate}}</span>
           </a>
         </div>
         <div class="col padding-top-zero">

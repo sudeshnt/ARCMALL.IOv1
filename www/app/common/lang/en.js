@@ -23,6 +23,7 @@ angular.module('lang_en',['pascalprecht.translate','ngSanitize'])
       ALL_CATEGORIES:"All Categories",
       WISH_LIST:"Wish List",
       ADD_TO_WISH_LIST:"add to wish list",
+      ADDED_TO_WISH_LIST:"added to wish list",
       ADD_TO_CART:"add to cart",
       SEARCH_AN_ITEM:"Search an Item ...",
       BILLING_DETAILS:"Billing Details",

@@ -81,4 +81,9 @@ shopModule.config(function config($stateProvider,$urlRouterProvider) {
       templateUrl: 'app/modules/shop/templates/my-profile.html',
       controller: 'MyProfileCtrl'
     })
+    .state('seller-profile', {
+      url: '/seller-profile/:product_id/:seller_id',
+      templateUrl: 'app/modules/shop/templates/seller-profile.html',
+      controller: 'SellerProfileCtrl'
+    })
 });

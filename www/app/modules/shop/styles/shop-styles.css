@@ -392,3 +392,14 @@ md-select.md-default-theme:not([disabled]):focus .md-select-value, md-select:not
   border-top: #d4d4d4 1px solid;
   border-bottom: #d4d4d4 1px solid;
 }
+.visit-store-btn{
+  width: 85%;
+  margin: 15px 0;
+  color: black !important;
+  border-color: #48aab7 !important;
+  border-width: 2px;
+}
+.visit-store-btn.activated{
+  background-color: #48aab7 !important;
+
+}

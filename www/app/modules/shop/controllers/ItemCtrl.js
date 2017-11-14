@@ -68,7 +68,7 @@ function ItemCtrl($scope,$state,$rootScope,$filter,$stateParams,serverConfig,htt
             // reqObj[$scope$scope.product.selected_options[i].option_id] = $scope.product.selected_options[i].option_value_id;
           }
         }
-        console.log(reqObj);
+        // console.log(reqObj);
         var config = {
           headers:{
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -183,6 +183,10 @@ function ItemCtrl($scope,$state,$rootScope,$filter,$stateParams,serverConfig,htt
           $scope.product = response.data;
           $scope.product.quantity = 1;
           $scope.product.selected_options = [];
+
+          // remove this when actual seller is taken from product
+          $scope.product.seller_id = 1;
+
           $scope.availability_in_wishlist = initAvailabilityInWIshList();
 
           $scope.groups = [

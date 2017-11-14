@@ -12,8 +12,8 @@ ion-content{
   margin: 0 !important;
 }
 .size-margin-auto{
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
 .card-margin{
   margin:2px 2px !important;

@@ -47,45 +47,46 @@
 
 
 <ion-view cache-view="false">
-  <ion-slide-box on-slide-changed="slideChanged2(index)" delegate-handle="banners" auto-play="true" does-continue="true" slide-interval="4000" style="height:195px; top:56px;">
-    <ion-slide>
-      <div id="shop">
-        <div class="content">
-          <img class="full-width" style="height: 220px;" src="app/modules/shop/img/slide-show-1.jpg"/>
-          <div class="desc">
-            <h3 style="color: #617e89;">New Collection</h3>
-            <p>THis crisp white cotton poplin<br> shirt has wide cuffs</p>
-            <a class="button  button-assertive capital">{{'DISCOVER' | translate}}</a>
-          </div>
-        </div>
-      </div>
-    </ion-slide>
-    <ion-slide>
-      <div id="shop">
-        <div class="content">
-          <img class="full-width" style="height: 220px;" src="app/modules/shop/img/slide-show-2.jpg"/>
-          <div class="desc">
-            <h3 style="color: #617e89;">New Collection</h3>
-            <p>THis crisp white cotton poplin<br> shirt has wide cuffs</p>
-            <a class="button  button-assertive capital">{{'DISCOVER' | translate}}</a>
-          </div>
-        </div>
-      </div>
-    </ion-slide>
-    <ion-slide>
-      <div id="shop">
-        <div class="content">
-          <img class="full-width" style="height: 220px;" src="app/modules/shop/img/slide-show-3.jpg"/>
-          <div class="desc">
-            <h3 style="color: #617e89;">New Collection</h3>
-            <p>THis crisp white cotton poplin<br> shirt has wide cuffs</p>
-            <a class="button  button-assertive capital">{{'DISCOVER' | translate}}</a>
-          </div>
-        </div>
-      </div>
-    </ion-slide>
-  </ion-slide-box>
-  <ion-content class="has-header-md-banner"  scroll="false">
+  <!--<ion-slide-box on-slide-changed="slideChanged2(index)" delegate-handle="banners" auto-play="true" does-continue="true" slide-interval="4000" style="height:195px; top:56px;">-->
+    <!--<ion-slide>-->
+      <!--<div id="shop">-->
+        <!--<div class="content">-->
+          <!--<img class="full-width" style="height: 220px;" src="app/modules/shop/img/slide-show-1.jpg"/>-->
+          <!--<div class="desc">-->
+            <!--<h3 style="color: #617e89;">New Collection</h3>-->
+            <!--<p>THis crisp white cotton poplin<br> shirt has wide cuffs</p>-->
+            <!--<a class="button  button-assertive capital">{{'DISCOVER' | translate}}</a>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</ion-slide>-->
+    <!--<ion-slide>-->
+      <!--<div id="shop">-->
+        <!--<div class="content">-->
+          <!--<img class="full-width" style="height: 220px;" src="app/modules/shop/img/slide-show-2.jpg"/>-->
+          <!--<div class="desc">-->
+            <!--<h3 style="color: #617e89;">New Collection</h3>-->
+            <!--<p>THis crisp white cotton poplin<br> shirt has wide cuffs</p>-->
+            <!--<a class="button  button-assertive capital">{{'DISCOVER' | translate}}</a>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</ion-slide>-->
+    <!--<ion-slide>-->
+      <!--<div id="shop">-->
+        <!--<div class="content">-->
+          <!--<img class="full-width" style="height: 220px;" src="app/modules/shop/img/slide-show-3.jpg"/>-->
+          <!--<div class="desc">-->
+            <!--<h3 style="color: #617e89;">New Collection</h3>-->
+            <!--<p>THis crisp white cotton poplin<br> shirt has wide cuffs</p>-->
+            <!--<a class="button  button-assertive capital">{{'DISCOVER' | translate}}</a>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</ion-slide>-->
+  <!--</ion-slide-box>-->
+  <ion-content class="has-header-md"  scroll="false">
+  <!--<ion-content class="has-header-md-banner"  scroll="false">-->
     <ion-slide-box slide-tabs-scrollable="true"  delegate-handle="categories" show-pager="false" on-slide-changed="changeSlide(index)" bounce="false" ion-slide-tabs>
       <ion-slide ng-repeat="tab in selectedCatTabs.tabs  track by $index" ion-slide-tab-label="{{tab.name}}" style="background-color:white; width:100%;">
         <ion-content>

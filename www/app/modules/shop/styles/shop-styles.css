@@ -377,7 +377,9 @@ md-select.md-default-theme:not([disabled]):focus .md-select-value, md-select:not
   width: fit-content;
   position: absolute;
   right: 8px;
-  bottom: 115px;
+  height: fit-content;
+  display: block;
+  vertical-align: middle;
 }
 .option-select{
   margin: 0px 0 0px !important;
@@ -402,4 +404,17 @@ md-select.md-default-theme:not([disabled]):focus .md-select-value, md-select:not
 .visit-store-btn.activated{
   background-color: #48aab7 !important;
 
+}
+
+.ionic_ratings .read_only {
+   pointer-events:none !important;
+ }
+
+ .ionic_ratings .icon {
+    font-size: 15px;
+  }
+
+.col-border {
+  background: gray;
+  height: 0.5px
 }

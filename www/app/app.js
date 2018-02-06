@@ -10,6 +10,7 @@ var arcMall = angular.module('arcMall', [
   'lang_en',
   'modules',
   'ngCordova',
+  'ionic-ratings',
   // 'tabSlideBox',
   'config.module',
   // 'googleplus'

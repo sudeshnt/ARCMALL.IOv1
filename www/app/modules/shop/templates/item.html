@@ -85,27 +85,39 @@
         <!--</div>-->
     <!--</div>-->
     <div class="row">
-      <div class="tabs-secondary tabs-icon-left white-tabs" style="padding: 10px 0 0 10px;">
-        <h2 class="align-left" ng-bind-html="product.heading_title"></h2>
-        <h3 class="align-left new-price" ng-bind-html="product.price"></h3>
-        <strike><h3 class="align-left old-price" ng-bind-html="product.price"></h3></strike>
-        <div class="row discount-review align-right zero-padding" >
-          <div class="row chip capital discount-chip">60% Off</div>
+      <div class="col-70">
+        <div class="tabs-secondary tabs-icon-left white-tabs" style="padding: 10px 0 0 10px;">
+          <h2 class="align-left" ng-bind-html="product.heading_title"></h2>
+          <h3 class="align-left new-price" ng-if="product.special.length > 0" ng-bind-html="product.special"></h3>
+          <h3 class="align-left new-price" ng-if="product.special.length <= 0" ng-bind-html="product.price"></h3>
+          <strike><h3 class="align-left old-price" ng-bind-html="product.price"></h3></strike>
+
+        </div>
+      </div>
+
+      <div class="col-30">
+        <div class="row discount-review align-right" style="padding: 20px 0 0 0;" >
+          <div ng-if="percentage != 100" class="row chip capital discount-chip">{{percentage}}% Off</div>
           <div style="padding-top: 20px;text-align: right;">
-            51 Reviews<br>
-            <i class="star font-XM ion-android-star star-active"></i>
-            <i class="star font-XM ion-android-star star-active"></i>
-            <i class="star font-XM ion-android-star star-active"></i>
-            <i class="star font-XM ion-android-star-outline star-disabled"></i>
-            <i class="star font-XM ion-android-star-outline star-disabled"></i>
+            {{reviews.reviews.length}} Reviews<br>
+
+            <div ng-if="reviews.reviews.length > 0">
+              <ion-row>
+                <ion-col>
+                  <ionic-ratings style="text-align:right; font-size: 25px !important;" ratingsobj='ratingsObject' index='0'></ionic-ratings>
+                </ion-col>
+              </ion-row>
+            </div>
+
           </div>
         </div>
       </div>
+
     </div>
     <div class="product-details-topic zero-padding" style="border: none;">
       <h3 class="capital full-width">description</h3>
       <p style="margin-top:15px">
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type.
+        {{product.description}}
       </p>
     </div>
     <div class="row zero-padding option-select-row">
@@ -175,48 +187,111 @@
       <!--</div>-->
     <!--</div>-->
     <div class="product-details-topic zero-padding" style="border: none;">
+
       <h3 class="capital full-width">recent reviews</h3>
-      <p style="margin-top:15px">
-        <i class="star ion-android-star star-active"></i>
-        <i class="star ion-android-star star-active"></i>
-        <i class="star ion-android-star star-active"></i>
-        <i class="star ion-android-star-outline star-disabled"></i>
-        <i class="star ion-android-star-outline star-disabled"></i>
-        <br>
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-        <br>
-        <i class="star ion-android-star star-active"></i>
-        <i class="star ion-android-star star-active"></i>
-        <i class="star ion-android-star star-active"></i>
-        <i class="star ion-android-star-outline star-disabled"></i>
-        <i class="star ion-android-star-outline star-disabled"></i>
-        <br>
-        Lorem Ipsum is simply dummy text.
-        <div class="full-width align-center"><a ng-click="" class="size-margin-auto">View More</a></div>
-      </p>
+
+      <div class="zero-padding" style="margin-top:20px" ng-repeat="review in reviews.reviews track by $index">
+
+        <ion-grid>
+
+          <ion-row>
+            <ion-col>
+              <ionic-ratings style="text-align:left" ratingsobj='review.rating' index='$index'></ionic-ratings>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              {{review.author}}
+            </ion-col>
+            <ion-col>
+              <span style="float:right">{{review.date_added}}</span>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col>
+              <p style="margin-top:15px">
+                {{review.text}}
+              </p>
+            </ion-col>
+
+          </ion-row>
+
+          <div class="col-border"></div>
+
+        </ion-grid>
+
+      </div>
+
     </div>
     <div class="product-details-topic zero-padding">
+
       <h3 class="capital full-width">Shipping</h3>
-      <p style="margin-top:15px">
-        <span style="color:#a56a6c">$4.50</span> - To Sri Lanka via China Post
-        <a ng-click="" style="float:right">change</a>
-      </p>
+
+      <div class="row zero-padding">
+        <p style="margin-top:15px">
+          <span style="color:#a56a6c">$4.50</span> - To Sri Lanka via China Post
+        </p>
+      </div>
+      <div class="row row zero-padding">
+        <div class="full-width align-right">
+          <a text-right ng-click="">change</a>
+        </div>
+      </div>
+
+
     </div>
-    <div class="product-details-topic zero-padding">
-      <h3 class="capital full-width">
-        <img ng-src="app/modules/shop/img/return_policy.png">Return Policy
-      </h3><br>
-      <div style="white-space: pre-wrap;">Returns accepted if the product is not as described or is damaged</div>
-      <h3 class="capital full-width">
-        <img ng-src="app/modules/shop/img/buyer_protection.png">
-        buyer protection
-      </h3><br>
-      <div style="white-space: pre-wrap;">To ensure that every buyer is protected when purchasing from Arcmall, we have the following refund options:<br><br>- Full refund if you don't receive your item<br>- Full or partial refund if the item is not as described or is damaged</div>
-      <h3 class="capital full-width">
-        <img ng-src="app/modules/shop/img/payment_types.png">
-        payment methods
-      </h3><br>
-      <img class="full-width" ng-src="app/modules/shop/img/card_types.png">
+    <div class="product-details-topic zero-padding" >
+
+      <button class="zero-padding" style="margin-top:15px" (click)="presentPopover($event)">
+
+        <div class="row zero-padding">
+          <div class="column">
+              <img style="text-align: center; padding-top:5px" width="30" ng-src="app/modules/shop/img/return_policy.png">
+          </div>
+          <div class="column">
+            <h3 class="capital align-center" style="padding-left:15px; padding-top:10px; font-size:15px">Return Policy</h3>
+          </div>
+        </div>
+        <div class="row zero-padding">
+          <div class="align-left" style="white-space: pre-wrap; padding-top:10px">Returns accepted if the product is not as described or is damaged</div>
+        </div>
+
+      </button>
+
+      <button class="zero-padding" style="margin-top:15px" (click)="presentPopover($event)">
+
+        <div class="row zero-padding">
+          <div class="column">
+              <img style="text-align: center; padding-top:5px" width="30" ng-src="app/modules/shop/img/buyer_protection.png">
+          </div>
+          <div class="column">
+            <h3 class="capital align-center" style="padding-left:15px; padding-top:10px; font-size:15px">buyer protection</h3>
+          </div>
+        </div>
+        <div class="row zero-padding">
+          <div class="align-left" style="white-space: pre-wrap; padding-top:10px">To ensure that every buyer is protected when purchasing from Arcmall, we have the following refund options:<br><br>- Full refund if you don't receive your item<br>- Full or partial refund if the item is not as described or is damaged</div>
+        </div>
+
+      </button>
+
+
+      <button class="zero-padding" style="margin-top:15px" (click)="presentPopover($event)">
+
+        <div class="row zero-padding">
+          <div class="column">
+              <img style="text-align: center; padding-top:5px" width="30" ng-src="app/modules/shop/img/payment_types.png">
+          </div>
+          <div class="column">
+            <h3 class="capital align-center" style="padding-left:15px; padding-top:10px; font-size:15px">payment methods</h3>
+          </div>
+        </div>
+        <div class="row zero-padding">
+          <img class="full-width full-height" style="padding-top:10px;" ng-src="app/modules/shop/img/card_types.png">
+        </div>
+
+      </button>
+
 
     </div>
     <div class="row product-details-topic zero-padding">

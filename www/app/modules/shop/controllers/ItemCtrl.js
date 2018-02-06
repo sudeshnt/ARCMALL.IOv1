@@ -183,6 +183,21 @@ function ItemCtrl($scope,$state,$rootScope,$filter,$stateParams,serverConfig,htt
           $scope.product = response.data;
           $scope.product.quantity = 1;
           $scope.product.selected_options = [];
+          $scope.percentage = (response.data.special_clear / response.data.price_clear * 100).toFixed(1);
+
+
+          $scope.ratingsObject = {
+            iconOn: 'ion-ios-star',    //Optional
+            iconOff: 'ion-ios-star-outline',   //Optional
+            iconOnColor: '#f3d97e',  //Optional
+            iconOffColor:  'rgb(200, 100, 100)',    //Optional
+            rating:  response.data.rating, //Optional
+            minRating:0,    //Optional
+            readOnly: true, //Optional
+            callback: function(rating, index) {    //Mandatory
+              $scope.ratingsCallback(rating, index);
+            }
+          };
 
           // remove this when actual seller is taken from product
           $scope.product.seller_id = 1;
@@ -235,7 +250,38 @@ function ItemCtrl($scope,$state,$rootScope,$filter,$stateParams,serverConfig,htt
       };
       httpService.postRequest(serverConfig.clientAPI,extended_url, $httpParamSerializer(reqObj),config).then(function(response){
         if(response.status === 200){
-          // console.log(response);
+
+          // var rating = [];
+
+
+            for(var index in response.data.reviews) {
+
+              var review = response.data.reviews[index];
+              var ratingsObject = {
+                iconOn: 'ion-ios-star',    //Optional
+                iconOff: 'ion-ios-star-outline',   //Optional
+                iconOnColor: '#f3d97e',  //Optional
+                iconOffColor:  'rgb(200, 100, 100)',    //Optional
+                rating:  review.rating, //Optional
+                minRating:0,    //Optional
+                readOnly: true, //Optional
+                callback: function(rating, index) {    //Mandatory
+                  $scope.ratingsCallback(rating, index);
+                }
+              };
+
+              console.log("review");
+              console.log(review);
+
+              response.data.reviews[index].rating = Object.assign({}, ratingsObject);
+
+              // response.data.ratings.push(Object.assign({}, ratingsObject));
+            }
+
+              $scope.reviews = response.data;
+
+              console.log("reviews");
+              console.log($scope.reviews);
         }
       });
     }

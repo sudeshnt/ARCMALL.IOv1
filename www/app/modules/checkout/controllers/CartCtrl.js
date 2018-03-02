@@ -6,12 +6,7 @@ CartCtrl.$inject = ['$scope','$state','$rootScope','$timeout', '$mdBottomSheet',
 
 function CartCtrl($scope,$state,$rootScope, $timeout, $mdBottomSheet, $mdToast,cartSev,serverConfig,httpService,$httpParamSerializer) {
 
-  // $scope.cart = cartSev.shoppingCart.cart;
-  // getProductsOfCart();
-
-  if(cartSev.shoppingCart.isEmpty){
-    // $state.go('home.new');
-  }
+   getProductsOfCart();
 
   $scope.removeItemFromCart = function (product_id) {
     cartSev.shoppingCart.removeItem(product_id);
@@ -22,6 +17,7 @@ function CartCtrl($scope,$state,$rootScope, $timeout, $mdBottomSheet, $mdToast,c
   };
 
   function getProductsOfCart() {
+    $scope.isCartLoaded = false;
     var extended_url = '/cart/products';
     var reqObj = {};
     var config = {
@@ -32,6 +28,11 @@ function CartCtrl($scope,$state,$rootScope, $timeout, $mdBottomSheet, $mdToast,c
     httpService.postRequest(serverConfig.clientAPI,extended_url, $httpParamSerializer(reqObj),config).then(function(response){
       if(response.status === 200){
         $scope.cart = response.data;
+        console.log("cart");
+        console.log(response.data.products);
+        if(response.data.products.length > 0) {
+            $scope.isCartLoaded = true;
+        }
       }
     });
   }
@@ -74,6 +75,16 @@ function CartCtrl($scope,$state,$rootScope, $timeout, $mdBottomSheet, $mdToast,c
         for(var i in $scope.cart.products){
           if($scope.cart.products[i].cart_id==cart_id){
             $scope.cart.products.splice(i,1);
+            var cartStatus = localStorage.getItem('cartItemCount');
+            if(cartStatus != null && cartStatus > 0) {
+              cartStatus = cartStatus - 1;
+              localStorage.setItem('cartItemCount', cartStatus);
+              $rootScope.cartItemCount = cartStatus;
+            }
+            else {
+              localStorage.setItem('cartItemCount', 0);
+              $rootScope.cartItemCount = 0;
+            }
             break;
           }
         }
@@ -106,7 +117,4 @@ function CartCtrl($scope,$state,$rootScope, $timeout, $mdBottomSheet, $mdToast,c
     });
   };
 
-
-
 }
-

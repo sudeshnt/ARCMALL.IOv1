@@ -76,9 +76,15 @@ function ItemCtrl($scope,$state,$rootScope,$filter,$stateParams,serverConfig,htt
         };
 
         httpService.postRequest(serverConfig.clientAPI,extended_url, $httpParamSerializer(reqObj),config).then(function(response){
-          if(response.status === 200){
-            $rootScope.cartItemCount = !itemAvailability ? $rootScope.cartItemCount+=1 : $rootScope.cartItemCount;
-          }
+
+          // if(response != null) {
+            // if(response.status === 200){
+              $rootScope.cartItemCount = !itemAvailability ? $rootScope.cartItemCount+=1 : $rootScope.cartItemCount;
+              localStorage.setItem('cartItemCount',$rootScope.cartItemCount);
+
+            // }
+          // }
+
         });
     }
 

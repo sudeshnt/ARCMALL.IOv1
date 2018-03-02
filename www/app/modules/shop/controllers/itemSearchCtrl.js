@@ -2,9 +2,9 @@
 
 angular.module('shop.module').controller('ItemSearchCtrl',ItemSearchCtrl );
 
-ItemSearchCtrl.$inject = ['$scope','$state','serverConfig','httpService','$httpParamSerializer','publicFunc'];
+ItemSearchCtrl.$inject = ['$scope','$state','serverConfig','httpService','$httpParamSerializer','publicFunc', '$timeout'];
 
-function ItemSearchCtrl($scope,$state,serverConfig,httpService,$httpParamSerializer,publicFunc) {
+function ItemSearchCtrl($scope,$state,serverConfig,httpService,$httpParamSerializer,publicFunc, $timeout) {
 
   $scope.search = {
       "key" : ''
@@ -66,6 +66,15 @@ function ItemSearchCtrl($scope,$state,serverConfig,httpService,$httpParamSeriali
     offset ++;
     $scope.searchProduct(true);
   }
+
+  $scope.$on('$stateChangeSuccess',
+    function onStateSuccess(event, toState, toParams, fromState) {
+      $timeout(function() {
+        var searchBar = document.getElementById('search-bar');
+        searchBar.focus();
+      }, 150);
+    }
+  );
 
   init();
 

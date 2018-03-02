@@ -39,12 +39,20 @@
       // var url = service.serviceUrl+service.base_url+extended_url;
       var url = service.serviceUrl+':'+service.port+service.base_url+extended_url;
 
+      var disableLoading = config.disableLoading;
+
       addToPendingRequests(url,deferred);
-      showLoading();
+
+      if(!disableLoading) {
+        showLoading();
+      }
+
       $http.post(url,req,config)
         .success(function(data,status){
           var response = log(url,'POST',req,config,data,status);
-          hideLoading();
+          if(!disableLoading) {
+            hideLoading();
+          }
           removeFromPendingRequests(url);
           deferred.resolve(response);
         })
@@ -108,13 +116,13 @@
 
     function showLoading(){
       $ionicLoading.show({
-        template: '<ion-spinner icon="lines"></ion-spinner>',
+        template: '<ion-spinner icon="crescent"></ion-spinner>',
         hideOnStateChange: true
       });
     }
 
     function hideLoading(){
-      $ionicLoading.hide();
+        $ionicLoading.hide();
     }
 
     function addToPendingRequests(url,deferred){

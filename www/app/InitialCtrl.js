@@ -2,15 +2,20 @@
 
 angular.module('arcMall').controller('InitialCtrl',InitialCtrl);
 
-InitialCtrl.$inject = ['$scope','$rootScope','$state','$ionicHistory','$ionicLoading','serverConfig','httpService','$httpParamSerializer','cartSev'];
+InitialCtrl.$inject = ['$scope','$rootScope','$state','$ionicHistory',
+'$ionicLoading','serverConfig','httpService','$httpParamSerializer',
+'cartSev', '$ionicViewSwitcher', '$cookies'];
 
-function InitialCtrl($scope,$rootScope,$state,$ionicHistory,$ionicLoading,serverConfig,httpService,$httpParamSerializer,cartSev) {
+function InitialCtrl($scope,$rootScope,$state,$ionicHistory,
+  $ionicLoading,serverConfig,httpService,$httpParamSerializer,cartSev, $ionicViewSwitcher, $cookies) {
 
   $rootScope.$on('$stateChangeStart', function (event,toState,toParams, fromState, fromParams) {
     $ionicLoading.show({
       template: '<ion-spinner icon="circles"></ion-spinner>',
       hideOnStateChange: true
     });
+
+    $rootScope.cart = {};
     //when the state changes all pending $http requests will be cancelled
     // pendingRequests.cancelAll();
     // init loginStatus
@@ -43,7 +48,7 @@ function InitialCtrl($scope,$rootScope,$state,$ionicHistory,$ionicLoading,server
   });
 
   $rootScope.$on('$stateChangeSuccess', function () {
-    initCartItemCount();
+    // initCartItemCount();
     // $rootScope.cartItemCount = cartSev.shoppingCart.cart.itemList.length;
   });
 
@@ -57,6 +62,7 @@ function InitialCtrl($scope,$rootScope,$state,$ionicHistory,$ionicLoading,server
       }
     };
     httpService.postRequest(serverConfig.clientAPI,extended_url, $httpParamSerializer(reqObj),config).then(function(response){
+
       if(response.status === 200){
         for(var i in response.data.totals){
           if(response.data.totals[i].title == "Total"){
@@ -65,6 +71,7 @@ function InitialCtrl($scope,$rootScope,$state,$ionicHistory,$ionicLoading,server
         }
         $rootScope.cart = response.data;
         $rootScope.cartItemCount = response.data.products.length;
+        localStorage.setItem('cartItemCount',$rootScope.cartItemCount);
       }
     });
   }
@@ -76,10 +83,10 @@ function InitialCtrl($scope,$rootScope,$state,$ionicHistory,$ionicLoading,server
   }
 
   $scope.logOut = function(event,toState){
-    localStorage.setItem('loginStatus',false);
-    localStorage.setItem('authResponse',null);
-    $rootScope.loginStatus = false;
-    $rootScope.authResponse = null;
+    // localStorage.setItem('loginStatus',false);
+    // localStorage.setItem('authResponse',null);
+    // $rootScope.loginStatus = false;
+    // $rootScope.authResponse = null;
     // if (toState.name !== 'authSignIn') {
     // $ionicHistory.clearHistory();
     // $ionicHistory.clearCache();
@@ -90,7 +97,58 @@ function InitialCtrl($scope,$rootScope,$state,$ionicHistory,$ionicLoading,server
 
   $scope.viewCart = function () {
     // if(cartSev.shoppingCart.isEmpty==false){
+    $ionicViewSwitcher.nextDirection('forward');
       $state.go('cart');
     // }
   }
+
+  function showLoading(){
+    $ionicLoading.show({
+      template: '<ion-spinner icon="crescent"></ion-spinner>',
+      hideOnStateChange: true
+    });
+  }
+
+  function hideLoading(){
+      $ionicLoading.hide();
+  }
+
+  $rootScope.logOut = function() {
+    var extended_url = '/user_logout';
+    var reqObj = {};
+    var config = {
+      headers:{
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      disableLoading:true
+    };
+    httpService.postRequest(serverConfig.clientAPI,extended_url, reqObj,config).then(function(response){
+
+      if(response.status === 200){
+        localStorage.setItem('loginStatus',false);
+        localStorage.setItem('authResponse',null);
+        localStorage.setItem('cartItemCount',0);
+        $rootScope.loginStatus = false;
+        $rootScope.authResponse = null;
+        // $window.alert($cookies.get('PHPSESSID'));
+
+        // $cookies.putObject('asd', 'bha', {path: '/'});
+
+        // $cookies.PHPSESSID = undefined;
+
+
+        var cookies = $cookies.getAll();
+        console.log("cookies");
+        console.log(cookies);
+        angular.forEach(cookies, function (v, k) {
+            $cookies.remove(k);
+        });
+      }
+    });
+  }
+
+
+  $rootScope.showLoading = showLoading;
+  $rootScope.initCartItemCount = initCartItemCount;
+  $rootScope.hideLoading = hideLoading;
 }

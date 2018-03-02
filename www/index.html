@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <title></title>
 
-    <link rel="manifest" href="manifest.json">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+  <title></title>
 
-    <!-- un-comment this code to enable service worker
+  <link rel="manifest" href="manifest.json">
+
+  <!-- un-comment this code to enable service worker
     <script>
       if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('service-worker.js')
@@ -16,113 +17,128 @@
       }
     </script>-->
 
-    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-    <link href="css/slidingTabs.css" rel="stylesheet">
+  <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <link href="css/slidingTabs.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
-    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+  <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet">
     -->
 
-    <!-- ionic/angularjs js -->
-    <script src="lib/ionic/js/ionic.bundle.js"></script>
+  <!-- ionic/angularjs js -->
+  <script src="lib/ionic/js/ionic.bundle.js"></script>
 
-    <!-- cordova script (this will be a 404 during development) -->
-    <script src="lib/ngCordova/ng-cordova.js"></script>
-    <script src="cordova.js"></script>
-    <!--libraries-->
-    <script src="lib/angular-translate/angular-translate.min.js"></script> <!-- translate -->
-    <script src="lib/underscore/underscore-min.js"></script> <!-- underscore -->
-    <script src="lib/slidingTabsDirective.js"></script> <!-- underscore -->
-    <script src="lib/angular-google-plus.js"></script> <!-- google plus -->
-    <script src="lib/ionic-ratings/ionic-ratings.min.js"></script> &lt;!&ndash; google plus &ndash;&gt;
-    <!--<script src="https://rawgithub.com/mrzmyr/angular-google-plus/master/dist/angular-google-plus.min.js"></script>-->
+  <!-- cordova script (this will be a 404 during development) -->
+  <script src="lib/ngCordova/ng-cordova.js"></script>
+  <script src="cordova.js"></script>
+  <!--libraries-->
+  <script src="lib/angular-translate/angular-translate.min.js"></script>
+  <!-- translate -->
+  <script src="lib/underscore/underscore-min.js"></script>
+  <!-- underscore -->
+  <script src="slidingTabsDirective.js"></script>
+  <!-- underscore -->
+  <script src="lib/angular-google-plus.js"></script>
+  <!-- google plus -->
+  <script src="lib/ionic-ratings/ionic-ratings.min.js"></script> &lt;!&ndash; google plus &ndash;&gt;
+  <!--<script src="https://rawgithub.com/mrzmyr/angular-google-plus/master/dist/angular-google-plus.min.js"></script>-->
 
-    <script src="lib/angular-facebook.js"></script> <!-- facebook provider -->
-    <script src="lib/sweetAlert/sweetalert.min.js"></script> <!-- facebook provider -->
+  <script src="lib/angular-facebook.js"></script>
+  <!-- facebook provider -->
+  <script src="lib/sweetAlert/sweetalert.min.js"></script>
+  <!-- facebook provider -->
 
-    <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+  <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
 
-    <!--material-->
-    <!-- Angular Material requires Angular.js Libraries -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
-    <!-- Angular Material Library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
-    <!--common-->
-    <script src="app/common/lang/en.js"></script>
+  <!--material-->
+  <!-- Angular Material requires Angular.js Libraries -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-cookies.min.js"></script>
+  <!-- Angular Material Library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+  <!--common-->
+  <script src="app/common/lang/en.js"></script>
 
-    <!--<link href="app/directives/tabSlideBox.css" rel="stylesheet">-->
+  <!--<link href="app/directives/tabSlideBox.css" rel="stylesheet">-->
 
-    <!--config files-->
-    <script src="app/config/config.module.js"></script>
-    <script src="app/config/app.config.js"></script>
-    <script src="app/config/server.config.js"></script>
-    <!-- your app's js -->
-    <script src="app/app.js"></script>
-    <script src="app/InitialCtrl.js"></script>
-    <script src="app/modules/modules.js"></script>
-    <!--authentication-->
-    <script src="app/modules/auth/auth.config.js"></script>
-    <script src="app/modules/auth/controllers/AuthHomeCtrl.js"></script>
-    <script src="app/modules/auth/controllers/AuthSignInCtrl.js"></script>
-    <script src="app/modules/auth/controllers/AuthSignUpCtrl.js"></script>
-    <script src="app/modules/auth/controllers/SelectAccountRoleCtrl.js"></script>
-    <link href="app/modules/auth/styles/auth-styles.css" rel="stylesheet">
-    <!--shopping-->
-    <script src="app/modules/shop/shop.config.js"></script>
-    <script src="app/modules/shop/controllers/HomeCtrl.js"></script>
-    <script src="app/modules/shop/controllers/CategoryCtrl.js"></script>
-    <script src="app/modules/shop/controllers/WishListCtrl.js"></script>
-    <script src="app/modules/shop/controllers/OrderHistoryCtrl.js"></script>
-    <script src="app/modules/shop/controllers/ItemListCtrl.js"></script>
-    <script src="app/modules/shop/controllers/ItemCtrl.js"></script>
-    <script src="app/modules/shop/controllers/itemSearchCtrl.js"></script>
-    <script src="app/modules/shop/controllers/MyProfile.js"></script>
-    <script src="app/modules/shop/controllers/ViewOrderHistory.js"></script>
-    <script src="app/modules/shop/controllers/itemOptionsCtrl.js"></script>
-    <script src="app/modules/shop/controllers/sellerProfileCtrl.js"></script>
-    <link href="app/modules/shop/styles/shop-styles.css" rel="stylesheet">
-    <!--checkout-->
-    <script src="app/modules/checkout/checkout.config.js"></script>
-    <script src="app/modules/checkout/controllers/CartCtrl.js"></script>
-    <script src="app/modules/checkout/controllers/CheckoutCtrl.js"></script>
-    <script src="app/modules/checkout/controllers/CheckoutStep2Ctrl.js"></script>
-    <script src="app/modules/checkout/controllers/CheckoutStep3Ctrl.js"></script>
-    <link href="app/modules/checkout/styles/checkout-styles.css" rel="stylesheet">
-     <!--seller-->
-    <script src="app/modules/seller/seller.config.js"></script>
-    <script src="app/modules/seller/controllers/SellerHomeCtrl.js"></script>
-    <link href="app/modules/seller/styles/seller-styles.css" rel="stylesheet">
-    <!--test-->
-    <script src="app/modules/test/test.config.js"></script>
-    <script src="app/modules/test/controllers/TestCtrl.js"></script>
-    <link href="app/modules/test/styles/test-styles.css" rel="stylesheet">
-    <!--services-->
-    <script src="app/services/userService.js"></script>
-    <script src="app/services/pendingRequestsService.js"></script>
-    <script src="app/services/httpService.js"></script>
-    <script src="app/services/publicFunctions.js"></script>
-    <script src="app/services/cartService.js"></script>
+  <!--config files-->
+  <script src="app/config/config.module.js"></script>
+  <script src="app/config/app.config.js"></script>
+  <script src="app/config/server.config.js"></script>
+  <!-- your app's js -->
+  <script src="app/app.js"></script>
+  <script src="app/InitialCtrl.js"></script>
+  <script src="app/modules/modules.js"></script>
+  <!--authentication-->
+  <script src="app/modules/auth/auth.config.js"></script>
+  <script src="app/modules/auth/controllers/AuthHomeCtrl.js"></script>
+  <script src="app/modules/auth/controllers/AuthSignInCtrl.js"></script>
+  <script src="app/modules/auth/controllers/AuthSignUpCtrl.js"></script>
+  <script src="app/modules/auth/controllers/SelectAccountRoleCtrl.js"></script>
+  <link href="app/modules/auth/styles/auth-styles.css" rel="stylesheet">
+  <!--shopping-->
+  <script src="app/modules/shop/shop.config.js"></script>
+  <script src="app/modules/shop/controllers/HomeCtrl.js"></script>
+  <script src="app/modules/shop/controllers/CategoryCtrl.js"></script>
+  <script src="app/modules/shop/controllers/WishListCtrl.js"></script>
+  <script src="app/modules/shop/controllers/OrderHistoryCtrl.js"></script>
+  <script src="app/modules/shop/controllers/ItemListCtrl.js"></script>
+  <script src="app/modules/shop/controllers/ItemCtrl.js"></script>
+  <script src="app/modules/shop/controllers/itemSearchCtrl.js"></script>
+  <script src="app/modules/shop/controllers/MyProfile.js"></script>
+  <script src="app/modules/shop/controllers/ViewOrderHistory.js"></script>
+  <script src="app/modules/shop/controllers/itemOptionsCtrl.js"></script>
+  <script src="app/modules/shop/controllers/sellerProfileCtrl.js"></script>
+  <link href="app/modules/shop/styles/shop-styles.css" rel="stylesheet">
+  <!--checkout-->
+  <script src="app/modules/checkout/checkout.config.js"></script>
+  <script src="app/modules/checkout/controllers/CartCtrl.js"></script>
+  <script src="app/modules/checkout/controllers/CheckoutCtrl.js"></script>
+  <script src="app/modules/checkout/controllers/CheckoutStep2Ctrl.js"></script>
+  <script src="app/modules/checkout/controllers/CheckoutStep3Ctrl.js"></script>
+  <link href="app/modules/checkout/styles/checkout-styles.css" rel="stylesheet">
+  <!--seller-->
+  <script src="app/modules/seller/seller.config.js"></script>
+  <script src="app/modules/seller/controllers/SellerHomeCtrl.js"></script>
+  <link href="app/modules/seller/styles/seller-styles.css" rel="stylesheet">
+  <!--test-->
+  <script src="app/modules/test/test.config.js"></script>
+  <script src="app/modules/test/controllers/TestCtrl.js"></script>
+  <link href="app/modules/test/styles/test-styles.css" rel="stylesheet">
+  <!--services-->
+  <script src="app/services/userService.js"></script>
+  <script src="app/services/pendingRequestsService.js"></script>
+  <script src="app/services/httpService.js"></script>
+  <script src="app/services/publicFunctions.js"></script>
+  <script src="app/services/cartService.js"></script>
 
-    <!--directives-->
-    <script src="app/directives/focusMe.js"></script>
+  <!--directives-->
+  <script src="app/directives/focusMe.js"></script>
+  <script src="app/directives/itemCell.js"></script>
+  <script src="app/directives/itemBrandCell.js"></script>
+  <script src="app/directives/storeCell.js"></script>
+  <script src="app/directives/horizontalScrollFix.js"></script>
+  <script src="app/directives/sideNav.js"></script>
 
-  </head>
-  <body ng-app="arcMall"  ng-controller="InitialCtrl">
 
-    <ion-pane>
-      <!--<ion-header-bar class="bar-stable">-->
-        <!--<h1 class="title">ARCMALL App Home</h1>-->
-      <!--</ion-header-bar>-->
-      <ion-content overflow-scroll="true" >
-        <ion-nav-view cache-view="false">
+</head>
 
-        </ion-nav-view>
+<body ng-app="arcMall" ng-controller="InitialCtrl">
 
-      </ion-content>
-    </ion-pane>
-  </body>
+  <ion-pane>
+    <!--<ion-header-bar class="bar-stable">-->
+    <!--<h1 class="title">ARCMALL App Home</h1>-->
+    <!--</ion-header-bar>-->
+    <ion-content overflow-scroll="true">
+      <ion-nav-view cache-view="false">
+
+      </ion-nav-view>
+
+    </ion-content>
+  </ion-pane>
+</body>
+
 </html>

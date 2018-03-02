@@ -13,6 +13,7 @@ var arcMall = angular.module('arcMall', [
   'ionic-ratings',
   // 'tabSlideBox',
   'config.module',
+  'ngCookies'
   // 'googleplus'
   // 'faceboook'
 ]);

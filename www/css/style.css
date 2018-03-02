@@ -16,7 +16,7 @@ ion-content{
   margin-right: auto !important;
 }
 .card-margin{
-  margin:2px 2px !important;
+  margin:5px 5px !important;
 }
 
 .absolute{
@@ -135,7 +135,9 @@ ion-content{
 }
 .left-title{
   margin-left: 60px;
+  margin-top: 12px;
 }
+
 .bar-subheader{
   background-color: #007fa3;
   /*background-color:#fc8d33;*/

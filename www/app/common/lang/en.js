@@ -15,7 +15,7 @@ angular.module('lang_en',['pascalprecht.translate','ngSanitize'])
       PASSWORD: "Password",
       NO_ACCOUNT:"No Account ?",
       FORGET_PASSWORD:'Forget Password ?',
-      I_AM_SHOPPING_FOR:"I'm Shopping for...",
+      I_AM_SHOPPING_FOR:"Search..",
       WHAT_S_NEW:"what's new",
       JUST_FOR_YOU:"just for you",
       MOST_TRENDING:"Most Trending",

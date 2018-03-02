@@ -1,5 +1,5 @@
 <ion-header-bar class="bar bar-header header-md bar-darker">
-  <div style="width: 100%; display: inherit; margin-top: 0px !important;" >
+  <div style="width: 100%; display: inherit; margin-top: 0px !important;">
     <div class="absolute back-icon-wrapper">
       <a class="button button-icon row" ng-href="#/home/new">
         <i class="ion-android-arrow-back font-L white"></i>
@@ -7,11 +7,11 @@
     </div>
     <div class="search-box-wrapper">
       <label class="item item-input search-box">
-        <input type="text"
+        <input type="search"
+                id="search-bar"
                placeholder="{{'I_AM_SHOPPING_FOR' | translate}}"
                ng-model="search.key"
                ng-model-options="{ debounce: 400 }"
-               focus-me="true"
                ng-change="searchProduct()">
       </label>
     </div>
@@ -25,33 +25,17 @@
 </ion-header-bar>
 
 
-<ion-view  cache-view="false">
+<ion-view cache-view="false">
   <ion-content class="has-header" overflow-scroll="true">
     <div class="row" ng-repeat="productRow in productRows">
       <div class="col zero-padding" ng-repeat="product in productRow" style="max-width:50%;">
-        <div class="list card wish-list-card" ng-click="openItemDetails(product.product_id)">
-          <div class="item item-image" >
-            <img ng-src="{{product.thumb}}" class="full-width full-height">
-          </div>
-          <div class="item tabs-secondary tabs-icon-left white-tabs" style="padding: 10px;">
-            <h3 class="align-center" ng-bind-html="product.name"></h3>
-            <h3 class="align-center" ng-bind-html="product.price"></h3>
-          </div>
-        </div>
+        <div item-cell product="product" ng-click="openItemDetails(product.product_id)"></div>
       </div>
       <div class="col zero-padding" ng-if="productRow.length==1">
       </div>
     </div>
-    <ion-infinite-scroll
-      ng-if="moreDataCanBeLoaded"
-      immediate-check="true"
-      on-infinite="loadMoreLatestProducts()"
-      distance="10%">
+    <ion-infinite-scroll ng-if="moreDataCanBeLoaded" immediate-check="true" on-infinite="loadMoreLatestProducts()" distance="10%">
     </ion-infinite-scroll>
-
-
-    <!--<div class="row" style="min-height: 25px;"></div>-->
-
 
   </ion-content>
 

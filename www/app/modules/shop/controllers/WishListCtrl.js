@@ -81,12 +81,7 @@ function WishListCtrl($scope,$state,$rootScope,$mdSidenav,$log,publicFunc,filter
     $state.go('home.new');
   };
   $scope.logOut = function () {
-    $scope.close();
-    localStorage.setItem('loginStatus',false);
-    localStorage.setItem('authResponse',null);
-    $rootScope.loginStatus = false;
-    $rootScope.authResponse = null;
-    $state.go('authSignIn');
+    $rootScope.logOut();
   };
 
   $scope.toggleSideBar = buildToggler('left');

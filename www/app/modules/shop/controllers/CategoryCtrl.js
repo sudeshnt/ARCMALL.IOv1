@@ -153,8 +153,6 @@ function CategoryCtrl($scope,$state,$rootScope,$stateParams,httpService,
       }
     ];
 
-    console.log(categories);
-
     //Injecting wholesale items to new items
     categories[0].categories[1].categories = categories[2].categories;
     categories[0].categories[1].id = categories[2].category_id;
@@ -175,8 +173,8 @@ function CategoryCtrl($scope,$state,$rootScope,$stateParams,httpService,
 
     // $scope.selectedCatTabs = $scope.cat_tabs[type].concat($scope.cat_tabs["WHOLESALE"]);
 
-    $scope.cat_tabs[type].tabs = $scope.cat_tabs[type].tabs.concat($scope.cat_tabs["WHOLESALE"].tabs);
-    $scope.cat_tabs[type].content = $scope.cat_tabs[type].content.concat($scope.cat_tabs["WHOLESALE"].content);
+    // $scope.cat_tabs[type].tabs = $scope.cat_tabs[type].tabs.concat($scope.cat_tabs["WHOLESALE"].tabs);
+    // $scope.cat_tabs[type].content = $scope.cat_tabs[type].content.concat($scope.cat_tabs["WHOLESALE"].content);
 
     $scope.selectedCatTabs = $scope.cat_tabs[type];
 

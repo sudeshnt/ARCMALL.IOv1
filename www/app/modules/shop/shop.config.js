@@ -4,39 +4,6 @@ var shopModule = angular.module('shop.module',[]);
 
 shopModule.config(function config($stateProvider,$urlRouterProvider) {
   $stateProvider
-    // .state('home', {
-    //   url: '/home',
-    //   abstract: true,
-    //   templateUrl: 'app/modules/shop/templates/home.html',
-    //   controller: 'HomeCtrl'
-    // })
-    // .state('home.new', {
-    //   url: "/new",
-    //   views: {
-    //     'new-tab': {
-    //       templateUrl: "app/modules/shop/templates/home-tabs/new.html",
-    //       // controller: 'HomeCtrl'
-    //     }
-    //   }
-    // })
-    // .state('home.used', {
-    //   url: "/used",
-    //   views: {
-    //     'used-tab': {
-    //       templateUrl: "app/modules/shop/templates/home-tabs/used.html",
-    //       // controller: 'HomeCtrl'
-    //     }
-    //   }
-    // })
-    // .state('home.wholesale', {
-    //   url: "/wholesale",
-    //   views: {
-    //     'wholesale-tab': {
-    //       templateUrl: "app/modules/shop/templates/home-tabs/wholesale.html",
-    //       // controller: 'HomeCtrl'
-    //     }
-    //   }
-    // })
     .state('categories', {
       url: '/categories',
       templateUrl: 'app/modules/shop/templates/categories.html',
@@ -85,5 +52,16 @@ shopModule.config(function config($stateProvider,$urlRouterProvider) {
       url: '/seller-profile/:product_id/:seller_id',
       templateUrl: 'app/modules/shop/templates/seller-profile.html',
       controller: 'SellerProfileCtrl'
+    })
+    .state('basic-modal', {
+      url: '/basic-modal',
+      params: {
+        obj: null,
+        type: null,
+        categoty_id: null,
+        product_id: null
+      },
+      templateUrl: 'app/modules/shop/templates/basic-modal.html',
+      controller: 'BasicModalCtrl'
     })
 });

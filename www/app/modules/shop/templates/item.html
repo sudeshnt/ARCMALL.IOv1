@@ -25,27 +25,27 @@
 
     <!-- //Images -->
     <ion-slide-box on-slide-changed="slideChanged(index)" slide-interval="1000" class="item-slide" style="height: 250px;">
+
+
+      <!-- <ion-slide>
+        <div class="content align-center" style="background: white;width:100%" ng-click="openCategories()">
+          <img style="height: 250px;width: auto; align-items: center;" ng-src="{{product.thumb}}" />
+        </div>
+      </ion-slide> -->
+
+
       <ion-slide>
-        <div id="shop" ng-click="openCategories()" style="height: 250px;">
-          <div class="content align-center" style="background: white;">
-            <img style="height: 250px;width: auto;" ng-src="{{product.thumb}}" />
-          </div>
+        <div id="shop" class="content align-center" style="background: white;width:100%" ng-click="openCategories()">
+          <img style="height: 250px;width: auto; align-items: center;" ng-src="{{product.thumb}}" />
         </div>
       </ion-slide>
-      <ion-slide>
-        <div id="shop" style="height: 250px;">
-          <div class="content align-center" style="background: white;">
-            <img style="height: 250px;width: auto;" ng-src="{{product.thumb}}" />
-          </div>
+      <ion-slide ng-repeat="image in product.images track by $index">
+        <div id="index" class="content align-center" style="background: white;width:100%" ng-click="openCategories()">
+          <img style="height: 250px;width: auto; align-items: center;" ng-src="{{image.preview}}" />
         </div>
       </ion-slide>
-      <ion-slide>
-        <div id="shop" style="height: 250px;">
-          <div class="content align-center" style="background: white;">
-            <img style="height: 250px;width: auto;" ng-src="{{product.thumb}}" />
-          </div>
-        </div>
-      </ion-slide>
+
+
     </ion-slide-box>
 
     <div class="g-card-1">
@@ -67,6 +67,12 @@
 
             <!-- //Stars -->
             <div ng-if="reviews.reviews.length > 0">
+              <div>
+                <ionic-ratings class="rating-main align-left" ratingsobj='ratingsObject' index='0'>
+                  <div class="strike-through align-left old-price" ng-bind-html="product.price"></div>({{reviews.reviews.length}})</ionic-ratings>
+              </div>
+            </div>
+            <div ng-if="reviews.reviews.length == 0">
               <div>
                 <ionic-ratings class="rating-main align-left" ratingsobj='ratingsObject' index='0'>
                   <div class="strike-through align-left old-price" ng-bind-html="product.price"></div>({{reviews.reviews.length}})</ionic-ratings>
@@ -130,13 +136,12 @@
         <div class="content">
 
           <div class="title capital full-width">recent reviews</div>
-          <div class="zero-padding" style="margin-top:20px" ng-repeat="review in reviews.reviews track by $index">
+          <div class="zero-padding" style="margin-top:20px" ng-repeat="review in reviews.reviews track by $index" ng-if="ratingsObject.rating != 0">
 
             <ion-grid>
-
               <ion-row>
                 <ion-col>
-                  <ionic-ratings style="text-align:left" ratingsobj='review.rating' index='$index'></ionic-ratings>
+                  <ionic-ratings style=" text-align:left " ratingsobj='review.rating' index='$index'></ionic-ratings>
                 </ion-col>
               </ion-row>
               <ion-row>
@@ -144,20 +149,20 @@
                   {{review.author}}
                 </ion-col>
                 <ion-col>
-                  <span style="float:right">{{review.date_added}}</span>
+                  <span style="float:right ">{{review.date_added}}</span>
                 </ion-col>
               </ion-row>
 
               <ion-row>
                 <ion-col>
-                  <p style="margin-top:15px">
+                  <p style="margin-top:15px ">
                     {{review.text}}
                   </p>
                 </ion-col>
 
               </ion-row>
 
-              <div class="col-border"></div>
+              <div class="col-border "></div>
 
             </ion-grid>
 
@@ -167,46 +172,54 @@
 
       </div>
 
-      <div class="row">
-        <div class="content">
-          <div class="full-width align-left">
-            <a text-right ng-click="">Show All</a>
+      <div class="row " ng-if="ratingsObject.rating != 0">
+        <div class="content " ng-click="goToModal() ">
+          <div class="full-width align-left ">
+            <a text-right ng-click=" ">Show All</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="row " ng-if="ratingsObject.rating == 0">
+        <div class="content ">
+          <div class="full-width align-left ">
+            <p style="font-style: italic; ">No reviews</p>
           </div>
         </div>
       </div>
 
     </div>
-    <div class="seperator"></div>
+    <div class="seperator "></div>
 
     <!-- //Shipping -->
-    <div class="g-card-1">
-      <div class="row">
-        <div class="content">
-          <div class="title capital full-width">Shipping</div>
+    <div class="g-card-1 ">
+      <div class="row ">
+        <div class="content ">
+          <div class="title capital full-width ">Shipping</div>
 
-          <div class="row zero-padding">
-            <p style="margin-top:15px">
-              <span style="color:#a56a6c">$4.50</span> - To Sri Lanka via China Post
+          <div class="row zero-padding ">
+            <p style="margin-top:15px ">
+              <span style="color:#a56a6c ">$4.50</span> - To Sri Lanka via China Post
             </p>
           </div>
         </div>
       </div>
-      <div class="row">
-        <div class="content">
-          <div class="full-width align-left">
-            <a text-right ng-click="">Change</a>
+      <div class="row ">
+        <div class="content " ng-click="openModal()">
+          <div class="full-width align-left ">
+            <a text-right ng-click=" ">Change</a>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="seperator"></div>
+    <div class="seperator "></div>
 
     <!-- //Policy details -->
-    <div class="g-card-1">
-      <div class="row">
-        <div class="content">
-          <div class="zero-padding">
+    <div class="g-card-1 ">
+      <div class="row ">
+        <div class="content ">
+          <div class="zero-padding ">
             <div class="row zero-padding ">
               <div class="column ">
                 <img style="text-align: center; padding-top:5px " width="30 " ng-src="app/modules/shop/img/return_policy.png ">

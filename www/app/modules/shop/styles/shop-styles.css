@@ -280,9 +280,7 @@ background-color: #f68469;
   font-size: 20px;
   color: #a6a5ab;
 }
-.slider-slides {
-  /*width: auto !important;*/
-}
+
 .overflow-scroll {
   overflow-x: hidden;
   overflow-y: scroll;
@@ -692,4 +690,11 @@ md-select.md-default-theme:not([disabled]):focus .md-select-value, md-select:not
 .md-divider {
   display: block;
   border-top-width: 0px; !important
+}
+
+.item-slide .slider-slides {
+  /* width: 100% !important;
+  position: relative;
+  height: 100%; */
+  background: white;
 }

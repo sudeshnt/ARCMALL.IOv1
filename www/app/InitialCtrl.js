@@ -98,7 +98,7 @@ function InitialCtrl($scope,$rootScope,$state,$ionicHistory,
   $scope.viewCart = function () {
     // if(cartSev.shoppingCart.isEmpty==false){
     $ionicViewSwitcher.nextDirection('forward');
-      $state.go('cart');
+    $state.go('cart');
     // }
   }
 
@@ -120,7 +120,7 @@ function InitialCtrl($scope,$rootScope,$state,$ionicHistory,
       headers:{
         'Content-Type': 'application/x-www-form-urlencoded'
       },
-      disableLoading:true
+      disableLoading:false
     };
     httpService.postRequest(serverConfig.clientAPI,extended_url, reqObj,config).then(function(response){
 
@@ -143,6 +143,18 @@ function InitialCtrl($scope,$rootScope,$state,$ionicHistory,
         angular.forEach(cookies, function (v, k) {
             $cookies.remove(k);
         });
+
+        localStorage.setItem('loginStatus',false);
+        localStorage.setItem('authResponse',null);
+        $rootScope.loginStatus = false;
+        $rootScope.authResponse = null;
+        // if (toState.name !== 'authSignIn') {
+        $ionicHistory.clearHistory();
+        $ionicHistory.clearCache();
+        $state.go('authHome');
+        event.preventDefault();
+        // }
+
       }
     });
   }

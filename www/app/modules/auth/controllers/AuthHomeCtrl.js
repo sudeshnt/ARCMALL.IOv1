@@ -2,9 +2,9 @@
 
 angular.module('auth.module').controller('AuthHomeCtrl',AuthHomeCtrl );
 
-AuthHomeCtrl.$inject = ['$scope', '$state', '$q', 'UserService', '$ionicLoading','httpService','serverConfig'];
+AuthHomeCtrl.$inject = ['$scope', '$state', '$q', 'UserService', '$ionicLoading','httpService','serverConfig', '$ionicViewSwitcher'];
 
-function AuthHomeCtrl($scope, $state, $q, UserService, $ionicLoading,httpService,serverConfig) {
+function AuthHomeCtrl($scope, $state, $q, UserService, $ionicLoading,httpService,serverConfig, $ionicViewSwitcher) {
 
   $scope.facebookLogIn = function(){
     facebookConnectPlugin.login(["public_profile"], function(userData){
@@ -51,6 +51,7 @@ function AuthHomeCtrl($scope, $state, $q, UserService, $ionicLoading,httpService
   };
 
   $scope.signInPage = function(){
+    $ionicViewSwitcher.nextDirection('forward');
     $state.go('authSignIn');
   };
 

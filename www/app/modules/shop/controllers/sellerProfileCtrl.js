@@ -31,7 +31,8 @@ function SellerProfileCtrl($scope,$state,$stateParams,$rootScope,serverConfig,ht
     var config = {
       headers:{
         'Content-Type': 'application/x-www-form-urlencoded'
-      }
+      },
+      disableLoading:true
     };
     httpService.postRequest(serverConfig.clientAPI,extended_url, $httpParamSerializer(reqObj),config).then(function(response){
       if(response.status === 200){

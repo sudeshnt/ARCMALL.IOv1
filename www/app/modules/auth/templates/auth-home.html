@@ -1,23 +1,34 @@
 <ion-view>
-    <ion-content class="padding auth-background" >
-      <div class="absolute full-width" style="bottom: 180px;">
-        <p class="align-center light">{{"SIGN_IN_WITH" | translate}}</p>
-        <!--<a class="button custom-height-button button-sm square button-block button-positive icon ion-social-facebook" ng-click="facebookSignIn()"></a>-->
-        <a class="button custom-height-button button-md square button-block button-positive icon ion-social-facebook" ng-click="facebookLogIn()"></a>
-        <a class="button custom-height-button button-md square button-block button-assertive icon ion-social-googleplus" ng-click="googlePlusLogin()"></a>
-      </div>
+  <ion-content class="padding auth-background">
 
-      <div class="absolute full-width" style="bottom: 40px;">
-        <p class="light">{{"USE_EMAIL" | translate}}</p>
-        <div class="row zero-padding">
-          <div class="col">
-            <a class="button square button-md button-block button-light zero-margin" ng-click="signInPage()">{{"SIGN_IN" | translate}}</a>
-          </div>
-          <div class="col">
-            <a class="button square button-md button-block button-light zero-margin" ng-click="selectRolePage()()">{{"REGISTER" | translate}}</a>
-          </div>
+    <div class="content align-center" style="padding-top:100px">
+      <img style="width: 90%;height: 100%;" src="img/logo-2.png" />
+    </div>
+
+    <div class="align-center" style="bottom: 220px; width:90%; margin: 0 auto; padding-top:50px">
+      <!-- <p class="align-center light">{{"SIGN_IN_WITH" | translate}}</p> -->
+      <!--<a class="button custom-height-button button-sm square button-block button-positive icon ion-social-facebook" ng-click="facebookSignIn()"></a>-->
+      <div class="button custom-height-button button-md square button-block button-positive" ng-click="facebookLogIn()">
+        <div class="icon ion-social-facebook" style="float:left;margin-left:20px; margin-top:5px"></div>
+        <div style="">Sign in with Facebook</div>
+      </div>
+      <div class=" button custom-height-button button-md square button-block button-assertive " ng-click="googlePlusLogin() ">
+        <div class="icon ion-social-googleplus " style="float:left;margin-left:20px; margin-top:5px "></div>
+        <div style="">Sign in with Google+</div>
+      </div>
+    </div>
+
+    <div class="absolute full-width " style="bottom: 80px; ">
+      <p class="light ">{{"USE_EMAIL " | translate}}</p>
+      <div class="row zero-padding ">
+        <div class="col ">
+          <a class="button square button-md button-block button-light zero-margin " ng-click="signInPage() ">{{"SIGN_IN " | translate}}</a>
+        </div>
+        <div class="col ">
+          <a class="button square button-md button-block button-light zero-margin " ng-click="selectRolePage() ">{{"REGISTER " | translate}}</a>
         </div>
       </div>
+    </div>
 
-    </ion-content>
+  </ion-content>
 </ion-view>

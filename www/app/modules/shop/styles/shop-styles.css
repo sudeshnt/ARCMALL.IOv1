@@ -267,18 +267,23 @@ background-color: #f68469;
   top:8px;
 }
 .md-sidenav-left{
-  margin-top: 56px;
+  padding-top: 56px;
   min-width: 0px;
-  width: 250px !important;
+  width: 200px !important;
+  background: #007fa3;
+  /* opacity: 0.8; */
+  /* -webkit-filter:blur(3px) */
+  background: linear-gradient(to right,  #007fa3 0%, #0094ba 100%);
 }
 .sidenav-options{
   margin-left: 15px;
   font-size: 15px;
   font-weight: 500;
+  color: white;
 }
 .sidenav-icon{
   font-size: 20px;
-  color: #a6a5ab;
+  color: white;
 }
 
 .overflow-scroll {
@@ -697,4 +702,9 @@ md-select.md-default-theme:not([disabled]):focus .md-select-value, md-select:not
   position: relative;
   height: 100%; */
   background: white;
+}
+
+.toolbar-title {
+   text-overflow: inherit;
+   white-space: normal;
 }

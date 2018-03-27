@@ -5,7 +5,13 @@
       <h1 class="title">My Modal title</h1>
     </ion-header-bar>
     <ion-content>
-      Hello!
+
+      <ion-list>
+
+        <ion-radio ng-repeat="method in shippingMethods" name="shipping_method" ng-change="shippingMethodChanged()" ng-model="paymentAndShipping.shipping_method" ng-value="'{{method}}'" ng-required="true">{{method.title}} - {{method.info.text}}</ion-radio>
+
+      </ion-list>
+
     </ion-content>
   </ion-modal-view>
 </div>

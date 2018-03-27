@@ -2,20 +2,59 @@
 
 angular.module('checkout.module').controller('CheckoutCtrl',CheckoutCtrl );
 
-CheckoutCtrl.$inject = ['$scope','$state','$rootScope','serverConfig','httpService','$httpParamSerializer','$http'];
+CheckoutCtrl.$inject = ['$scope','$state','$rootScope','serverConfig','httpService','$httpParamSerializer','$http', '$ionicPopup'];
 
-function CheckoutCtrl($scope,$state,$rootScope,serverConfig,httpService,$httpParamSerializer,$http) {
+function CheckoutCtrl($scope,$state,$rootScope,serverConfig,httpService,$httpParamSerializer,$http, $ionicPopup) {
 
   $scope.personal_details = {};
 
+  autofilCustomerDetails();
+
   $scope.nextStep = function (){
-    addAddress();
+    console.log("Next");
+    // var req = addAddress();
     setShippingAddress();
     setPaymentAddress();
     $state.go('checkout-step-2',{'personal_info':$scope.personal_details})
+     // $state.go("pp_express");
+
+    // $state.go("payment_modules." + "pp_express" + ".home", { checkout: req, currency: "USD", total_amount: "$100.00", total_amount_clean: 100, success_state: "app.menu.cart.order_added" }, { reload: true });
+  }
+
+  function showPopup(text) {
+    var confirmPopup = $ionicPopup.confirm({
+         title: 'Arcmall',
+         template: text
+      });
+
+      confirmPopup.then(function(res) {
+         if(res) {
+            // console.log('Sure!');
+         } else {
+            // console.log('Not sure!');
+         }
+      });
+  }
+
+  function autofilCustomerDetails() {
+
+    var authResponse = JSON.parse(localStorage.getItem('authResponse'));
+    var firstname = authResponse.firstname;
+    var lastname = authResponse.lastname;
+    var email = authResponse.email;
+    var telephone = authResponse.telephone;
+
+    $scope.personal_details.firstname = firstname;
+    $scope.personal_details.lastname = lastname;
+    $scope.personal_details.email = email;
+    $scope.personal_details.telephone = telephone;
+
   }
 
   function addAddress() {
+
+    console.log($scope.personal_details);
+
     var extended_url = '/address/save';
     var reqObj = {
       "firstname":$scope.personal_details.firstname,
@@ -36,9 +75,12 @@ function CheckoutCtrl($scope,$state,$rootScope,serverConfig,httpService,$httpPar
     };
     httpService.postRequest(serverConfig.clientAPI,extended_url, $httpParamSerializer(reqObj),config).then(function(response){
       if(response.status === 200){
+
         console.log(response);
       }
     });
+
+    return reqObj;
   }
 
  function setShippingAddress() {

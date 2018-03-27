@@ -173,7 +173,7 @@
       </div>
 
       <div class="row " ng-if="ratingsObject.rating != 0">
-        <div class="content " ng-click="goToModal() ">
+        <div class="content " ng-click="goToReviewsModal() ">
           <div class="full-width align-left ">
             <a text-right ng-click=" ">Show All</a>
           </div>
@@ -205,7 +205,7 @@
         </div>
       </div>
       <div class="row ">
-        <div class="content " ng-click="openModal()">
+        <div class="content " ng-click="getShippingMethods()">
           <div class="full-width align-left ">
             <a text-right ng-click=" ">Change</a>
           </div>
@@ -276,7 +276,7 @@
       <div class="row ">
         <div class="content ">
           <div class="content-group ">
-            <div class="capital align-center " style="font-size:20px ">Daisy Jones Bakery </div>
+            <div class="capital align-center " style="font-size:20px ">{{product.seller.firstname}} {{product.seller.lastname}}</div>
             <div class="align-center " style="margin-left:15px; ">
               <i class="star font-XM ion-android-star star-active "></i>
               <i class="star font-XM ion-android-star star-active "></i>
@@ -290,7 +290,7 @@
       <div class="row ">
         <div class="content ">
           <div class="row align-center ">
-            <a class="button button-outline button-positive visit-store-btn size-margin-auto " ng-href="#/seller-profile/{{product.product_id}}/{{product.seller_id}} ">
+            <a class="button button-outline button-positive visit-store-btn size-margin-auto " ng-href="#/seller-profile/{{product.product_id}}/{{product.seller.address_id}} ">
               Visit Store
             </a>
           </div>

@@ -76,7 +76,7 @@ function ItemCtrl($scope,$state,$rootScope,$filter,$stateParams,serverConfig,
         var reqObj = {
           "product_id":$scope.product.product_id,
           "quantity":$scope.product.quantity,
-          "option":{}
+          "option":[]
           // "option":[]
         };
         if($scope.product.selected_options.length>0){
@@ -107,6 +107,65 @@ function ItemCtrl($scope,$state,$rootScope,$filter,$stateParams,serverConfig,
         });
     }
 
+
+    $scope.getShippingMethods = function () {
+        // var itemAvailability = false;
+        // for(var i in $rootScope.cart.products){
+        //   if($rootScope.cart.products[i].product_id == $scope.product.product_id){
+        //     itemAvailability = true;
+        //     break;
+        //   }
+        // }
+
+        console.log("shipping");
+
+        var extended_url = '/shipping/methods';
+        var reqObj = {
+          "product_id":$scope.product.product_id,
+          "quantity":$scope.product.quantity,
+          "option":{}
+          // "option":[]
+        };
+        // if($scope.product.selected_options.length>0){
+          // for(var i in $scope.product.selected_options){
+          //   reqObj.option[$scope.product.selected_options[i].option_id] = parseInt($scope.product.selected_options[i].option_value_id)
+          //   // reqObj.option = [$scope.product.selected_options[i].option_value_id]
+          //   // reqObj.option.push($scope.product.selected_options[i].option_value_id)
+          //   // reqObj[$scope$scope.product.selected_options[i].option_id] = $scope.product.selected_options[i].option_value_id;
+          // }
+        // }
+        // console.log(reqObj);
+        var config = {
+          headers:{
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          disableLoading:true
+        };
+
+        httpService.postRequest(serverConfig.clientAPI,extended_url, $httpParamSerializer(reqObj),config).then(function(response){
+
+          var shippingMethods = [];
+          if(response.status === 200){
+            // $scope.shippingMethods = response.data;
+
+            var shipping = response.data.shipping_methods;
+
+            for (var key in shipping) {
+              var ship = shipping[key];
+              ship.info = ship.quote[key];
+              shippingMethods.push(shipping[key]);
+            }
+
+            $scope.shippingMethods = shippingMethods;
+
+            console.log(shippingMethods);
+            $scope.openModal();
+          }
+
+        });
+    }
+
+
     $scope.goToItems = function () {
       if(!$scope.category_id || $scope.category_id==-1){
         $state.go('categories');
@@ -115,8 +174,14 @@ function ItemCtrl($scope,$state,$rootScope,$filter,$stateParams,serverConfig,
       }
     };
 
-    $scope.goToModal = function () {
+    $scope.goToReviewsModal = function () {
       $state.go('basic-modal', {obj: $scope.reviews, type: 'reviews',
+      state:$scope, categoty_id:$scope.category_id,
+      product_id:$scope.product_id});
+    };
+
+    $scope.goToShippingModal = function () {
+      $state.go('basic-modal', {obj: $scope.shippingMethods, type: 'shipping',
       state:$scope, categoty_id:$scope.category_id,
       product_id:$scope.product_id});
     };
@@ -368,5 +433,6 @@ function ItemCtrl($scope,$state,$rootScope,$filter,$stateParams,serverConfig,
 
     function init(){
       initProduct();
+      // getShippingMethods();
     }
 }

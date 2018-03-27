@@ -2,9 +2,11 @@
 
 angular.module('checkout.module').controller('CartCtrl',CartCtrl );
 
-CartCtrl.$inject = ['$scope','$state','$rootScope','$timeout', '$mdBottomSheet', '$mdToast','cartSev','serverConfig','httpService','$httpParamSerializer'];
+CartCtrl.$inject = ['$scope','$state','$rootScope','$timeout', '$mdBottomSheet',
+'$mdToast','cartSev','serverConfig','httpService','$httpParamSerializer', '$ionicHistory'];
 
-function CartCtrl($scope,$state,$rootScope, $timeout, $mdBottomSheet, $mdToast,cartSev,serverConfig,httpService,$httpParamSerializer) {
+function CartCtrl($scope,$state,$rootScope, $timeout, $mdBottomSheet,
+  $mdToast,cartSev,serverConfig,httpService,$httpParamSerializer, $ionicHistory) {
 
    getProductsOfCart();
 
@@ -15,6 +17,16 @@ function CartCtrl($scope,$state,$rootScope, $timeout, $mdBottomSheet, $mdToast,c
     //   $state.go('home.new');
     // }
   };
+
+  $scope.goBack = function() {
+    $ionicHistory.goBack();
+  }
+
+  $scope.goToPaypal = function() {
+
+    $state.go("pp_express", { checkout: {}, currency: "USD", total_amount: "$100.00", total_amount_clean: 100, success_state: "app.menu.cart.order_added" }, { reload: true });
+    // $state.go("pp_express");
+  }
 
   function getProductsOfCart() {
     $scope.isCartLoaded = false;

@@ -1,7 +1,7 @@
 <ion-header-bar class="bar bar-header header-md bar-darker">
   <div style="width: 100%; display: inherit; margin-top: 0px !important;">
     <div class="absolute back-icon-wrapper">
-      <a class="button button-icon row" ng-href="#/categories">
+      <a class="button button-icon row" ng-click="goBack()">
         <!--<a class="button button-icon row" ng-href="#/home/new">-->
         <i class="ion-android-arrow-back font-L white"></i>
       </a>
@@ -20,21 +20,18 @@
     <!--<md-button flex="50" class="md-primary md-raised" ng-click="showListBottomSheet()">Show as List</md-button>-->
     <ion-list show-delete="false" can-swipe="true" class="list card cart-item" style="margin:0;" ng-if="isCartLoaded == true">
       <ion-item class="card item item-avatar history-item" ng-repeat="item in cart.products">
-        <!--<ion-item class="card item item-avatar history-item" ng-repeat="item in cart.itemList">-->
-        <!--<div class="circle" ng-style="{'background-image':'url(\'{{item.thumb}}\')'}">-->
-        <!--</div>-->
-        <img class="circle" ng-src="{{item.thumb}}">
+
+        <img class="sqare" ng-src="{{item.thumb}}">
         <h2 class="cart-item-title" ng-bind-html="item.name"></h2>
         <p ng-bind-html="item.model"></p>
-        <!--<p ng-bind-html="item.description"></p>-->
+
         <span class="history-price" ng-bind-html="item.total"></span>
         <div class="row qty-spinner">
-          <input type='button' value='-' class='qtyminus' ng-click="updateCart(item,'minus')" />
+          <input type='button' value='-' class='qtyminus' ng-click="updateCart(item,'minus')" style="margin-top:-2px" />
           <input type='number' name='quantity' ng-model="item.quantity" class='qty' />
-          <input type='button' value='+' class='qtyplus' ng-click="updateCart(item,'plus')" />
+          <input type='button' value='+' class='qtyplus' ng-click="updateCart(item,'plus')" style="margin-top:-3px" />
         </div>
-        <!--<a class="item-close-btn ion-close-round"></a>-->
-        <div class="chip capital">{{"SIZE" | translate}} : 8</div>
+
         <div class="chip align-center">x {{item.quantity}}</div>
 
         <ion-option-button class="button-assertive icon ion-trash-a" ng-click="removeItemFromCart(item.cart_id);"></ion-option-button>

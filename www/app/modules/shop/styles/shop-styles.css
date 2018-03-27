@@ -561,6 +561,9 @@ md-select.md-default-theme:not([disabled]):focus .md-select-value, md-select:not
   background: white;
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
   transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  border: solid;
+  border-color: rgba(0,0,0,0.16);
+  border-width: 1px;
 }
 
 /* Home - Main banner */
@@ -610,6 +613,13 @@ md-select.md-default-theme:not([disabled]):focus .md-select-value, md-select:not
 .home-content > .main-banner {
   width:100%;
   height:300;
+}
+
+.banner-border {
+  border: solid;
+  border-color: rgba(0,0,0,0.16);
+  border-width: 1px;
+  border-radius: 5px
 }
 
 .home-content > .new-arrivals {

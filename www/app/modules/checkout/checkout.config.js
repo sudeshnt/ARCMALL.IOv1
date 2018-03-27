@@ -30,4 +30,31 @@ checkoutModule.config(function config($stateProvider,$urlRouterProvider) {
       controller: 'CheckoutStep3Ctrl',
       params: {'personal_info':null}
     })
+
+    // .state('payment_modules', {
+    //   url: '/payment_modules',
+    //   abstract: true,
+    //   views: {
+    //       'tab-cart': {
+    //           templateUrl: 'app/modules/payment_modules/templates/layout.html'
+    //       },
+    //       'menu': {
+    //           templateUrl: 'app/modules/payment_modules/templates/layout.html'
+    //       }
+    //   },
+    //   params: { checkout: null, currency: null, total_amount: null, total_amount_clean: null, success_state: null }
+    // }).state('payment_modules.pp_express', {
+    //   url: '/pp_express',
+    //      abstract: true,
+    //      views: {
+    //          'paymentsContent': {
+    //              templateUrl: 'app/modules/payment_modules/pp_express/templates/layout.html'
+    //          }
+    //      }
+    //  })
+     .state('pp_express', {
+         url: '/pp_express',
+         templateUrl: 'app/modules/checkout/templates/paypal_home.html',
+         controller: 'PaymentPPExpressCtrl'
+     })
 });

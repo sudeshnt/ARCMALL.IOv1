@@ -15,7 +15,6 @@ function BasicModalCtrl($scope,$state,$rootScope,$mdSidenav,$log) {
     $scope.reviews = $state.params.obj;
   }
 
-
   $scope.goToItems = function () {
     $state.go('item',{category_id:categoryId,product_id:productId});
   };

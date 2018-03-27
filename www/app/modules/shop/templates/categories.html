@@ -37,22 +37,22 @@
                         <ion-slide-box on-slide-changed="slideChanged(index)" auto-play="true" does-continue="true" slide-interval="5000" class="content" style="border-radius:7px">
                           <ion-slide>
                             <div id="shop" ng-click="openCategories()" style="height: 250px;border-radius:7px;">
-                              <div class="content align-center" style="background: white;">
-                                <img style="width: 100%;height: 100%;" src="img/banner_720x300.png" />
+                              <div class="content align-center border" style="background: white;">
+                                <img style="width: 100%;height: 100%;" src="img/main_1.jpg" />
+                              </div>
+                            </div>
+                          </ion-slide>
+                          <ion-slide>
+                            <div id="shop" style="height: 250px;border-radius:7px;">
+                              <div class="content align-center banner-bord" style="background: white;">
+                                <img style="width: 100%;height: 100%;" src="img/main2.jpg" />
                               </div>
                             </div>
                           </ion-slide>
                           <ion-slide>
                             <div id="shop" style="height: 250px;border-radius:7px;">
                               <div class="content align-center" style="background: white;">
-                                <img style="width: 100%;height: 100%;" src="img/banner_720x300.png" />
-                              </div>
-                            </div>
-                          </ion-slide>
-                          <ion-slide>
-                            <div id="shop" style="height: 250px;border-radius:7px;">
-                              <div class="content align-center" style="background: white;">
-                                <img style="width: 100%;height: 100%;" src="img/banner_720x300.png" />
+                                <img style="width: 100%;height: 100%;" src="img/main3.jpg" />
                               </div>
                             </div>
                           </ion-slide>
@@ -178,16 +178,85 @@
                   </div>
                 </div>
               </div>
-
-
-
-
+              <div class="seperator-2"></div>
           </ion-content>
 
           </div>
         </div>
 
-        <div ng-if=" tab.id !=1 ">
+        <div ng-if="tab.id == 2">
+          <ion-content>
+            <div class="new-arrivals">
+              <div class="g-card-2">
+                <div class="row">
+                  <div class="content-title">
+                    <div class="title-text">
+                      Here are the best selling wholesale items
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="content-scroll">
+                    <ion-scroll direction="x" class="wide-as-needed">
+                      <div class="row">
+                        <div ng-repeat="productRow in itemsToLove">
+                          <div class="col" ng-repeat="product in productRow" style="width:140px">
+                            <div item-cell product="product" ng-click="openItemDetails(product.product_id)"></div>
+                          </div>
+                          <div class="col zero-padding" ng-if="productRow.length==1">
+                          </div>
+                        </div>
+                      </div>
+                    </ion-scroll>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="seperator-2"></div>
+
+            <div class="new-arrivals">
+              <div class="g-card-2">
+                <div class="row">
+                  <div class="content-title">
+                    <div class="title-text" style="text-align:center; padding-bottom:10px">
+                      If you would like to purchase an item on our site in bulk, Please get in touch with us.We will assist you with your purchase!
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <label class="item item-input wholesale-item-textbox">
+                    <!--<i class="icon ion-ios-home-outline placeholder-icon"></i>-->
+                    <input type="text" placeholder="Youe Name" ng-model="item.name">
+                  </label>
+                </div>
+                <div class="row">
+                  <label class="item item-input wholesale-item-textbox">
+                    <!--<i class="icon ion-ios-home-outline placeholder-icon"></i>-->
+                    <input type="text" placeholder="E-mail Address" ng-model="item.name">
+                  </label>
+                </div>
+                <div class="row">
+                  <label class="item item-input wholesale-item-textbox">
+                    <!--<i class="icon ion-ios-home-outline placeholder-icon"></i>-->
+                    <input type="text" placeholder="Item URL" ng-model="item.name">
+                  </label>
+                </div>
+                <div class="row">
+                  <label class="item item-input wholesale-item-textbox">
+                    <!--<i class="icon ion-ios-home-outline placeholder-icon"></i>-->
+                    <input type="text" placeholder="Quantity" ng-model="item.name">
+                  </label>
+                </div>
+              </div>
+            </div>
+
+          </ion-content>
+
+        </div>
+        </div>
+
+        <div ng-if=" tab.id !=1 && tab.id != 2">
           <ion-content style="padding: 10px 5px 10px 5px">
             <div class="row" style="padding: 1px 5px 4px; " ng-repeat="subCat_rows in tab.sub_cats track by $index ">
 

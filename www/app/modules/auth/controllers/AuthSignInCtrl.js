@@ -20,6 +20,8 @@ function AuthSignInCtrl($scope,$state,$rootScope,httpService,serverConfig,$httpP
         'Content-Type': 'application/x-www-form-urlencoded'
       }
     };
+
+    console.log($scope.user);
     httpService.postRequest(serverConfig.clientAPI,extended_url,$httpParamSerializer(req),config).then(function(response){
       if(response.status === 200){
         localStorage.setItem('loginStatus',true);

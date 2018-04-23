@@ -12,7 +12,10 @@
 </ion-header-bar>
 
 <ion-view>
-  <ion-content style="padding-left:20px; padding-right:20px; padding-top:20px; padding-bottom:200px">
+  <ion-content style="padding-left: 20px;
+  padding-right: 20px;
+  margin-top: 20px;
+  margin-bottom: 10px;">
     <label class="item item-input text-xmd add-item-textbox">
       <!--<i class="icon ion-ios-home-outline placeholder-icon"></i>-->
       <input type="text" placeholder="{{'WHAT_IS_YOUR_PRODUCT_NAME' | translate}}" ng-model="item.name">
@@ -72,6 +75,18 @@
       </div>
     </div>
     <div class="row zero-padding">
+        <div class="col zero-padding">
+          <label class="item item-input text-xmd add-item-textbox" style=" height: 51px;">
+            <input type="number" placeholder="{{'LENGTH' | translate}}" ng-model="item.weight">
+          </label>
+        </div>
+        <div class="col zero-padding">
+          <label class="item item-input text-xmd add-item-textbox" style=" height: 51px;  margin-left:10px">
+              <input type="number" placeholder="{{'WIDTH' | translate}}" ng-model="item.weight">
+          </label>
+        </div>
+      </div>
+    <div class="row zero-padding">
       <div class="col zero-padding">
         <label class="item item-input text-xmd add-item-textbox" style=" height: 51px;">
           <input type="number" placeholder="{{'WHAT_IS_THE_WEIGHT_OF_YOUR_PRODUCT' | translate}}" ng-model="item.weight">
@@ -84,25 +99,6 @@
           </md-select>
         </div>
       </div>
-    </div>
-
-    <div class="row zero-padding">
-      <div class="col zero-padding">
-        <label class="item item-input text-xmd add-item-textbox" style=" height: 51px;">
-          <input type="number" placeholder="length" ng-model="item.weight">
-        </label>
-      </div>
-      <div class="col zero-padding">
-        <label class="item item-input text-xmd add-item-textbox" style=" height: 51px;  margin-left:10px">
-            <input type="number" placeholder="width" ng-model="item.weight">
-          </label>
-      </div>
-      <div class="col zero-padding">
-        <label class="item item-input text-xmd add-item-textbox" style=" height: 51px;  margin-left:10px">
-            <input type="number" placeholder="height" ng-model="item.weight">
-          </label>
-      </div>
-    </div>
     </div>
 
     <label class="item item-input text-xmd add-item-textbox">

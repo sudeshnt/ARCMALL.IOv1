@@ -12,21 +12,41 @@
   </div>
 </ion-header-bar>
 <ion-view>
-  <form name="personalInfoForm" novalidate>
+  <ion-content class="has-header-md" ng-if="hasAddresses">
+    <div class="g-card-1">
+      <div class="row">
+        <div class="content">
+          <div class="align-left" style="font-weight:bold">{{address.firstname}} {{address.lastname}}</div>
+          <div class="align-left">{{address.address_1}}</div>
+          <div class="align-left">{{address.address_2}}</div>
+          <div class="align-left">{{address.city}}</div>
+          <div class="align-left">{{address.zone}}</div>
+          <div class="align-left">{{address.postcode}}</div>
+          <div class="align-left">{{address.country}}</div>
+        </div>
+        <div class="content" ng-click="changeShipping() ">
+          <div class="align-right" style="padding-right:20px;padding-bottom:10px;bottom:0;right:0;position:absolute;">
+            <a text-right ng-click=" ">Change</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+  <form name="personalInfoForm" novalidate ng-if="!hasAddresses">
     <ion-content class="has-header-md" style="background: #ffffff !important;">
       <!--<ion-list>-->
       <div class="item item-divider divider-topic">Your Personal Details</div>
       <div class="row no-padding item item-input item-floating-label item-double-col checkout-double-col">
         <label class="item item-input item-floating-label col-50 checkout-label">
                         <span class="input-label">First Name <span class="error-warning"> *</span></span>
-                        <input type="text" value="{{personal_details.firstname}}" ng-model="personal_details.firstname" placeholder="First Name *" name="firstname" required>
+                        <input type="text" ng-model="personal_details.firstname" placeholder="First Name *" name="firstname" required>
                         <span class="error-warning" data-ng-show="personalInfoForm.$submitted">
                           <span class="error-warning" data-ng-show="personalInfoForm.firstname.$error.required">This field is required.</span>
                         </span>
                     </label>
         <label class="item item-input item-floating-label col-50 checkout-label">
                         <span class="input-label">Last Name <span class="error-warning"> *</span></span>
-                        <input type="text" value="personal_details.lastname"  ng-model="personal_details.lastname" placeholder="Last Name *" name="lastname" required>
+                        <input type="text"  ng-model="personal_details.lastname" placeholder="Last Name *" name="lastname" required>
                        <span class="error-warning" data-ng-show="personalInfoForm.$submitted">
                           <span class="error-warning" data-ng-show="personalInfoForm.lastname.$error.required">This field is required.</span>
                         </span>

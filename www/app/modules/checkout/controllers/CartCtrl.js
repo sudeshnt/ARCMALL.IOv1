@@ -22,9 +22,10 @@ function CartCtrl($scope,$state,$rootScope, $timeout, $mdBottomSheet,
     $ionicHistory.goBack();
   }
 
-  $scope.goToPaypal = function() {
-
-    $state.go("pp_express", { checkout: {}, currency: "USD", total_amount: "$100.00", total_amount_clean: 100, success_state: "app.menu.cart.order_added" }, { reload: true });
+  $scope.go = function() {
+    // $state.go('shipping');
+    $state.go('checkout-step-1', {current_address:null, addresses:null});
+    // $state.go("pp_express", { checkout: {}, currency: "USD", total_amount: "$100.00", total_amount_clean: 100, success_state: "app.menu.cart.order_added" }, { reload: true });
     // $state.go("pp_express");
   }
 

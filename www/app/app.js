@@ -8,6 +8,7 @@ var arcMall = angular.module('arcMall', [
   'ngMaterial',
   'pascalprecht.translate',
   'lang_en',
+  'lang_zh',
   'modules',
   'ngCordova',
   'ionic-ratings',
@@ -20,9 +21,19 @@ var arcMall = angular.module('arcMall', [
 
 // translation config
 arcMall.config(function($translateProvider) {
-    $translateProvider.preferredLanguage("en");
+
+    var lang = window.navigator.userLanguage || window.navigator.language;
+
+    if(lang && lang != "") {
+      lang = lang.substring(0,2);
+    }
+    else {
+      lang = "en";
+    }
+
+    $translateProvider.preferredLanguage(lang);
     $translateProvider.forceAsyncReload(true);
-    $translateProvider.fallbackLanguage("en");
+    $translateProvider.fallbackLanguage(lang);
 });
 
 arcMall.config(function ($httpProvider) {
@@ -42,6 +53,7 @@ arcMall.run(function($ionicPlatform) {
     if(window.cordova && window.cordova.plugins.Keyboard) {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
+      console.log(window.navigator.userLanguage);
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
 
       // Don't remove this line unless you know what you are doing. It stops the viewport
@@ -54,3 +66,21 @@ arcMall.run(function($ionicPlatform) {
     }
   });
 });
+
+function initLanguage(lang) {
+  var extended_url = '/common/language/language';
+  var reqObj = {
+    code:lang
+  };
+  var config = {
+    headers:{
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+  };
+  httpService.postRequest(serverConfig.clientAPI,extended_url, $httpParamSerializer(reqObj),config).then(function(response){
+
+    if(response.status === 200){
+      console.log("lang");
+    }
+  });
+}

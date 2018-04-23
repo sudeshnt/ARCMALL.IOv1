@@ -14,7 +14,8 @@ checkoutModule.config(function config($stateProvider,$urlRouterProvider) {
       cache:false,
       url: '/checkout-step-1',
       templateUrl: 'app/modules/checkout/templates/cart-checkout-step1.html',
-      controller: 'CheckoutCtrl'
+      controller: 'CheckoutCtrl',
+      params: {'current_address':null, addresses:null}
     })
     .state('checkout-step-2', {
       cache:false,
@@ -29,6 +30,13 @@ checkoutModule.config(function config($stateProvider,$urlRouterProvider) {
       templateUrl: 'app/modules/checkout/templates/cart-checkout-step3.html',
       controller: 'CheckoutStep3Ctrl',
       params: {'personal_info':null}
+    })
+    .state('shipping', {
+      cache:false,
+      url: '/shipping',
+      templateUrl: 'app/modules/checkout/templates/shipping_choser.html',
+      controller: 'ShippingChoserCtrl',
+      params: {'current_address':null, 'addresses':null}
     })
 
     // .state('payment_modules', {

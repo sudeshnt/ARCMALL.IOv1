@@ -1,9 +1,9 @@
 /**
  * Created by SudeshNT on 11/4/2016.
  */
-angular.module('lang_en',['pascalprecht.translate','ngSanitize'])
+angular.module('lang_zh',['pascalprecht.translate','ngSanitize'])
   .config(['$translateProvider',function($translateProvider){
-    $translateProvider.translations('en', {
+    $translateProvider.translations('zh', {
       SIGN_IN_WITH: "Sign in with",
       SIGN_UP_WITH: "Sign up with",
       ALREADY_REGISTERED: "Already Registered ?",
@@ -15,7 +15,7 @@ angular.module('lang_en',['pascalprecht.translate','ngSanitize'])
       PASSWORD: "Password",
       NO_ACCOUNT:"No Account ?",
       FORGET_PASSWORD:'Forgot Password ?',
-      I_AM_SHOPPING_FOR:"Search..",
+      I_AM_SHOPPING_FOR:"搜索..",
       WHAT_S_NEW:"what's new",
       JUST_FOR_YOU:"just for you",
       MOST_TRENDING:"Most Trending",
@@ -44,8 +44,8 @@ angular.module('lang_en',['pascalprecht.translate','ngSanitize'])
       ORDER_HISTORY:"Order History",
       NEW:"new",
       OUTLETS:"outlets",
-      WHOLESALE:"wholesale",
-      HOME:"Home",
+      WHOLESALE:"批发",
+      HOME:"家",
       COMPANY_NAME:'Company Name',
       FIRST_NAME:'First Name',
       LAST_NAME:'Last Name',

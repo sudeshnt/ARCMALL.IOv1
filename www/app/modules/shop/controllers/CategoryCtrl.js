@@ -4,11 +4,11 @@ angular.module('shop.module').controller('CategoryCtrl',CategoryCtrl );
 
 CategoryCtrl.$inject = ['$scope','$state','$rootScope','$stateParams',
 'httpService','serverConfig','$ionicSlideBoxDelegate','$window',
-'$ionicGesture','$timeout','$mdSidenav','$log', 'publicFunc'];
+'$ionicGesture','$timeout','$mdSidenav','$log', 'publicFunc', '$translate'];
 
 function CategoryCtrl($scope,$state,$rootScope,$stateParams,httpService,
   serverConfig,$ionicSlideBoxDelegate,$window, $ionicGesture,
-  $timeout,$mdSidenav,$log, publicFunc) {
+  $timeout,$mdSidenav,$log, publicFunc, $translate) {
 
   var type = $stateParams.type;
 
@@ -111,26 +111,43 @@ function CategoryCtrl($scope,$state,$rootScope,$stateParams,httpService,
     httpService.postRequest(serverConfig.clientAPI,extended_url,req,{}).then(function(response){
       if(response.status === 200 && !response.error_warning){
 
-        var home = {
-          "category_id":"1",
-          "name":"Home",
-          "image":"",
-          "categories":[],
-          "isHome":true
-        }
+        var home = $translate('HOME');
+        var wholesale = $translate('WHOLESALE');
 
-        var wholesale = {
-          "category_id":"2",
-          "name":"Wholesale",
-          "image":"",
-          "categories":[],
-          "isHome":true
-        }
+        home.then(function(homeVal) {
+          
+          wholesale.then(function(wholesaleVal){
 
-        response.data.categories[0].categories.unshift(wholesale);
-        response.data.categories[0].categories.unshift(home);
+            console.log(homeVal);
+            console.log(wholesaleVal);
+            
+            var home = {
+              "category_id":"1",
+              "name":homeVal,
+              "image":"",
+              "categories":[],
+              "isHome":true
+            }
+    
+            var wholesale = {
+              "category_id":"2",
+              "name":wholesaleVal,
+              "image":"",
+              "categories":[],
+              "isHome":true
+            }
+    
+            response.data.categories[0].categories.unshift(wholesale);
+            response.data.categories[0].categories.unshift(home);
+    
+            initTabs(response.data.categories);
 
-        initTabs(response.data.categories);
+          });
+
+        });
+
+        
+        
 
       }else{
         $scope.error = response.error_warning;

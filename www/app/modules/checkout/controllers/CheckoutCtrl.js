@@ -2,13 +2,20 @@
 
 angular.module('checkout.module').controller('CheckoutCtrl',CheckoutCtrl );
 
-CheckoutCtrl.$inject = ['$scope','$state','$rootScope','serverConfig','httpService','$httpParamSerializer','$http', '$ionicPopup'];
+CheckoutCtrl.$inject = ['$scope','$state','$rootScope','$stateParams',
+'serverConfig','httpService','$httpParamSerializer','$http', '$ionicPopup',
+'$ionicViewSwitcher'];
 
-function CheckoutCtrl($scope,$state,$rootScope,serverConfig,httpService,$httpParamSerializer,$http, $ionicPopup) {
+function CheckoutCtrl($scope,$state,$rootScope,$stateParams,serverConfig,
+  httpService,$httpParamSerializer,$http, $ionicPopup, $ionicViewSwitcher) {
 
   $scope.personal_details = {};
 
-  autofilCustomerDetails();
+
+  function init() {
+    initCountries();
+    autofilCustomerDetails();
+  }
 
   $scope.nextStep = function (){
     console.log("Next");
@@ -19,6 +26,30 @@ function CheckoutCtrl($scope,$state,$rootScope,serverConfig,httpService,$httpPar
      // $state.go("pp_express");
 
     // $state.go("payment_modules." + "pp_express" + ".home", { checkout: req, currency: "USD", total_amount: "$100.00", total_amount_clean: 100, success_state: "app.menu.cart.order_added" }, { reload: true });
+  }
+
+  $scope.changeShipping = function() {
+    $ionicViewSwitcher.nextDirection('forward');
+
+    // var address = $scope.address;
+
+    // for(var index = 0; index<Object.keys(addresses).length; index++) {
+    //   if (position != index) {
+    //     var address = addresses[Object.keys(addresses)[index]];
+    //     address.checked = false;
+    //     lastpos = position;
+    //
+    //   }
+    // }
+
+    console.log("scope");
+    console.log($scope.addresses);
+
+    $state.go('shipping', {current_address:$scope.address, addresses: $scope.addresses});
+  }
+
+  $scope.goBack = function() {
+    $state.go('shipping');
   }
 
   function showPopup(text) {
@@ -48,6 +79,20 @@ function CheckoutCtrl($scope,$state,$rootScope,serverConfig,httpService,$httpPar
     $scope.personal_details.lastname = lastname;
     $scope.personal_details.email = email;
     $scope.personal_details.telephone = telephone;
+
+
+    if($stateParams.current_address != null) {
+      $scope.address = $stateParams.current_address;
+      $scope.hasAddresses = true;
+    }
+    if($stateParams.addresses != null){
+      $scope.addresses = $stateParams.addresses;
+      console.log("$stateParams");
+      console.log($stateParams);
+    }
+    // else {
+    //   getAddresses();
+    // }
 
   }
 
@@ -143,8 +188,23 @@ function CheckoutCtrl($scope,$state,$rootScope,serverConfig,httpService,$httpPar
     };
     httpService.postRequest(serverConfig.clientAPI,extended_url, $httpParamSerializer(reqObj),config).then(function(response){
       if(response.status === 200){
+
         $scope.countries = response.data.countries;
-        // $scope.personal_details.country_id = angular.copy($scope.countries[0].country_id);
+
+
+        if($stateParams.addresses == null) {
+          var addresses = response.data.addresses;
+          var firstAddress = addresses[Object.keys(addresses)[0]];
+          // firstAddress.checked = true;
+
+          console.log("addresses");
+          console.log(addresses);
+
+
+          $scope.addresses = addresses;
+          $scope.address = firstAddress;
+          $scope.hasAddresses =  Object.keys(addresses).length > 0;
+        }
       }
     });
   }
@@ -176,7 +236,28 @@ function CheckoutCtrl($scope,$state,$rootScope,serverConfig,httpService,$httpPar
 
   init();
 
-  function init() {
-    initCountries();
+  function getAddresses() {
+    $scope.isCartLoaded = false;
+    var extended_url = '/address';
+    var reqObj = {};
+    var config = {
+      headers:{
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    };
+    httpService.postRequest(serverConfig.clientAPI,extended_url, $httpParamSerializer(reqObj),config).then(function(response){
+      if(response.status === 200){
+        var addresses = response.data.addresses;
+        var firstAddress = addresses[Object.keys(addresses)[0]];
+        firstAddress.checked = true;
+
+        console.log("addresses");
+        console.log(addresses);
+
+        $scope.addresses = addresses;
+        $scope.address = firstAddress;
+        $scope.hasAddresses =  Object.keys(addresses).length > 0;
+      }
+    });
   }
 }

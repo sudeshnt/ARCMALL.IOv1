@@ -1,27 +1,16 @@
 'use strict';
 
-angular.module('seller.module').controller('SellerHomeCtrl',SellerHomeCtrl );
+angular.module('seller.module').controller('SellerHome2Ctrl',SellerHome2Ctrl );
 
-SellerHomeCtrl.$inject = ['$scope','$rootScope', '$state','httpService','serverConfig','$httpParamSerializer','$timeout','$mdSidenav','$log','$cordovaActionSheet','$cordovaDevice','$cordovaFile','$cordovaFileTransfer','$ionicLoading'];
+SellerHomeCtrl.$inject = ['$scope','$rootScope', '$state','httpService','serverConfig','$httpParamSerializer','$timeout','$mdSidenav','$log','$cordovaActionSheet','$cordovaDevice','$cordovaFile','$cordovaFileTransfer','$ionicLoading', '$stateParams'];
 
-function SellerHomeCtrl($scope, $rootScope, $state , httpService, serverConfig,$httpParamSerializer,$timeout,$mdSidenav,$log,$cordovaActionSheet,$cordovaDevice,$cordovaFile,$cordovaFileTransfer,$ionicLoading) {
+function SellerHome2Ctrl($scope, $rootScope, $state,  httpService,serverConfig,$httpParamSerializer,$timeout,$mdSidenav,$log,$cordovaActionSheet,$cordovaDevice,$cordovaFile,$cordovaFileTransfer,$ionicLoading, $stateParams) {
 
   $scope.toggleSideBarHome = buildToggler('left');
 
-  
+  $scope.product_id = $stateParams.product_id;
 
-  function setDefault() {
-    
-    $scope.item.weight = 11;
-    $scope.item.height = 11;
-    $scope.item.name = "12";
-    $scope.item.quantity = 11;
-    $scope.item.price = 11;
-    $scope.item.description = "hello";
-    $scope.item.model = "model";
-  }
-
-  // console.log($scope.authResponse);
+  console.log($stateParams.product_id);
 
   $scope.goHome = function () {
     $state.go('categories');
@@ -56,12 +45,8 @@ function SellerHomeCtrl($scope, $rootScope, $state , httpService, serverConfig,$
     ]
   }
 
-  setDefault();
-
   function getCurrency() {
     var extended_url = '/currency';
-    console.log('httpservice');
-    console.log(httpService)
     httpService.getRequest(serverConfig.clientAPI,extended_url,{}).then(function(response){
       if(response.status === 200){
         $scope.currencies = response.data.currencies;
@@ -140,8 +125,6 @@ function SellerHomeCtrl($scope, $rootScope, $state , httpService, serverConfig,$
           $scope.product = {
             "product_id" : response.data.product_id
           }
-
-          $state.go('sellerHome2', {'product_id': response.data.product_id});
           // console.log(response.data.product_id); // product id =248/249/250
         }else{
           $scope.error = response.error_warning;
@@ -216,11 +199,14 @@ function SellerHomeCtrl($scope, $rootScope, $state , httpService, serverConfig,$
 
   function uploadImage(newFileName) {
     // Destination URL
+
+    var serverUrl = serverConfig.clientAPI.serviceUrl + '?route=api2/product';
+
     var url = null;
     if($scope.selected_image_type==='Main'){
-      url = "http://arcmall.alofatechlabs.com?route=api2/product/addmainimage";
+      url = serverUrl + "/addmainimage";
     }else if($scope.selected_image_type==='Product'){
-      url = "http://arcmall.alofatechlabs.com?route=api2/product/addproductimage";
+      url = serverUrl + "/addproductimage";
     }
 
     // File for Upload
@@ -235,7 +221,7 @@ function SellerHomeCtrl($scope, $rootScope, $state , httpService, serverConfig,$
       chunkedMode: false,
       mimeType: "image/jpeg",
       // mimeType: "multipart/form-data",
-      params : {'product_id': $scope.product.product_id}
+      params : {'product_id': $stateParams.product_id}
       // params : {'product_id': filename}
     };
 

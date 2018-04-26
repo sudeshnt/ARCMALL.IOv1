@@ -221,6 +221,9 @@ function HomeCtrl($scope,$state,$filter,$rootScope,appConfig,$timeout,$mdSidenav
   $scope.openAddItem = function () {
     $state.go('sellerHome');
   };
+  $scope.openMyProducts = function () {
+    $state.go('sellerProducts');
+  };
   $scope.openMyProfile = function () {
     $scope.close();
     $state.go('my-profile');

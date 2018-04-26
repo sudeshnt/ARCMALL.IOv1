@@ -79,7 +79,7 @@
         <splash height="960" src="resources/ios/splash/Default@2x~iphone.png" width="640" />
         <splash height="480" src="resources/ios/splash/Default~iphone.png" width="320" />
     </platform>
-    <engine name="android" spec="^6.2.3" />
+    <allow-navigation href="http://192.168.1.4:8101" />
     <plugin name="cordova-plugin-actionsheet" spec="^2.3.3" />
     <plugin name="cordova-plugin-camera" spec="^2.4.1">
         <variable name="CAMERA_USAGE_DESCRIPTION" value=" " />
@@ -103,5 +103,7 @@
     <plugin name="cordova-plugin-whitelist" spec="^1.3.1" />
     <plugin name="cordova-plugin-x-toast" spec="git+https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git" />
     <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
-    <engine name="ios" spec="~4.4.0" />
+    <allow-navigation href="http://192.168.1.4:8102" />
+    <engine name="android" spec="^6.2.3" />
+    <engine name="ios" spec="4.4.0" />
 </widget>

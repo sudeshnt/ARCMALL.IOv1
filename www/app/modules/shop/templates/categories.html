@@ -109,7 +109,7 @@
                       <div ng-repeat="productRow in brands">
                         <div class="row">
                           <div class="col" ng-repeat="product in productRow" style="width:140px">
-                            <div item-brand-cell product="product" ng-click="openItemDetails(product.product_id)"></div>
+                            <div item-brand-cell product="product" ng-click="openBrandDetails(product.manufacturer_id)"></div>
                           </div>
                           <div class="col zero-padding" ng-if="productRow.length==1">
                           </div>

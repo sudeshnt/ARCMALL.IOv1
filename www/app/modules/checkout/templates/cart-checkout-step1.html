@@ -7,34 +7,36 @@
     </div>
     <h4 class="white left-title">{{'CHECKOUT_STEP_ONE' | translate}}</h4>
     <div class="absolute cart-icon-wrapper">
-
     </div>
   </div>
 </ion-header-bar>
+
 <ion-view>
-  <ion-content class="has-header-md" ng-if="hasAddresses">
-    <div class="g-card-1">
-      <div class="row">
-        <div class="content">
-          <div class="align-left" style="font-weight:bold">{{address.firstname}} {{address.lastname}}</div>
-          <div class="align-left">{{address.address_1}}</div>
-          <div class="align-left">{{address.address_2}}</div>
-          <div class="align-left">{{address.city}}</div>
-          <div class="align-left">{{address.zone}}</div>
-          <div class="align-left">{{address.postcode}}</div>
-          <div class="align-left">{{address.country}}</div>
-        </div>
-        <div class="content" ng-click="changeShipping() ">
-          <div class="align-right" style="padding-right:20px;padding-bottom:10px;bottom:0;right:0;position:absolute;">
-            <a text-right ng-click=" ">Change</a>
+  <div ng-if="hasAddresses"> 
+    <ion-content class="has-header-md">
+      <div class="g-card-1">
+        <div class="row">
+          <div class="content">
+            <div class="align-left" style="font-weight:bold">{{address.firstname}} {{address.lastname}}</div>
+            <div class="align-left">{{address.address_1}}</div>
+            <div class="align-left">{{address.address_2}}</div>
+            <div class="align-left">{{address.city}}</div>
+            <div class="align-left">{{address.zone}}</div>
+            <div class="align-left">{{address.postcode}}</div>
+            <div class="align-left">{{address.country}}</div>
+          </div>
+          <div class="content" ng-click="changeShipping() ">
+            <div class="align-right" style="padding-right:20px;padding-bottom:10px;bottom:0;right:0;position:absolute;">
+              <a text-right ng-click=" ">Change</a>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </ion-content>
+    </ion-content>
+  </div>
   <form name="personalInfoForm" novalidate ng-if="!hasAddresses">
     <ion-content class="has-header-md" style="background: #ffffff !important;">
-      <!--<ion-list>-->
+      <ion-list>
       <div class="item item-divider divider-topic">Your Personal Details</div>
       <div class="row no-padding item item-input item-floating-label item-double-col checkout-double-col">
         <label class="item item-input item-floating-label col-50 checkout-label">
@@ -128,18 +130,17 @@
         </div>
       </div>
 
-      <!--</ion-list>-->
+      </ion-list>
     </ion-content>
+  </form>
 
-    <ion-footer-bar align-title="left" ng-class="'bar-positive'">
+  <ion-footer-bar align-title="left" ng-class="'bar-positive'">
       <!--<ion-footer-bar align-title="left" ng-class="{'bar-assertive':forms.checkoutForm.$invalid, 'bar-positive':forms.checkoutForm.$valid}">-->
       <h2 class="title">{{cart.total}}</h2>
       <div class="buttons">
-        <a class="button" data-ng-click="personalInfoForm.$setSubmitted(); personalInfoForm.$valid && nextStep()">NEXT</a>
+        <a class="button" data-ng-click="personalInfoForm.$setSubmitted(); nextStep()">NEXT</a>
         <!--<a class="button" ng-click="personalInfoForm.$submitted = true; personalInfoForm.$valid && nextStep()">NEXT</a>-->
       </div>
-    </ion-footer-bar>
-  </form>
+  </ion-footer-bar>
 
-</ion-view>
 </ion-view>

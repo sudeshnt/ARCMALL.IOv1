@@ -40,6 +40,9 @@ function MyProfileCtrl($scope,$state,$rootScope,$mdSidenav,$log) {
   $scope.openAddItem = function () {
     $state.go('sellerHome');
   };
+  $scope.openMyProducts = function () {
+    $state.go('sellerProducts');
+  };
   $scope.openMyProfile = function () {
     $scope.close();
     $state.go('my-profile');

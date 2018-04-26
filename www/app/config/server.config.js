@@ -6,7 +6,7 @@
 
       clientAPI: {
         serviceName: 'Client API Services',
-        serviceUrl: 'http://arcmall.alofatechlabs.com',
+        serviceUrl: 'http://arcmall.com',
         // serviceUrl: 'https://saasthara.com',
         port:'',
         base_url: '?route=api2',

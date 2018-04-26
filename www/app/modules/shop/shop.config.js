@@ -30,7 +30,7 @@ shopModule.config(function config($stateProvider,$urlRouterProvider) {
       url: '/item-list',
       templateUrl: 'app/modules/shop/templates/item-list.html',
       controller: 'ItemListCtrl',
-      params:{category_id:null}
+      params:{category_id:null, manufacturer_id: null}
     })
     .state('item', {
       url: '/item',

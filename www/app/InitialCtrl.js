@@ -195,7 +195,7 @@ function InitialCtrl($scope,$rootScope,$state,$ionicHistory,
 
     if(localLang != lang) {
 
-      localStorage.clear();
+      localStorage.removeItem('cat_tabs');
       localStorage.setItem('language',lang);
 
       initLanguage(langCode).then(function(response){

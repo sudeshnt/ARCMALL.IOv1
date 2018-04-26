@@ -15,6 +15,7 @@ function CategoryCtrl($scope,$state,$rootScope,$stateParams,httpService,
   var isCartLoaded = false;
   var isItemsToLoveLoaded = false;
   var isViewsLoaded = false;
+  var brandsLoaded = false;
 
   $scope.toggleSideBarHome = buildToggler('right');
 
@@ -41,8 +42,9 @@ function CategoryCtrl($scope,$state,$rootScope,$stateParams,httpService,
     }
 
     initCartItemCount();
-
+    getLatestItems();
     getFeaturedItems();
+    getBrands();
   }
 
   function buildToggler(navID) {
@@ -88,7 +90,7 @@ function CategoryCtrl($scope,$state,$rootScope,$stateParams,httpService,
   }
 
   function hideLoading() {
-    if(isCartLoaded == true && isViewsLoaded == true) {
+    if(isCartLoaded == true && isViewsLoaded == true && brandsLoaded == true) {
 
       $scope.SyncIsCompleted = true;
       $rootScope.hideLoading();
@@ -155,6 +157,23 @@ function CategoryCtrl($scope,$state,$rootScope,$stateParams,httpService,
     });
   }
 
+  function getLatestItems() {
+    var extended_url = '/latest';
+    var req = {};
+    httpService.postRequest(serverConfig.clientAPI,extended_url,req,{}).then(function(response){
+      if(response.status === 200 && !response.error_warning){
+        var newArrivals = response.data.products;
+        $scope.newArrivals = publicFunc.devideArray(newArrivals,1);
+
+        isItemsToLoveLoaded = true;
+        hideLoading();
+
+      }else{
+        $scope.error = response.error_warning;
+      }
+    });
+  }
+
   function getFeaturedItems() {
     var extended_url = '/featured';
     var req = {};
@@ -162,9 +181,31 @@ function CategoryCtrl($scope,$state,$rootScope,$stateParams,httpService,
       if(response.status === 200 && !response.error_warning){
         var itemsToLove = response.data.products;
         $scope.itemsToLove = publicFunc.devideArray(itemsToLove,1);
-        $scope.newArrivals = publicFunc.devideArray(itemsToLove,1);
 
         isItemsToLoveLoaded = true;
+        hideLoading();
+
+      }else{
+        $scope.error = response.error_warning;
+      }
+    });
+  }
+
+  function getBrands() {
+    var extended_url = '/product/getbrands';
+    httpService.getRequest(serverConfig.clientAPI,extended_url,{}).then(function(response){
+      if(response.status === 200 && !response.error_warning){
+        var brands = [];
+        
+        for(var index = 0; index<Object.keys(response.data).length; index++) {
+          var brand = response.data[Object.keys(response.data)[index]];
+          brand.image = serverConfig.clientAPI.serviceUrl +'/image/'+brand.image;
+          console.log(brand.image)
+          brands.push(brand);
+        }
+
+        $scope.brands = publicFunc.devideArray(brands,3);
+        brandsLoaded = true;
         hideLoading();
 
       }else{
@@ -218,462 +259,7 @@ function CategoryCtrl($scope,$state,$rootScope,$stateParams,httpService,
 
     $ionicSlideBoxDelegate.update();
 
-    // var newArrivals = [
-    //   {
-    //      "heading_title":"Blue &amp; grey school bag",
-    //      "product_id":200,
-    //      "manufacturer":null,
-    //      "manufacturers":null,
-    //      "model":"adidas",
-    //      "reward":0,
-    //      "points":"0",
-    //      "description":"Brand new\r\n",
-    //      "stock":"In Stock",
-    //      "popup":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/wkseller\/sahan16\/Bags\/laptop-bags-500x500-500x539.jpg",
-    //      "thumb":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/wkseller\/sahan16\/Bags\/laptop-bags-500x500-500x539.jpg",
-    //      "images":[
-    //         {
-    //            "popup":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/catalog\/16142974_1216435861810441_2855475497624286406_n-500x539-500x539.jpg",
-    //            "thumb":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/catalog\/16142974_1216435861810441_2855475497624286406_n-500x539-92x99.jpg",
-    //            "preview":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/catalog\/16142974_1216435861810441_2855475497624286406_n-500x539-500x539.jpg"
-    //         }
-    //      ],
-    //      "price":"$234.00",
-    //      "price_clear":234,
-    //      "currency_format":"${value}",
-    //      "decimal_place":2,
-    //      "special":"$134.00",
-    //      "special_clear":134,
-    //      "mobile_special":false,
-    //      "tax":"$134.00",
-    //      "discounts":[
-    //
-    //      ],
-    //      "options":[
-    //
-    //      ],
-    //      "minimum":"1",
-    //      "review_status":"1",
-    //      "review_guest":true,
-    //      "customer_name":"",
-    //      "reviews":"0 reviews",
-    //      "rating":0,
-    //      "entry_name":"Your Name",
-    //      "entry_review":"Your Review",
-    //      "captcha":"",
-    //      "attribute_groups":[
-    //
-    //      ],
-    //      "products":[
-    //
-    //      ],
-    //      "tags":[
-    //
-    //      ],
-    //      "recurrings":[
-    //
-    //      ]
-    //   },
-    //   {
-    //      "heading_title":"Blue &amp; grey school bag",
-    //      "product_id":200,
-    //      "manufacturer":null,
-    //      "manufacturers":null,
-    //      "model":"adidas",
-    //      "reward":0,
-    //      "points":"0",
-    //      "description":"Brand new\r\n",
-    //      "stock":"In Stock",
-    //      "popup":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/wkseller\/sahan16\/Bags\/laptop-bags-500x500-500x539.jpg",
-    //      "thumb":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/wkseller\/sahan16\/Bags\/laptop-bags-500x500-500x539.jpg",
-    //      "images":[
-    //         {
-    //            "popup":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/catalog\/16142974_1216435861810441_2855475497624286406_n-500x539-500x539.jpg",
-    //            "thumb":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/catalog\/16142974_1216435861810441_2855475497624286406_n-500x539-92x99.jpg",
-    //            "preview":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/catalog\/16142974_1216435861810441_2855475497624286406_n-500x539-500x539.jpg"
-    //         }
-    //      ],
-    //      "price":"$234.00",
-    //      "price_clear":234,
-    //      "currency_format":"${value}",
-    //      "decimal_place":2,
-    //      "special":"$134.00",
-    //      "special_clear":134,
-    //      "mobile_special":false,
-    //      "tax":"$134.00",
-    //      "discounts":[
-    //
-    //      ],
-    //      "options":[
-    //
-    //      ],
-    //      "minimum":"1",
-    //      "review_status":"1",
-    //      "review_guest":true,
-    //      "customer_name":"",
-    //      "reviews":"0 reviews",
-    //      "rating":0,
-    //      "entry_name":"Your Name",
-    //      "entry_review":"Your Review",
-    //      "captcha":"",
-    //      "attribute_groups":[
-    //
-    //      ],
-    //      "products":[
-    //
-    //      ],
-    //      "tags":[
-    //
-    //      ],
-    //      "recurrings":[
-    //
-    //      ]
-    //   },
-    //   {
-    //      "heading_title":"Blue &amp; grey school bag",
-    //      "product_id":200,
-    //      "manufacturer":null,
-    //      "manufacturers":null,
-    //      "model":"adidas",
-    //      "reward":0,
-    //      "points":"0",
-    //      "description":"Brand new\r\n",
-    //      "stock":"In Stock",
-    //      "popup":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/wkseller\/sahan16\/Bags\/laptop-bags-500x500-500x539.jpg",
-    //      "thumb":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/wkseller\/sahan16\/Bags\/laptop-bags-500x500-500x539.jpg",
-    //      "images":[
-    //         {
-    //            "popup":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/catalog\/16142974_1216435861810441_2855475497624286406_n-500x539-500x539.jpg",
-    //            "thumb":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/catalog\/16142974_1216435861810441_2855475497624286406_n-500x539-92x99.jpg",
-    //            "preview":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/catalog\/16142974_1216435861810441_2855475497624286406_n-500x539-500x539.jpg"
-    //         }
-    //      ],
-    //      "price":"$234.00",
-    //      "price_clear":234,
-    //      "currency_format":"${value}",
-    //      "decimal_place":2,
-    //      "special":"$134.00",
-    //      "special_clear":134,
-    //      "mobile_special":false,
-    //      "tax":"$134.00",
-    //      "discounts":[
-    //
-    //      ],
-    //      "options":[
-    //
-    //      ],
-    //      "minimum":"1",
-    //      "review_status":"1",
-    //      "review_guest":true,
-    //      "customer_name":"",
-    //      "reviews":"0 reviews",
-    //      "rating":0,
-    //      "entry_name":"Your Name",
-    //      "entry_review":"Your Review",
-    //      "captcha":"",
-    //      "attribute_groups":[
-    //
-    //      ],
-    //      "products":[
-    //
-    //      ],
-    //      "tags":[
-    //
-    //      ],
-    //      "recurrings":[
-    //
-    //      ]
-    //   },
-    //   {
-    //      "heading_title":"Blue &amp; grey school bag",
-    //      "product_id":200,
-    //      "manufacturer":null,
-    //      "manufacturers":null,
-    //      "model":"adidas",
-    //      "reward":0,
-    //      "points":"0",
-    //      "description":"Brand new\r\n",
-    //      "stock":"In Stock",
-    //      "popup":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/wkseller\/sahan16\/Bags\/laptop-bags-500x500-500x539.jpg",
-    //      "thumb":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/wkseller\/sahan16\/Bags\/laptop-bags-500x500-500x539.jpg",
-    //      "images":[
-    //         {
-    //            "popup":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/catalog\/16142974_1216435861810441_2855475497624286406_n-500x539-500x539.jpg",
-    //            "thumb":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/catalog\/16142974_1216435861810441_2855475497624286406_n-500x539-92x99.jpg",
-    //            "preview":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/catalog\/16142974_1216435861810441_2855475497624286406_n-500x539-500x539.jpg"
-    //         }
-    //      ],
-    //      "price":"$234.00",
-    //      "price_clear":234,
-    //      "currency_format":"${value}",
-    //      "decimal_place":2,
-    //      "special":"$134.00",
-    //      "special_clear":134,
-    //      "mobile_special":false,
-    //      "tax":"$134.00",
-    //      "discounts":[
-    //
-    //      ],
-    //      "options":[
-    //
-    //      ],
-    //      "minimum":"1",
-    //      "review_status":"1",
-    //      "review_guest":true,
-    //      "customer_name":"",
-    //      "reviews":"0 reviews",
-    //      "rating":0,
-    //      "entry_name":"Your Name",
-    //      "entry_review":"Your Review",
-    //      "captcha":"",
-    //      "attribute_groups":[
-    //
-    //      ],
-    //      "products":[
-    //
-    //      ],
-    //      "tags":[
-    //
-    //      ],
-    //      "recurrings":[
-    //
-    //      ]
-    //   },
-    //   {
-    //      "heading_title":"Blue &amp; grey school bag",
-    //      "product_id":200,
-    //      "manufacturer":null,
-    //      "manufacturers":null,
-    //      "model":"adidas",
-    //      "reward":0,
-    //      "points":"0",
-    //      "description":"Brand new\r\n",
-    //      "stock":"In Stock",
-    //      "popup":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/wkseller\/sahan16\/Bags\/laptop-bags-500x500-500x539.jpg",
-    //      "thumb":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/wkseller\/sahan16\/Bags\/laptop-bags-500x500-500x539.jpg",
-    //      "images":[
-    //         {
-    //            "popup":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/catalog\/16142974_1216435861810441_2855475497624286406_n-500x539-500x539.jpg",
-    //            "thumb":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/catalog\/16142974_1216435861810441_2855475497624286406_n-500x539-92x99.jpg",
-    //            "preview":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/catalog\/16142974_1216435861810441_2855475497624286406_n-500x539-500x539.jpg"
-    //         }
-    //      ],
-    //      "price":"$234.00",
-    //      "price_clear":234,
-    //      "currency_format":"${value}",
-    //      "decimal_place":2,
-    //      "special":"$134.00",
-    //      "special_clear":134,
-    //      "mobile_special":false,
-    //      "tax":"$134.00",
-    //      "discounts":[
-    //
-    //      ],
-    //      "options":[
-    //
-    //      ],
-    //      "minimum":"1",
-    //      "review_status":"1",
-    //      "review_guest":true,
-    //      "customer_name":"",
-    //      "reviews":"0 reviews",
-    //      "rating":0,
-    //      "entry_name":"Your Name",
-    //      "entry_review":"Your Review",
-    //      "captcha":"",
-    //      "attribute_groups":[
-    //
-    //      ],
-    //      "products":[
-    //
-    //      ],
-    //      "tags":[
-    //
-    //      ],
-    //      "recurrings":[
-    //
-    //      ]
-    //   },
-    //   {
-    //      "heading_title":"Blue &amp; grey school bag",
-    //      "product_id":200,
-    //      "manufacturer":null,
-    //      "manufacturers":null,
-    //      "model":"adidas",
-    //      "reward":0,
-    //      "points":"0",
-    //      "description":"Brand new\r\n",
-    //      "stock":"In Stock",
-    //      "popup":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/wkseller\/sahan16\/Bags\/laptop-bags-500x500-500x539.jpg",
-    //      "thumb":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/wkseller\/sahan16\/Bags\/laptop-bags-500x500-500x539.jpg",
-    //      "images":[
-    //         {
-    //            "popup":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/catalog\/16142974_1216435861810441_2855475497624286406_n-500x539-500x539.jpg",
-    //            "thumb":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/catalog\/16142974_1216435861810441_2855475497624286406_n-500x539-92x99.jpg",
-    //            "preview":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/catalog\/16142974_1216435861810441_2855475497624286406_n-500x539-500x539.jpg"
-    //         }
-    //      ],
-    //      "price":"$234.00",
-    //      "price_clear":234,
-    //      "currency_format":"${value}",
-    //      "decimal_place":2,
-    //      "special":"$134.00",
-    //      "special_clear":134,
-    //      "mobile_special":false,
-    //      "tax":"$134.00",
-    //      "discounts":[
-    //
-    //      ],
-    //      "options":[
-    //
-    //      ],
-    //      "minimum":"1",
-    //      "review_status":"1",
-    //      "review_guest":true,
-    //      "customer_name":"",
-    //      "reviews":"0 reviews",
-    //      "rating":0,
-    //      "entry_name":"Your Name",
-    //      "entry_review":"Your Review",
-    //      "captcha":"",
-    //      "attribute_groups":[
-    //
-    //      ],
-    //      "products":[
-    //
-    //      ],
-    //      "tags":[
-    //
-    //      ],
-    //      "recurrings":[
-    //
-    //      ]
-    //   },
-    //   {
-    //      "heading_title":"Blue &amp; grey school bag",
-    //      "product_id":200,
-    //      "manufacturer":null,
-    //      "manufacturers":null,
-    //      "model":"adidas",
-    //      "reward":0,
-    //      "points":"0",
-    //      "description":"Brand new\r\n",
-    //      "stock":"In Stock",
-    //      "popup":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/wkseller\/sahan16\/Bags\/laptop-bags-500x500-500x539.jpg",
-    //      "thumb":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/wkseller\/sahan16\/Bags\/laptop-bags-500x500-500x539.jpg",
-    //      "images":[
-    //         {
-    //            "popup":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/catalog\/16142974_1216435861810441_2855475497624286406_n-500x539-500x539.jpg",
-    //            "thumb":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/catalog\/16142974_1216435861810441_2855475497624286406_n-500x539-92x99.jpg",
-    //            "preview":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/catalog\/16142974_1216435861810441_2855475497624286406_n-500x539-500x539.jpg"
-    //         }
-    //      ],
-    //      "price":"$234.00",
-    //      "price_clear":234,
-    //      "currency_format":"${value}",
-    //      "decimal_place":2,
-    //      "special":"$134.00",
-    //      "special_clear":134,
-    //      "mobile_special":false,
-    //      "tax":"$134.00",
-    //      "discounts":[
-    //
-    //      ],
-    //      "options":[
-    //
-    //      ],
-    //      "minimum":"1",
-    //      "review_status":"1",
-    //      "review_guest":true,
-    //      "customer_name":"",
-    //      "reviews":"0 reviews",
-    //      "rating":0,
-    //      "entry_name":"Your Name",
-    //      "entry_review":"Your Review",
-    //      "captcha":"",
-    //      "attribute_groups":[
-    //
-    //      ],
-    //      "products":[
-    //
-    //      ],
-    //      "tags":[
-    //
-    //      ],
-    //      "recurrings":[
-    //
-    //      ]
-    //   },
-    //
-    // ];
-    // $scope.newArrivals = publicFunc.devideArray(newArrivals,1);
-
-    var brands = [
-      {
-         "heading_title":"Blue &amp; grey school bag",
-         "product_id":200,
-         "name":"Nike",
-         "thumb":"http://www.pittwatergolfcentre.com.au/wp-content/uploads/2014/11/nike-logo-square.png",
-
-      },
-      {
-         "heading_title":"Blue &amp; grey school bag",
-         "product_id":200,
-         "name":"Huawei",
-         "thumb":"https://png.pngtree.com/element_origin_min_pic/16/11/23/403b5a759e2ab455b9ee5cfa107a3077.jpg",
-
-      },
-      {
-         "heading_title":"Blue &amp; grey school bag",
-         "product_id":200,
-         "name":"Prada",
-         "thumb":"http://assets.macerichepicenter.com/FileManager/_shared/Retailers/Logos/app/Prada.png",
-
-      },
-      {
-         "heading_title":"Blue &amp; grey school bag",
-         "product_id":200,
-         "name":"Apple",
-         "thumb":"https://image.freepik.com/free-icon/apple-logo_318-40184.jpg",
-
-      },
-      {
-         "heading_title":"Blue &amp; grey school bag",
-         "product_id":200,
-         "name":"Under Armour",
-         "thumb":"https://www.mallmaverick.com/system/stores/store_fronts/000/022/676/original/under.png?1452747481",
-
-      },
-      {
-         "heading_title":"Blue &amp; grey school bag",
-         "product_id":200,
-         "name":"Reebok",
-         "thumb":"https://www.worldfootwear.com/media/images/news/wf2017182638p.jpeg",
-
-      },
-      {
-         "heading_title":"Blue &amp; grey school bag",
-         "product_id":200,
-         "name":"Targus",
-         "thumb":"https://m.media-amazon.com/images/S/aplus-media/vc/43564ba0-1512-4c0d-94f5-1e95b5dad4d0._SR300,300_.jpg",
-
-      },
-      {
-         "heading_title":"Blue &amp; grey school bag",
-         "product_id":200,
-         "name":"Swiss Gear",
-         "thumb":"https://target.scene7.com/is/image/Target/swissGear102149-171008_1507428391418?wid=328&hei=328&qlt=80&fmt=pjpeg",
-
-      },
-      {
-         "heading_title":"Blue &amp; grey school bag",
-         "product_id":200,
-         "name":"Xiomi",
-         "thumb":"https://www.shareicon.net/data/512x512/2015/09/01/94003_xiaomi_512x512.png",
-
-      },
-    ]
-    $scope.brands = publicFunc.devideArray(brands,3);
+    
 
     var stores = [
       {
@@ -735,403 +321,6 @@ function CategoryCtrl($scope,$state,$rootScope,$stateParams,httpService,
     ]
     $scope.stores = publicFunc.devideArray(stores,1);
 
-    // var itemsToLove = [
-    //   {
-    //      "heading_title":"Blue &amp; grey school bag",
-    //      "product_id":200,
-    //      "manufacturer":null,
-    //      "manufacturers":null,
-    //      "model":"adidas",
-    //      "reward":0,
-    //      "points":"0",
-    //      "name":"bag",
-    //      "description":"Brand new\r\n",
-    //      "stock":"In Stock",
-    //      "popup":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/wkseller\/sahan16\/Bags\/laptop-bags-500x500-500x539.jpg",
-    //      "thumb":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/wkseller\/sahan16\/Bags\/laptop-bags-500x500-500x539.jpg",
-    //      "images":[
-    //         {
-    //            "popup":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/catalog\/16142974_1216435861810441_2855475497624286406_n-500x539-500x539.jpg",
-    //            "thumb":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/catalog\/16142974_1216435861810441_2855475497624286406_n-500x539-92x99.jpg",
-    //            "preview":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/catalog\/16142974_1216435861810441_2855475497624286406_n-500x539-500x539.jpg"
-    //         }
-    //      ],
-    //      "price":"$234.00",
-    //      "price_clear":234,
-    //      "currency_format":"${value}",
-    //      "decimal_place":2,
-    //      "special":"$134.00",
-    //      "special_clear":134,
-    //      "mobile_special":false,
-    //      "tax":"$134.00",
-    //      "discounts":[
-    //
-    //      ],
-    //      "options":[
-    //
-    //      ],
-    //      "minimum":"1",
-    //      "review_status":"1",
-    //      "review_guest":true,
-    //      "customer_name":"",
-    //      "reviews":"0 reviews",
-    //      "rating":0,
-    //      "entry_name":"Your Name",
-    //      "entry_review":"Your Review",
-    //      "captcha":"",
-    //      "attribute_groups":[
-    //
-    //      ],
-    //      "products":[
-    //
-    //      ],
-    //      "tags":[
-    //
-    //      ],
-    //      "recurrings":[
-    //
-    //      ]
-    //   },
-    //   {
-    //      "heading_title":"Blue &amp; grey school bag",
-    //      "product_id":200,
-    //      "name":"bag",
-    //      "manufacturer":null,
-    //      "manufacturers":null,
-    //      "model":"adidas",
-    //      "reward":0,
-    //      "points":"0",
-    //      "description":"Brand new\r\n",
-    //      "stock":"In Stock",
-    //      "popup":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/wkseller\/sahan16\/Bags\/laptop-bags-500x500-500x539.jpg",
-    //      "thumb":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/wkseller\/sahan16\/Bags\/laptop-bags-500x500-500x539.jpg",
-    //      "images":[
-    //         {
-    //            "popup":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/catalog\/16142974_1216435861810441_2855475497624286406_n-500x539-500x539.jpg",
-    //            "thumb":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/catalog\/16142974_1216435861810441_2855475497624286406_n-500x539-92x99.jpg",
-    //            "preview":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/catalog\/16142974_1216435861810441_2855475497624286406_n-500x539-500x539.jpg"
-    //         }
-    //      ],
-    //      "price":"$234.00",
-    //      "price_clear":234,
-    //      "currency_format":"${value}",
-    //      "decimal_place":2,
-    //      "special":"$134.00",
-    //      "special_clear":134,
-    //      "mobile_special":false,
-    //      "tax":"$134.00",
-    //      "discounts":[
-    //
-    //      ],
-    //      "options":[
-    //
-    //      ],
-    //      "minimum":"1",
-    //      "review_status":"1",
-    //      "review_guest":true,
-    //      "customer_name":"",
-    //      "reviews":"0 reviews",
-    //      "rating":0,
-    //      "entry_name":"Your Name",
-    //      "entry_review":"Your Review",
-    //      "captcha":"",
-    //      "attribute_groups":[
-    //
-    //      ],
-    //      "products":[
-    //
-    //      ],
-    //      "tags":[
-    //
-    //      ],
-    //      "recurrings":[
-    //
-    //      ]
-    //   },
-    //   {
-    //      "heading_title":"Blue &amp; grey school bag",
-    //      "product_id":200,
-    //      "manufacturer":null,
-    //      "manufacturers":null,
-    //      "model":"adidas",
-    //      "name":"bag",
-    //      "reward":0,
-    //      "points":"0",
-    //      "description":"Brand new\r\n",
-    //      "stock":"In Stock",
-    //      "popup":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/wkseller\/sahan16\/Bags\/laptop-bags-500x500-500x539.jpg",
-    //      "thumb":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/wkseller\/sahan16\/Bags\/laptop-bags-500x500-500x539.jpg",
-    //      "images":[
-    //         {
-    //            "popup":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/catalog\/16142974_1216435861810441_2855475497624286406_n-500x539-500x539.jpg",
-    //            "thumb":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/catalog\/16142974_1216435861810441_2855475497624286406_n-500x539-92x99.jpg",
-    //            "preview":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/catalog\/16142974_1216435861810441_2855475497624286406_n-500x539-500x539.jpg"
-    //         }
-    //      ],
-    //      "price":"$234.00",
-    //      "price_clear":234,
-    //      "currency_format":"${value}",
-    //      "decimal_place":2,
-    //      "special":"$134.00",
-    //      "special_clear":134,
-    //      "mobile_special":false,
-    //      "tax":"$134.00",
-    //      "discounts":[
-    //
-    //      ],
-    //      "options":[
-    //
-    //      ],
-    //      "minimum":"1",
-    //      "review_status":"1",
-    //      "review_guest":true,
-    //      "customer_name":"",
-    //      "reviews":"0 reviews",
-    //      "rating":0,
-    //      "entry_name":"Your Name",
-    //      "entry_review":"Your Review",
-    //      "captcha":"",
-    //      "attribute_groups":[
-    //
-    //      ],
-    //      "products":[
-    //
-    //      ],
-    //      "tags":[
-    //
-    //      ],
-    //      "recurrings":[
-    //
-    //      ]
-    //   },
-    //   {
-    //      "heading_title":"Blue &amp; grey school bag",
-    //      "product_id":200,
-    //      "manufacturer":null,
-    //      "manufacturers":null,
-    //      "model":"adidas",
-    //      "name":"bag",
-    //      "reward":0,
-    //      "points":"0",
-    //      "description":"Brand new\r\n",
-    //      "stock":"In Stock",
-    //      "popup":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/wkseller\/sahan16\/Bags\/laptop-bags-500x500-500x539.jpg",
-    //      "thumb":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/wkseller\/sahan16\/Bags\/laptop-bags-500x500-500x539.jpg",
-    //      "images":[
-    //         {
-    //            "popup":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/catalog\/16142974_1216435861810441_2855475497624286406_n-500x539-500x539.jpg",
-    //            "thumb":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/catalog\/16142974_1216435861810441_2855475497624286406_n-500x539-92x99.jpg",
-    //            "preview":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/catalog\/16142974_1216435861810441_2855475497624286406_n-500x539-500x539.jpg"
-    //         }
-    //      ],
-    //      "price":"$234.00",
-    //      "price_clear":234,
-    //      "currency_format":"${value}",
-    //      "decimal_place":2,
-    //      "special":"$134.00",
-    //      "special_clear":134,
-    //      "mobile_special":false,
-    //      "tax":"$134.00",
-    //      "discounts":[
-    //
-    //      ],
-    //      "options":[
-    //
-    //      ],
-    //      "minimum":"1",
-    //      "review_status":"1",
-    //      "review_guest":true,
-    //      "customer_name":"",
-    //      "reviews":"0 reviews",
-    //      "rating":0,
-    //      "entry_name":"Your Name",
-    //      "entry_review":"Your Review",
-    //      "captcha":"",
-    //      "attribute_groups":[
-    //
-    //      ],
-    //      "products":[
-    //
-    //      ],
-    //      "tags":[
-    //
-    //      ],
-    //      "recurrings":[
-    //
-    //      ]
-    //   },
-    //   {
-    //      "heading_title":"Blue &amp; grey school bag",
-    //      "product_id":200,
-    //      "manufacturer":null,
-    //      "manufacturers":null,
-    //      "model":"adidas",
-    //      "name":"bag",
-    //      "reward":0,
-    //      "points":"0",
-    //      "description":"Brand new\r\n",
-    //      "stock":"In Stock",
-    //      "popup":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/wkseller\/sahan16\/Bags\/laptop-bags-500x500-500x539.jpg",
-    //      "thumb":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/wkseller\/sahan16\/Bags\/laptop-bags-500x500-500x539.jpg",
-    //      "images":[
-    //         {
-    //            "popup":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/catalog\/16142974_1216435861810441_2855475497624286406_n-500x539-500x539.jpg",
-    //            "thumb":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/catalog\/16142974_1216435861810441_2855475497624286406_n-500x539-92x99.jpg",
-    //            "preview":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/catalog\/16142974_1216435861810441_2855475497624286406_n-500x539-500x539.jpg"
-    //         }
-    //      ],
-    //      "price":"$234.00",
-    //      "price_clear":234,
-    //      "currency_format":"${value}",
-    //      "decimal_place":2,
-    //      "special":"$134.00",
-    //      "special_clear":134,
-    //      "mobile_special":false,
-    //      "tax":"$134.00",
-    //      "discounts":[
-    //
-    //      ],
-    //      "options":[
-    //
-    //      ],
-    //      "minimum":"1",
-    //      "review_status":"1",
-    //      "review_guest":true,
-    //      "customer_name":"",
-    //      "reviews":"0 reviews",
-    //      "rating":0,
-    //      "entry_name":"Your Name",
-    //      "entry_review":"Your Review",
-    //      "captcha":"",
-    //      "attribute_groups":[
-    //
-    //      ],
-    //      "products":[
-    //
-    //      ],
-    //      "tags":[
-    //
-    //      ],
-    //      "recurrings":[
-    //
-    //      ]
-    //   },
-    //   {
-    //      "heading_title":"Blue &amp; grey school bag",
-    //      "product_id":200,
-    //      "manufacturer":null,
-    //      "manufacturers":null,
-    //      "model":"adidas",
-    //      "reward":0,
-    //      "name":"bag",
-    //      "points":"0",
-    //      "description":"Brand new\r\n",
-    //      "stock":"In Stock",
-    //      "popup":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/wkseller\/sahan16\/Bags\/laptop-bags-500x500-500x539.jpg",
-    //      "thumb":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/wkseller\/sahan16\/Bags\/laptop-bags-500x500-500x539.jpg",
-    //      "images":[
-    //         {
-    //            "popup":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/catalog\/16142974_1216435861810441_2855475497624286406_n-500x539-500x539.jpg",
-    //            "thumb":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/catalog\/16142974_1216435861810441_2855475497624286406_n-500x539-92x99.jpg",
-    //            "preview":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/catalog\/16142974_1216435861810441_2855475497624286406_n-500x539-500x539.jpg"
-    //         }
-    //      ],
-    //      "price":"$234.00",
-    //      "price_clear":234,
-    //      "currency_format":"${value}",
-    //      "decimal_place":2,
-    //      "special":"$134.00",
-    //      "special_clear":134,
-    //      "mobile_special":false,
-    //      "tax":"$134.00",
-    //      "discounts":[
-    //
-    //      ],
-    //      "options":[
-    //
-    //      ],
-    //      "minimum":"1",
-    //      "review_status":"1",
-    //      "review_guest":true,
-    //      "customer_name":"",
-    //      "reviews":"0 reviews",
-    //      "rating":0,
-    //      "entry_name":"Your Name",
-    //      "entry_review":"Your Review",
-    //      "captcha":"",
-    //      "attribute_groups":[
-    //
-    //      ],
-    //      "products":[
-    //
-    //      ],
-    //      "tags":[
-    //
-    //      ],
-    //      "recurrings":[
-    //
-    //      ]
-    //   },
-    //   {
-    //      "heading_title":"Blue &amp; grey school bag",
-    //      "product_id":200,
-    //      "manufacturer":null,
-    //      "manufacturers":null,
-    //      "model":"adidas",
-    //      "name":"bag",
-    //      "reward":0,
-    //      "points":"0",
-    //      "description":"Brand new\r\n",
-    //      "stock":"In Stock",
-    //      "popup":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/wkseller\/sahan16\/Bags\/laptop-bags-500x500-500x539.jpg",
-    //      "thumb":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/wkseller\/sahan16\/Bags\/laptop-bags-500x500-500x539.jpg",
-    //      "images":[
-    //         {
-    //            "popup":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/catalog\/16142974_1216435861810441_2855475497624286406_n-500x539-500x539.jpg",
-    //            "thumb":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/catalog\/16142974_1216435861810441_2855475497624286406_n-500x539-92x99.jpg",
-    //            "preview":"http:\/\/arcmall.alofatechlabs.com\/image\/cache\/catalog\/16142974_1216435861810441_2855475497624286406_n-500x539-500x539.jpg"
-    //         }
-    //      ],
-    //      "price":"$234.00",
-    //      "price_clear":234,
-    //      "currency_format":"${value}",
-    //      "decimal_place":2,
-    //      "special":"$134.00",
-    //      "special_clear":134,
-    //      "mobile_special":false,
-    //      "tax":"$134.00",
-    //      "discounts":[
-    //
-    //      ],
-    //      "options":[
-    //
-    //      ],
-    //      "minimum":"1",
-    //      "review_status":"1",
-    //      "review_guest":true,
-    //      "customer_name":"",
-    //      "reviews":"0 reviews",
-    //      "rating":0,
-    //      "entry_name":"Your Name",
-    //      "entry_review":"Your Review",
-    //      "captcha":"",
-    //      "attribute_groups":[
-    //
-    //      ],
-    //      "products":[
-    //
-    //      ],
-    //      "tags":[
-    //
-    //      ],
-    //      "recurrings":[
-    //
-    //      ]
-    //   },
-    //
-    // ];
-    // $scope.itemsToLove = publicFunc.devideArray(itemsToLove,1);
-
     isViewsLoaded = true;
     hideLoading();
   }
@@ -1190,13 +379,16 @@ function CategoryCtrl($scope,$state,$rootScope,$stateParams,httpService,
     $state.go('home.new');
   };
   $scope.goToItems = function (category) {
-    $state.go('item-list',{category_id:category.category_id});
+    $state.go('item-list',{category_id:category.category_id, manufacturer_id: null});
   };
   $scope.goToSearch = function () {
     $state.go('item-search');
   }
   $scope.openItemDetails = function(product_id){
     $state.go('item',{category_id:null,product_id:product_id});
+  };
+  $scope.openBrandDetails = function(manufacturer_id){
+    $state.go('item-list',{category_id:null, manufacturer_id:manufacturer_id});
   };
   $scope.openCategories = function (){
     $scope.close();
@@ -1216,6 +408,9 @@ function CategoryCtrl($scope,$state,$rootScope,$stateParams,httpService,
   };
   $scope.openAddItem = function () {
     $state.go('sellerHome');
+  };
+  $scope.openMyProducts = function () {
+    $state.go('sellerProducts');
   };
   $scope.openMyProfile = function () {
     $scope.close();

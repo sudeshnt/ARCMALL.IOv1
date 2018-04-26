@@ -20,8 +20,13 @@ function CheckoutCtrl($scope,$state,$rootScope,$stateParams,serverConfig,
   $scope.nextStep = function (){
     console.log("Next");
     // var req = addAddress();
-    setShippingAddress();
-    setPaymentAddress();
+
+    if(!$scope.hasAddresses) {
+      addAddress();
+      setShippingAddress();
+      setPaymentAddress();
+    }
+    
     $state.go('checkout-step-2',{'personal_info':$scope.personal_details})
      // $state.go("pp_express");
 

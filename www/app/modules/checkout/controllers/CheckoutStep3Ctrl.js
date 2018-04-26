@@ -32,28 +32,33 @@ function CheckoutStep3Ctrl($scope,$state,$rootScope,$stateParams,
   }
 
   $scope.confirmOrder = function () {
-    console.log($stateParams);
-      var extended_url = '/order/add';
-      var reqObj = {
-        // "shipping_method":$stateParams.personal_info.shipping_method,
-        // "payment_method":$stateParams.personal_info.payment_method,
-        "comment":$stateParams.personal_info.comment?$stateParams.personal_info.comment:"",
-        "affiliate_id":2,
-        "order_status_id":2
-      };
-      var config = {
-        headers:{
-          'Content-Type': 'application/x-www-form-urlencoded'
-        }
-      };
-      httpService.postRequest(serverConfig.clientAPI,extended_url, $httpParamSerializer(reqObj),config).then(function(response){
-        console.log(response);
-        if(response.status === 200 && !response.data.error){
-          // $state.go('categories');
 
+    
 
-        }
-      });
+    // $state.go("pp_express");
+    // console.log($stateParams);
+    //   var extended_url = '/order/add';
+    //   var reqObj = {
+    //     // "shipping_method":$stateParams.personal_info.shipping_method,
+    //     // "payment_method":$stateParams.personal_info.payment_method,
+    //     "comment":$stateParams.personal_info.comment?$stateParams.personal_info.comment:"",
+    //     "affiliate_id":2,
+    //     "order_status_id":2
+    //   };
+    //   var config = {
+    //     headers:{
+    //       'Content-Type': 'application/x-www-form-urlencoded'
+    //     }
+    //   };
+    //   httpService.postRequest(serverConfig.clientAPI,extended_url, $httpParamSerializer(reqObj),config).then(function(response){
+    //     console.log(response);
+    //     if(response.status === 200 && !response.data.error){
+    //       // $state.go('categories');
+
+    //       $state.go("pp_express");
+
+    //     }
+    //   });
   }
 
   function getProductsOfCart() {

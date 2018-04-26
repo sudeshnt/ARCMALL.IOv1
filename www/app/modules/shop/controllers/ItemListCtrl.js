@@ -6,8 +6,9 @@ ItemListCtrl.$inject = ['$scope','$state','$rootScope','$stateParams','serverCon
 
 function ItemListCtrl($scope,$state,$rootScope,$stateParams,serverConfig,httpService,$httpParamSerializer,publicFunc) {
 
-  if($stateParams.category_id){
+  if($stateParams.category_id || $stateParams.manufacturer_id){
     $scope.category_id = $stateParams.category_id;
+    $scope.manufacturer_id = $stateParams.manufacturer_id;
     init();
   }else{
     // $scope.category_id = '483';
@@ -33,17 +34,39 @@ function ItemListCtrl($scope,$state,$rootScope,$stateParams,serverConfig,httpSer
     });
   }
 
+  function getProductsByManufacturer(id) {
+    var extended_url = '/product/search';
+    var reqObj = {
+      "manufacturer_id":id
+    };
+    var config = {
+      headers:{
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    };
+    httpService.postRequest(serverConfig.clientAPI,extended_url, $httpParamSerializer(reqObj),config).then(function(response){
+      if(response.status === 200){
+        $scope.category = response.data;
+        $scope.category.products = publicFunc.devideArray($scope.category.products,2);
+      }
+    });
+  }
+
+
   $scope.openItemDetails = function(product_id){
     $state.go('item',{category_id:$scope.category_id,product_id:product_id});
   };
 
-  function initCategory(){
-
-  }
 
   function init(){
     // initCategory();
-    getProductsByCategory($scope.category_id);
+
+    if($scope.category_id != null) {
+      getProductsByCategory($scope.category_id);
+    }
+    else {
+      getProductsByManufacturer($scope.manufacturer_id)
+    }
   }
 
 }

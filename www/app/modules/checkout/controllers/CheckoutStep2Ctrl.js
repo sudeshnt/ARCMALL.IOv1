@@ -118,6 +118,9 @@ function CheckoutStep2Ctrl($scope,$state,$rootScope,$stateParams,serverConfig,ht
       httpService.postRequest(serverConfig.clientAPI,extended_url, $httpParamSerializer(reqObj),config).then(function(response){
         if(response.status === 200){
           $scope.paymentMethods = response.data.payment_methods;
+          if(response.data.error != undefined) {
+            showPopup(response.data.error);
+          }
         }
       });
   }

@@ -55,6 +55,7 @@ angular.module('lang_zh',['pascalprecht.translate','ngSanitize'])
       I_AM_SELLER:"I'm a Seller",
       SERVER_ERROR:'Server Error',
       ADD_ITEM:'Add Item',
+      MY_PRODUCTS:'My Products',
       WHAT_IS_YOUR_PRODUCT_NAME:'What is your product name',
       TELL_US_ABOUT_YOUR_ITEM:'Tell us about your item',
       WHAT_IS_THE_MODEL_OF_YOUR_PRODUCT:'What is the model of your product',

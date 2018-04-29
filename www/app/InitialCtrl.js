@@ -8,8 +8,6 @@ InitialCtrl.$inject = ['$scope','$rootScope','$state','$ionicHistory',
 
 function InitialCtrl($scope,$rootScope,$state,$ionicHistory,
   $ionicLoading,serverConfig,httpService,$httpParamSerializer,cartSev, $ionicViewSwitcher, $cookies, $translateProvider) {
-
-  setLanguage(localStorage);
   
   $rootScope.$on('$stateChangeStart', function (event,toState,toParams, fromState, fromParams) {
     $ionicLoading.show({
@@ -164,44 +162,5 @@ function InitialCtrl($scope,$rootScope,$state,$ionicHistory,
   $rootScope.showLoading = showLoading;
   $rootScope.initCartItemCount = initCartItemCount;
   $rootScope.hideLoading = hideLoading;
-
-
-
-  function initLanguage(lang) {
-    var extended_url = '/language/set';
-    var reqObj = {
-      'code':lang
-    };
-    var config = {
-      headers:{
-        'Content-Type': 'application/x-www-form-urlencoded'
-      }
-    };
-    return httpService.postRequest(serverConfig.clientAPI,extended_url, $httpParamSerializer(reqObj),config);
-  }
-
-  function setLanguage(localStorage) {
-    var lang = window.navigator.userLanguage || window.navigator.language;
-    var langCode = "en";
-
-    if(lang && lang != "") {
-      lang = lang.substring(0,2);
-    }
-    else {
-      lang = "en";
-    }
-
-    var localLang = localStorage.getItem('language');
-
-    if(localLang != lang) {
-
-      localStorage.removeItem('cat_tabs');
-      localStorage.setItem('language',lang);
-
-      initLanguage(langCode).then(function(response){
-        console.log(response);
-      })
-    }
-  }
 
 }

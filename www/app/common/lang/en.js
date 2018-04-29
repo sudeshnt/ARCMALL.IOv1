@@ -62,9 +62,16 @@ angular.module('lang_en',['pascalprecht.translate','ngSanitize'])
       WHAT_IS_THE_PRICE_OF_YOUR_PRODUCT:'price',
       WHAT_IS_THE_HEIGHT_OF_YOUR_PRODUCT:'height',
       WHAT_IS_THE_WEIGHT_OF_YOUR_PRODUCT:'weight',
+      PLEASE_SELECT_TYPE_OF_ITEM : 'Please select type of item',
+      PLEASE_SELECT_MAIN_CATEGORY: 'Please select a main category',
+      PLEASE_SELECT_SUB_CATEGORY:'Please select a sub category',
+      CURRENCY: 'Currency',
+      MEASURE_UNIT: 'Measure Unit',
+      CHECKOUT: 'Checkout',
       LENGTH: 'length',
       WIDTH: 'width',
       QUANTITY_AVAILABLE:'Quantity available',
+      QUANTITY:'Quantity',
       SAVE_ITEM:'Save Item',
       MY_PROFILE:'My Profile',
       CHANGE_PASSWORD:'Change Password',
@@ -81,6 +88,8 @@ angular.module('lang_en',['pascalprecht.translate','ngSanitize'])
       ITEMS_TO_LOVE: "Items to love!",
       HERE_ARE_THE_BEST_SELLING_WHOLESALE_ITEMS: "Here are the best selling wholesale items",
       PURCHASE_IN_BULK: "If you would like to purchase an item on our site in bulk, Please get in touch with us.We will assist you with your purchase!",
+      YOUR_NAME: 'Your Name',
+      ITEM_URL: 'Item URL',
     });
     $translateProvider.useSanitizeValueStrategy('escapeParameters');
   }]);

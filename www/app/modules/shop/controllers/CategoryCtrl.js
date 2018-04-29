@@ -4,11 +4,11 @@ angular.module('shop.module').controller('CategoryCtrl',CategoryCtrl );
 
 CategoryCtrl.$inject = ['$scope','$state','$rootScope','$stateParams',
 'httpService','serverConfig','$ionicSlideBoxDelegate','$window',
-'$ionicGesture','$timeout','$mdSidenav','$log', 'publicFunc', '$translate'];
+'$ionicGesture','$timeout','$mdSidenav','$log', 'publicFunc', '$translate', '$httpParamSerializer'];
 
 function CategoryCtrl($scope,$state,$rootScope,$stateParams,httpService,
   serverConfig,$ionicSlideBoxDelegate,$window, $ionicGesture,
-  $timeout,$mdSidenav,$log, publicFunc, $translate) {
+  $timeout,$mdSidenav,$log, publicFunc, $translate, $httpParamSerializer) {
 
   var type = $stateParams.type;
 
@@ -23,28 +23,31 @@ function CategoryCtrl($scope,$state,$rootScope,$stateParams,httpService,
   var refresh_after = 30;
 
   function init() {
-    $scope.SyncIsCompleted = false;
-    $rootScope.showLoading();
-    var localCategories = localStorage.getItem('cat_tabs');
-    if(localCategories!=null && localCategories!=undefined && localCategories!=""){
-      var tempTabs = JSON.parse(localCategories);
-      if(tempTabs!=null && tempTabs!=undefined && tempTabs!=""){
-        if(tempTabs.categories.length>0 && Date.parse(new Date)-tempTabs.last_saved_at < refresh_after*60*1000){
-          initTabs(tempTabs.categories)
-        }else {
+
+    setLanguage(localStorage, function(success){
+      $scope.SyncIsCompleted = false;
+      $rootScope.showLoading();
+      var localCategories = localStorage.getItem('cat_tabs');
+      if(localCategories!=null && localCategories!=undefined && localCategories!=""){
+        var tempTabs = JSON.parse(localCategories);
+        if(tempTabs!=null && tempTabs!=undefined && tempTabs!=""){
+          if(tempTabs.categories.length>0 && Date.parse(new Date)-tempTabs.last_saved_at < refresh_after*60*1000){
+            initTabs(tempTabs.categories)
+          }else {
+            getAllCategories();
+          }
+        }else{
           getAllCategories();
         }
       }else{
         getAllCategories();
       }
-    }else{
-      getAllCategories();
-    }
 
-    initCartItemCount();
-    getLatestItems();
-    getFeaturedItems();
-    getBrands();
+      initCartItemCount();
+      getLatestItems();
+      getFeaturedItems();
+      getBrands();
+    });
   }
 
   function buildToggler(navID) {
@@ -155,6 +158,47 @@ function CategoryCtrl($scope,$state,$rootScope,$stateParams,httpService,
         $scope.error = response.error_warning;
       }
     });
+  }
+
+  function setLanguage(localStorage, callback) {
+    var lang = window.navigator.userLanguage || window.navigator.language;
+
+    if(lang && lang != "") {
+      lang = lang.substring(0,2);
+    }
+    else {
+      lang = "en";
+    }
+
+    var localLang = localStorage.getItem('language');
+
+    if(localLang != lang) {
+
+      localStorage.removeItem('cat_tabs');
+      localStorage.setItem('language',lang);
+
+      initLanguage(lang).then(function(response){
+        
+        callback(true);
+        
+      })
+    }
+    else {
+      callback(true);
+    }
+  }
+
+  function initLanguage(lang) {
+    var extended_url = '/language/set';
+    var reqObj = {
+      'code':lang
+    };
+    var config = {
+      headers:{
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    };
+    return httpService.postRequest(serverConfig.clientAPI,extended_url, $httpParamSerializer(reqObj),config);
   }
 
   function getLatestItems() {

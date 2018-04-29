@@ -19,6 +19,8 @@ function SellerHomeCtrl($scope, $rootScope, $state , httpService, serverConfig,$
     $scope.item.price = 11;
     $scope.item.description = "hello";
     $scope.item.model = "model";
+    $scope.item.length = 11;
+    $scope.item.width = 11;
   }
 
   // console.log($scope.authResponse);
@@ -56,7 +58,7 @@ function SellerHomeCtrl($scope, $rootScope, $state , httpService, serverConfig,$
     ]
   }
 
-  setDefault();
+  // setDefault();
 
   function getCurrency() {
     var extended_url = '/currency';
@@ -110,6 +112,8 @@ function SellerHomeCtrl($scope, $rootScope, $state , httpService, serverConfig,$
         "model" : $scope.item.model,
         "weight" : $scope.item.weight+' '+$scope.item.weightMeasureUnit,
         "height" : $scope.item.height+' '+$scope.item.dimensionMeasureUnit,
+        "length": $scope.item.length+' '+$scope.item.dimensionMeasureUnit,
+        "width": $scope.item.width+' '+$scope.item.dimensionMeasureUnit,
         "name" : $scope.item.name,
         "quantity" : $scope.item.quantity,
         "price" : $scope.item.price,

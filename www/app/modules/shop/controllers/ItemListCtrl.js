@@ -35,19 +35,25 @@ function ItemListCtrl($scope,$state,$rootScope,$stateParams,serverConfig,httpSer
   }
 
   function getProductsByManufacturer(id) {
-    var extended_url = '/product/search';
-    var reqObj = {
-      "manufacturer_id":id
-    };
+    console.log("manu");
+    
+    var extended_url = '/product/getproductsbybrand';
     var config = {
       headers:{
         'Content-Type': 'application/x-www-form-urlencoded'
       }
     };
-    httpService.postRequest(serverConfig.clientAPI,extended_url, $httpParamSerializer(reqObj),config).then(function(response){
+
+    var req = {
+      'brandid': 8
+    }
+
+    httpService.postRequest(serverConfig.clientAPI,extended_url, $httpParamSerializer(req), config).then(function(response){
       if(response.status === 200){
-        $scope.category = response.data;
-        $scope.category.products = publicFunc.devideArray($scope.category.products,2);
+        console.log(response.data);
+        var array = Object.keys(response.data.products).map(i => response.data.products[i])
+        $scope.category = {};
+        $scope.category.products = publicFunc.devideArray(array,2);
       }
     });
   }
@@ -64,7 +70,7 @@ function ItemListCtrl($scope,$state,$rootScope,$stateParams,serverConfig,httpSer
     if($scope.category_id != null) {
       getProductsByCategory($scope.category_id);
     }
-    else {
+    else if($scope.manufacturer_id != null) {
       getProductsByManufacturer($scope.manufacturer_id)
     }
   }

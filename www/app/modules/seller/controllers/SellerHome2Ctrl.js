@@ -96,6 +96,8 @@ function SellerHome2Ctrl($scope, $rootScope, $state,  httpService,serverConfig,$
         "weight" : $scope.item.weight+' '+$scope.item.weightMeasureUnit,
         "height" : $scope.item.height+' '+$scope.item.dimensionMeasureUnit,
         "name" : $scope.item.name,
+        "length": $scope.item.length+' '+$scope.item.dimensionMeasureUnit,
+        "width": $scope.item.width+' '+$scope.item.dimensionMeasureUnit,
         "quantity" : $scope.item.quantity,
         "price" : $scope.item.price,
         "description" : $scope.item.description,
@@ -216,7 +218,7 @@ function SellerHome2Ctrl($scope, $rootScope, $state,  httpService,serverConfig,$
     var filename = newFileName;
 
     var options = {
-      fileKey: "file",
+      fileKey: "image",
       fileName: filename,
       chunkedMode: false,
       mimeType: "image/jpeg",

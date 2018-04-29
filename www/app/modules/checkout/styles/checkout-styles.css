@@ -163,13 +163,13 @@ ion-option-button{
   height: 25px !important;
   text-align: center;
 }
-input.qtyplus { width:30px; height:30px;}
-input.qtyminus { width:30px; height:30px;}
+input.qtyplus { width:30px; height:30px; background:white; border: none}
+input.qtyminus { width:30px; height:30px; background:white; border: none}
 
 .qty-spinner{
   width: fit-content;
   position: absolute;
-  right: -6px;
+  right: 0px;
   bottom: 12px;
 }
 

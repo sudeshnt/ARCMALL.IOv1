@@ -6,7 +6,7 @@
           <i class="ion-android-arrow-back font-L white"></i>
         </a>
       </div>
-      <h4 class="white left-title">Add Item</h4>
+      <h4 class="white left-title">{{'ADD_ITEM' | translate}}</h4>
     </div>
   </div>
 </ion-header-bar>
@@ -25,12 +25,12 @@
       <textarea type="text" rows="4" placeholder="{{'TELL_US_ABOUT_YOUR_ITEM' | translate}}" ng-model="item.description"></textarea>
     </label>
     <div layout="row" layout-align="space-between center">
-      <md-select ng-model="category.catLevel1" placeholder="Please select type of item" class="md-no-underline category-select">
+      <md-select ng-model="category.catLevel1" placeholder="{{'PLEASE_SELECT_TYPE_OF_ITEM' | translate}}" class="md-no-underline category-select">
         <md-option ng-repeat="cat_level_1 in cat_tabs track by $index" value="{{$index}}">{{cat_level_1.name}}</md-option>
       </md-select>
     </div>
     <div layout="row" layout-align="space-between center" ng-if="category.catLevel1">
-      <md-select ng-model="category.catLevel2" placeholder="Please select a main category" class="md-no-underline category-select">
+      <md-select ng-model="category.catLevel2" placeholder="{{'PLEASE_SELECT_MAIN_CATEGORY' | translate}}" class="md-no-underline category-select">
         <md-option ng-repeat="cat_level_2 in cat_tabs[category.catLevel1].categories track by $index" value="{{$index}}">{{cat_level_2.name}}</md-option>
       </md-select>
     </div>
@@ -49,7 +49,7 @@
     <div class="row zero-padding">
       <div class="col zero-padding" style="max-width:153px;margin-right: 5px;">
         <div layout="row" layout-align="space-between center">
-          <md-select ng-model="item.currency_code" placeholder="Currency" class="md-no-underline category-select">
+          <md-select ng-model="item.currency_code" placeholder="{{'CURRENCY' | translate}}" class="md-no-underline category-select">
             <md-option ng-repeat="currency in currencies track by $index" value="{{currency.code}}">{{currency.title}}</md-option>
           </md-select>
         </div>
@@ -68,7 +68,7 @@
       </div>
       <div class="col zero-padding" style="max-width:153px;margin-left: 5px;">
         <div layout="row" layout-align="space-between center">
-          <md-select ng-model="item.dimensionMeasureUnit" placeholder="Measure Unit" class="md-no-underline category-select">
+          <md-select ng-model="item.dimensionMeasureUnit" placeholder="{{'MEASURE_UNIT' | translate}}" class="md-no-underline category-select">
             <md-option ng-repeat="measure in dimensionMeasures track by $index" value="{{measure}}">{{measure}}</md-option>
           </md-select>
         </div>
@@ -94,7 +94,7 @@
       </div>
       <div class="col zero-padding" style="max-width:153px;margin-left: 5px;">
         <div layout="row" layout-align="space-between center">
-          <md-select ng-model="item.weightMeasureUnit" placeholder="Measure Unit" class="md-no-underline category-select">
+          <md-select ng-model="item.weightMeasureUnit" placeholder="{{'MEASURE_UNIT' | translate}}" class="md-no-underline category-select">
             <md-option ng-repeat="measure in weightMeasures track by $index" value="{{measure}}">{{measure}}</md-option>
           </md-select>
         </div>
@@ -106,25 +106,6 @@
       <input type="number" placeholder="{{'QUANTITY_AVAILABLE' | translate}}" ng-model="item.quantity">
     </label>
     <!--<img ng-repeat="image in item.images track by $index" ng-src="{{image}}" style="width: 70px;height: 70px;margin: 5px;">-->
-    <div ng-show="product.product_id">
-      <label class="grey-text">Main Image</label>
-      <div class="full-width" ng-show="item.mainImage">
-        <img ng-src="{{pathForImage(item.mainImage)}}" style="height: 100px;margin:5px;">
-      </div>
-      <div ng-show="!item.mainImage">
-        <a class="button square main-image-btn" ng-click="getPicture('Main')">
-          <i class="ion-plus-round" style="font-size: 30px;"></i>
-        </a><br><br>
-      </div>
-    </div>
-    <div ng-show="product.product_id">
-      <label class="grey-text full-width">Sub Images</label><br>
-      <img ng-repeat="image in item.images" ng-src="{{pathForImage(image)}}" style="width: 100px; height: 100px;margin:5px;">
-      <a class="button square sub-image-btn" ng-click="getPicture('Product')" ng-show="item.images.length<7">
-        <i class="ion-plus-round" style="font-size: 30px;"></i>
-      </a>
-    </div>
-
     <div>
       <a class="button custom-height-button button-sm square button-block button-orange capital" ng-click="addItem();">
         {{"SAVE_ITEM" | translate}}

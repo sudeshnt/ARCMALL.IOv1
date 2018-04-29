@@ -12,15 +12,29 @@ function SellerProductsCtrl($scope, $rootScope, $state , httpService, serverConf
       getLatestItems();
   }
 
+  $scope.openItemDetails = function(product_id){
+    $state.go('item',{category_id:null,product_id:product_id});
+  };
+
   function getLatestItems() {
 
     var customer = JSON.parse(localStorage.getItem('authResponse'));  
-    var extended_url = '/product/getsellerproducts&customer_id=' + customer.customer_id;
+    var extended_url = '/product/getsellerproducts';
+
+    var reqObj = {
+      'customer_id': customer.customer_id
+    }
+
+    var config = {
+      headers:{
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    };
     
-    httpService.getRequest(serverConfig.clientAPI,extended_url,{}).then(function(response){
+    httpService.postRequest(serverConfig.clientAPI,extended_url, $httpParamSerializer(reqObj) , config).then(function(response){
       if(response.status === 200 && !response.error_warning){
-        var newArrivals = response.data.products;
-        $scope.items = publicFunc.devideArray(newArrivals,2);
+        var array = Object.keys(response.data.products).map(i => response.data.products[i])
+        $scope.items = publicFunc.devideArray(array,2);
         hideLoading();
 
       }else{

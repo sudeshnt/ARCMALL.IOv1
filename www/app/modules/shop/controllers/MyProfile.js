@@ -50,6 +50,10 @@ function MyProfileCtrl($scope,$state,$rootScope,$mdSidenav,$log) {
   $scope.logOut = function () {
     $rootScope.logOut();
   };
+  $scope.openSettings = function () {
+    $scope.close();
+    $state.go('settings');
+  };
 
   $scope.toggleSideBarHome = buildToggler('left');
 

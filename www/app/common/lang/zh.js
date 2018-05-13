@@ -90,6 +90,10 @@ angular.module('lang_zh',['pascalprecht.translate','ngSanitize'])
       PURCHASE_IN_BULK: "如果您想在我们的网站上批量购买物品，请与我们联系。我们会协助您购买！",
       YOUR_NAME: '你的名字',
       ITEM_URL: '商品网址',
+      SETTINGS: '设置',
+      LANGUAGE: '语言',
+      ENG_US: '英语 (US)',
+      CHINESE_SIMPLIFIED: '简体中文'
     });
     $translateProvider.useSanitizeValueStrategy('escapeParameters');
   }]);

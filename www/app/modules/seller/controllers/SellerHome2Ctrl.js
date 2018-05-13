@@ -330,5 +330,9 @@ function SellerHome2Ctrl($scope, $rootScope, $state,  httpService,serverConfig,$
   $scope.openMyProducts = function () {
     $state.go('sellerProducts');
   };
+  $scope.openSettings = function () {
+    $scope.close();
+    $state.go('settings');
+  };
 
 }

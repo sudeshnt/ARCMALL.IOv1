@@ -86,6 +86,10 @@ function WishListCtrl($scope,$state,$rootScope,$mdSidenav,$log,publicFunc,filter
   $scope.logOut = function () {
     $rootScope.logOut();
   };
+  $scope.openSettings = function () {
+    $scope.close();
+    $state.go('settings');
+  };
 
   $scope.toggleSideBar = buildToggler('left');
 

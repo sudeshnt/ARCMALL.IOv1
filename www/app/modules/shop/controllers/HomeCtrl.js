@@ -228,6 +228,10 @@ function HomeCtrl($scope,$state,$filter,$rootScope,appConfig,$timeout,$mdSidenav
     $scope.close();
     $state.go('my-profile');
   };
+  $scope.openSettings = function () {
+    $scope.close();
+    $state.go('settings');
+  };
   $scope.logOut = function () {
     $rootScope.logOut();
   };

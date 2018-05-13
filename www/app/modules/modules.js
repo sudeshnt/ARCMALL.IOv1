@@ -3,5 +3,6 @@ angular.module('modules',[
   'shop.module',
   'checkout.module',
   'seller.module',
+  'settings.module',
   // 'test.module'
 ]);

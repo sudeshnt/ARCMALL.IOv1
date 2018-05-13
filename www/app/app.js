@@ -22,6 +22,7 @@ var arcMall = angular.module('arcMall', [
 // translation config
 arcMall.config(function($translateProvider) {
 
+    var language = localStorage.getItem('language');
     var lang = window.navigator.userLanguage || window.navigator.language;
 
     if(lang && lang != "") {
@@ -31,9 +32,29 @@ arcMall.config(function($translateProvider) {
       lang = "en";
     }
 
-    $translateProvider.preferredLanguage(lang);
-    $translateProvider.forceAsyncReload(true);
-    $translateProvider.fallbackLanguage(lang);
+    if(lang != 'en' && lang != 'zh') {
+      lang = 'en';
+    }
+
+    if(!language || language == '' || language === 'undefined' || language == null){
+      console.log(language);
+      localStorage.setItem('language', lang);
+      localStorage.removeItem('cat_tabs');
+
+      $translateProvider.preferredLanguage(lang);
+      $translateProvider.forceAsyncReload(true);
+      $translateProvider.fallbackLanguage(lang);
+
+      localStorage.setItem('language_changed', true);
+
+    }
+    else {
+      localStorage.setItem('language', language);
+      $translateProvider.preferredLanguage(language);
+      $translateProvider.forceAsyncReload(true);
+      $translateProvider.fallbackLanguage(language);
+      localStorage.setItem('language_changed', false);
+    }
 });
 
 arcMall.config(function ($httpProvider) {

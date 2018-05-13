@@ -9,8 +9,9 @@ function AuthSignInCtrl($scope,$state,$rootScope,httpService,serverConfig,$httpP
   $scope.user = {
     'email' : '',
     // 'email' : 'harindamail@gmail.com',
-    'password' : ''
+    'password' : '',
     // 'password' : 'benzc180'
+    'type': 1
   };
   $scope.signIn = function () {
     var extended_url = '/user_login';

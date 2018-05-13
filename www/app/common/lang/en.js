@@ -90,6 +90,10 @@ angular.module('lang_en',['pascalprecht.translate','ngSanitize'])
       PURCHASE_IN_BULK: "If you would like to purchase an item on our site in bulk, Please get in touch with us.We will assist you with your purchase!",
       YOUR_NAME: 'Your Name',
       ITEM_URL: 'Item URL',
+      SETTINGS: 'Settings',
+      LANGUAGE: 'Language',
+      ENG_US: 'English (US)',
+      CHINESE_SIMPLIFIED: 'Chinese, simplified'
     });
     $translateProvider.useSanitizeValueStrategy('escapeParameters');
   }]);

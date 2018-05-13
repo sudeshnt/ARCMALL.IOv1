@@ -15,7 +15,7 @@
   <ion-content style="padding-left: 20px;
   padding-right: 20px;
   margin-top: 20px;
-  margin-bottom: 10px;">
+  margin-bottom: 10px;" onclick="hideKeyboard()">
     <label class="item item-input text-xmd add-item-textbox">
       <!--<i class="icon ion-ios-home-outline placeholder-icon"></i>-->
       <input type="text" placeholder="{{'WHAT_IS_YOUR_PRODUCT_NAME' | translate}}" ng-model="item.name">
@@ -100,6 +100,52 @@
         </div>
       </div>
     </div>
+
+    <div class="row zero-padding" ng-repeat="option in options">
+        <div class="col zero-padding">
+          <div ng-if="option.type == 'text' || option.type == 'texttextarea'">
+            <label class="item item-input text-xmd add-item-textbox">
+              <input type="number" placeholder="{{option.name}}" ng-model="item[option.name]">
+            </label>
+          </div>
+          <div ng-if="option.type == 'select'">
+            <div layout="row" layout-align="space-between center">
+              <md-select ng-model="item[option.name]" placeholder="{{option.name}}" class="md-no-underline category-select">
+                <md-option ng-repeat="option_value in option.option_value track by $index" 
+                value="{{option_value.name}}" aria-label='option_value.name'>{{option_value.name}}</md-option>
+              </md-select>
+            </div>
+          </div>
+          <div ng-if="option.type == 'radio'">
+            <div layout="row" layout-align="space-between center">
+              <div class="row" style="margin-left: 20px">
+                <label>{{option.name}}</label>
+              </div>
+              <md-radio-group ng-model="item[option.name]">
+                  <md-radio-button ng-repeat="option_value in option.option_value track by $index"
+                        ng-value="option_value.name">{{option_value.name}}</md-radio-button>
+              </md-radio-group>
+            </div>
+          </div>
+          <!-- <div ng-if="option.type == 'checkbox'">
+            <div layout="row" layout-align="space-between center" style="margin-top: 20px" >
+              <div class="row" style="margin-left: 20px">
+                <label>{{option.name}}</label>
+              </div>
+              <div class="row" style="text-align: right">
+                <div class="column">
+                    <md-checkbox ng-model="item[option.name]" 
+                    ng-repeat="option_value in option.option_value track by $index" 
+                    ng-value="option_value.name" style= "margin-right: 0px !important">
+                        {{option_value.name}}
+                    </md-checkbox>
+                </div>
+                  
+              </div>
+            </div>
+            </div> -->
+        </div>
+      </div>
 
     <label class="item item-input text-xmd add-item-textbox">
       <!--<i class="icon ion-ios-home-outline placeholder-icon"></i>-->

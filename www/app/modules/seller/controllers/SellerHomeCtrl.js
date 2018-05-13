@@ -58,12 +58,10 @@ function SellerHomeCtrl($scope, $rootScope, $state , httpService, serverConfig,$
     ]
   }
 
-  // setDefault();
+  setDefault();
 
   function getCurrency() {
     var extended_url = '/currency';
-    console.log('httpservice');
-    console.log(httpService)
     httpService.getRequest(serverConfig.clientAPI,extended_url,{}).then(function(response){
       if(response.status === 200){
         $scope.currencies = response.data.currencies;
@@ -77,6 +75,18 @@ function SellerHomeCtrl($scope, $rootScope, $state , httpService, serverConfig,$
     httpService.postRequest(serverConfig.clientAPI,extended_url,req,{}).then(function(response){
       if(response.status === 200 && !response.error_warning){
         $scope.cat_tabs = response.data.categories;
+      }else{
+        $scope.error = response.error_warning;
+      }
+    });
+  }
+
+  function getOptions() {
+    var extended_url = '/product/getoptions';
+    var req = {};
+    httpService.postRequest(serverConfig.clientAPI,extended_url,req,{}).then(function(response){
+      if(response.status === 200 && !response.error_warning){
+        $scope.options = response.data;
       }else{
         $scope.error = response.error_warning;
       }
@@ -108,49 +118,57 @@ function SellerHomeCtrl($scope, $rootScope, $state , httpService, serverConfig,$
     // product.product_id ? goHome(); :
     // if(!$scope.product){
       var extended_url = '/product/addproduct';
-      var req = {
-        "model" : $scope.item.model,
-        "weight" : $scope.item.weight+' '+$scope.item.weightMeasureUnit,
-        "height" : $scope.item.height+' '+$scope.item.dimensionMeasureUnit,
-        "length": $scope.item.length+' '+$scope.item.dimensionMeasureUnit,
-        "width": $scope.item.width+' '+$scope.item.dimensionMeasureUnit,
-        "name" : $scope.item.name,
-        "quantity" : $scope.item.quantity,
-        "price" : $scope.item.price,
-        "description" : $scope.item.description,
-        "mainimage" : '',
-        "image1" : '',
-        "image2" : '',
-        "image3" : '',
-        "image4" : '',
-        "image5" : '',
-        "image6" : '',
-        "image7" : '',
-        "category" : [],
-        "customer_id" : $rootScope.authResponse.customer_id,
-        "currency_code" :$scope.item.currency_code,
-      }
+      var req = Object.assign({}, $scope.item);;
+      req['weight'] = $scope.item.weight+' '+$scope.item.weightMeasureUnit;
+      req['height'] = $scope.item.height+' '+$scope.item.dimensionMeasureUnit;
+      req['length'] = $scope.item.length+' '+$scope.item.dimensionMeasureUnit;
+      req['width'] = $scope.item.width+' '+$scope.item.dimensionMeasureUnit;
+      req.customer_id = $rootScope.authResponse.customer_id;
+      req.currency_code = $scope.item.currency_code;
+
+      // var req = {
+      //   "model" : $scope.item.model,
+      //   "weight" : $scope.item.weight+' '+$scope.item.weightMeasureUnit,
+      //   "height" : $scope.item.height+' '+$scope.item.dimensionMeasureUnit,
+      //   "length": $scope.item.length+' '+$scope.item.dimensionMeasureUnit,
+      //   "width": $scope.item.width+' '+$scope.item.dimensionMeasureUnit,
+      //   "name" : $scope.item.name,
+      //   "quantity" : $scope.item.quantity,
+      //   "price" : $scope.item.price,
+      //   "description" : $scope.item.description,
+      //   "mainimage" : '',
+      //   "image1" : '',
+      //   "image2" : '',
+      //   "image3" : '',
+      //   "image4" : '',
+      //   "image5" : '',
+      //   "image6" : '',
+      //   "image7" : '',
+      //   "category" : [],
+      //   "customer_id" : $rootScope.authResponse.customer_id,
+      //   "currency_code" :$scope.item.currency_code,
+      // }
       for(var i in $scope.item.category){
         req.category.push($scope.item.category[i].category_id);
       }
-      // console.log(req);
+      console.log(req);
       var config = {
         headers:{
           'Content-Type': 'application/x-www-form-urlencoded'
         }
       };
-      httpService.postRequest(serverConfig.clientAPI,extended_url,$httpParamSerializer(req),config).then(function(response){
-        if(response.status === 200){
-          $scope.product = {
-            "product_id" : response.data.product_id
-          }
+      // httpService.postRequest(serverConfig.clientAPI,extended_url,$httpParamSerializer(req),config).then(function(response){
+      //   if(response.status === 200){
+      //     $scope.product = {
+      //       "product_id" : response.data.product_id
+      //     }
 
-          $state.go('sellerHome2', {'product_id': response.data.product_id});
-          // console.log(response.data.product_id); // product id =248/249/250
-        }else{
-          $scope.error = response.error_warning;
-        }
-      });
+      //     $state.go('sellerHome2', {'product_id': response.data.product_id});
+      //     // console.log(response.data.product_id); // product id =248/249/250
+      //   }else{
+      //     $scope.error = response.error_warning;
+      //   }
+      // });
     // }else{
     //   $state.go('home.new');
     // }
@@ -315,6 +333,7 @@ function SellerHomeCtrl($scope, $rootScope, $state , httpService, serverConfig,$
   init();
 
   function init() {
+    getOptions();
     getCurrency();
     getAllCategories();
   }
@@ -346,5 +365,13 @@ function SellerHomeCtrl($scope, $rootScope, $state , httpService, serverConfig,$
   $scope.openMyProducts = function () {
     $state.go('sellerProducts');
   };
+  $scope.openSettings = function () {
+    $scope.close();
+    $state.go('settings');
+  };
+
+  $scope.hideKeyboard = function() {
+    Keyboard.hide();
+  }
 
 }

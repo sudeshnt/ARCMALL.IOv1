@@ -150,10 +150,6 @@ function CategoryCtrl($scope,$state,$rootScope,$stateParams,httpService,
           });
 
         });
-
-        
-        
-
       }else{
         $scope.error = response.error_warning;
       }
@@ -161,24 +157,19 @@ function CategoryCtrl($scope,$state,$rootScope,$stateParams,httpService,
   }
 
   function setLanguage(localStorage, callback) {
-    var lang = window.navigator.userLanguage || window.navigator.language;
+    
+    console.log('cat');
+    var languageChanged = localStorage.getItem('language_changed');
+    var lang = localStorage.getItem('language');
+    var tabs = localStorage.getItem('cat_tabs');
+    console.log(tabs);
 
-    if(lang && lang != "") {
-      lang = lang.substring(0,2);
-    }
-    else {
-      lang = "en";
-    }
-
-    var localLang = localStorage.getItem('language');
-
-    if(localLang != lang) {
-
+    if(languageChanged == "true" || tabs == null) {
+      console.log(languageChanged)
       localStorage.removeItem('cat_tabs');
-      localStorage.setItem('language',lang);
-
       initLanguage(lang).then(function(response){
         
+        localStorage.setItem('language_changed', false);
         callback(true);
         
       })
@@ -462,6 +453,10 @@ function CategoryCtrl($scope,$state,$rootScope,$stateParams,httpService,
   };
   $scope.logOut = function () {
     $rootScope.logOut();
+  };
+  $scope.openSettings = function () {
+    $scope.close();
+    $state.go('settings');
   };
 
   init();

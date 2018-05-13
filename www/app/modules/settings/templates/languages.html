@@ -1,0 +1,17 @@
+<ion-header-bar class="bar bar-header header-md bar-darker">
+  <div style="width: 100%; display: inherit; margin-top: 0px !important;">
+    <div class="absolute back-icon-wrapper">
+      <a class="button button-icon row" ng-href="#/settings">
+        <i class="ion-android-arrow-back font-L white"></i>
+      </a>
+    </div>
+    <h4 class="white left-title">{{'LANGUAGE' | translate}}</h4>
+    <div class="absolute cart-icon-wrapper">
+    </div>
+  </div>
+</ion-header-bar>
+  
+<ion-content class="has-header item-list-content" overflow-scroll="true">
+    <ion-radio ng-model="choice" value="en" ng-change="changeLanguage('en')">{{'ENG_US' | translate}}</ion-radio>
+    <ion-radio ng-model="choice" value="zh" ng-change="changeLanguage('zh')">{{'CHINESE_SIMPLIFIED' | translate}}</ion-radio>
+</ion-content>

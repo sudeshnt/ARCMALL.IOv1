@@ -8,11 +8,11 @@ CheckoutStep3Ctrl.$inject = ['$scope','$state','$rootScope','$stateParams',
 function CheckoutStep3Ctrl($scope,$state,$rootScope,$stateParams,
   serverConfig,httpService,$httpParamSerializer, $ionicPopup) {
 
-  // if($stateParams.personal_info){
-  //   $scope.personal_info = $stateParams.personal_info;
-  // }else{
-  //   $state.go('cart');
-  // }
+  if($stateParams.personal_info){
+    $scope.personal_info = $stateParams.personal_info;
+  }else{
+    // $state.go('cart');
+  }
 
   getProductsOfCart();
 

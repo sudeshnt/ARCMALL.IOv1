@@ -18,16 +18,10 @@ function CheckoutCtrl($scope,$state,$rootScope,$stateParams,serverConfig,
   }
 
   $scope.nextStep = function (){
-    console.log("Next");
-    // var req = addAddress();
+    console.log($scope.personal_details);
 
-    if(!$scope.hasAddresses) {
-      addAddress();
-      setShippingAddress();
-      setPaymentAddress();
-    }
-    
-    $state.go('checkout-step-2',{'personal_info':$scope.personal_details})
+    var info = Object.assign($scope.address, $scope.personal_details);
+    $state.go('checkout-step-2',{'personal_info':info})
      // $state.go("pp_express");
 
     // $state.go("payment_modules." + "pp_express" + ".home", { checkout: req, currency: "USD", total_amount: "$100.00", total_amount_clean: 100, success_state: "app.menu.cart.order_added" }, { reload: true });
@@ -56,6 +50,8 @@ function CheckoutCtrl($scope,$state,$rootScope,$stateParams,serverConfig,
   $scope.goBack = function() {
     $state.go('shipping');
   }
+
+  
 
   function showPopup(text) {
     var confirmPopup = $ionicPopup.confirm({
@@ -209,6 +205,12 @@ function CheckoutCtrl($scope,$state,$rootScope,$stateParams,serverConfig,
           $scope.addresses = addresses;
           $scope.address = firstAddress;
           $scope.hasAddresses =  Object.keys(addresses).length > 0;
+
+          console.log('first address');
+          console.log($scope.address);
+          if($scope.hasAddresses) {
+            setShippingAndPaymentAddress($scope.address, function(){});
+          }
         }
       }
     });
@@ -265,4 +267,54 @@ function CheckoutCtrl($scope,$state,$rootScope,$stateParams,serverConfig,
       }
     });
   }
+
+  function setShippingAndPaymentAddress(currentAddress, callback) {
+
+    console.log(currentAddress);
+
+     var extended_url = '/shipping/address';
+     var reqObj = {
+       "firstname":currentAddress.firstname,
+       "lastname":currentAddress.lastname,
+       "company":'',
+       "address_1":currentAddress.address_1,
+       "address_2":currentAddress.address_2,
+       "city":currentAddress.city,
+       "postcode":currentAddress.postcode,
+       "country_id":currentAddress.country_id,
+       "zone_id":currentAddress.zone_id,
+     };
+     var config = {
+       headers:{
+         'Content-Type': 'application/x-www-form-urlencoded'
+       }
+     };
+     httpService.postRequest(serverConfig.clientAPI,extended_url, $httpParamSerializer(reqObj),config).then(function(response){
+
+       if(response.status === 200 && response.data.error == undefined){
+         extended_url = '/payment/address';
+         httpService.postRequest(serverConfig.clientAPI,extended_url, $httpParamSerializer(reqObj),config).then(function(response){
+           if(response.status === 200 && response.data.error == undefined){
+              callback(true);
+           }
+           else if(response.data.error != undefined){
+             callback(false);
+             showPopup(response.data.error);
+           }
+           else {
+             callback(false);
+             showPopup(response.status);
+           }
+         });
+       }
+       else if(response.data.error != undefined){
+         callback(false);
+         showPopup(response.data.error);
+       }
+       else {
+         callback(false);
+         showPopup(response.status);
+       }
+     });
+   }
 }

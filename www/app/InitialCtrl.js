@@ -163,4 +163,62 @@ function InitialCtrl($scope,$rootScope,$state,$ionicHistory,
   $rootScope.initCartItemCount = initCartItemCount;
   $rootScope.hideLoading = hideLoading;
 
+
+  $rootScope.facebookLogin = function(){
+    facebookConnectPlugin.login(["public_profile"], function(userData){
+      console.log(userData.authResponse.accessToken);
+      serverSignIn(userData.authResponse.accessToken, userData.authResponse.userID, true);
+      },
+      function loginError (error) {
+        console.error(error)
+      }
+    );
+  };
+
+  function serverSignIn(token, isFacebook) {
+    var extended_url = '/user_login';
+    var req = {};
+    req.token = token;
+    req.type = isFacebook?2:3;
+    var config = {
+      headers:{
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    };
+
+    console.log($scope.user);
+    httpService.postRequest(serverConfig.clientAPI,extended_url,$httpParamSerializer(req),config).then(function(response){
+      if(response.status === 200){
+        console.log('response');
+        localStorage.setItem('loginStatus',true);
+        var authResponse = response.data.customer_info;
+        authResponse.ispartner = response.data.ispartner;
+        localStorage.setItem('authResponse', JSON.stringify(authResponse));
+        $state.go('categories');
+        // $state.go('home.new');
+      }else{
+        $scope.error = response.error_warning;
+      }
+    });
+  }
+
+  $rootScope.googlePlusLogin = function(){
+    if(window.plugins.googleplus){
+      window.plugins.googleplus.login(
+        {
+          'scopes': '', // optional, space-separated list of scopes, If not included or empty, defaults to `profile` and `email`.
+          'webClientId': '866910893661-u4k80k30nn57in7np8faf4g2c5kjdh31', // optional clientId of your Web application from Credentials settings of your project - On Android, this MUST be included to get an idToken. On iOS, it is not required.
+          'offline': true // optional, but requires the webClientId - if set to true the plugin will also return a serverAuthCode, which can be used to grant offline access to a non-Google server
+        },
+        function (obj) {
+          var token = obj.idToken;
+          serverSignIn(token, false);
+        },
+        function (msg){
+          console.log(msg);
+        }
+      );
+    }
+  };
+
 }

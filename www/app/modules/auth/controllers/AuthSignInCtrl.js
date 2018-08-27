@@ -2,9 +2,11 @@
 
 angular.module('auth.module').controller('AuthSignInCtrl', AuthSignInCtrl);
 
-AuthSignInCtrl.$inject = ['$scope','$state','$rootScope','httpService','serverConfig','$httpParamSerializer'];
+AuthSignInCtrl.$inject = ['$scope','$state','$rootScope','httpService','serverConfig','$httpParamSerializer', 'Auth'];
 
-function AuthSignInCtrl($scope,$state,$rootScope,httpService,serverConfig,$httpParamSerializer) {
+function AuthSignInCtrl($scope,$state,$rootScope,httpService,serverConfig,$httpParamSerializer, Auth) {
+
+
   //console.log('auth sign in');
   $scope.user = {
     'email' : '',
@@ -37,5 +39,13 @@ function AuthSignInCtrl($scope,$state,$rootScope,httpService,serverConfig,$httpP
     });
 
   }
+
+  $scope.facebookLogin = function(){
+    $rootScope.facebookLogin();
+  };
+
+  $scope.googlePlusLogin = function(){
+    $rootScope.googlePlusLogin();
+  };
 
 }

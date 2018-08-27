@@ -19,7 +19,8 @@ function CartCtrl($scope,$state,$rootScope, $timeout, $mdBottomSheet,
   };
 
   $scope.goBack = function() {
-    $ionicHistory.goBack();
+    // $ionicHistory.goBack();
+    $state.go('categories');
   }
 
   $scope.go = function() {
@@ -129,5 +130,7 @@ function CartCtrl($scope,$state,$rootScope, $timeout, $mdBottomSheet,
       // User clicked outside or hit escape
     });
   };
+
+  
 
 }

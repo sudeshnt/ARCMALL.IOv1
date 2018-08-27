@@ -15,93 +15,184 @@
   <ion-content style="padding-left: 20px;
   padding-right: 20px;
   margin-top: 20px;
-  margin-bottom: 10px;" onclick="hideKeyboard()">
-    <label class="item item-input text-xmd add-item-textbox">
-      <!--<i class="icon ion-ios-home-outline placeholder-icon"></i>-->
-      <input type="text" placeholder="{{'WHAT_IS_YOUR_PRODUCT_NAME' | translate}}" ng-model="item.name">
-    </label>
-    <label class="item item-input text-xmd add-item-textbox" style="height:100px;">
-      <!--<i class="icon ion-ios-home-outline placeholder-icon"></i>-->
-      <textarea type="text" rows="4" placeholder="{{'TELL_US_ABOUT_YOUR_ITEM' | translate}}" ng-model="item.description"></textarea>
-    </label>
-    <div layout="row" layout-align="space-between center">
-      <md-select ng-model="category.catLevel1" placeholder="{{'PLEASE_SELECT_TYPE_OF_ITEM' | translate}}" class="md-no-underline category-select">
+  margin-bottom: 10px;" 
+  >
+
+    <div class="topic align-left">{{'ITEM_DETAILS' | translate}}</div>
+
+    <div class="textbox">
+        <input type="text" placeholder="{{'WHAT_IS_YOUR_PRODUCT_NAME' | translate}} *" ng-model="item.name">
+    </div>
+
+    <div class="textbox">
+      <textarea type="text" rows="4" placeholder="{{'TELL_US_ABOUT_YOUR_ITEM' | translate}} *" ng-model="item.description"></textarea>
+    </div>
+    
+    <div class="textbox">
+      <md-select ng-model="category.catLevel1" placeholder="{{'PLEASE_SELECT_TYPE_OF_ITEM' | translate}}" class="md-no-underline">
         <md-option ng-repeat="cat_level_1 in cat_tabs track by $index" value="{{$index}}">{{cat_level_1.name}}</md-option>
       </md-select>
     </div>
-    <div layout="row" layout-align="space-between center" ng-if="category.catLevel1">
-      <md-select ng-model="category.catLevel2" placeholder="{{'PLEASE_SELECT_MAIN_CATEGORY' | translate}}" class="md-no-underline category-select">
+
+    <div class="textbox" ng-if="category.catLevel1">
+      <md-select ng-model="category.catLevel2" placeholder="{{'PLEASE_SELECT_MAIN_CATEGORY' | translate}}" class="md-no-underline">
         <md-option ng-repeat="cat_level_2 in cat_tabs[category.catLevel1].categories track by $index" value="{{$index}}">{{cat_level_2.name}}</md-option>
       </md-select>
     </div>
-    <div layout="row" layout-align="space-between center" ng-if="category.catLevel2">
-      <md-select ng-model="category.catLevel3" ng-change="setItemCategory()" placeholder="Please select a sub category" class="md-no-underline category-select">
+
+    <div class="textbox" ng-if="category.catLevel2">
+      <md-select ng-model="category.catLevel3" ng-change="setItemCategory()" placeholder="Please select a sub category" class="md-no-underline">
         <md-option ng-repeat="cat_level_3 in cat_tabs[category.catLevel1].categories[category.catLevel2].categories track by $index" value="{{$index}}">{{cat_level_3.name}}</md-option>
       </md-select>
     </div>
+
     <div class="square category-chip" ng-click="signUp()" ng-repeat="category in item.category">
       {{category.name}}
     </div>
-    <label class="item item-input text-xmd add-item-textbox">
-      <!--<i class="icon ion-ios-home-outline placeholder-icon"></i>-->
-      <input type="text" placeholder="{{'WHAT_IS_THE_MODEL_OF_YOUR_PRODUCT' | translate}}" ng-model="item.model">
-    </label>
+
+    <div class="textbox">
+      <input type="text" placeholder="{{'WHAT_IS_THE_MODEL_OF_YOUR_PRODUCT' | translate}} *" ng-model="item.model">
+    </div>
+    
     <div class="row zero-padding">
       <div class="col zero-padding" style="max-width:153px;margin-right: 5px;">
-        <div layout="row" layout-align="space-between center">
-          <md-select ng-model="item.currency_code" placeholder="{{'CURRENCY' | translate}}" class="md-no-underline category-select">
+        <div class="textbox">
+          <md-select ng-model="item.currency_code" placeholder="{{'CURRENCY' | translate}} *" class="md-no-underline">
             <md-option ng-repeat="currency in currencies track by $index" value="{{currency.code}}">{{currency.title}}</md-option>
           </md-select>
         </div>
       </div>
       <div class="col zero-padding">
-        <label class="item item-input text-xmd add-item-textbox" style=" height: 51px;">
-          <input type="number" placeholder="{{'WHAT_IS_THE_PRICE_OF_YOUR_PRODUCT' | translate}}" ng-model="item.price">
-        </label>
-      </div>
-    </div>
-    <div class="row zero-padding">
-      <div class="col zero-padding">
-        <label class="item item-input text-xmd add-item-textbox" style=" height: 51px;">
-          <input type="number" placeholder="{{'WHAT_IS_THE_HEIGHT_OF_YOUR_PRODUCT' | translate}}" ng-model="item.height">
-        </label>
-      </div>
-      <div class="col zero-padding" style="max-width:153px;margin-left: 5px;">
-        <div layout="row" layout-align="space-between center">
-          <md-select ng-model="item.dimensionMeasureUnit" placeholder="{{'MEASURE_UNIT' | translate}}" class="md-no-underline category-select">
-            <md-option ng-repeat="measure in dimensionMeasures track by $index" value="{{measure}}">{{measure}}</md-option>
-          </md-select>
+        <div class="textbox">
+          <input type="number" placeholder="{{'WHAT_IS_THE_PRICE_OF_YOUR_PRODUCT' | translate}} *" ng-model="item.price">
         </div>
       </div>
     </div>
-    <div class="row zero-padding">
-        <div class="col zero-padding">
-          <label class="item item-input text-xmd add-item-textbox" style=" height: 51px;">
-            <input type="number" placeholder="{{'LENGTH' | translate}}" ng-model="item.length">
-          </label>
-        </div>
-        <div class="col zero-padding">
-          <label class="item item-input text-xmd add-item-textbox" style=" height: 51px;  margin-left:10px">
-              <input type="number" placeholder="{{'WIDTH' | translate}}" ng-model="item.width">
-          </label>
-        </div>
-      </div>
-    <div class="row zero-padding">
-      <div class="col zero-padding">
-        <label class="item item-input text-xmd add-item-textbox" style=" height: 51px;">
-          <input type="number" placeholder="{{'WHAT_IS_THE_WEIGHT_OF_YOUR_PRODUCT' | translate}}" ng-model="item.weight">
-        </label>
-      </div>
-      <div class="col zero-padding" style="max-width:153px;margin-left: 5px;">
-        <div layout="row" layout-align="space-between center">
-          <md-select ng-model="item.weightMeasureUnit" placeholder="{{'MEASURE_UNIT' | translate}}" class="md-no-underline category-select">
-            <md-option ng-repeat="measure in weightMeasures track by $index" value="{{measure}}">{{measure}}</md-option>
-          </md-select>
-        </div>
-      </div>
+    
+    <div class="topic align-left" style="margin-top:10px">{{'DIMENTIONS' | translate}}</div>
+
+    <div class="textbox">
+      <md-select ng-model="item.dimensionMeasureUnit" placeholder="{{'MEASURE_UNIT' | translate}} *" class="md-no-underline">
+        <md-option ng-repeat="measure in dimensionMeasures track by $index" value="{{measure}}">{{measure}}</md-option>
+      </md-select>
     </div>
 
-    <div class="row zero-padding" ng-repeat="option in options">
+    <div class="row zero-padding">
+        <div class="col zero-padding" style="margin-right: 10px">
+          <div class="textbox">
+            <input type="number" placeholder="{{'LENGTH' | translate}} *" ng-model="item.length">
+          </div>
+        </div>
+        <div class="col zero-padding">
+          <div class="textbox">
+              <input type="number" placeholder="{{'WIDTH' | translate}} *" ng-model="item.width">
+          </div>
+        </div>
+        <div class="col zero-padding" style="margin-left: 10px">
+          <div class="textbox">
+            <input type="number" placeholder="{{'WHAT_IS_THE_HEIGHT_OF_YOUR_PRODUCT' | translate}} *" ng-model="item.height">
+          </div>
+        </div>
+    </div>
+
+    <div class="topic align-left" style="margin-top:10px">{{'ITEM_WEIGHT' | translate}}</div>
+
+    <div class="textbox">
+      <md-select ng-model="item.weightMeasureUnit" placeholder="{{'MEASURE_UNIT' | translate}} *" class="md-no-underline">
+        <md-option ng-repeat="measure in weightMeasures track by $index" value="{{measure}}">{{measure}}</md-option>
+      </md-select>
+    </div>
+
+    <div class="textbox">
+      <input type="number" placeholder="{{'WHAT_IS_THE_WEIGHT_OF_YOUR_PRODUCT' | translate}} *" ng-model="item.weight">
+    </div>
+
+    <div class="textbox">
+        <input type="number" placeholder="{{'QUANTITY_AVAILABLE' | translate}} *" ng-model="item.quantity">
+    </div>
+
+    <div class="topic align-left" style="margin-top:20px">{{'Options' | translate}}</div>
+
+    <div class="square category-chip" style="margin-bottom: 20px" ng-click="deleteOption(option)" ng-repeat="option in selectedOptions track by $index">
+        {{option.name}} - {{option.product_option_value.name}} X
+    </div>
+
+    <div class="addButton" ng-click="addNewOptionPlaceholder()" ng-if="showAddOptionPlaceholderButton">
+        <i class="icon ion-plus"></i>
+        <!-- Add new option -->
+    </div>
+
+   <div ng-if="optionsCount > 0">
+      <div class="row zero-padding">
+        <div class="textbox">
+          <md-select ng-model="selection.selectionId" ng-change="getOptionsFor(selection)" placeholder="{{'SELECT_OPTION' | translate}} *" class="md-no-underline">
+            <md-option ng-repeat="option in options track by $index" ng-if="option.option_value.length > 0"
+            value="{{option.option_id}}" aria-label='option.name'>{{option.name}}</md-option>
+          </md-select>
+        </div>
+      </div>
+    
+      <div ng-repeat="addedOption in selection.options track by $index" ng-if="!showAddOptionPlaceholderButton">
+        <div class="row zero-padding">
+          <div ng-if="addedOption.option_value.length > 0" class="col zero-padding">
+            <div class="textbox" ng-if="optionsChooseRequiredPassed">
+              <md-select ng-model="currentChosenOption" ng-change="setChosenOptionDetails(currentChosenOption)" placeholder="{{'CHOOSE' | translate}} {{addedOption.name}} *" class="md-no-underline">
+                <md-option ng-repeat="option_value in addedOption.option_value track by $index" ng-if="!option_value.hide"
+                value="{{option_value}}" aria-label='option_value.name'>{{option_value.name}}</md-option>
+              </md-select>
+            </div>
+            <div class="textbox-red" ng-if="!optionsChooseRequiredPassed">
+                <md-select ng-model="currentChosenOption" ng-change="setChosenOptionDetails(currentChosenOption)" placeholder="{{'CHOOSE' | translate}} {{addedOption.name}}" class="md-no-underline">
+                  <md-option ng-repeat="option_value in addedOption.option_value track by $index"
+                  value="{{option_value}}" aria-label='option_value.name'>{{option_value.name}}</md-option>
+                </md-select>
+              </div>
+            <div class="textbox-no-border">
+              <md-checkbox required md-no-ink ng-model="currentOption.product_option_value.required" aria-label="{{'REQUIRED' | translate}}">
+                  <div>{{'REQUIRED' | translate}}</div>
+              </md-checkbox>
+            </div>
+            <div class="textbox-no-border">
+              <md-checkbox md-no-ink ng-model="currentOption.product_option_value.subtract_quantity" aria-label="{{'SUBSTRACT_QUANTITY' | translate}}">
+                  {{'SUBSTRACT_QUANTITY' | translate}}
+              </md-checkbox>
+            </div>
+            <div class="textbox" ng-if="optionsQuantityRequiredPassed">
+                <input type="number" placeholder="{{'SPECIFY_QUANTITY' | translate}}" ng-model="currentOption.product_option_value.quantity">
+            </div>
+            <div class="textbox-red" ng-if="!optionsQuantityRequiredPassed">
+                <input type="number" placeholder="{{'SPECIFY_QUANTITY' | translate}}" ng-model="currentOption.product_option_value.quantity">
+            </div>
+            <div class="textbox">
+                <input type="number" placeholder="{{'SPECIFY_PRICE_RANGE' | translate}}" ng-model="currentOption.product_option_value.price">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="button custom-height-button button-block addOptionButton" ng-click="addOption(selection.options[0])" ng-if="showAddOptionButton">
+          <div>{{'ADD_OPTION' | translate}}</div>
+      </div>
+   </div>
+
+  
+  
+
+    <!-- <div ng-repeat="option in options" ng-if="options.length > 0">
+      <div class="row zero-padding">
+        <div ng-if="option.option_value.length > 0" class="col zero-padding">
+          <div class="textbox">
+            <md-select ng-model="item[option.name]" placeholder="{{option.name}}" class="md-no-underline">
+              <md-option ng-repeat="option_value in option.option_value track by $index" 
+              value="{{option_value.name}}" aria-label='option_value.name'>{{option_value.name}}</md-option>
+            </md-select>
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+    
+
+    <!-- <div class="row zero-padding" ng-repeat="option in options">
         <div class="col zero-padding">
           <div ng-if="option.type == 'text' || option.type == 'texttextarea'">
             <label class="item item-input text-xmd add-item-textbox">
@@ -110,10 +201,12 @@
           </div>
           <div ng-if="option.type == 'select'">
             <div layout="row" layout-align="space-between center">
-              <md-select ng-model="item[option.name]" placeholder="{{option.name}}" class="md-no-underline category-select">
-                <md-option ng-repeat="option_value in option.option_value track by $index" 
-                value="{{option_value.name}}" aria-label='option_value.name'>{{option_value.name}}</md-option>
-              </md-select>
+              <div class="textbox">
+                <md-select ng-model="item[option.name]" placeholder="{{option.name}}" class="md-no-underline">
+                  <md-option ng-repeat="option_value in option.option_value track by $index" 
+                  value="{{option_value.name}}" aria-label='option_value.name'>{{option_value.name}}</md-option>
+                </md-select>
+              </div>
             </div>
           </div>
           <div ng-if="option.type == 'radio'">
@@ -127,7 +220,8 @@
               </md-radio-group>
             </div>
           </div>
-          <!-- <div ng-if="option.type == 'checkbox'">
+          
+          <div ng-if="option.type == 'checkbox'">
             <div layout="row" layout-align="space-between center" style="margin-top: 20px" >
               <div class="row" style="margin-left: 20px">
                 <label>{{option.name}}</label>
@@ -143,18 +237,17 @@
                   
               </div>
             </div>
-            </div> -->
+            </div>
         </div>
-      </div>
+    </div> -->
 
-    <label class="item item-input text-xmd add-item-textbox">
-      <!--<i class="icon ion-ios-home-outline placeholder-icon"></i>-->
-      <input type="number" placeholder="{{'QUANTITY_AVAILABLE' | translate}}" ng-model="item.quantity">
-    </label>
-    <!--<img ng-repeat="image in item.images track by $index" ng-src="{{image}}" style="width: 70px;height: 70px;margin: 5px;">-->
+    <div style="height: 100px;">
+
+    </div>
+
     <div>
       <a class="button custom-height-button button-sm square button-block button-orange capital" ng-click="addItem();">
-        {{"SAVE_ITEM" | translate}}
+        {{"NEXT" | translate}}
       </a>
     </div>
   </ion-content>

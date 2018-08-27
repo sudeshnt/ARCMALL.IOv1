@@ -2,7 +2,7 @@
 
 angular.module('seller.module').controller('SellerHome2Ctrl',SellerHome2Ctrl );
 
-SellerHomeCtrl.$inject = ['$scope','$rootScope', '$state','httpService','serverConfig','$httpParamSerializer','$timeout','$mdSidenav','$log','$cordovaActionSheet','$cordovaDevice','$cordovaFile','$cordovaFileTransfer','$ionicLoading', '$stateParams'];
+SellerHome2Ctrl.$inject = ['$scope','$rootScope', '$state','httpService','serverConfig','$httpParamSerializer','$timeout','$mdSidenav','$log','$cordovaActionSheet','$cordovaDevice','$cordovaFile','$cordovaFileTransfer','$ionicLoading', '$stateParams'];
 
 function SellerHome2Ctrl($scope, $rootScope, $state,  httpService,serverConfig,$httpParamSerializer,$timeout,$mdSidenav,$log,$cordovaActionSheet,$cordovaDevice,$cordovaFile,$cordovaFileTransfer,$ionicLoading, $stateParams) {
 

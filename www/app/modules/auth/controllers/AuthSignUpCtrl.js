@@ -33,13 +33,14 @@ function AuthSignUpCtrl($scope,$rootScope,$state,$stateParams,appConfig,httpServ
       req.shoppartner = $scope.user.companyname;
       delete req.companyname;
     }
+    req.type = 1;
     var config = {
       headers:{
         'Content-Type': 'application/x-www-form-urlencoded'
       }
     };
     httpService.postRequest(serverConfig.clientAPI, extended_url, $httpParamSerializer(req), config).then(function (response) {
-      if (response.status === 200 && response.error_warning == "") {
+      if (response || (response.status === 200 && response.error_warning == "")) {
         localStorage.setItem('loginStatus', true);
         localStorage.setItem('authResponse', JSON.stringify(response.customer_info));
         $state.go('categories');
@@ -50,4 +51,12 @@ function AuthSignUpCtrl($scope,$rootScope,$state,$stateParams,appConfig,httpServ
     });
 
   }
+
+  $scope.facebookLogin = function(){
+    $rootScope.facebookLogin();
+  };
+
+  $scope.googlePlusLogin = function(){
+    $rootScope.googlePlusLogin();
+  };
 }

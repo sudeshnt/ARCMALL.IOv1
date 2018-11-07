@@ -1,0 +1,195 @@
+<ion-header-bar class="bar bar-header header-md bar-darker">
+    <div style="width: 100%; display: inherit; margin-top: 0px !important;">
+        <div class="search-box-wrapper">
+            <div class="absolute toggle-side-wrapper">
+                <a class="button button-icon row" ng-click="toggleSideBarHome()">
+                    <i class="ion-navicon-round font-L black"></i>
+                </a>
+            </div>
+
+            <label class="  item-input search-box">
+                <i class="ion-search font-L black"></i>
+                <input type="text" placeholder="{{'SEARCH' | translate}}" ng-model="search" ng-focus="goToSearch()">
+            </label>
+
+        </div>
+        <div class="absolute cart-icon-wrapper">
+            <a class="button button-icon row" ng-click="viewCart()">
+                <i class="ion-android-cart font-L black"></i>
+                <i class="cart-item-count" ng-show="cartItemCount>0">{{cartItemCount}}</i>
+            </a>
+        </div>
+    </div>
+</ion-header-bar>
+
+
+
+
+<ion-view cache-view="false">
+
+    <ion-content class="has-header-md" scroll="false">
+        <!--<ion-content class="has-header-md-banner"  scroll="false">-->
+
+        <ion-slide ng-repeat="tab in selectedCatTabs.tabs  track by $index" ion-slide-tab-label="{{tab.name}}" style="background-color:white; width:100%;">
+            <ion-content>
+                <div class="row" style="padding: 1px 5px 4px;" ng-repeat="subCat_rows in tab.sub_cats track by $index">
+                    <div class="col zero-padding" ng-class="{'list card card-margin' : subCat_rows.length == 1 && $index==0}"
+                        ng-click="goToItems(subCat_rows[0])" ng-if="subCat_rows.length == 1">
+                        <div ng-class="{'list card card-margin full-height' : $index>0 }">
+                            <div class="item item-image full-height">
+                                <img src="app/modules/shop/img/1.png" class="full-height" style="max-height: 200px;">
+
+                                <div class="text-on-image card-name ">
+                                    <h2 class="multi-line-text"> WELCOME TO ARCMALL</h2>
+                                </div>
+
+                                <div class="text-on-image-2 card-name ">
+                                    <h4 class="multi-line-text"> ABSOLUTE . RETAIL .COMPANY</h4>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="card-name " style="padding-left: 10px">
+                            <h6>CATEGORIES</h6>
+                        </div>
+
+                        <div class="row ">
+                            <div class="column" style="padding: 5px">
+                                <img ng-src="app/modules/shop/img/2.png" width="100%" />
+                                <div class="overlay">
+                                    HER
+                                </div>
+                            </div>
+                            <div class="column" style="padding: 5px">
+                                <img ng-src="app/modules/shop/img/3.png" width="100%" />
+                                <div class="overlay">
+                                    HIS
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row ">
+                            <div class="column" style="padding: 5px">
+                                <img ng-src="app/modules/shop/img/4.png" width="100%" />
+                                <div class="overlay">
+                                    BAGS
+                                </div>
+                            </div>
+                            <div class="column" style="padding: 5px">
+                                <img ng-src="app/modules/shop/img/5.png" width="100%" />
+                                <div class="overlay">
+                                    COMPUTERS
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row ">
+                            <div class="column" style="padding: 5px">
+                                <img ng-src="app/modules/shop/img/6.png" width="100%" />
+                                <div class="overlay">
+                                    KIDS
+                                </div>
+                            </div>
+                            <div class="column" style="padding: 5px">
+                                <img ng-src="app/modules/shop/img/7.png" width="100%" />
+                                <div class="overlay">
+                                    SHOES
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class=" view-categories">
+                            VIEW ALLCATEGORIES
+                        </div>
+
+                        <div style="margin-top: 5px">
+                            <img src="app/modules/shop/img/8.png" style="max-height: 200px; max-width:100% ;">
+                        </div>
+
+                        <div class="card-name " style="padding-left: 10px">
+                            <h6>TRENDING</h6>
+                        </div>
+                        <ion-scroll direction="x" class="wide-as-needed">
+                            <div ng-repeat="s in categories" style="display: inline-block;white-space: nowrap; ">
+
+
+                                <img src="app/modules/shop/img/{{s}}" style="margin: 10px; display: inline-block;">
+                                <div style="padding-left: 10px"> {{s}} </div>
+                            </div>
+                        </ion-scroll>
+
+                        <div class="card-name " style="padding-left: 10px">
+                            <h6>BEST SELLER</h6>
+                        </div>
+                        <ion-scroll direction="x" class="wide-as-needed">
+                            <div ng-repeat="s in categories" style="display: inline-block;white-space: nowrap; ">
+
+
+                                <img src="app/modules/shop/img/{{s}}" style="margin: 10px; display: inline-block;">
+                                <div style="padding-left: 10px"> {{s}} </div>
+                            </div>
+                        </ion-scroll>
+                    </div>
+
+                </div>
+                <div class="row" style="min-height: 55px;"></div>
+            </ion-content>
+        </ion-slide>
+
+    </ion-content>
+    <md-sidenav class="md-sidenav-left md-whiteframe-4dp" md-component-id="right">
+        <md-content>
+            <img ng-src="app/modules/shop/img/home-slide-nav.jpg" style="width:100%">
+            <md-list flex>
+                <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;" ng-show="loginStatus">
+                    <div class="md-list-item-text zero-margin" layout="column" ng-click="openMyProfile()">
+                        <h4><i class="ion-person sidenav-icon"></i><span class="sidenav-options">{{'MY_PROFILE' |
+                                translate}}</span></h4>
+                    </div>
+                </md-list-item>
+                <md-divider></md-divider>
+                <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;" ng-show="!loginStatus">
+                    <div class="md-list-item-text zero-margin" layout="column" ng-click="openSignIn()">
+                        <h4><i class="ion-person sidenav-icon"></i><span class="sidenav-options">{{'SIGN_IN' |
+                                translate}}</span></h4>
+                    </div>
+                </md-list-item>
+                <md-divider></md-divider>
+                <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;" ng-show="authResponse.ispartner=='true'">
+                    <div class="md-list-item-text zero-margin" layout="column" ng-click="openAddItem()">
+                        <h4><i class="ion-android-hand sidenav-icon"></i><span class="sidenav-options">{{'ADD_ITEM' |
+                                translate}}</span></h4>
+                    </div>
+                </md-list-item>
+                <md-divider></md-divider>
+                <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;">
+                    <div class="md-list-item-text zero-margin" layout="column" ng-click="openCategories()">
+                        <h4><i class="ion-ios-browsers sidenav-icon"></i><span class="sidenav-options">{{'ALL_CATEGORIES'
+                                | translate}}</span></h4>
+                    </div>
+                </md-list-item>
+                <md-divider></md-divider>
+                <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;">
+                    <div class="md-list-item-text zero-margin" layout="column" ng-click="openWishList()">
+                        <h4><i class="ion-ios-heart sidenav-icon"></i><span class="sidenav-options">{{'WISH_LIST' |
+                                translate}}</span></h4>
+                    </div>
+                </md-list-item>
+                <md-divider></md-divider>
+                <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;">
+                    <div class="md-list-item-text zero-margin" layout="column" ng-click="openOrderHistory();">
+                        <h4><i class="ion-ios-albums sidenav-icon"></i><span class="sidenav-options">{{'ORDER_HISTORY'
+                                | translate}}</span></h4>
+                    </div>
+                </md-list-item>
+                <md-divider></md-divider>
+                <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;" ng-show="loginStatus">
+                    <div class="md-list-item-text zero-margin" layout="column" ng-click="logOut()">
+                        <h4><i class="ion-android-hand sidenav-icon"></i><span class="sidenav-options">{{'LOG_OUT' |
+                                translate}}</span></h4>
+                    </div>
+                </md-list-item>
+                <md-divider></md-divider>
+            </md-list>
+        </md-content>
+    </md-sidenav>
+</ion-view>

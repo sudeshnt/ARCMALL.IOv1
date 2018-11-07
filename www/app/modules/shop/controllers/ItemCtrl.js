@@ -2,13 +2,9 @@
 
 angular.module('shop.module').controller('ItemCtrl',ItemCtrl );
 
-ItemCtrl.$inject = ['$scope','$state','$rootScope','$filter','$stateParams',
-'serverConfig','httpService','$httpParamSerializer','cartSev','$mdBottomSheet',
-'$timeout','publicFunc', '$ionicModal', '$ionicSlideBoxDelegate'];
+ItemCtrl.$inject = ['$scope','$state','$rootScope','$filter','$stateParams','serverConfig','httpService','$httpParamSerializer','cartSev','$mdBottomSheet','$timeout','publicFunc'];
 
-function ItemCtrl($scope,$state,$rootScope,$filter,$stateParams,serverConfig,
-  httpService,$httpParamSerializer,cartSev,$mdBottomSheet,
-  $timeout,publicFunc, $ionicModal, $ionicSlideBoxDelegate) {
+function ItemCtrl($scope,$state,$rootScope,$filter,$stateParams,serverConfig,httpService,$httpParamSerializer,cartSev,$mdBottomSheet,$timeout,publicFunc) {
 
     $scope.cartSev = cartSev;
 
@@ -21,21 +17,6 @@ function ItemCtrl($scope,$state,$rootScope,$filter,$stateParams,serverConfig,
       // init();
       $state.go('categories');
     }
-
-
-    $ionicModal.fromTemplateUrl('app/modules/shop/templates/shipping-modal.html', {
-    scope: $scope,
-    animation: 'slide-in-up'
-    }).then(function(modal) {
-      $scope.modal = modal;
-    });
-
-    $scope.openModal = function() {
-      $scope.modal.show();
-    };
-    $scope.closeModal = function() {
-      $scope.modal.hide();
-    };
 
     $scope.addItemToCart = function () {
       if(!cartSev.shoppingCart.cart.itemList){
@@ -76,7 +57,7 @@ function ItemCtrl($scope,$state,$rootScope,$filter,$stateParams,serverConfig,
         var reqObj = {
           "product_id":$scope.product.product_id,
           "quantity":$scope.product.quantity,
-          "option":[]
+          "option":{}
           // "option":[]
         };
         if($scope.product.selected_options.length>0){
@@ -95,76 +76,11 @@ function ItemCtrl($scope,$state,$rootScope,$filter,$stateParams,serverConfig,
         };
 
         httpService.postRequest(serverConfig.clientAPI,extended_url, $httpParamSerializer(reqObj),config).then(function(response){
-
-          // if(response != null) {
-            // if(response.status === 200){
-              $rootScope.cartItemCount = !itemAvailability ? $rootScope.cartItemCount+=1 : $rootScope.cartItemCount;
-              localStorage.setItem('cartItemCount',$rootScope.cartItemCount);
-
-            // }
-          // }
-
-        });
-    }
-
-
-    $scope.getShippingMethods = function () {
-        // var itemAvailability = false;
-        // for(var i in $rootScope.cart.products){
-        //   if($rootScope.cart.products[i].product_id == $scope.product.product_id){
-        //     itemAvailability = true;
-        //     break;
-        //   }
-        // }
-
-        console.log("shipping");
-
-        var extended_url = '/shipping/methods';
-        var reqObj = {
-          "product_id":$scope.product.product_id,
-          "quantity":$scope.product.quantity,
-          "option":{}
-          // "option":[]
-        };
-        // if($scope.product.selected_options.length>0){
-          // for(var i in $scope.product.selected_options){
-          //   reqObj.option[$scope.product.selected_options[i].option_id] = parseInt($scope.product.selected_options[i].option_value_id)
-          //   // reqObj.option = [$scope.product.selected_options[i].option_value_id]
-          //   // reqObj.option.push($scope.product.selected_options[i].option_value_id)
-          //   // reqObj[$scope$scope.product.selected_options[i].option_id] = $scope.product.selected_options[i].option_value_id;
-          // }
-        // }
-        // console.log(reqObj);
-        var config = {
-          headers:{
-            'Content-Type': 'application/x-www-form-urlencoded'
-          },
-          disableLoading:true
-        };
-
-        httpService.postRequest(serverConfig.clientAPI,extended_url, $httpParamSerializer(reqObj),config).then(function(response){
-
-          var shippingMethods = [];
           if(response.status === 200){
-            // $scope.shippingMethods = response.data;
-
-            var shipping = response.data.shipping_methods;
-
-            for (var key in shipping) {
-              var ship = shipping[key];
-              ship.info = ship.quote[key];
-              shippingMethods.push(shipping[key]);
-            }
-
-            $scope.shippingMethods = shippingMethods;
-
-            console.log(shippingMethods);
-            $scope.openModal();
+            $rootScope.cartItemCount = !itemAvailability ? $rootScope.cartItemCount+=1 : $rootScope.cartItemCount;
           }
-
         });
     }
-
 
     $scope.goToItems = function () {
       if(!$scope.category_id || $scope.category_id==-1){
@@ -172,18 +88,6 @@ function ItemCtrl($scope,$state,$rootScope,$filter,$stateParams,serverConfig,
       }else{
         $state.go('item-list',{category_id:$scope.category_id});
       }
-    };
-
-    $scope.goToReviewsModal = function () {
-      $state.go('basic-modal', {obj: $scope.reviews, type: 'reviews',
-      state:$scope, categoty_id:$scope.category_id,
-      product_id:$scope.product_id});
-    };
-
-    $scope.goToShippingModal = function () {
-      $state.go('basic-modal', {obj: $scope.shippingMethods, type: 'shipping',
-      state:$scope, categoty_id:$scope.category_id,
-      product_id:$scope.product_id});
     };
 
     $scope.openCartPage = function () {
@@ -279,22 +183,6 @@ function ItemCtrl($scope,$state,$rootScope,$filter,$stateParams,serverConfig,
           $scope.product = response.data;
           $scope.product.quantity = 1;
           $scope.product.selected_options = [];
-          $scope.percentage = (response.data.special_clear / response.data.price_clear * 100).toFixed(1);
-
-
-          $scope.ratingsObject = {
-            iconOn: 'ion-ios-star',    //Optional
-            iconOff: 'ion-ios-star-outline',   //Optional
-            iconOnColor: '#f3d97e',  //Optional
-            iconOffColor:  'rgb(200, 100, 100)',    //Optional
-            rating:  response.data.rating, //Optional
-            minRating:0,    //Optional
-            readOnly: true, //Optional
-            callback: function(rating, index) {    //Mandatory
-              $scope.ratingsCallback(rating, index);
-            }
-          };
-
 
           // remove this when actual seller is taken from product
           $scope.product.seller_id = 1;
@@ -331,7 +219,6 @@ function ItemCtrl($scope,$state,$rootScope,$filter,$stateParams,serverConfig,
           ];
           getProductReview();
           initRelatedProducts();
-          $ionicSlideBoxDelegate.update()
         }
       });
     }
@@ -348,61 +235,7 @@ function ItemCtrl($scope,$state,$rootScope,$filter,$stateParams,serverConfig,
       };
       httpService.postRequest(serverConfig.clientAPI,extended_url, $httpParamSerializer(reqObj),config).then(function(response){
         if(response.status === 200){
-
-          // var rating = [];
-
-            if(response.data.reviews.length > 0) {
-              console.log("yes rating");
-              for(var index in response.data.reviews) {
-
-                var review = response.data.reviews[index];
-                var ratingsObject = {
-                  iconOn: 'ion-ios-star',    //Optional
-                  iconOff: 'ion-ios-star-outline',   //Optional
-                  iconOnColor: '#f3d97e',  //Optional
-                  iconOffColor:  'rgb(200, 100, 100)',    //Optional
-                  rating:  review.rating, //Optional
-                  minRating:0,    //Optional
-                  readOnly: true, //Optional
-                  callback: function(rating, index) {    //Mandatory
-                    $scope.ratingsCallback(rating, index);
-                  }
-                };
-
-                console.log("review");
-                console.log(review);
-
-                response.data.reviews[index].rating = Object.assign({}, ratingsObject);
-
-                // response.data.ratings.push(Object.assign({}, ratingsObject));
-              }
-            }
-            else {
-
-              response.data.reviews = [];
-              response.data.reviews[0] = {};
-
-              var ratingsObject = {
-                iconOn: 'ion-ios-star',    //Optional
-                iconOff: 'ion-ios-star-outline',   //Optional
-                iconOnColor: '#f3d97e',  //Optional
-                iconOffColor:  'rgb(200, 100, 100)',    //Optional
-                rating: 0, //Optional
-                minRating:0,    //Optional
-                readOnly: true, //Optional
-                callback: function(rating, index) {    //Mandatory
-                  $scope.ratingsCallback(rating, index);
-                }
-              };
-
-              response.data.reviews[0]["rating"] = Object.assign({}, ratingsObject);
-            }
-
-
-            $scope.reviews = response.data;
-
-            console.log("reviews");
-            console.log($scope.reviews);
+          // console.log(response);
         }
       });
     }
@@ -433,6 +266,5 @@ function ItemCtrl($scope,$state,$rootScope,$filter,$stateParams,serverConfig,
 
     function init(){
       initProduct();
-      // getShippingMethods();
     }
 }

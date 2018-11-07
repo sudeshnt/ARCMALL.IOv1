@@ -39,50 +39,12 @@
       // var url = service.serviceUrl+service.base_url+extended_url;
       var url = service.serviceUrl+':'+service.port+service.base_url+extended_url;
 
-      var disableLoading = config.disableLoading;
-
       addToPendingRequests(url,deferred);
-
-      if(!disableLoading) {
-        showLoading();
-      }
-
+      showLoading();
       $http.post(url,req,config)
         .success(function(data,status){
           var response = log(url,'POST',req,config,data,status);
-          if(!disableLoading) {
-            hideLoading();
-          }
-          removeFromPendingRequests(url);
-          deferred.resolve(response);
-        })
-        .error(function(data,status){
           hideLoading();
-          //$cordovaToast.showLongBottom($filter('translate')('SERVER_ERROR')).then();
-          deferred.resolve(data);
-        });
-      return deferred.promise;
-    }
-
-    function postRequestLang(service,extended_url,req,config){
-      var deferred = $q.defer();
-      // var url = service.serviceUrl+service.base_url+extended_url;
-      var url = service.serviceUrl+':'+service.port+service.lang_base_url+extended_url;
-
-      var disableLoading = config.disableLoading;
-
-      addToPendingRequests(url,deferred);
-
-      if(!disableLoading) {
-        showLoading();
-      }
-
-      $http.post(url,req,config)
-        .success(function(data,status){
-          var response = log(url,'POST',req,config,data,status);
-          if(!disableLoading) {
-            hideLoading();
-          }
           removeFromPendingRequests(url);
           deferred.resolve(response);
         })
@@ -146,13 +108,13 @@
 
     function showLoading(){
       $ionicLoading.show({
-        template: '<ion-spinner icon="crescent"></ion-spinner>',
+        template: '<ion-spinner icon="lines"></ion-spinner>',
         hideOnStateChange: true
       });
     }
 
     function hideLoading(){
-        $ionicLoading.hide();
+      $ionicLoading.hide();
     }
 
     function addToPendingRequests(url,deferred){
@@ -190,8 +152,7 @@
       getRequest: getRequest,
       postRequest: postRequest,
       putRequest: putRequest,
-      deleteRequest: deleteRequest,
-      postRequestLang: postRequestLang
+      deleteRequest: deleteRequest
     };
   }
 

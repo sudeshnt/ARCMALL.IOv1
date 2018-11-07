@@ -84,16 +84,6 @@ ion-option-button{
   left: 16px;
   border-radius: 50%;
 }
-
-.sqare {
-  display: block;
-  width: 60px !important;
-  height: 60px !important;
-  max-width: 60px !important;
-  max-height: 60px !important;
-  border-radius: 0px !important;
-  /*margin: 1em auto;*/
-}
 /*swipe left*/
 .bottom-button{
   margin:20px 10px 0 10px ;
@@ -146,7 +136,6 @@ ion-option-button{
 }
 .history-item.item-avatar .item-content {
   padding-left: 90px;
-  padding-right: 100px;
 }
 .item-avatar .item-content {
   min-height: 90px !important;
@@ -163,13 +152,13 @@ ion-option-button{
   height: 25px !important;
   text-align: center;
 }
-input.qtyplus { width:30px; height:30px; background:white; border: none}
-input.qtyminus { width:30px; height:30px; background:white; border: none}
+input.qtyplus { width:30px; height:30px;}
+input.qtyminus { width:30px; height:30px;}
 
 .qty-spinner{
   width: fit-content;
   position: absolute;
-  right: 0px;
+  right: 5px;
   bottom: 12px;
 }
 

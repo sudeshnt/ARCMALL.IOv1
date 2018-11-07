@@ -1,8 +1,8 @@
 'use strict';
 
-var authModule = angular.module('auth.module',[]);
+var authModule = angular.module('auth.module', []);
 
-authModule.config(function config($stateProvider,$urlRouterProvider) {
+authModule.config(function config($stateProvider, $urlRouterProvider) {
   $stateProvider
     .state('authHome', {
       url: '/authHome',
@@ -18,13 +18,15 @@ authModule.config(function config($stateProvider,$urlRouterProvider) {
       url: '/authSignUp',
       templateUrl: 'app/modules/auth/templates/auth-sign-up.html',
       controller: 'AuthSignUpCtrl',
-      params : {account_type:null}
+      params: {
+        account_type: null
+      }
     })
     .state('selectAccountRole', {
       url: '/selectAccountRole',
       templateUrl: 'app/modules/auth/templates/select-account-role.html',
       controller: 'SelectAccountRoleCtrl'
     });
-    $urlRouterProvider.otherwise('/categories');
-    // $urlRouterProvider.otherwise('/home/new');
+  $urlRouterProvider.otherwise('/signup');
+  // $urlRouterProvider.otherwise('/home/new');
 });

@@ -1,11 +1,11 @@
 <ion-header-bar class="bar bar-header header-md bar-darker">
-  <div style="width: 100%; display: inherit; margin-top: 0px !important;">
+  <div style="width: 100%; display: inherit; margin-top: 0px !important;" >
     <div class="absolute back-icon-wrapper">
       <a class="button button-icon row" ng-click="goToItems();">
         <i class="ion-android-arrow-back font-L white"></i>
       </a>
     </div>
-    <h4 class="white left-title" ng-bind-html="product.heading_title"></h4>
+    <h4 class="white left-title"  ng-bind-html="product.heading_title"></h4>
     <div class="absolute cart-icon-wrapper">
       <a class="button button-icon row" ng-click="viewCart()">
         <i class="ion-android-cart font-L white" ></i>
@@ -18,325 +18,264 @@
 <ion-view cache-view="false">
 
   <ion-content class="has-header-md" overflow-scroll="true" style="bottom:50px;background: #F5F6F7;">
-    <!-- //Discount -->
-    <div class="discount-review">
-      <div ng-if="percentage != 100" class="row chip capital discount-chip">-{{percentage}}%</div>
-    </div>
-
-    <!-- //Images -->
-    <ion-slide-box on-slide-changed="slideChanged(index)" slide-interval="1000" class="item-slide" style="height: 250px;">
-
-
-      <!-- <ion-slide>
-        <div class="content align-center" style="background: white;width:100%" ng-click="openCategories()">
-          <img style="height: 250px;width: auto; align-items: center;" ng-src="{{product.thumb}}" />
-        </div>
-      </ion-slide> -->
-
-
+    <!--<div id="shop" ng-click="openCategories()" style="height: 250px;">-->
+      <!--<div class="content">-->
+        <!--<img style="height: 250px;width: 100%;" ng-src="{{product.thumb}}"/>-->
+      <!--</div>-->
+    <!--</div>-->
+    <ion-slide-box on-slide-changed="slideChanged(index)" slide-interval="1000" class="item-slide"  style="height: 250px;">
       <ion-slide>
-        <div id="shop" class="content align-center" style="background: white;width:100%" ng-click="openCategories()">
-          <img style="height: 250px;width: auto; align-items: center;" ng-src="{{product.thumb}}" />
+        <div id="shop" ng-click="openCategories()" style="height: 250px;">
+          <div class="content align-center" style="background: white;">
+            <img style="height: 250px;width: auto;" ng-src="{{product.thumb}}"/>
+          </div>
         </div>
       </ion-slide>
-      <ion-slide ng-repeat="image in product.images track by $index">
-        <div id="index" class="content align-center" style="background: white;width:100%" ng-click="openCategories()">
-          <img style="height: 250px;width: auto; align-items: center;" ng-src="{{image.preview}}" />
+      <ion-slide>
+        <div id="shop" style="height: 250px;">
+          <div class="content align-center" style="background: white;">
+            <img  style="height: 250px;width: auto;" ng-src="{{product.thumb}}"/>
+          </div>
         </div>
       </ion-slide>
-
-
+      <ion-slide>
+        <div id="shop" style="height: 250px;">
+          <div class="content align-center" style="background: white;">
+            <img  style="height: 250px;width: auto;" ng-src="{{product.thumb}}"/>
+          </div>
+        </div>
+      </ion-slide>
     </ion-slide-box>
-
-    <div class="g-card-1">
-      <!-- //Titles -->
-      <div class="row">
-        <div class="content">
-          <div class="topic align-left" ng-bind-html="product.heading_title"></div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="content">
-
-          <!-- //Price -->
-          <div class="item-price align-left new-price" ng-if="product.special.length > 0" ng-bind-html="product.special"></div>
-          <div class="item-price align-left new-price" ng-if="product.special.length <= 0" ng-bind-html="product.price"></div>
-          <div class="content-group">
-            <strike><div class="strike-through align-left old-price" ng-bind-html="product.price"></div></strike>
-
-            <!-- //Stars -->
-            <div ng-if="reviews.reviews.length > 0">
-              <div>
-                <ionic-ratings class="rating-main align-left" ratingsobj='ratingsObject' index='0'>
-                  <div class="strike-through align-left old-price" ng-bind-html="product.price"></div>({{reviews.reviews.length}})</ionic-ratings>
-              </div>
-            </div>
-            <div ng-if="reviews.reviews.length == 0">
-              <div>
-                <ionic-ratings class="rating-main align-left" ratingsobj='ratingsObject' index='0'>
-                  <div class="strike-through align-left old-price" ng-bind-html="product.price"></div>({{reviews.reviews.length}})</ionic-ratings>
-              </div>
-            </div>
+    <!--<div class="row">-->
+        <!--<div class="list card item-card full-width" ng-click="openItemDetails()">-->
+          <!--<div class="item item-image" style="height:auto;">-->
+            <!--<ion-slide-box on-slide-changed="slideChanged(index)" slide-interval="1000" class="item-slide">-->
+              <!--<ion-slide>-->
+                <!--<div id="shop" ng-click="openCategories()" style="height: 300px;">-->
+                  <!--<div class="content">-->
+                    <!--<img style="height: 300px;width: auto;" ng-src="{{product.thumb}}"/>-->
+                  <!--</div>-->
+                <!--</div>-->
+              <!--</ion-slide>-->
+              <!--<ion-slide>-->
+                <!--<div id="shop" style="height: 300px;">-->
+                  <!--<div class="content">-->
+                    <!--<img  style="height: 300px;width: auto;" ng-src="{{product.thumb}}"/>-->
+                  <!--</div>-->
+                <!--</div>-->
+              <!--</ion-slide>-->
+              <!--<ion-slide>-->
+                <!--<div id="shop" style="height: 300px;">-->
+                  <!--<div class="content">-->
+                    <!--<img  style="height: 300px;width: auto;" ng-src="{{product.thumb}}"/>-->
+                  <!--</div>-->
+                <!--</div>-->
+              <!--</ion-slide>-->
+            <!--</ion-slide-box>-->
+          <!--</div>-->
+          <!--<div class="item tabs-secondary tabs-icon-left white-tabs" style="padding: 10px;">-->
+            <!--<h2 class="align-left" ng-bind-html="product.heading_title"></h2>-->
+            <!--<h3 class="align-left" ng-bind-html="product.price"></h3>-->
+            <!--<div class="row qty-spinner" >-->
+              <!--<input type='button' value='-' class='qtyminus' ng-click="updateQuantity(product,'minus')"/>-->
+              <!--<input type='number' name='quantity'  ng-model="product.quantity" class='qty' />-->
+              <!--<input type='button' value='+' class='qtyplus' ng-click="updateQuantity(product,'plus')"/>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+    <div class="row">
+      <div class="tabs-secondary tabs-icon-left white-tabs" style="padding: 10px 0 0 10px;">
+        <h2 class="align-left" ng-bind-html="product.heading_title"></h2>
+        <h3 class="align-left new-price" ng-bind-html="product.price"></h3>
+        <strike><h3 class="align-left old-price" ng-bind-html="product.price"></h3></strike>
+        <div class="row discount-review align-right zero-padding" >
+          <div class="row chip capital discount-chip">60% Off</div>
+          <div style="padding-top: 20px;text-align: right;">
+            51 Reviews<br>
+            <i class="star font-XM ion-android-star star-active"></i>
+            <i class="star font-XM ion-android-star star-active"></i>
+            <i class="star font-XM ion-android-star star-active"></i>
+            <i class="star font-XM ion-android-star-outline star-disabled"></i>
+            <i class="star font-XM ion-android-star-outline star-disabled"></i>
           </div>
-
         </div>
       </div>
-
-      <!-- //Description -->
-      <div class="row">
-        <div class="content">
-          <div class="title capital full-width">description</div>
-
-          <div class="content-group">
-            <p>{{product.description}}</div>
-        </div>
-      </div>
+    </div>
+    <div class="product-details-topic zero-padding" style="border: none;">
+      <h3 class="capital full-width">description</h3>
+      <p style="margin-top:15px">
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type.
       </p>
-
-      <!-- //Quantity -->
-      <div class="row zero-padding option-select-row">
-        <div class="col zero-padding">
-          <div layout="row" layout-align="space-between align-left">
-            <a ng-click="updateQuantity(product,'minus')" class="button button-clear button-positive custom-height-button button-square button-xsm full-width">
-                <i class="ion-minus-round" style="float: left;margin-left: 20px;"></i>
-              </a>
-          </div>
+    </div>
+    <div class="row zero-padding option-select-row">
+      <div class="col zero-padding">
+        <div layout="row" layout-align="space-between align-left">
+          <a ng-click="updateQuantity(product,'minus')" class="button button-clear button-positive custom-height-button button-square button-xsm full-width">
+            <i class="ion-minus-round" style="float: left;margin-left: 20px;"></i>
+          </a>
         </div>
-        <div class="col zero-padding align-center">
+      </div>
+      <div class="col zero-padding align-center">
           <p style="margin-top: 8px;">
             {{product.quantity}}
           </p>
-        </div>
-        <div class="col zero-padding">
-          <div layout="row" layout-align="space-between center align-right">
-            <a ng-click="updateQuantity(product,'plus')" class="button button-clear button-positive custom-height-button button-square button-xsm full-width">
-                <i class="ion-plus-round" style="float: right;margin-right: 20px;"></i>
-              </a>
-          </div>
-        </div>
       </div>
-      <div class="row" style="padding:0px 0 !important;">
-        <div class="col zero-padding" ng-repeat="option in product.options track by $index">
-          <div layout="row" layout-align="space-between center">
-            <md-select ng-model="product.selectedOption" placeholder="{{option.name}}" ng-change="setSelectedOption(option,product.selectedOption)" class="md-no-underline option-select">
-              <md-option ng-repeat="option_value in option.product_option_value track by $index" value="{{option_value}}">{{option_value.name}}</md-option>
-            </md-select>
-          </div>
-        </div>
-      </div>
-    </div>
-    </div>
-
-    <div class="seperator"></div>
-
-    <!-- //Recent reviews -->
-    <div class="g-card-1">
-      <div class="row">
-        <div class="content">
-
-          <div class="title capital full-width">recent reviews</div>
-          <div class="zero-padding" style="margin-top:20px" ng-repeat="review in reviews.reviews track by $index" ng-if="ratingsObject.rating != 0">
-
-            <ion-grid>
-              <ion-row>
-                <ion-col>
-                  <ionic-ratings style=" text-align:left " ratingsobj='review.rating' index='$index'></ionic-ratings>
-                </ion-col>
-              </ion-row>
-              <ion-row>
-                <ion-col>
-                  {{review.author}}
-                </ion-col>
-                <ion-col>
-                  <span style="float:right ">{{review.date_added}}</span>
-                </ion-col>
-              </ion-row>
-
-              <ion-row>
-                <ion-col>
-                  <p style="margin-top:15px ">
-                    {{review.text}}
-                  </p>
-                </ion-col>
-
-              </ion-row>
-
-              <div class="col-border "></div>
-
-            </ion-grid>
-
-          </div>
-
-        </div>
-
-      </div>
-
-      <div class="row " ng-if="ratingsObject.rating != 0">
-        <div class="content " ng-click="goToReviewsModal() ">
-          <div class="full-width align-left ">
-            <a text-right ng-click=" ">Show All</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="row " ng-if="ratingsObject.rating == 0">
-        <div class="content ">
-          <div class="full-width align-left ">
-            <p style="font-style: italic; ">No reviews</p>
-          </div>
-        </div>
-      </div>
-
-    </div>
-    <div class="seperator "></div>
-
-    <!-- //Shipping -->
-    <div class="g-card-1 ">
-      <div class="row ">
-        <div class="content ">
-          <div class="title capital full-width ">Shipping</div>
-
-          <div class="row zero-padding ">
-            <p style="margin-top:15px ">
-              <span style="color:#a56a6c ">$4.50</span> - To Sri Lanka via China Post
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="row ">
-        <div class="content " ng-click="getShippingMethods()">
-          <div class="full-width align-left ">
-            <a text-right ng-click=" ">Change</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="seperator "></div>
-
-    <!-- //Policy details -->
-    <div class="g-card-1 ">
-      <div class="row ">
-        <div class="content ">
-          <div class="zero-padding ">
-            <div class="row zero-padding ">
-              <div class="column ">
-                <img style="text-align: center; padding-top:5px " width="30 " ng-src="app/modules/shop/img/return_policy.png ">
-              </div>
-              <div class="column ">
-                <h3 class="capital align-center " style="padding-left:15px; padding-top:15px; font-size:15px ">Return Policy</h3>
-              </div>
-            </div>
-            <div class="row zero-padding ">
-              <div class="align-left " style="white-space: pre-wrap; padding-top:10px ">Returns accepted if the product is not as described or is damaged</div>
-            </div>
-          </div>
-
-          <div class="zero-padding " style="margin-top:15px ">
-
-            <div class="row zero-padding ">
-              <div class="column ">
-                <img style="text-align: center; padding-top:5px " width="30 " ng-src="app/modules/shop/img/buyer_protection.png ">
-              </div>
-              <div class="column ">
-                <h3 class="capital align-center " style="padding-left:15px; padding-top:8px; font-size:15px ">buyer protection</h3>
-              </div>
-            </div>
-            <div class="row zero-padding ">
-              <div class="align-left " style="white-space: pre-wrap; padding-top:10px ">To ensure that every buyer is protected when purchasing from Arcmall, we have the following refund options:<br><br>- Full refund if you don't receive your item<br>- Full or partial refund if the item is not as described or is damaged</div>
-            </div>
-          </div>
-
-          <div class="zero-padding " style="margin-top:15px ">
-            <div class="row zero-padding ">
-              <div class="column ">
-                <img style="text-align: center; padding-top:5px " width="30 " ng-src="app/modules/shop/img/payment_types.png ">
-              </div>
-              <div class="column ">
-                <h3 class="capital align-center " style="padding-left:15px; padding-top:10px; font-size:15px ">payment methods</h3>
-              </div>
-            </div>
-            <div class="row zero-padding ">
-              <img class="full-width full-height " style="padding-top:10px; " ng-src="app/modules/shop/img/card_types.png ">
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="seperator "></div>
-
-    <div class="g-card-1 ">
-      <div class="row ">
-        <div class="content ">
-          <div class="title capital ">STORE DETAILS </div>
-        </div>
-      </div>
-      <div class="row ">
-        <div class="content ">
-          <div class="content-group ">
-            <div class="capital align-center " style="font-size:20px ">{{product.seller.firstname}} {{product.seller.lastname}}</div>
-            <div class="align-center " style="margin-left:15px; ">
-              <i class="star font-XM ion-android-star star-active "></i>
-              <i class="star font-XM ion-android-star star-active "></i>
-              <i class="star font-XM ion-android-star star-active "></i>
-              <i class="star font-XM ion-android-star-outline star-disabled "></i>
-              <i class="star font-XM ion-android-star-outline star-disabled "></i> (41 Reviews)<br>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row ">
-        <div class="content ">
-          <div class="row align-center ">
-            <a class="button button-outline button-positive visit-store-btn size-margin-auto " ng-href="#/seller-profile/{{product.product_id}}/{{product.seller.address_id}} ">
-              Visit Store
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="seperator "></div>
-
-    <div class="g-card-1 ">
-      <div class="row ">
-        <div class="content ">
-          <div class="title capital ">RELATED PRODUCTS</div>
-        </div>
-      </div>
-      <div class="row ">
-        <div class="content ">
-          <div class="row " ng-repeat="relatedProductRow in relatedProducts ">
-            <div class="col " ng-repeat="relatedProduct in relatedProductRow " style="max-width:50%; ">
-              <div item-cell product="relatedProduct " ng-click="openItemDetails(product.product_id) "></div>
-            </div>
-            <div class="col " ng-if="productRow.length==1 ">
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </ion-content>
-
-
-</ion-view>
-<div class="bar bar-footer zero-padding " style="height: 50px; ">
-  <div class=" " style="background-color: #007fa3;width:100%; ">
-    <div class="full-width " style="margin-top: 5px; ">
-      <div class="row padding-top-zero ">
-        <div class="col padding-top-zero " style="border-right: white 1px solid; ">
-          <a class="button square button-block button-light zero-margin capital white " style="background-color:#007fa3; " ng-disabled="availability_in_wishlist " ng-click="addItemToWishList() ">
-            <!--<a class="button square button-block button-light zero-margin capital white " style="background-color:#4e636c; " ng-disabled="availability_in_wishlist " ng-click="addItemToWishList() ">-->
-            <span ng-if="!availability_in_wishlist ">{{"ADD_TO_WISH_LIST " | translate}}</span>
-            <span ng-if="availability_in_wishlist ">{{"ADDED_TO_WISH_LIST " | translate}}</span>
+      <div class="col zero-padding">
+        <div layout="row" layout-align="space-between center align-right">
+          <a ng-click="updateQuantity(product,'plus')" class="button button-clear button-positive custom-height-button button-square button-xsm full-width">
+            <i class="ion-plus-round" style="float: right;margin-right: 20px;"></i>
           </a>
         </div>
-        <div class="col padding-top-zero ">
-          <a class="button square button-block button-light zero-margin capital white " style="background-color:#007fa3; " ng-click="addItemToCart(); ">
-            <!--<a class="button square button-block button-light zero-margin capital white " style="background-color:#f48347; " ng-click="addItemToCart(); ">-->
-            {{"ADD_TO_CART " | translate}}
+      </div>
+    </div>
+    <div class="row option-select-row" style="padding:0px 0 !important;">
+      <div class="col zero-padding" ng-repeat="option in product.options track by $index">
+        <div layout="row" layout-align="space-between center">
+          <md-select ng-model="product.selectedOption"  placeholder="{{option.name}}" ng-change="setSelectedOption(option,product.selectedOption)" class="md-no-underline option-select">
+            <md-option ng-repeat="option_value in option.product_option_value track by $index" value="{{option_value}}">{{option_value.name}}</md-option>
+          </md-select>
+        </div>
+      </div>
+      <!--<div class="col zero-padding">-->
+        <!--<div layout="row" layout-align="space-between center">-->
+          <!--<md-select ng-model="item.currency_code"  placeholder="Size" class="md-no-underline option-select">-->
+            <!--<md-option ng-repeat="currency in currencies track by $index" value="{{currency.code}}">{{currency.title}}</md-option>-->
+          <!--</md-select>-->
+        <!--</div>-->
+      <!--</div>-->
+    </div>
+    <!--<div class="row option-select-row" style="padding:0px 0 !important;">-->
+      <!--<div class="col zero-padding">-->
+        <!--<div layout="row" layout-align="space-between center">-->
+          <!--<md-select ng-model="item.currency_code"  placeholder="Colour" class="md-no-underline option-select">-->
+            <!--<md-option ng-repeat="currency in currencies track by $index" value="{{currency.code}}">{{currency.title}}</md-option>-->
+          <!--</md-select>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="col zero-padding">-->
+        <!--<div layout="row" layout-align="space-between center">-->
+          <!--<md-select ng-model="item.currency_code"  placeholder="Size" class="md-no-underline option-select">-->
+            <!--<md-option ng-repeat="currency in currencies track by $index" value="{{currency.code}}">{{currency.title}}</md-option>-->
+          <!--</md-select>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+
+    <!--options-->
+
+    <!--<div class="row" ng-repeat="option in product.options track by $index"  style="padding-left: 10px; padding-right: 10px;">-->
+      <!--<div class="col align-center" style="max-width: 100px;">-->
+        <!--<h4 style="margin-top: 20px;">{{option.name}}</h4>-->
+      <!--</div>-->
+      <!--<div class="col">-->
+        <!--<md-select ng-model="product.selectedOption" ng-change="setSelectedOption(option,product.selectedOption)" placeholder="Currency" class="md-no-underline category-select">-->
+          <!--<md-option ng-repeat="option_value in option.product_option_value track by $index" value="{{option_value}}">{{option_value.name}}</md-option>-->
+        <!--</md-select>-->
+      <!--</div>-->
+    <!--</div>-->
+    <div class="product-details-topic zero-padding" style="border: none;">
+      <h3 class="capital full-width">recent reviews</h3>
+      <p style="margin-top:15px">
+        <i class="star ion-android-star star-active"></i>
+        <i class="star ion-android-star star-active"></i>
+        <i class="star ion-android-star star-active"></i>
+        <i class="star ion-android-star-outline star-disabled"></i>
+        <i class="star ion-android-star-outline star-disabled"></i>
+        <br>
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+        <br>
+        <i class="star ion-android-star star-active"></i>
+        <i class="star ion-android-star star-active"></i>
+        <i class="star ion-android-star star-active"></i>
+        <i class="star ion-android-star-outline star-disabled"></i>
+        <i class="star ion-android-star-outline star-disabled"></i>
+        <br>
+        Lorem Ipsum is simply dummy text.
+        <div class="full-width align-center"><a ng-click="" class="size-margin-auto">View More</a></div>
+      </p>
+    </div>
+    <div class="product-details-topic zero-padding">
+      <h3 class="capital full-width">Shipping</h3>
+      <p style="margin-top:15px">
+        <span style="color:#a56a6c">$4.50</span> - To Sri Lanka via China Post
+        <a ng-click="" style="float:right">change</a>
+      </p>
+    </div>
+    <div class="product-details-topic zero-padding">
+      <h3 class="capital full-width">
+        <img ng-src="app/modules/shop/img/return_policy.png">Return Policy
+      </h3><br>
+      <div style="white-space: pre-wrap;">Returns accepted if the product is not as described or is damaged</div>
+      <h3 class="capital full-width">
+        <img ng-src="app/modules/shop/img/buyer_protection.png">
+        buyer protection
+      </h3><br>
+      <div style="white-space: pre-wrap;">To ensure that every buyer is protected when purchasing from Arcmall, we have the following refund options:<br><br>- Full refund if you don't receive your item<br>- Full or partial refund if the item is not as described or is damaged</div>
+      <h3 class="capital full-width">
+        <img ng-src="app/modules/shop/img/payment_types.png">
+        payment methods
+      </h3><br>
+      <img class="full-width" ng-src="app/modules/shop/img/card_types.png">
+
+    </div>
+    <div class="row product-details-topic zero-padding">
+      <h3 class="capital">STORE DETAILS </h3>
+    </div>
+    <div class="row" style="margin: 5px 0 0 10px;">
+      <h4 class="capital">Daisy Jones Bakery </h4>
+    </div>
+    <div style="margin-left:15px;">
+      <i class="star font-XM ion-android-star star-active"></i>
+      <i class="star font-XM ion-android-star star-active"></i>
+      <i class="star font-XM ion-android-star star-active"></i>
+      <i class="star font-XM ion-android-star-outline star-disabled"></i>
+      <i class="star font-XM ion-android-star-outline star-disabled"></i> (41 Reviews)<br>
+    </div>
+    <div class="row align-center">
+      <a class="button button-outline button-positive visit-store-btn size-margin-auto" ng-href="#/seller-profile/{{product.product_id}}/{{product.seller_id}}">
+        Visit Store
+      </a>
+    </div>
+
+    <div class="row product-details-topic zero-padding">
+      <h3 class="capital">Related Products
+      </h3>
+    </div>
+    <div class="row" ng-repeat="relatedProductRow in relatedProducts">
+      <div class="col zero-padding" ng-repeat="relatedProduct in relatedProductRow" style="max-width:50%;">
+        <div class="list card wish-list-card" ng-click="openItemDetails(relatedProduct.product_id)">
+          <div class="item item-image" >
+            <img ng-src="{{relatedProduct.thumb}}" class="full-width full-height">
+          </div>
+          <div class="item tabs-secondary tabs-icon-left white-tabs" style="padding: 10px;">
+            <h3 class="align-center" ng-bind-html="relatedProduct.name"></h3>
+            <h3 class="align-center" ng-bind-html="relatedProduct.price"></h3>
+          </div>
+        </div>
+      </div>
+      <div class="col zero-padding" ng-if="productRow.length==1">
+      </div>
+    </div>
+
+    <div class="row" style="min-height: 25px;"></div>
+  </ion-content>
+</ion-view>
+<div class="bar bar-footer zero-padding" style="height: 50px;">
+  <div class="" style="background-color: #007fa3;width:100%;">
+    <div class="full-width" style="margin-top: 5px;">
+      <div class="row padding-top-zero">
+        <div class="col padding-top-zero" style="border-right: white 1px solid;">
+          <a class="button square button-block button-light zero-margin capital white" style="background-color:#007fa3;" ng-disabled="availability_in_wishlist" ng-click="addItemToWishList()">
+          <!--<a class="button square button-block button-light zero-margin capital white" style="background-color:#4e636c;" ng-disabled="availability_in_wishlist" ng-click="addItemToWishList()">-->
+            <span ng-if="!availability_in_wishlist">{{"ADD_TO_WISH_LIST" | translate}}</span>
+            <span ng-if="availability_in_wishlist">{{"ADDED_TO_WISH_LIST" | translate}}</span>
+          </a>
+        </div>
+        <div class="col padding-top-zero">
+          <a class="button square button-block button-light zero-margin capital white" style="background-color:#007fa3; " ng-click="addItemToCart();">
+          <!--<a class="button square button-block button-light zero-margin capital white" style="background-color:#f48347; " ng-click="addItemToCart();">-->
+            {{"ADD_TO_CART" | translate}}
           </a>
         </div>
       </div>

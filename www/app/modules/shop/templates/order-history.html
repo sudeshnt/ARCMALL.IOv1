@@ -1,5 +1,5 @@
 <ion-header-bar class="bar bar-header header-md bar-darker">
-  <div style="width: 100%; display: inherit; margin-top: 0px !important;">
+  <div style="width: 100%; display: inherit; margin-top: 0px !important;" >
     <div class="absolute back-icon-wrapper">
       <a class="button button-icon row" ng-click="goHome()">
         <i class="ion-android-arrow-back font-L white"></i>
@@ -13,82 +13,117 @@
   <ion-content class="has-heade-md" overflow-scroll="true">
     <div class="card row" ng-repeat="order in orders track by $index" ng-click="viewOrderDetails(order);" style="width:auto !important;">
       <!--<div class="col zero-padding" style="max-width: 100px;" ng-if="order.cart.itemList.length>=4">-->
-      <!--<div class="row">-->
-      <!--<div class="col" style="padding: 2px; height:42px; max-width:42px; vertical-align: middle; overflow: hidden;">-->
-      <!--<img ng-src="{{order.cart.itemList[0].thumb}}" style="height:42px;">-->
-      <!--</div>-->
-      <!--<div class="col" style="padding: 2px; height:42px; max-width:42px; vertical-align: middle; overflow: hidden;" >-->
-      <!--<img ng-src="{{order.cart.itemList[1].thumb}}"  style="height:42px;">-->
-      <!--</div>-->
-      <!--</div>-->
-      <!--<div class="row">-->
-      <!--<div class="col" style="padding: 2px; height:42px; max-width:42px; vertical-align: middle; overflow: hidden;">-->
-      <!--<img ng-src="{{order.cart.itemList[2].thumb}}" style="height:42px;">-->
-      <!--</div>-->
-      <!--<div class="col image" style="padding: 2px; height:42px; max-width:42px; vertical-align: middle; overflow: hidden;">-->
-      <!--<img ng-src="{{order.cart.itemList[3].thumb}}" style="height:42px;" ng-class="order.orders.length>4?'opacity-half':''">-->
-      <!--<span ng-if="order.orders.length>4">...</span>-->
-      <!--</div>-->
-      <!--</div>-->
+        <!--<div class="row">-->
+          <!--<div class="col" style="padding: 2px; height:42px; max-width:42px; vertical-align: middle; overflow: hidden;">-->
+            <!--<img ng-src="{{order.cart.itemList[0].thumb}}" style="height:42px;">-->
+          <!--</div>-->
+          <!--<div class="col" style="padding: 2px; height:42px; max-width:42px; vertical-align: middle; overflow: hidden;" >-->
+            <!--<img ng-src="{{order.cart.itemList[1].thumb}}"  style="height:42px;">-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="row">-->
+          <!--<div class="col" style="padding: 2px; height:42px; max-width:42px; vertical-align: middle; overflow: hidden;">-->
+            <!--<img ng-src="{{order.cart.itemList[2].thumb}}" style="height:42px;">-->
+          <!--</div>-->
+          <!--<div class="col image" style="padding: 2px; height:42px; max-width:42px; vertical-align: middle; overflow: hidden;">-->
+            <!--<img ng-src="{{order.cart.itemList[3].thumb}}" style="height:42px;" ng-class="order.orders.length>4?'opacity-half':''">-->
+            <!--<span ng-if="order.orders.length>4">...</span>-->
+          <!--</div>-->
+        <!--</div>-->
       <!--</div>-->
       <!--<div class="col zero-padding" style="max-width: 100px;"  ng-if="order.cart.itemList.length==3">-->
-      <!--<div class="row">-->
-      <!--<div class="col" style="padding: 2px; height:42px; max-width:42px; vertical-align: middle; overflow: hidden;">-->
-      <!--<img ng-src="{{order.cart.itemList[0].thumb}}" style="height:40px;">-->
-      <!--</div>-->
-      <!--<div class="col" style="padding: 2px; height:42px; max-width:42px; vertical-align: middle; overflow: hidden;" >-->
-      <!--<img ng-src="{{order.cart.itemList[1].thumb}}"  style="height:40px;">-->
-      <!--</div>-->
-      <!--</div>-->
-      <!--<div class="row">-->
-      <!--<div class="col" style="padding: 2px; height:42px; max-width:84px; vertical-align: middle; overflow: hidden; margin-top: 2px;">-->
-      <!--<img ng-src="{{order.cart.itemList[2].thumb}}" style="height:84px;margin-top: -20px;">-->
-      <!--</div>-->
-      <!--</div>-->
+        <!--<div class="row">-->
+          <!--<div class="col" style="padding: 2px; height:42px; max-width:42px; vertical-align: middle; overflow: hidden;">-->
+            <!--<img ng-src="{{order.cart.itemList[0].thumb}}" style="height:40px;">-->
+          <!--</div>-->
+          <!--<div class="col" style="padding: 2px; height:42px; max-width:42px; vertical-align: middle; overflow: hidden;" >-->
+            <!--<img ng-src="{{order.cart.itemList[1].thumb}}"  style="height:40px;">-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="row">-->
+          <!--<div class="col" style="padding: 2px; height:42px; max-width:84px; vertical-align: middle; overflow: hidden; margin-top: 2px;">-->
+            <!--<img ng-src="{{order.cart.itemList[2].thumb}}" style="height:84px;margin-top: -20px;">-->
+          <!--</div>-->
+        <!--</div>-->
       <!--</div>-->
 
       <!--<div class="col zero-padding" style="max-width: 100px;"  ng-if="order.cart.itemList.length==2">-->
-      <!--<div class="row">-->
-      <!--<div class="col" style="padding: 2px; height:84px; max-width:42px; vertical-align: middle; overflow: hidden; margin-right: 2px;">-->
-      <!--<img ng-src="{{order.cart.itemList[0].thumb}}" style="height:84px;margin-left: -20px;">-->
-      <!--</div>-->
-      <!--<div class="col" style="padding: 2px; height:84px; max-width:42px; vertical-align: middle; overflow: hidden;" >-->
-      <!--<img ng-src="{{order.cart.itemList[1].thumb}}"  style="height:84px;margin-left: -20px;">-->
-      <!--</div>-->
-      <!--</div>-->
+        <!--<div class="row">-->
+          <!--<div class="col" style="padding: 2px; height:84px; max-width:42px; vertical-align: middle; overflow: hidden; margin-right: 2px;">-->
+            <!--<img ng-src="{{order.cart.itemList[0].thumb}}" style="height:84px;margin-left: -20px;">-->
+          <!--</div>-->
+          <!--<div class="col" style="padding: 2px; height:84px; max-width:42px; vertical-align: middle; overflow: hidden;" >-->
+            <!--<img ng-src="{{order.cart.itemList[1].thumb}}"  style="height:84px;margin-left: -20px;">-->
+          <!--</div>-->
+        <!--</div>-->
       <!--</div>-->
 
       <!--<div class="col zero-padding" style="max-width: 100px;" ng-if="order.cart.itemList.length==1">-->
-      <!--<div class="row">-->
-      <!--<div class="col" style="padding: 2px; height:84px; max-width:84px; max-height:84px; vertical-align: middle; overflow: hidden;">-->
-      <!--<img ng-src="{{order.cart.itemList[0].thumb}}" style="height:84px;">-->
-      <!--</div>-->
-      <!--</div>-->
+        <!--<div class="row">-->
+          <!--<div class="col" style="padding: 2px; height:84px; max-width:84px; max-height:84px; vertical-align: middle; overflow: hidden;">-->
+            <!--<img ng-src="{{order.cart.itemList[0].thumb}}" style="height:84px;">-->
+          <!--</div>-->
+        <!--</div>-->
       <!--</div>-->
 
       <div class="col " style="padding: 10px 15px;">
         <div class="row zero-padding">
-          <span class="">
+            <span class="">
               <!--<img ng-src="{{order.organization.images[order.organization.images.length-1].imageUri}}" style="height:25px; vertical-align: middle;">-->
               <span> {{order.name}} </span> <span style="position: absolute;right: 20px;"> {{order.total}} </span><br>
-          <span> {{order.products}} {{order.cart.itemList.length==1?'item':'items'}} </span><br>
-          <span> {{order.date_added}} <span style="position: absolute;right: 20px;">{{order.status}}</span></span><br>
-          </span>
+              <span> {{order.products}} {{order.cart.itemList.length==1?'item':'items'}} </span><br>
+              <span> {{order.date_added}} <span style="position: absolute;right: 20px;">{{order.status}}</span></span><br>
+            </span>
         </div>
         <!--<div class="row" style="padding: 5px 0px">-->
-        <!--<span>channel : {{order.channel}}</span>-->
-        <!--<span class="delivery-tag">Delivered</span>-->
+          <!--<span>channel : {{order.channel}}</span>-->
+          <!--<span class="delivery-tag">Delivered</span>-->
         <!--</div>-->
         <!--<div class="row" style="padding: 5px 0px">-->
-        <!--{{order.orderDate}}<span ng-if="$index%2==0">-->
-        <!--<a ng-if="!order.isRatingSeen || closeAllRatings" ng-click="showRating(order)" style="position: absolute;right: 5px; width: 50px;text-align: center;margin-top: -9px;font-size: 12px;line-height: 12px;">-->
-        <!--rate this order<br>-->
-        <!--</a>-->
-        <!--<ionic-ratings ng-if="order.isRatingSeen && !closeAllRatings" ratingsobj='ratingsObject' index='$index' style="font-size: x-large;position: absolute;right: 5px;margin-top: -5px;"></ionic-ratings><br ng-if="!isRatingSeen">-->
+          <!--{{order.orderDate}}<span ng-if="$index%2==0">-->
+            <!--<a ng-if="!order.isRatingSeen || closeAllRatings" ng-click="showRating(order)" style="position: absolute;right: 5px; width: 50px;text-align: center;margin-top: -9px;font-size: 12px;line-height: 12px;">-->
+              <!--rate this order<br>-->
+            <!--</a>-->
+            <!--<ionic-ratings ng-if="order.isRatingSeen && !closeAllRatings" ratingsobj='ratingsObject' index='$index' style="font-size: x-large;position: absolute;right: 5px;margin-top: -5px;"></ionic-ratings><br ng-if="!isRatingSeen">-->
         <!--</div>-->
-        <!--</div>-->
-      </div>
+      <!--</div>-->
+    </div>
   </ion-content>
-  <div side-nav></div>
+  <md-sidenav class="md-sidenav-left md-whiteframe-4dp" md-component-id="left" style="margin-top: 55px !important;">
+    <md-content >
+      <img ng-src="app/modules/shop/img/home-slide-nav.jpg" style="width:100%">
+      <md-list flex>
+        <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;" >
+          <div class="md-list-item-text zero-margin" layout="column" ng-click="openSignIn()">
+            <h4><i class="ion-person sidenav-icon"></i><span class="sidenav-options">{{'SIGN_IN' | translate}}</span></h4>
+          </div>
+        </md-list-item>
+        <md-divider ></md-divider>
+        <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;">
+          <div class="md-list-item-text zero-margin" layout="column"  ng-click="openHome()">
+            <h4><i class="ion-android-home sidenav-icon"></i><span class="sidenav-options">{{'HOME' | translate}}</span></h4>
+          </div>
+        </md-list-item>
+        <!-- <md-divider ></md-divider> -->
+        <!-- <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;" >
+          <div class="md-list-item-text zero-margin" layout="column" ng-click="openCategories()">
+            <h4><i class="ion-ios-browsers sidenav-icon"></i><span class="sidenav-options">{{'ALL_CATEGORIES' | translate}}</span></h4>
+          </div>
+        </md-list-item> -->
+        <md-divider ></md-divider>
+        <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;">
+          <div class="md-list-item-text zero-margin" layout="column"  ng-click="">
+            <h4><i class="ion-ios-albums sidenav-icon"></i><span class="sidenav-options">{{'ORDER_HISTORY' | translate}}</span></h4>
+          </div>
+        </md-list-item>
+        <md-divider ></md-divider>
+        <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;">
+          <div class="md-list-item-text zero-margin" layout="column" ng-click="logOut()">
+            <h4><i class="ion-android-hand sidenav-icon"></i><span class="sidenav-options">{{'LOG_OUT' | translate}}</span></h4>
+          </div>
+        </md-list-item>
+        <md-divider ></md-divider>
+      </md-list>
+    </md-content>
   </md-sidenav>
 </ion-view>

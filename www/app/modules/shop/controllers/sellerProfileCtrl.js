@@ -21,21 +21,19 @@ function SellerProfileCtrl($scope,$state,$stateParams,$rootScope,serverConfig,ht
 
   function initLatestProducts(){
     $scope.moreDataCanBeLoaded = false;
-    var extended_url = '/product/getsellerproducts&customer_id=' + $stateParams.seller_id;
+    var extended_url = '/latest';
     var reqObj = {
       "start":latestProductsStart,
       "limit":latestProductsLimit,
       "width":200,
       "height":200,
-      "customer_id":$stateParams.seller_id,
     };
     var config = {
       headers:{
         'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      disableLoading:true
+      }
     };
-    httpService.getRequest(serverConfig.clientAPI,extended_url,config).then(function(response){
+    httpService.postRequest(serverConfig.clientAPI,extended_url, $httpParamSerializer(reqObj),config).then(function(response){
       if(response.status === 200){
         for(var i in response.data.products){
           $scope.latestProducts.push(response.data.products[i])

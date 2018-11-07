@@ -1,5 +1,5 @@
 <ion-header-bar class="bar bar-header header-md bar-darker">
-  <div style="width: 100%; display: inherit; margin-top: 0px !important;">
+  <div style="width: 100%; display: inherit; margin-top: 0px !important;" >
     <div class="absolute back-icon-wrapper">
       <a class="button button-icon row" ng-href="#/checkout-step-2">
         <i class="ion-android-arrow-back font-L white"></i>
@@ -11,50 +11,44 @@
   </div>
 </ion-header-bar>
 <ion-view cache-view="false">
-  <ion-content class="has-header-md">
-    <ion-list>
-      <ion-item class="details-items detail">
-        <p>Phone <span class="cart-item-total">{{personal_info.telephone}}</span></p>
-      </ion-item>
-      <ion-item class="details-items detail">
-        <p>Name <span class="cart-item-total">{{personal_info.firstname}} {{checkout.lastname}}</span></p>
-      </ion-item>
-      <ion-item class="details-items detail">
-        <p>Email <span class="cart-item-total">{{personal_info.email}}</span></p>
-      </ion-item>
-      <ion-item class="details-items detail">
-        <p>
-          <span>Address </span>
-          <span class="cart-item-total align-right">
-              {{personal_info.address_1}}<br/>
-              {{personal_info.address_2}}<br/>
-              {{personal_info.city}}<br/>
-              {{personal_info.postal_code}}<br/>
-          </span>
-        </p>
-      </ion-item>
-    </ion-list>
+    <ion-content class="has-header-md">
+        <ion-list>
+            <ion-item class="details-items detail"><p>Phone <span class="cart-item-total">{{personal_info.telephone}}</span></p></ion-item>
+            <ion-item class="details-items detail"><p>Name <span class="cart-item-total">{{personal_info.firstname}} {{checkout.lastname}}</span></p></ion-item>
+            <ion-item class="details-items detail"><p>Email <span class="cart-item-total">{{personal_info.email}}</span></p></ion-item>
+            <ion-item class="details-items detail">
+                <p>
+                    <span>Address </span>
+                    <span class="cart-item-total align-right">
+                        {{personal_info.address_1}}<br />
+                        {{personal_info.address_2}}<br />
+                        {{personal_info.city}}<br />
+                        {{personal_info.postal_code}}
+                    </span>
+                </p>
+            </ion-item>
+        </ion-list>
 
-    <ion-list>
-      <ion-item class="item item-thumbnail-left cart-item" ng-repeat="item in cart.products">
-        <img class="cart-image" ng-src="{{::item.thumb}}">
-        <h3 class="cart-item-title" ng-bind-html="::item.name"></h3>
-        <h5 class="cart-item-title" ng-bind-html="item.model"></h5>
-        <ul class="cart-item-options">
-          <li ng-repeat="opt in item.option">{{::opt.name}}:{{::opt.value}}</li>
-        </ul>
-        <p>{{::item.quantity}} x {{::item.price}} <span class="cart-item-total">{{::item.total}}</span></p>
-      </ion-item>
-      <ion-item class="cart-totals-item" ng-repeat="total in cart.totals">
-        <p>{{::total.title}} <span class="cart-item-total">{{::total.text}}</span></p>
-      </ion-item>
-    </ion-list>
-  </ion-content>
+        <ion-list>
+            <ion-item class="item item-thumbnail-left cart-item" ng-repeat="item in cart.products">
+                <img class="cart-image" ng-src="{{::item.thumb}}">
+                <h3 class="cart-item-title" ng-bind-html="::item.name"></h3>
+                <h5 class="cart-item-title" ng-bind-html="item.model"></h5>
+                <ul class="cart-item-options">
+                    <li ng-repeat="opt in item.option">{{::opt.name}}:{{::opt.value}}</li>
+                </ul>
+                <p>{{::item.quantity}} x {{::item.price}} <span class="cart-item-total">{{::item.total}}</span></p>
+            </ion-item>
+            <ion-item class="cart-totals-item" ng-repeat="total in cart.totals">
+                <p>{{::total.title}} <span class="cart-item-total">{{::total.text}}</span></p>
+            </ion-item>
+        </ion-list>
+    </ion-content>
 
-  <ion-footer-bar align-title="left" class="bar-positive">
-    <h2 class="title">{{cart.total}}</h2>
-    <div class="buttons">
-      <a class="button" ng-click="confirmOrder()">CONFIRM</a>
-    </div>
-  </ion-footer-bar>
+    <ion-footer-bar align-title="left" class="bar-positive">
+        <h2 class="title">{{cart.total}}</h2>
+        <div class="buttons">
+            <a class="button" ng-click="confirmOrder()">CONFIRM</a>
+        </div>
+    </ion-footer-bar>
 </ion-view>

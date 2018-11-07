@@ -2,7 +2,15 @@
   <ion-content class="">
     <div class="row" ng-repeat="productRow in products">
       <div class="col zero-padding" ng-repeat="product in productRow" style="max-width:50%;">
-        <div item-cell product="product" ng-click="openItemDetails(product.product_id)"></div>
+        <div class="list card wish-list-card" ng-click="openItemDetails(product.product_id)">
+          <div class="item item-image" >
+            <img ng-src="{{product.thumb}}" class="full-width full-height">
+          </div>
+          <div class="item tabs-secondary tabs-icon-left white-tabs" style="padding: 10px;">
+            <h3 class="align-center" ng-bind-html="product.name"></h3>
+            <h3 class="align-center" ng-bind-html="product.price"></h3>
+          </div>
+        </div>
       </div>
       <div class="col zero-padding" ng-if="productRow.length==1">
       </div>
@@ -10,3 +18,5 @@
     <div class="row" style="min-height: 25px;"></div>
   </ion-content>
 </ion-view>
+
+

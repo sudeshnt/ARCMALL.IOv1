@@ -14,8 +14,7 @@ checkoutModule.config(function config($stateProvider,$urlRouterProvider) {
       cache:false,
       url: '/checkout-step-1',
       templateUrl: 'app/modules/checkout/templates/cart-checkout-step1.html',
-      controller: 'CheckoutCtrl',
-      params: {'current_address':null, addresses:null}
+      controller: 'CheckoutCtrl'
     })
     .state('checkout-step-2', {
       cache:false,
@@ -31,38 +30,4 @@ checkoutModule.config(function config($stateProvider,$urlRouterProvider) {
       controller: 'CheckoutStep3Ctrl',
       params: {'personal_info':null}
     })
-    .state('shipping', {
-      cache:false,
-      url: '/shipping',
-      templateUrl: 'app/modules/checkout/templates/shipping_choser.html',
-      controller: 'ShippingChoserCtrl',
-      params: {'current_address':null, 'addresses':null}
-    })
-
-    // .state('payment_modules', {
-    //   url: '/payment_modules',
-    //   abstract: true,
-    //   views: {
-    //       'tab-cart': {
-    //           templateUrl: 'app/modules/payment_modules/templates/layout.html'
-    //       },
-    //       'menu': {
-    //           templateUrl: 'app/modules/payment_modules/templates/layout.html'
-    //       }
-    //   },
-    //   params: { checkout: null, currency: null, total_amount: null, total_amount_clean: null, success_state: null }
-    // }).state('payment_modules.pp_express', {
-    //   url: '/pp_express',
-    //      abstract: true,
-    //      views: {
-    //          'paymentsContent': {
-    //              templateUrl: 'app/modules/payment_modules/pp_express/templates/layout.html'
-    //          }
-    //      }
-    //  })
-     .state('pp_express', {
-         url: '/pp_express',
-         templateUrl: 'app/modules/checkout/templates/paypal_home.html',
-         controller: 'PaymentPPExpressCtrl'
-     })
 });

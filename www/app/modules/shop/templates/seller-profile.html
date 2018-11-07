@@ -1,5 +1,5 @@
 <ion-header-bar class="bar bar-header header-md bar-darker">
-  <div style="width: 100%; display: inherit; margin-top: 0px !important;">
+  <div style="width: 100%; display: inherit; margin-top: 0px !important;" >
     <div class="absolute back-icon-wrapper">
       <a class="button button-icon row" ng-click="backToProduct();">
         <i class="ion-android-arrow-back font-L white"></i>
@@ -17,10 +17,10 @@
 
 <ion-view cache-view="false">
 
-  <ion-content class="has-header-md" overflow-scroll="true" style="background: white;">
+  <ion-content class="has-header-md" overflow-scroll="true" style="background: #F5F6F7;">
     <div style="height: 150px;">
       <div class="content">
-        <img style="height: 150px;width: 100%;" ng-src='app/modules/shop/img/seller-image.jpg' />
+      <img style="height: 150px;width: 100%;" ng-src= 'app/modules/shop/img/seller-image.jpg'/>
       </div>
     </div>
     <h4 class="align-center" style="margin-top:15px;">Daisy Jones Bakery</h4>
@@ -31,18 +31,18 @@
       <i class="star font-XM ion-android-star-outline star-disabled"></i>
       <i class="star font-XM ion-android-star-outline star-disabled"></i>
     </div>
-    <ion-slide-box on-slide-changed="slideChanged(index)" slide-interval="1000" class="item-slide" style="height: 170px;margin-top: 10px;margin-bottom: 10px;">
+    <ion-slide-box on-slide-changed="slideChanged(index)" slide-interval="1000" class="item-slide"  style="height: 170px;margin-top: 10px;margin-bottom: 10px;">
       <ion-slide>
         <div id="shop1" ng-click="openCategories()" style="height: 170px;">
           <div class="content align-center" style="background: white;">
-            <img style="height: 170px;width: 100%;" ng-src='app/modules/shop/img/seller-banner-1.jpg' />
+            <img style="height: 170px;width: 100%;" ng-src='app/modules/shop/img/seller-banner-1.jpg'/>
           </div>
         </div>
       </ion-slide>
       <ion-slide>
         <div id="shop2" style="height: 170px;">
           <div class="content align-center" style="background: white;">
-            <img style="height: 170px;width: 100%;" ng-src='app/modules/shop/img/seller-banner-2.jpg' />
+            <img  style="height: 170px;width: 100%;" ng-src='app/modules/shop/img/seller-banner-2.jpg'/>
           </div>
         </div>
       </ion-slide>
@@ -52,15 +52,25 @@
     <!--<h4 class="align-center">SELLER PRODUCTS</h4>-->
     <!--<hr width="100" size="2" style="margin-bottom: 0px;">-->
 
-    <div class="row" ng-repeat="productRow in latestProductRows">
-      <div class="col" ng-repeat="product in productRow" style="max-width:50%;">
-        <div item-cell product="product" ng-click="openItemDetails(product.product_id)"></div>
-      </div>
-      <div class="col zero-padding" ng-if="productRow.length==1">
+    <div class="row" ng-repeat="product_row in latestProductRows">
+      <div class="col col-50 zero-padding" ng-repeat="product in product_row">
+        <div class="list card wish-list-card" ng-click="openItemDetails(product.product_id)" style="margin:10px 5px 15px 5px;">
+          <div class="item item-image" >
+            <img ng-src="{{product.thumb}}" class="full-width full-height">
+          </div>
+          <div class="item tabs-secondary tabs-icon-left white-tabs" style="padding: 10px;">
+            <h3 class="align-center" ng-bind-html="product.name"></h3>
+            <h3 class="align-center" ng-bind-html="product.price"></h3>
+            <!--<h4 ng-bind-html="product.name"></h4>-->
+          </div>
+        </div>
       </div>
     </div>
-
-    <ion-infinite-scroll ng-if="moreDataCanBeLoaded" immediate-check="false" on-infinite="loadMoreLatestProducts()" distance="20%">
+    <ion-infinite-scroll
+      ng-if="moreDataCanBeLoaded"
+      immediate-check="false"
+      on-infinite="loadMoreLatestProducts()"
+      distance="5%">
     </ion-infinite-scroll>
   </ion-content>
 </ion-view>

@@ -1,11 +1,11 @@
 <ion-view>
   <ion-content class="">
     <div class="sign-in-background"></div>
-    <ion-header-bar class="bar bar-header header-md bar-darker">
-      <div style="width: 100%; display: inherit; margin-top: 0px !important;">
+    <ion-header-bar class="bar bar-header header-md bar-darker half-opacity">
+      <div style="width: 100%; display: inherit; margin-top: 0px !important;" >
         <div class="absolute back-icon-wrapper">
           <a class="button button-icon row" ng-click="goBack()">
-            <i class="ion-android-arrow-back font-L white"></i>
+            <i class="ion-close-round font-M white"></i>
           </a>
         </div>
         <h4 class="white left-title">{{'SIGN_UP' | translate}}</h4>
@@ -46,11 +46,11 @@
       <div class="" style="bottom: 40px;">
         <p class="align-center light">{{"SIGN_UP_WITH" | translate}}</p>
         <div class="row">
-          <div class="col align-right" ng-click="facebookLogin()">
+          <div class="col align-right">
             <a class="button custom-height-button button-md square button-block button-positive icon ion-social-facebook" style="width:55px;margin-left: auto;"></a>
           </div>
-          <div class="col" ng-click="googlePlusLogin()">
-            <a class="button custom-height-button button-md square button-block button-assertive icon ion-social-googleplus" style="width:55px;"></a>
+          <div class="col">
+            <a class="button custom-height-button button-md square button-block button-assertive icon ion-social-googleplus"  style="width:55px;"></a>
           </div>
         </div>
         <p class="align-center light">

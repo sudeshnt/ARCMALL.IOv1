@@ -1,12 +1,12 @@
-'use strict';
+"use strict";
 
-var sellerModule = angular.module('seller.module',[]);
+var sellerModule = angular.module("seller.module", []);
 
-sellerModule.config(function config($stateProvider,$urlRouterProvider) {
-  $stateProvider
-    .state('sellerHome', {
-      url: '/sellerHome',
-      templateUrl: 'app/modules/seller/templates/seller-home.html',
-      controller: 'SellerHomeCtrl'
-    })
+sellerModule.config(function config($stateProvider, $urlRouterProvider) {
+  $stateProvider.state("seller", {
+    url: "/seller",
+    templateUrl: "app/modules/seller/templates/seller.html",
+    controller: "SellerCtrl"
+  });
+  $urlRouterProvider.otherwise("/seller");
 });

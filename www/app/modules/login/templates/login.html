@@ -1,0 +1,48 @@
+<ion-view title="" ng-controller="LoginCtrl">
+  <ion-content class="signupbg">
+    <div class="row">
+      <div class="col col-10" ng-click="goback()">
+        <i
+          class="ion-android-arrow-back font-L white"
+          style="font: size 36px;"
+        ></i>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col text-center">
+        <img
+          src="app/modules/signin/img/sidelogo.png"
+          style="width:70%; height:auto;"
+        />
+      </div>
+    </div>
+
+    <div class="text-center position-quote">
+      <h4 style="color: white;font-weight: bold; font-size: 24px">
+        Your greatest shopping experience awaits you
+      </h4>
+    </div>
+
+    <div class=" position ">
+      <button
+        class="button button-block button-light button-outline login-button  "
+        ng-click="login()"
+      >
+        LOGIN
+      </button>
+
+      <button
+        class="button button-block button-light button-outline"
+        ng-click="login()"
+      >
+        SIGN UP
+      </button>
+
+      <div class="row">
+        <div class="col text-center">
+          <span style="color:white;"><u>Terms and conditions</u></span>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

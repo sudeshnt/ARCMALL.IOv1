@@ -1,0 +1,26 @@
+<ion-view title="" ng-controller="ItemsCtrl">
+  <ion-content>
+    <div class="row top">
+      <div class="col col-10" ng-click="goback()">
+        <i
+          class="ion-android-arrow-back font-L white"
+          style="font: size 36px;"
+        ></i>
+      </div>
+      <div class="col " style="text-align: center">
+        <h4 style="color: white;font-weight: bold; font-size: 16px">
+          {{ categories.name }}
+        </h4>
+      </div>
+    </div>
+    <ion-list ng-repeat="category in categories.categories">
+      <ion-item class="divider">
+        <div ng-click="goToItems(category)">
+          <h5 style="color: black;font-weight: bold; font-size: 16px">
+            {{ category.name }}
+          </h5>
+        </div>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

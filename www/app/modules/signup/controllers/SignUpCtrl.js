@@ -2,12 +2,72 @@
 
 angular.module("signup.module").controller("SignUpCtrl", SignUpCtrl);
 
-SignUpCtrl.$inject = ["$scope", "$state", "$rootScope"];
+SignUpCtrl.$inject = [
+  "$scope",
+  "$state",
+  "$rootScope",
+  "httpService",
+  "serverConfig",
+  "$httpParamSerializer"
+];
 
-function SignUpCtrl($scope, $state, $rootScope) {
-  $scope.login = function() {
-    console.log("login");
-    $state.go("categories");
+function SignUpCtrl(
+  $scope,
+  $state,
+  $rootScope,
+  httpService,
+  serverConfig,
+  $httpParamSerializer
+) {
+  var fn = {},
+    authorization = {};
+  $scope.fn = fn;
+  $scope.authorization = authorization;
+
+  authorization = {
+    username: "",
+    password: ""
+  };
+  $scope.goback = function() {
+    $state.go("seller");
+  };
+
+  fn.signup = function(credentials) {
+    $scope.user = {
+      firstname: credentials.firstname,
+      lastname: credentials.lastname,
+      confirm: credentials.confirm,
+      email: credentials.email,
+      // 'email' : 'harindamail@gmail.com',
+      password: credentials.password
+      // 'password' : 'benzc180'
+    };
+
+    var extended_url = "/user_register";
+    var req = angular.copy($scope.user);
+    var config = {
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      }
+    };
+    httpService
+      .postRequest(
+        serverConfig.clientAPI,
+        extended_url,
+        $httpParamSerializer(req),
+        config
+      )
+      .then(function(response) {
+        if (response.status === 200) {
+          var authResponse = response.data.customer_info;
+
+          console.log(authResponse);
+          $state.go("dashboard");
+          // $state.go('home.new');
+        } else {
+          $scope.error = response.error_warning;
+        }
+      });
   };
 }
 

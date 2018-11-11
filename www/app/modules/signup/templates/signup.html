@@ -1,0 +1,50 @@
+<ion-view title="" ng-controller="SignUpCtrl">
+  <ion-content class="signupbg">
+    <div class="row">
+      <div class="col col-10" ng-click="goback()"><i class="ion-android-arrow-back font-L white" style="font: size 36px;"></i></div>
+    </div>
+    <div class="row">
+      <div class="col text-center"><img src="app/modules/signup/img/sidelogo.png" style="width:70%; height:auto;"></div>
+    </div>
+    <div class="row no-paading">
+      <div class="col  text-center">
+        <h4 style="color: white;font-weight: normal;">Sign Up</h4>
+      </div>
+    </div>
+    <form name="authorizationForm" novalidate ></form>
+    <div class="list list-fields list-inset no-paading">
+      <label class="item item-input item-icon-left">
+        <i class="icon ion-android-contact"></i>
+        <input ng-model="authorization.firstname" class="text-input" type="text" placeholder="First Name" required>
+      </label>
+      <label class="item item-input item-icon-left">
+        <i class="icon ion-android-contact"></i>
+        <input ng-model="authorization.lastname" class="text-input" type="text" placeholder="Last Name" required>
+      </label>
+      <label class="item item-input item-icon-left">
+        <i class="icon ion-email"></i>
+        <input ng-model="authorization.email" class="text-input" type="email" placeholder="E-mail address" required>
+      </label>
+      <label class="item item-input item-icon-left">
+        <i class="icon ion-locked"></i>
+        <input ng-model="authorization.password" class="text-input" type="password" placeholder="Password" required>
+      </label>
+      <label class="item item-input item-icon-left">
+        <i class="icon ion-locked"></i>
+        <input ng-model="authorization.confirm" class="text-input" type="password" placeholder="Confirm Password" required>
+      </label>
+      <label class="item item-input item-icon-left bordernone">
+        <button class="button button-block button-light button-outline" ng-click="fn.signup(authorization)">
+          SIGN UP
+        </button>
+      </label>
+    </div>
+  </form>
+    <div class="row">
+      <div class="col text-center">
+        <span style="color:white;"><u>Terms and conditions</u></span>
+      </div>
+    </div>
+
+  </ion-content>
+</ion-view>

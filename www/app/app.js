@@ -17,10 +17,10 @@ var arcMall = angular.module('arcMall', [
 ]);
 
 // translation config
-arcMall.config(function($translateProvider) {
-    $translateProvider.preferredLanguage("en");
-    $translateProvider.forceAsyncReload(true);
-    $translateProvider.fallbackLanguage("en");
+arcMall.config(function ($translateProvider) {
+  $translateProvider.preferredLanguage("en");
+  $translateProvider.forceAsyncReload(true);
+  $translateProvider.fallbackLanguage("en");
 });
 
 arcMall.config(function ($httpProvider) {
@@ -35,9 +35,9 @@ arcMall.config(function ($httpProvider) {
 //   });
 // }]);
 
-arcMall.run(function($ionicPlatform) {
-  $ionicPlatform.ready(function() {
-    if(window.cordova && window.cordova.plugins.Keyboard) {
+arcMall.run(function ($ionicPlatform) {
+  $ionicPlatform.ready(function () {
+    if (window.cordova && window.cordova.plugins.Keyboard) {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -47,8 +47,10 @@ arcMall.run(function($ionicPlatform) {
       // a much nicer keyboard experience.
       cordova.plugins.Keyboard.disableScroll(true);
     }
-    if(window.StatusBar) {
-      StatusBar.styleDefault();
+    if (window.StatusBar) {
+      this.statusBar.overlaysWebView(false);
+      this.statusBar.styleLightContent();
+      window.StatusBar.styleHex('#000000');
     }
   });
 });

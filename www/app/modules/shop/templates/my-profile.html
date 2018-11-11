@@ -1,5 +1,5 @@
 <ion-header-bar class="bar bar-header header-md bar-darker">
-  <div style="width: 100%; display: inherit; margin-top: 0px !important;">
+  <div style="width: 100%; display: inherit; margin-top: 0px !important;" >
     <div class="search-box-wrapper">
       <div class="absolute toggle-side-wrapper">
         <a class="button button-icon row" ng-click="goHome()">
@@ -9,19 +9,19 @@
     </div>
     <h4 class="white size-margin-auto">{{'MY_PROFILE' | translate}}</h4>
     <!--<div class="absolute cart-icon-wrapper">-->
-    <!--<a class="button button-icon row" ng-show="!edit" ng-click="edit=true" >-->
-    <!--<i class="ion-edit font-L white"></i>-->
-    <!--</a>-->
+      <!--<a class="button button-icon row" ng-show="!edit" ng-click="edit=true" >-->
+        <!--<i class="ion-edit font-L white"></i>-->
+      <!--</a>-->
     <!--</div>-->
     <!--<div class="absolute cart-icon-wrapper">-->
-    <!--<a class="button button-icon row" ng-show="edit" ng-click="saveProfile();" >-->
-    <!--<i class="ion-compose font-L white"> Save</i>-->
-    <!--</a>-->
+      <!--<a class="button button-icon row" ng-show="edit" ng-click="saveProfile();" >-->
+        <!--<i class="ion-compose font-L white"> Save</i>-->
+      <!--</a>-->
     <!--</div>-->
   </div>
 </ion-header-bar>
 
-<ion-view cache-view="false">
+<ion-view  cache-view="false">
   <ion-content class="has-header-md" overflow-scroll="true" style="top:5px;">
     <img ng-src="app/modules/shop/img/profile.jpg" style="width:100%; height:200px;">
     <ul class="list">
@@ -35,7 +35,7 @@
       </li>
       <li class="item">
         <label class="profile-field-lable">{{'LAST_NAME' | translate}} :</label>
-        <span class="profile-field-value" ng-if="!edit">{{userProfileProfile.lastname!= '' ? userProfile.lastname : 'N/A'}}</span>
+        <span class="profile-field-value"  ng-if="!edit">{{userProfileProfile.lastname!= '' ? userProfile.lastname : 'N/A'}}</span>
         <md-input-container ng-if="edit" class="zero-margin profile-input">
           <label>{{'LAST_NAME' | translate}}</label>
           <input ng-model="userProfile.lastname">
@@ -66,12 +66,59 @@
         </md-input-container>
       </li>
       <!--<li class="item">-->
-      <!--<label class="profile-field-lable">{{'PASSWORD' | translate}} :</label>-->
-      <!--<a class="profile-field-value">{{'CHANGE_PASSWORD' | translate}}</a><i class="ion-ios-arrow-right" style="float:right;font-size: 30px;"></i>-->
+        <!--<label class="profile-field-lable">{{'PASSWORD' | translate}} :</label>-->
+        <!--<a class="profile-field-value">{{'CHANGE_PASSWORD' | translate}}</a><i class="ion-ios-arrow-right" style="float:right;font-size: 30px;"></i>-->
       <!--</li>-->
     </ul>
   </ion-content>
-  <div side-nav></div>
+  <md-sidenav class="md-sidenav-left md-whiteframe-4dp" md-component-id="left" style="margin-top: 55px !important;">
+    <md-content >
+      <img ng-src="app/modules/shop/img/home-slide-nav.jpg" style="width:100%">
+      <md-list flex>
+        <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;" ng-show="loginStatus">
+          <div class="md-list-item-text zero-margin" layout="column" ng-click="openMyProfile()">
+            <h4><i class="ion-person sidenav-icon"></i><span class="sidenav-options">{{'MY_PROFILE' | translate}}</span></h4>
+          </div>
+        </md-list-item>
+        <md-divider></md-divider>
+        <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;" ng-show="!loginStatus">
+          <div class="md-list-item-text zero-margin" layout="column" ng-click="openSignIn()">
+            <h4><i class="ion-person sidenav-icon"></i><span class="sidenav-options">{{'SIGN_IN' | translate}}</span></h4>
+          </div>
+        </md-list-item>
+        <md-divider></md-divider>
+        <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;"  ng-show="authResponse.ispartner=='true'">
+          <div class="md-list-item-text zero-margin" layout="column" ng-click="openAddItem()">
+            <h4><i class="ion-android-hand sidenav-icon"></i><span class="sidenav-options">{{'ADD_ITEM' | translate}}</span></h4>
+          </div>
+        </md-list-item>
+        <!-- <md-divider ></md-divider>
+        <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;" >
+          <div class="md-list-item-text zero-margin" layout="column" ng-click="openCategories()">
+            <h4><i class="ion-ios-browsers sidenav-icon"></i><span class="sidenav-options">{{'ALL_CATEGORIES' | translate}}</span></h4>
+          </div>
+        </md-list-item> -->
+        <md-divider ></md-divider>
+        <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;" ng-show="loginStatus">
+          <div class="md-list-item-text zero-margin" layout="column"  ng-click="openWishList()">
+            <h4><i class="ion-ios-heart sidenav-icon"></i><span class="sidenav-options">{{'WISH_LIST' | translate}}</span></h4>
+          </div>
+        </md-list-item>
+        <md-divider ></md-divider>
+        <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;" ng-show="loginStatus">
+          <div class="md-list-item-text zero-margin" layout="column"  ng-click="openOrderHistory();">
+            <h4><i class="ion-ios-albums sidenav-icon"></i><span class="sidenav-options">{{'ORDER_HISTORY' | translate}}</span></h4>
+          </div>
+        </md-list-item>
+        <md-divider ></md-divider>
+        <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;"  ng-show="loginStatus">
+          <div class="md-list-item-text zero-margin" layout="column" ng-click="logOut()">
+            <h4><i class="ion-android-hand sidenav-icon"></i><span class="sidenav-options">{{'LOG_OUT' | translate}}</span></h4>
+          </div>
+        </md-list-item>
+        <md-divider ></md-divider>
+      </md-list>
+    </md-content>
   </md-sidenav>
 
 </ion-view>

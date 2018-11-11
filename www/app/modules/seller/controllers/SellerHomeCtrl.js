@@ -1,45 +1,14 @@
 'use strict';
 
-angular.module('seller.module').controller('SellerHomeCtrl', SellerHomeCtrl);
+angular.module('seller.module').controller('SellerHomeCtrl',SellerHomeCtrl );
 
-SellerHomeCtrl.$inject = ['$scope','$rootScope', '$state','httpService','serverConfig',
-'$timeout','$mdSidenav','$log','$cordovaActionSheet','$cordovaDevice',
-'$cordovaFile','$cordovaFileTransfer','$ionicLoading','$ionicPopup', '$filter'];
+SellerHomeCtrl.$inject = ['$scope','$rootScope', '$state','httpService','serverConfig','$httpParamSerializer','$timeout','$mdSidenav','$log','$cordovaActionSheet','$cordovaDevice','$cordovaFile','$cordovaFileTransfer','$ionicLoading'];
 
-function SellerHomeCtrl($scope, $rootScope, $state , httpService, serverConfig,
-  $timeout, $mdSidenav, $log, $cordovaActionSheet, $cordovaDevice, 
-  $cordovaFile, $cordovaFileTransfer, $ionicLoading, $ionicPopup, $filter) {
+function SellerHomeCtrl($scope, $rootScope, $state , httpService,serverConfig,$httpParamSerializer,$timeout,$mdSidenav,$log,$cordovaActionSheet,$cordovaDevice,$cordovaFile,$cordovaFileTransfer,$ionicLoading) {
 
   $scope.toggleSideBarHome = buildToggler('left');
-  $scope.optionsCount = 0;
-  $scope.showAddOptionPlaceholderButton = true;
-  $scope.selection = {options:[], selectionId:0};
-  $scope.selectedOptions = [];
-  $scope.currentOption = {};
-  $scope.showAddOptionButton = false;
-  $scope.optionsChooseRequiredPassed = true;
-  $scope.optionsQuantityRequiredPassed = true;
-  
-  let currentChosenOption = {};
-
-  function setDefault() {
-    
-    // $scope.item.weight = 11;
-    // $scope.item.height = 11;
-    // $scope.item.name = "12";
-    // $scope.item.quantity = 11;
-    // $scope.item.price = 11;
-    // $scope.item.description = "hello";
-    // $scope.item.model = "model";
-    // $scope.item.length = 11;
-    // $scope.item.width = 11;
-
-    $scope.item.currency_code = "USD"
-  }
 
   // console.log($scope.authResponse);
-
-  $scope.addedOptions = [];
 
   $scope.goHome = function () {
     $state.go('categories');
@@ -70,153 +39,8 @@ function SellerHomeCtrl($scope, $rootScope, $state , httpService, serverConfig,
 
   $scope.item = {
     "category" : [],
-    "images" : [],
-    "product_option": []
-  }
-
-  // setDefault();
-
-  function prepareItem() {
-    var output = [];
-
-    $scope.selectedOptions.forEach(function(item) {
-
-      delete item['option_value'];
-      
-      var existing = output.filter(function(v, i) {
-        return v.option_id == item.option_id;
-      });
-
-      if (existing.length > 0) {
-        existing[0].product_option_value.push(item.product_option_value);
-      }
-      else {
-        var option = Object.assign({}, item);
-        var arr = [];
-        arr.push(item.product_option_value);
-        option.product_option_value = arr;
-        output.push(option);
-      }
-
-      // if (existing.length) {
-      //   var existingIndex = output.indexOf(existing[0]);
-      //   output[existingIndex].product_option_value = output[existingIndex].product_option_value.push(value.product_option_value);
-      // } else {
-      //   // if (typeof value.option_value == 'string')
-      //   //   value.product_option_value = [value.product_option_value];
-      //   // output.push(value);
-      // }
-    });
-
-    // var merged = mergeNames($scope.selectedOptions);
-
-    $scope.selectedOptions = output;
-    console.log("output");
-    console.log(output);
-  }
-
-  $scope.setChosenOptionDetails = function(chosenOption) {
-    currentChosenOption = JSON.parse(chosenOption);
-    $scope.currentOption.product_option_value.option_value_id = String(currentChosenOption.option_value_id);
-    $scope.currentOption.product_option_value.name = String(currentChosenOption.name);
-  }
-
-  $scope.addNewOptionPlaceholder = function() {
-    $scope.selection = {};
-    $scope.currentOption = {};
-    $scope.optionsCount = $scope.optionsCount + 1;
-    $scope.showAddOptionPlaceholderButton = false;
-    console.log($scope.optionsCount)
-  }
-
-  $scope.addOption = function(option) {
-
-    console.log(option);
-    console.log(option.product_option_value.option_value_id)
-    console.log(option.product_option_value.quantity)
-
-    $scope.optionsChooseRequiredPassed = option.product_option_value.option_value_id != null;
-    $scope.optionsQuantityRequiredPassed = option.product_option_value.quantity != null;
-
-    if($scope.optionsChooseRequiredPassed && $scope.optionsQuantityRequiredPassed) {
-
-
-      console.log('gone')
-      option.newOptionId = guid();
-      $scope.selectedOptions.push(Object.assign({}, option));
-      $scope.showAddOptionPlaceholderButton = true;
-      $scope.optionsCount = 0;
-      $scope.showAddOptionButton = false;
-      $scope.currentOption = {};
-      $scope.optionsChooseRequiredPassed = true;
-      $scope.optionsQuantityRequiredPassed = true;
-      option.newOptionId = null;
-      console.log($scope.selectedOptions);
-      console.log($scope.selection.options[0].option_id)
-
-      let chosenMainOption = $scope.options.filter(item => {
-        return parseInt(item.option_id) == parseInt($scope.selection.options[0].option_id);
-      });
-
-      let chosensubOption = chosenMainOption[0].option_value.filter(item => {
-        return parseInt(item.option_value_id) == parseInt(currentChosenOption.option_value_id);
-      });
-
-      chosensubOption[0].hide = true;
-      
-    }
-
-  }
-
-  $scope.getOptionsFor = function(selection) {
-
-    var selectionOptions = $scope.selection.options;
-
-    let option = $scope.options.filter(item => {
-      return parseInt(item.option_id) == parseInt(selection.selectionId);
-    });
-
-    selectionOptions = option;
-    $scope.selection = {selectionId: selection.selectionId, options: selectionOptions};
-    $scope.currentOption = option[0];
-    $scope.showAddOptionButton = true;
-    $scope.currentOption['product_option_value'] = {subtract_quantity : true, required: false};
-  }
-
-  $scope.deleteOption = function(option) {
-    console.log($scope.selectedOptions);
-
-    var a = $scope.selectedOptions;
-    a = a.filter(function (e) {
-        return e.newOptionId == option.newOptionId;
-    });
-
-    var a = $scope.selectedOptions;
-    a.splice(a.findIndex(e => e.newOptionId === option.newOptionId), 1);
-
-    $scope.selectedOptions = a;
-
-    let chosenMainOption = $scope.options.filter(item => {
-      return parseInt(item.option_id) == parseInt($scope.selection.options[0].option_id);
-    });
-
-    let chosensubOption = chosenMainOption[0].option_value.filter(item => {
-      return parseInt(item.option_value_id) == parseInt(currentChosenOption.option_value_id);
-    });
-
-    console.log(chosenMainOption)
-    console.log(chosensubOption)
-
-    chosensubOption[0].hide = false;
-  }
-
-  function guid() {
-    function s4() {
-      return Math.floor((1 + Math.random()) * 0x10000)
-        .toString(16)
-        .substring(1);
-    }
-    return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+    "images" : [
+    ]
   }
 
   function getCurrency() {
@@ -234,18 +58,6 @@ function SellerHomeCtrl($scope, $rootScope, $state , httpService, serverConfig,
     httpService.postRequest(serverConfig.clientAPI,extended_url,req,{}).then(function(response){
       if(response.status === 200 && !response.error_warning){
         $scope.cat_tabs = response.data.categories;
-      }else{
-        $scope.error = response.error_warning;
-      }
-    });
-  }
-
-  function getOptions() {
-    var extended_url = '/product/getoptions';
-    var req = {};
-    httpService.postRequest(serverConfig.clientAPI,extended_url,req,{}).then(function(response){
-      if(response.status === 200 && !response.error_warning){
-        $scope.options = response.data;
       }else{
         $scope.error = response.error_warning;
       }
@@ -273,116 +85,53 @@ function SellerHomeCtrl($scope, $rootScope, $state , httpService, serverConfig,
     }
   };
 
-  function validateItem() {
-    var itemValidated = true;
-    if(!($scope.item.weight && $scope.item.height && $scope.item.length && 
-      $scope.item.width && $scope.item.name && $scope.item.quantity && $scope.item.price &&
-      $scope.item.description && $scope.item.model && $scope.item.category && $scope.item.currency_code &&
-      $scope.item.dimensionMeasureUnit && $scope.item.weightMeasureUnit
-
-    )) {
-          itemValidated = false;
-      }
-
-    return itemValidated;
-  }
-
   $scope.addItem = function () {
-
-    if(validateItem()) {
-
-      prepareItem();
-      $scope.item.product_option = $scope.selectedOptions;
+    // product.product_id ? goHome(); :
+    if(!$scope.product){
       var extended_url = '/product/addproduct';
-      var req = Object.assign({}, $scope.item);
-      if($scope.item.weight) {
-        req['weight'] = $scope.item.weight+' '+$scope.item.weightMeasureUnit;
+      var req = {
+        "model" : $scope.item.model,
+        "weight" : $scope.item.weight+' '+$scope.item.weightMeasureUnit,
+        "height" : $scope.item.height+' '+$scope.item.dimensionMeasureUnit,
+        "name" : $scope.item.name,
+        "quantity" : $scope.item.quantity,
+        "price" : $scope.item.price,
+        "description" : $scope.item.description,
+        "mainimage" : '',
+        "image1" : '',
+        "image2" : '',
+        "image3" : '',
+        "image4" : '',
+        "image5" : '',
+        "image6" : '',
+        "image7" : '',
+        "category" : [],
+        "customer_id" : $rootScope.authResponse.customer_id,
+        "currency_code" :$scope.item.currency_code,
       }
-      if($scope.item.height) {
-        req['height'] = $scope.item.height+' '+$scope.item.dimensionMeasureUnit;
-      }
-      if($scope.item.length) {
-        req['length'] = $scope.item.length+' '+$scope.item.dimensionMeasureUnit;
-      }
-      if($scope.item.width) {
-        req['width'] = $scope.item.width+' '+$scope.item.dimensionMeasureUnit;
-      }
-      
-      req.customer_id = $rootScope.authResponse.customer_id;
-      req.currency_code = $scope.item.currency_code;
-  
       for(var i in $scope.item.category){
         req.category.push($scope.item.category[i].category_id);
       }
-      console.log(req);
+      // console.log(req);
       var config = {
         headers:{
           'Content-Type': 'application/x-www-form-urlencoded'
         }
       };
-  
-      console.log(JSON.stringify(req));
-      console.log(param(req));
-  
-      httpService.postRequest(serverConfig.clientAPI,extended_url, param(req),config).then(function(response){
-        if(response) {
-          console.log(response)
-          if(response.status === 200){
-            $scope.product = {
-              "product_id" : response.data.product_id
-            }
-  
-            console.log(response)
-            $state.go('sellerHome2', {'product_id': response.data.product_id});
-            console.log(response.data.product_id); // product id =248/249/250
-          }else{
-            $scope.error = response.error_warning;
+      httpService.postRequest(serverConfig.clientAPI,extended_url,$httpParamSerializer(req),config).then(function(response){
+        if(response.status === 200){
+          $scope.product = {
+            "product_id" : response.data.product_id
           }
+          // console.log(response.data.product_id); // product id =248/249/250
+        }else{
+          $scope.error = response.error_warning;
         }
       });
-
-    }
-    else {
-      $scope.showAlert('Arcmall', $filter('translate')('PLEASE_VALIDATE'));
+    }else{
+      $state.go('home.new');
     }
   }
-
-  var param = function(obj) {
-
-    if ( ! angular.isObject( obj) ) { 
-      return( ( obj== null ) ? "" : obj.toString() ); 
-    }
-    var query = '', name, value, fullSubName, subName, subValue, innerObj, i;
-  
-    for(name in obj) {
-  
-      value = obj[name];
-      if(value instanceof Array) {
-        for(i in value) {
-  
-          subValue = value[i];
-          fullSubName = name + '[' + i + ']';
-          innerObj = {};
-          innerObj[fullSubName] = subValue; 
-          query += param(innerObj) + '&';
-        }
-  
-      } else if(value instanceof Object) {
-        for(subName in value) {
-  
-          subValue = value[subName];
-          fullSubName = name + '[' + subName + ']';
-          innerObj = {};
-          innerObj[fullSubName] = subValue;
-          query += param(innerObj) + '&';
-        }
-      }
-      else if(value !== undefined && value !== null)
-        query += encodeURIComponent(name) + '=' + encodeURIComponent(value) + '&';
-    }
-  
-    return query.length ? query.substr(0, query.length - 1) : query;
-  };
 
   $scope.getPicture = function (image_type) {
     $scope.selected_image_type = image_type;
@@ -543,7 +292,6 @@ function SellerHomeCtrl($scope, $rootScope, $state , httpService, serverConfig,
   init();
 
   function init() {
-    getOptions();
     getCurrency();
     getAllCategories();
   }
@@ -567,21 +315,15 @@ function SellerHomeCtrl($scope, $rootScope, $state , httpService, serverConfig,
     $state.go('order-history');
   };
   $scope.logOut = function () {
-    $rootScope.logOut();
+    $scope.close();
+    localStorage.setItem('loginStatus',false);
+    localStorage.setItem('authResponse',null);
+    $rootScope.loginStatus = false;
+    $rootScope.authResponse = null;
+    $state.go('authSignIn');
   };
   $scope.openAddItem = function () {
     $state.go('sellerHome');
   };
-  $scope.openMyProducts = function () {
-    $state.go('sellerProducts');
-  };
-  $scope.openSettings = function () {
-    $scope.close();
-    $state.go('settings');
-  };
-
-  $scope.hideKeyboard = function() {
-    Keyboard.hide();
-  }
 
 }

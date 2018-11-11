@@ -40,19 +40,17 @@ function MyProfileCtrl($scope,$state,$rootScope,$mdSidenav,$log) {
   $scope.openAddItem = function () {
     $state.go('sellerHome');
   };
-  $scope.openMyProducts = function () {
-    $state.go('sellerProducts');
-  };
   $scope.openMyProfile = function () {
     $scope.close();
     $state.go('my-profile');
   };
   $scope.logOut = function () {
-    $rootScope.logOut();
-  };
-  $scope.openSettings = function () {
     $scope.close();
-    $state.go('settings');
+    localStorage.setItem('loginStatus',false);
+    localStorage.setItem('authResponse',null);
+    $rootScope.loginStatus = false;
+    $rootScope.authResponse = null;
+    $state.go('authSignIn');
   };
 
   $scope.toggleSideBarHome = buildToggler('left');

@@ -9,8 +9,7 @@
         serviceUrl: 'http://arcmall.com',
         // serviceUrl: 'https://saasthara.com',
         port:'',
-        base_url: '?route=api2',
-        lang_base_url: '?route='
+        base_url: '?route=api2'
         // base_url: '/i2cs/shops/demo/upload/index.php?route=api2'
       },
       googleAPI: {
@@ -24,6 +23,14 @@
         serviceUrl: 'https://graph.facebook.com',
         port:'',
         base_url: ''
+      },
+      payPal: {
+        payPalSandboxId: 'AdEr9SPrCsv5dnImSGh__Ma7VwiB6bcNVuwoWxpLdNsyrK9YkZtwTW8CPmVTZKmBpCgivsR212gVABhn',
+        payPalProductionId: '',
+        payPalEnv: 'PayPalEnvironmentSandbox',
+        payPalShopName: 'Arcmall Shop',
+        payPalMerchantPrivacyPolicyURL: 'http://arcmall.com/privacy',
+        payPalMerchantUserAgreementURL: 'http://arcmall.com/terms'
       }
 
     });

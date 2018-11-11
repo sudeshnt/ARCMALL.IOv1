@@ -2,18 +2,15 @@
 
 angular.module('auth.module').controller('AuthSignInCtrl', AuthSignInCtrl);
 
-AuthSignInCtrl.$inject = ['$scope','$state','$rootScope','httpService','serverConfig','$httpParamSerializer', 'Auth'];
+AuthSignInCtrl.$inject = ['$scope','$state','$rootScope','httpService','serverConfig','$httpParamSerializer'];
 
-function AuthSignInCtrl($scope,$state,$rootScope,httpService,serverConfig,$httpParamSerializer, Auth) {
-
-
+function AuthSignInCtrl($scope,$state,$rootScope,httpService,serverConfig,$httpParamSerializer) {
   //console.log('auth sign in');
   $scope.user = {
     'email' : '',
     // 'email' : 'harindamail@gmail.com',
-    'password' : '',
+    'password' : ''
     // 'password' : 'benzc180'
-    'type': 1
   };
   $scope.signIn = function () {
     var extended_url = '/user_login';
@@ -23,8 +20,6 @@ function AuthSignInCtrl($scope,$state,$rootScope,httpService,serverConfig,$httpP
         'Content-Type': 'application/x-www-form-urlencoded'
       }
     };
-
-    console.log($scope.user);
     httpService.postRequest(serverConfig.clientAPI,extended_url,$httpParamSerializer(req),config).then(function(response){
       if(response.status === 200){
         localStorage.setItem('loginStatus',true);
@@ -39,13 +34,5 @@ function AuthSignInCtrl($scope,$state,$rootScope,httpService,serverConfig,$httpP
     });
 
   }
-
-  $scope.facebookLogin = function(){
-    $rootScope.facebookLogin();
-  };
-
-  $scope.googlePlusLogin = function(){
-    $rootScope.googlePlusLogin();
-  };
 
 }

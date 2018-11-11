@@ -2,13 +2,16 @@
 
 angular.module('checkout.module').controller('CartCtrl',CartCtrl );
 
-CartCtrl.$inject = ['$scope','$state','$rootScope','$timeout', '$mdBottomSheet',
-'$mdToast','cartSev','serverConfig','httpService','$httpParamSerializer', '$ionicHistory'];
+CartCtrl.$inject = ['$scope','$state','$rootScope','$timeout', '$mdBottomSheet', '$mdToast','cartSev','serverConfig','httpService','$httpParamSerializer'];
 
-function CartCtrl($scope,$state,$rootScope, $timeout, $mdBottomSheet,
-  $mdToast,cartSev,serverConfig,httpService,$httpParamSerializer, $ionicHistory) {
+function CartCtrl($scope,$state,$rootScope, $timeout, $mdBottomSheet, $mdToast,cartSev,serverConfig,httpService,$httpParamSerializer) {
 
-   getProductsOfCart();
+  // $scope.cart = cartSev.shoppingCart.cart;
+  // getProductsOfCart();
+
+  if(cartSev.shoppingCart.isEmpty){
+    // $state.go('home.new');
+  }
 
   $scope.removeItemFromCart = function (product_id) {
     cartSev.shoppingCart.removeItem(product_id);
@@ -18,20 +21,7 @@ function CartCtrl($scope,$state,$rootScope, $timeout, $mdBottomSheet,
     // }
   };
 
-  $scope.goBack = function() {
-    // $ionicHistory.goBack();
-    $state.go('categories');
-  }
-
-  $scope.go = function() {
-    // $state.go('shipping');
-    $state.go('checkout-step-1', {current_address:null, addresses:null});
-    // $state.go("pp_express", { checkout: {}, currency: "USD", total_amount: "$100.00", total_amount_clean: 100, success_state: "app.menu.cart.order_added" }, { reload: true });
-    // $state.go("pp_express");
-  }
-
   function getProductsOfCart() {
-    $scope.isCartLoaded = false;
     var extended_url = '/cart/products';
     var reqObj = {};
     var config = {
@@ -42,11 +32,6 @@ function CartCtrl($scope,$state,$rootScope, $timeout, $mdBottomSheet,
     httpService.postRequest(serverConfig.clientAPI,extended_url, $httpParamSerializer(reqObj),config).then(function(response){
       if(response.status === 200){
         $scope.cart = response.data;
-        console.log("cart");
-        console.log(response.data.products);
-        if(response.data.products.length > 0) {
-            $scope.isCartLoaded = true;
-        }
       }
     });
   }
@@ -89,16 +74,6 @@ function CartCtrl($scope,$state,$rootScope, $timeout, $mdBottomSheet,
         for(var i in $scope.cart.products){
           if($scope.cart.products[i].cart_id==cart_id){
             $scope.cart.products.splice(i,1);
-            var cartStatus = localStorage.getItem('cartItemCount');
-            if(cartStatus != null && cartStatus > 0) {
-              cartStatus = cartStatus - 1;
-              localStorage.setItem('cartItemCount', cartStatus);
-              $rootScope.cartItemCount = cartStatus;
-            }
-            else {
-              localStorage.setItem('cartItemCount', 0);
-              $rootScope.cartItemCount = 0;
-            }
             break;
           }
         }
@@ -131,6 +106,7 @@ function CartCtrl($scope,$state,$rootScope, $timeout, $mdBottomSheet,
     });
   };
 
-  
+
 
 }
+

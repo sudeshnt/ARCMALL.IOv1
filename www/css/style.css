@@ -16,7 +16,7 @@ ion-content{
   margin-right: auto !important;
 }
 .card-margin{
-  margin:5px 5px !important;
+  margin:2px 2px !important;
 }
 
 .absolute{
@@ -39,7 +39,7 @@ ion-content{
 }
 /*buttons*/
 .button.square{
-  border-radius: 20;
+  border-radius: 0;
 }
 .custom-height-button{
   min-height: 0 !important;
@@ -65,13 +65,13 @@ ion-content{
   line-height: 40px !important;
 }
 .button-orange{
-  background-color: #007fa3;
+  background-color: #458ccc;
   /*background-color: #f48420;*/
   color: #ffffff;
 }
 .button-orange.activated{
   border-color: #1886a3 !important;
-  background-color: #007fa3 !important;
+  background-color: #458ccc !important;
   /*border-color: #d8851e !important;*/
   /*background-color: #ea7000 !important;*/
   color: #ffffff  !important;
@@ -135,15 +135,9 @@ ion-content{
 }
 .left-title{
   margin-left: 60px;
-  margin-top: 12px;
-  text-overflow: ellipsis;
-  margin-right: 50px;
-  overflow: hidden;
-  white-space: nowrap
 }
-
 .bar-subheader{
-  background-color: #007fa3;
+  background-color: #458ccc;
   /*background-color:#fc8d33;*/
   box-shadow: 2px 3px 3px 0px rgba(41, 41, 41, .3);
 }

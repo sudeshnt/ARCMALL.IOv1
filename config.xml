@@ -78,34 +78,34 @@
         <splash height="1024" src="resources/ios/splash/Default-Portrait~ipad.png" width="768" />
         <splash height="960" src="resources/ios/splash/Default@2x~iphone.png" width="640" />
         <splash height="480" src="resources/ios/splash/Default~iphone.png" width="320" />
+        <edit-config file="*-Info.plist" mode="merge" target="NSCameraUsageDescription">
+            <string>To scan credit cards.</string>
+        </edit-config>
     </platform>
-    <allow-navigation href="http://192.168.1.4:8101" />
-    <plugin name="cordova-plugin-actionsheet" spec="^2.3.3" />
+    <plugin name="cordova-plugin-console" spec="^1.1.0" />
+    <plugin name="cordova-plugin-device" spec="^1.1.7" />
+    <plugin name="cordova-plugin-splashscreen" spec="^4.1.0" />
+    <plugin name="cordova-plugin-statusbar" spec="^2.4.2" />
+    <plugin name="cordova-plugin-whitelist" spec="^1.3.3" />
+    <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
+    <plugin name="cordova-plugin-facebook4" spec="^1.10.1">
+        <variable name="APP_ID" value="1823221184659287" />
+        <variable name="APP_NAME" value="ArcMall" />
+    </plugin>
+    <plugin name="cordova-plugin-googleplus" spec="git+https://github.com/EddyVerbruggen/cordova-plugin-googleplus.git">
+        <variable name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.683451474237-kgbp6hbnbv3dtftbi3o1hmokm46od906" />
+    </plugin>
+    <plugin name="cordova-plugin-x-toast" spec="git+https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git" />
     <plugin name="cordova-plugin-camera" spec="^2.4.1">
         <variable name="CAMERA_USAGE_DESCRIPTION" value=" " />
         <variable name="PHOTOLIBRARY_USAGE_DESCRIPTION" value=" " />
     </plugin>
-    <plugin name="cordova-plugin-console" spec="^1.0.5" />
-    <plugin name="cordova-plugin-device" spec="^1.1.4" />
     <plugin name="cordova-plugin-file" spec="^4.3.3" />
-    <plugin name="cordova-plugin-file-transfer" spec="^1.6.3" />
-    <plugin name="cordova-plugin-filepath" spec="^1.1.0" />
-    <plugin name="cordova-plugin-googleplus" spec="git+https://github.com/EddyVerbruggen/cordova-plugin-googleplus.git">
-        <variable name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.866910893661-u4k80k30nn57in7np8faf4g2c5kjdh31" />
-    </plugin>
-    <plugin name="cordova-plugin-inappbrowser" spec="^2.0.2" />
-    <plugin name="cordova-plugin-splashscreen" spec="^4.0.3" />
-    <plugin name="cordova-plugin-statusbar" spec="^2.2.1" />
-    <plugin name="cordova-plugin-whitelist" spec="^1.3.1" />
-    <plugin name="cordova-plugin-x-toast" spec="git+https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git" />
-    <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
-    <allow-navigation href="http://192.168.1.4:8102" />
-    <plugin name="cordova-plugin-facebook4" spec="^2.1.0">
-        <variable name="APP_ID" value="402943750184361" />
-        <variable name="APP_NAME" value="Arcmall" />
-        <variable name="ANDROID_SDK_VERSION" value="4.+" />
-    </plugin>
-    <engine name="android" spec="^6.2.3" />
-    <engine name="ios" spec="4.4.0" />
-    <plugin name="cordova-plugin-stripe" spec="^1.5.3" />
+    <plugin name="cordova-plugin-file-transfer" spec="^1.7.1" />
+    <plugin name="cordova-plugin-filepath" spec="^1.4.2" />
+    <plugin name="cordova-plugin-actionsheet" spec="^2.3.3" />
+    <plugin name="com.paypal.cordova.mobilesdk" spec="^3.5.0" />
+    <plugin name="card.io.cordova.mobilesdk" spec="^2.1.0" />
+    <engine name="ios" spec="^4.5.5" />
+    <engine name="android" spec="^7.1.2" />
 </widget>

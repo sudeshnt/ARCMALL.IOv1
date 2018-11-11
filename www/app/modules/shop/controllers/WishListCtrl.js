@@ -72,9 +72,6 @@ function WishListCtrl($scope,$state,$rootScope,$mdSidenav,$log,publicFunc,filter
   $scope.openAddItem = function () {
     $state.go('sellerHome');
   };
-  $scope.openMyProducts = function () {
-    $state.go('sellerProducts');
-  };
   $scope.openMyProfile = function () {
     $scope.close();
     $state.go('my-profile');
@@ -84,11 +81,12 @@ function WishListCtrl($scope,$state,$rootScope,$mdSidenav,$log,publicFunc,filter
     $state.go('home.new');
   };
   $scope.logOut = function () {
-    $rootScope.logOut();
-  };
-  $scope.openSettings = function () {
     $scope.close();
-    $state.go('settings');
+    localStorage.setItem('loginStatus',false);
+    localStorage.setItem('authResponse',null);
+    $rootScope.loginStatus = false;
+    $rootScope.authResponse = null;
+    $state.go('authSignIn');
   };
 
   $scope.toggleSideBar = buildToggler('left');

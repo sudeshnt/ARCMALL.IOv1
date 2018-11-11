@@ -1,11 +1,11 @@
 <ion-view>
   <ion-content class="">
     <div class="sign-in-background"></div>
-    <ion-header-bar class="bar bar-header header-md bar-darker">
-      <div style="width: 100%; display: inherit; margin-top: 0px !important;">
+    <ion-header-bar class="bar bar-header header-md bar-darker half-opacity">
+      <div style="width: 100%; display: inherit; margin-top: 0px !important;" >
         <div class="absolute back-icon-wrapper">
-          <a class="button button-icon row" ng-href="#/authHome">
-            <i class="ion-android-arrow-back font-L white"></i>
+          <a class="button button-icon row" ng-click="toggleSideBar();">
+            <i class="ion-close-round font-M white"></i>
           </a>
         </div>
         <h4 class="white left-title">{{'SIGN_IN' | translate}}</h4>
@@ -34,29 +34,22 @@
             {{error}}
         </span>
         <div>
-          <a class="button custom-height-button button-sm square button-block button-orange capital" data-ng-disabled="disabledLoginBtn" data-ng-click="loginForm.$setSubmitted(); loginForm.$valid && signIn();">
+          <a class="button custom-height-button button-sm square button-block button-orange capital"
+             data-ng-disabled="disabledLoginBtn"
+             data-ng-click="loginForm.$setSubmitted(); loginForm.$valid && signIn();">
             {{"SIGN_IN" | translate}}
           </a>
         </div>
       </form>
       <div class="row" style="margin: 10px 0 10px 0;">
-        <a ng-click="" class="underlined size-margin-auto" style="margin-top: 15px;margin-bottom: 15px; color:white">{{"FORGET_PASSWORD" | translate}}</a>
+        <a ng-click="" class="underlined size-margin-auto" style="margin-top: 15px;margin-bottom: 15px;">{{"FORGET_PASSWORD" | translate}}</a>
       </div>
-
-      <div class="align-center" style="bottom: 220px; width:100%; margin: 0 auto; padding-top:10px">
-        <!-- <p class="align-center light">{{"SIGN_IN_WITH" | translate}}</p> -->
-        <!--<a class="button custom-height-button button-sm square button-block button-positive icon ion-social-facebook" ng-click="facebookSignIn()"></a>-->
-        <div class="button custom-height-button button-md square button-block button-positive" ng-click="facebookLogin()">
-          <div class="icon ion-social-facebook" style="float:left;margin-left:20px; margin-top:5px"></div>
-          <div style="">Sign in with Facebook</div>
-        </div>
-        <div class=" button custom-height-button button-md square button-block button-assertive " ng-click="googlePlusLogin() ">
-          <div class="icon ion-social-googleplus " style="float:left;margin-left:20px; margin-top:5px "></div>
-          <div style="">Sign in with Google+</div>
-        </div>
-
+      <div class="" style="bottom: 40px;">
+        <!-- <p class="align-center light">{{"SIGN_IN_WITH" | translate}}</p>
+        <a class="button custom-height-button button-sm square button-block button-positive icon ion-social-facebook "></a>
+        <a class="button custom-height-button button-sm square button-block button-assertive icon ion-social-googleplus "></a> -->
         <p class="align-center light">
-          <span>{{"NO_ACCOUNT" | translate}}</span> <a ng-href="#/authSignUp" class="underlined" style="color:white">{{"REGISTER" | translate}}</a>
+          <span>{{"NO_ACCOUNT" | translate}}</span> <a ng-href="#/authSignUp" class="underlined">{{"REGISTER" | translate}}</a>
         </p>
       </div>
     </div>

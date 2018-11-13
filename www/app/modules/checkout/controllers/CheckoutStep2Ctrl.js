@@ -36,6 +36,8 @@ function CheckoutStep2Ctrl($scope,$state,$rootScope,$stateParams,serverConfig,ht
   function paymentMethodChanged(){
     var extended_url = '/payment/method';
     var p_method = $scope.paymentMethods['pp_express'].code;
+    $scope.paymentAndShipping.payment_method = p_method;
+    
     
     var reqObj = {
       "payment_method":p_method

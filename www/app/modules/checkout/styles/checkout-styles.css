@@ -314,7 +314,8 @@ button, html input[type=button], input[type=reset], input[type=submit] {
 }
 
 .item-floating-label span {
-  display:none;
+  /* display:none; */
+  font-size: 12px;
 }
 
 ion-content hr {

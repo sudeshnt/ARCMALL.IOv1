@@ -21,6 +21,10 @@
         <i class="icon ion-android-contact"></i>
         <input ng-model="authorization.lastname" class="text-input" type="text" placeholder="Last Name" required>
       </label>
+      <label class="item item-input item-icon-left" ng-hide="role=='buyer'">
+        <i class="icon ion-android-contact"></i>
+        <input ng-model="authorization.company" class="text-input" type="text" placeholder="Company Name" required>
+      </label>
       <label class="item item-input item-icon-left">
         <i class="icon ion-email"></i>
         <input ng-model="authorization.email" class="text-input" type="email" placeholder="E-mail address" required>
@@ -34,7 +38,7 @@
         <input ng-model="authorization.confirm" class="text-input" type="password" placeholder="Confirm Password" required>
       </label>
       <label class="item item-input item-icon-left bordernone">
-        <button class="button button-block button-light button-outline" ng-click="fn.signup(authorization)">
+        <button class="button button-block button-light button-outline" ng-disabled="!authorization.firstname || !authorization.lastname || !authorization.email || !authorization.password || !authorization.confirm " ng-click="fn.signup(authorization)" >
           SIGN UP
         </button>
       </label>

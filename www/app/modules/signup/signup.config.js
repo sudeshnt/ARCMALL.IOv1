@@ -6,7 +6,8 @@ signupModule.config(function config($stateProvider, $urlRouterProvider) {
   $stateProvider.state("signup", {
     url: "/signup",
     templateUrl: "app/modules/signup/templates/signup.html",
-    controller: "SignUpCtrl"
+    controller: "SignUpCtrl",
+    params: { role: null }
   });
   $urlRouterProvider.otherwise("/signup");
 });

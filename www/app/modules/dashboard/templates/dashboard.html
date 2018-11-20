@@ -11,21 +11,13 @@
         <label class="item-input search-box search-round">
           <i class="ion-search font-L black"></i>
           <input
+            style="color: rgb(10, 0, 0);"
+            ng-model="search_text"
             type="text"
-            placeholder="{{'SEARCH' | translate}}"
-            ion-autocomplete
-            readonly="readonly"
-            ng-model="model"
-            item-value-key="name"
-            item-view-value-key="view"
-            items-method="getTestItems(query)"
-            items-method-value-key="items"
-            placeholder="Search Item"
-            items-clicked-method="itemsClicked(callback)"
-            items-removed-method="itemsRemoved(callback)"
-            max-selected-items="3"
-            class="ion-autocomplete"
-            autocomplete="off"
+            placeholder="Search..."
+            focus-me
+            my-enter="search_model(search_text)"
+            autofocus
           />
         </label>
       </div>
@@ -39,10 +31,18 @@
       </div>
     </div>
   </ion-header-bar>
+
   <ion-view cache-view="false">
     <ion-content class="has-header-md" scroll="false">
       <!-- <ion-content class="has-header-md-banner"  scroll="false"> -->
+
+      <ion-list ng-if=" search_text != '' " class=" search-barr card-name">
+        <ion-item ng-repeat="item in arry_item | filter:search_text">
+          {{ item }}
+        </ion-item>
+      </ion-list>
       <ion-slide
+        ng-if=" search_text == '' "
         ng-repeat="tab in selectedCatTabs.tabs  track by $index"
         ion-slide-tab-label="{{tab.name}}"
         style="background-color:white; width:100%;"
@@ -59,12 +59,59 @@
               ng-if="subCat_rows.length == 1"
             >
               <div ng-class="{'list card card-margin full-height' : $index>0 }">
+                <!--
+                  <div class="item item-image full-height">
+                  <ion-slide-box
+                    class="item item-image full-height"
+                    auto-play="true"
+                    does-continue="true"
+                    slide-intervel="30000"
+                  >
+                    <ion-slide ng-repeat="img in allImages">
+                      <img
+                        src="app/modules/dashboard/img/1.png"
+                        class="full-height"
+                        style="max-height: 200px;"
+                      />
+                    </ion-slide>
+                  </ion-slide-box>
+                -->
+
                 <div class="item item-image full-height">
-                  <img
-                    src="app/modules/dashboard/img/1.png"
-                    class="full-height"
-                    style="max-height: 200px;"
-                  />
+                  <ion-slide-box
+                    auto-play="true"
+                    does-continue="true"
+                    slide-interval="10000"
+                  >
+                    <ion-slide>
+                      <img
+                        src="app/modules/dashboard/img/1.png"
+                        class="full-height"
+                        style="max-height: 200px;"
+                      />
+                    </ion-slide>
+                    <ion-slide>
+                      <img
+                        src="app/modules/dashboard/img/1.png"
+                        class="full-height"
+                        style="max-height: 200px;"
+                      />
+                    </ion-slide>
+                    <ion-slide>
+                      <img
+                        src="app/modules/dashboard/img/1.png"
+                        class="full-height"
+                        style="max-height: 200px;"
+                      />
+                    </ion-slide>
+                  </ion-slide-box>
+                  <!--
+                    <img
+                      src="app/modules/dashboard/img/1.png"
+                      class="full-height"
+                      style="max-height: 200px;"
+                    />
+                  -->
 
                   <div class="text-on-image card-name ">
                     <h2 class="multi-line-text">WELCOME TO ARCMALL</h2>
@@ -75,6 +122,7 @@
                   </div>
                 </div>
               </div>
+
               <div class="card-name " style="padding-left: 10px">
                 <h6>CATEGORIES</h6>
               </div>
@@ -86,7 +134,7 @@
                   ng-click="goTo(allCategories[3])"
                 >
                   <img ng-src="app/modules/dashboard/img/2.png" width="100%" />
-                  <div class="overlay">HER</div>
+                  <div class="overlay">{{ allCategories[3].name }}</div>
                 </button>
                 <button
                   class="column"
@@ -94,7 +142,7 @@
                   ng-click="goTo(allCategories[4])"
                 >
                   <img ng-src="app/modules/dashboard/img/3.png" width="100%" />
-                  <div class="overlay">HIS</div>
+                  <div class="overlay">{{ allCategories[4].name }}</div>
                 </button>
               </div>
               <div class="row ">
@@ -104,7 +152,7 @@
                   ng-click="goTo(allCategories[0])"
                 >
                   <img ng-src="app/modules/dashboard/img/4.png" width="100%" />
-                  <div class="overlay">BAGS</div>
+                  <div class="overlay">{{ allCategories[3].name }}</div>
                 </button>
                 <button
                   class="column"
@@ -112,7 +160,7 @@
                   ng-click="goTo(allCategories[1])"
                 >
                   <img ng-src="app/modules/dashboard/img/5.png" width="100%" />
-                  <div class="overlay">COMPUTERS</div>
+                  <div class="overlay">{{ allCategories[1].name }}</div>
                 </button>
               </div>
               <div class="row ">
@@ -122,7 +170,7 @@
                   ng-click="goTo(allCategories[6])"
                 >
                   <img ng-src="app/modules/dashboard/img/6.png" width="100%" />
-                  <div class="overlay">KIDS</div>
+                  <div class="overlay">{{ allCategories[6].name }}</div>
                 </button>
                 <button class="column" style="padding: 5px">
                   <img ng-src="app/modules/dashboard/img/7.png" width="100%" />
@@ -161,6 +209,7 @@
                 delegate-handle="mysliderone"
               >
                 <div
+                  ng-click="openItemDetails(item.product_id)"
                   ng-repeat="item in featured"
                   style="display: inline-block;white-space: nowrap; "
                 >
@@ -190,7 +239,8 @@
                 delegate-handle="myslidertwo"
               >
                 <div
-                  ng-repeat="item in bestSeller"
+                  ng-click="openItemDetails(item.product_id)"
+                  ng-repeat="item in bestSeller "
                   style="display: inline-block;white-space: nowrap; "
                 >
                   <img
@@ -205,6 +255,17 @@
           <div class="row" style="min-height: 55px;"></div>
         </ion-content>
       </ion-slide>
+
+      <!--
+        <ul class="list search-barr" ng-if="search_text != ''">
+          <li
+            class="search-row"
+            ng-repeat="item in arry_item | filter:search_text"
+          >
+            <h4>{{ item }}</h4>
+          </li>
+        </ul>
+      -->
     </ion-content>
     <md-sidenav class="md-sidenav-left  sidemenubg" md-component-id="right">
       <md-content style="background-color: transparent;">
@@ -216,7 +277,7 @@
           <md-list-item
             class="md-3-line"
             style="height: 50px; min-height:0px; padding-top: 10px;"
-            ng-show="loginStatus"
+            ng-show="role=='1' || role=='2'"
           >
             <div
               class="md-list-item-text zero-margin"
@@ -235,7 +296,7 @@
           <md-list-item
             class="md-3-line"
             style="height: 50px; min-height:0px; padding-top: 10px;"
-            ng-show="!loginStatus"
+            ng-hide="role =='1' || role =='2'"
           >
             <div
               class="md-list-item-text zero-margin"
@@ -327,7 +388,61 @@
           <md-list-item
             class="md-3-line"
             style="height: 50px; min-height:0px; padding-top: 10px;"
-            ng-show="loginStatus"
+          >
+            <div
+              class="md-list-item-text zero-margin"
+              layout="column"
+              ng-click="openAboutUs();"
+            >
+              <h4>
+                <i class="ion-ios-albums sidenav-icon"></i
+                ><span class="sidenav-options">{{
+                  "ABOUT_US" | translate
+                }}</span>
+              </h4>
+            </div>
+          </md-list-item>
+          <md-divider></md-divider>
+          <md-list-item
+            class="md-3-line"
+            style="height: 50px; min-height:0px; padding-top: 10px;"
+          >
+            <div
+              class="md-list-item-text zero-margin"
+              layout="column"
+              ng-click="openPrivacyPolicy();"
+            >
+              <h4>
+                <i class="ion-ios-albums sidenav-icon"></i
+                ><span class="sidenav-options">{{
+                  "PRIVACY_POLICY" | translate
+                }}</span>
+              </h4>
+            </div>
+          </md-list-item>
+          <md-divider></md-divider>
+          <md-list-item
+            class="md-3-line"
+            style="height: 50px; min-height:0px; padding-top: 10px;"
+          >
+            <div
+              class="md-list-item-text zero-margin"
+              layout="column"
+              ng-click="openTermsAndCondition();"
+            >
+              <h4>
+                <i class="ion-ios-albums sidenav-icon"></i
+                ><span class="sidenav-options">{{
+                  "TERMS_CONDITION" | translate
+                }}</span>
+              </h4>
+            </div>
+          </md-list-item>
+          <md-divider></md-divider>
+          <md-list-item
+            class="md-3-line"
+            style="height: 50px; min-height:0px; padding-top: 10px;"
+            ng-show="role=='1' || role=='2'"
           >
             <div
               class="md-list-item-text zero-margin"

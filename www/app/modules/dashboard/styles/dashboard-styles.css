@@ -148,7 +148,19 @@
   overflow: scroll;
   white-space: nowrap;
 }
-
+.search-barr {
+  position: absolute !important;
+  top: 10px;
+  background-color: #cac6c6;
+  width: 100% !important;
+}
+ul {
+  color: #fff !important;
+}
+.search-row {
+  color: #fff !important;
+  width: 100%;
+}
 .bar-column {
   float: left;
   width: 50%;
@@ -501,6 +513,10 @@ md-select:not([disabled]):focus .md-select-value {
 .bottom-sheet-close {
   left: -17px;
   top: -17px;
+}
+.item-complex .item-content,
+.item {
+  background-color: #ffff;
 }
 
 .accordian-text {

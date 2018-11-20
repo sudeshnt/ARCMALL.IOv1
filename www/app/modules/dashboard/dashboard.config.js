@@ -7,7 +7,7 @@ dashBoardModule.config(function config($stateProvider, $urlRouterProvider) {
     url: "/dashboard",
     templateUrl: "app/modules/dashboard/templates/dashboard.html",
     controller: "DashBoardCtrl",
-    params: { type: "NEW" }
+    params: { userRole1: null }
   });
   $urlRouterProvider.otherwise("/dashboard");
 });

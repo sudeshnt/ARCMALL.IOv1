@@ -16,6 +16,12 @@
       return this.objectValue;
     }
     return {
+      getString: function() {
+        return this.stringValue;
+      },
+      setString: function(value) {
+        this.stringValue = value;
+      },
       setObject: setObject,
       getObject: getObject
     };

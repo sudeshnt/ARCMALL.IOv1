@@ -37,7 +37,7 @@ function DashBoardCtrl(
   $ionicScrollDelegate,
   $httpParamSerializer
 ) {
-  var type = $stateParams.type;
+  var type = "NEW";
 
   $scope.next1 = function() {
     $ionicScrollDelegate.$getByHandle("mysliderone").scrollBy(150, 0, true);
@@ -47,7 +47,16 @@ function DashBoardCtrl(
   $scope.model = "";
   $scope.clickedValueModel = "";
   $scope.removedValueModel = "";
-
+  $scope.search_text = "";
+  $scope.arry_item = ["item 1", "item 2", "item3"];
+  $scope.allImages = [
+    "app/modules/dashboard/img/1.png",
+    "app/modules/dashboard/img/1.png",
+    "app/modules/dashboard/img/1.png"
+  ];
+  console.log($scope.search_text);
+  console.log("role-->" + $window.localStorage.getItem("role"));
+  $scope.role = $window.localStorage.getItem("role");
   $scope.getTestItems = function(query) {
     if (query) {
       $scope.user = {
@@ -111,6 +120,13 @@ function DashBoardCtrl(
 
     $state.go("items");
   };
+
+  $scope.openItemDetails = function(product_id) {
+    $state.go("item", {
+      product_id: product_id
+    });
+  };
+
   $scope.goToAllCategories = function() {
     $state.go("categoriesall");
   };
@@ -185,6 +201,8 @@ function DashBoardCtrl(
       });
   }
   function getFeatured() {
+    $scope.loginStatus = $window.localStorage.getItem("logged");
+    console.log("loginstatus" + $window.localStorage.getItem("logged"));
     var extended_url = "/featured";
     var req = {};
     httpService
@@ -328,13 +346,39 @@ function DashBoardCtrl(
       category_id: category.category_id
     });
   };
+  $scope.openAboutUs = function() {
+    var opts = {
+      toolbar: "no",
+      location: "no",
+      useWideViewPort: "no",
+      enableViewportScale: "yes"
+    };
+    $window.open("http://arcmall.com/about_us", "_blank", opts);
+  };
+  $scope.openPrivacyPolicy = function() {
+    var opts = {
+      toolbar: "no",
+      location: "no",
+      useWideViewPort: "no",
+      enableViewportScale: "yes"
+    };
+    $window.open("http://arcmall.com/privacy", "_blank", opts);
+  };
   $scope.goToSearch = function() {
     $state.go("item-search");
   };
-
+  $scope.openTermsAndCondition = function() {
+    var opts = {
+      toolbar: "no",
+      location: "no",
+      useWideViewPort: "no",
+      enableViewportScale: "yes"
+    };
+    $window.open("http://arcmall.com/terms", "_blank", opts);
+  };
   $scope.openCategories = function() {
     $scope.close();
-    $state.go("categories");
+    $state.go("categoriesall");
   };
   $scope.openWishList = function() {
     $scope.close();
@@ -361,7 +405,9 @@ function DashBoardCtrl(
     localStorage.setItem("authResponse", null);
     $rootScope.loginStatus = false;
     $rootScope.authResponse = null;
-    $state.go("authSignIn");
+    $window.localStorage.setItem("logged", false);
+    $window.localStorage.setItem("role", "3");
+    $state.go("signin");
   };
 
   init();

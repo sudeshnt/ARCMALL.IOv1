@@ -5,15 +5,15 @@
         <i class="ion-android-arrow-back font-L white"></i>
       </a>
     </div>
-    <h4 class="white left-title">{{'CHECKOUT_STEP_ONE' | translate}}</h4>
+    <h4 class="white center-title">{{'STEP 1' | translate}}</h4>
     <div class="absolute cart-icon-wrapper">
 
     </div>
   </div>
 </ion-header-bar>
-<ion-view>
+<ion-view >
   <form name="personalInfoForm" novalidate>
-      <ion-content  class="has-header-md" style="background: #ffffff !important;">
+      <ion-content  class="has-header-md" style="background: #ffffff !important; margin-bottom:80px;">
         <!--<ion-list>-->
                 <div class="item item-divider divider-topic">Your Personal Details</div>
                 <div class="row no-padding item item-input item-floating-label item-double-col checkout-double-col">
@@ -32,6 +32,7 @@
                         </span>
                     </label>
                 </div>
+                <hr>
                 <label class="item item-input item-floating-label checkout-label separate-border">
                     <span class="input-label">Email <span class="error-warning"> *</span></span>
                     <input type="email" ng-model="personal_details.email" placeholder="Email *" name="email" required>
@@ -40,6 +41,7 @@
                       <span class="error-warning" data-ng-show="personalInfoForm.email.$error.email">Enter a valid Email.</span>
                     </span>
                 </label>
+                <hr>
                 <label class="item item-input item-floating-label checkout-label separate-border">
                     <span class="input-label">Telephone <span class="error-warning"> *</span></span>
                     <input type="tel" ng-model="personal_details.telephone" placeholder="Telephone *" name="telephone" required>
@@ -48,9 +50,9 @@
                     </span>
                 </label>
 
-                <div class="item item-divider">
-                    <span class="divider-topic">Your Address</span>
-                </div>
+                <hr>
+
+                <div class="item item-divider divider-topic">Your Address</div>
 
                 <label class="item item-input item-floating-label checkout-label separate-border">
                     <span class="input-label">Address Line 1 <span class="error-warning"> *</span></span>
@@ -59,6 +61,7 @@
                       <span class="error-warning" data-ng-show="personalInfoForm.address_1.$error.required">This field is required.</span>
                     </span>
                 </label>
+                <hr>
                 <label class="item item-input item-floating-label checkout-label separate-border">
                     <span class="input-label">Address Line 2 <span class="error-warning"> *</span></span>
                     <input type="text"  ng-model="personal_details.address_2" name="address_2" placeholder="Address Line 2 *">
@@ -66,7 +69,7 @@
                       <span class="error-warning" data-ng-show="personalInfoForm.address_2.$error.required">This field is required.</span>
                     </span>
                 </label>
-
+                <hr>
                 <div class="row zero-padding no-padding item item-input item-floating-label item-double-col checkout-double-col separate-border">
                     <label class="item item-input item-floating-label col-50 checkout-label">
                         <span class="input-label">City <span class="error-warning"> *</span></span>
@@ -83,11 +86,12 @@
                         </span>
                     </label>
                 </div>
+                <hr>
                 <div class="row no-padding item item-double-col checkout-double-col ">
                     <div class="col-50">
                       <!--<div class="input-label">Country <span class="error-warning"> *</span></div>-->
                       <!--<label class="item item-input item-select col-50 checkout-label">-->
-                        <md-select ng-model="personal_details.country_id" ng-change="countryChanged()" name="country_id" placeholder="Country" class="md-no-underline category-select" style="padding-left: 15px;" required>
+                        <md-select ng-model="personal_details.country_id" ng-change="countryChanged()" name="country_id" placeholder="Country" class=" form-field md-no-underline category-select" style="padding-left: 15px;" required>
                           <md-option ng-repeat="country in countries track by $index" value="{{::country.country_id}}">{{::country.name}}</md-option>
                         </md-select>
                         <!--<select ng-model="personalInfoForm.country_id" ng-change="countryChanged()" name="country_id" placeholder="Country" required>-->
@@ -97,7 +101,7 @@
                     </div>
                     <div class="col-50">
                       <!--<div class="input-label">Region <span class="error-warning"> *</span></div>-->
-                      <md-select ng-model="personal_details.zone_id" ng-change="countryChanged()" name="zone_id" placeholder="Region" class="md-no-underline category-select" style="padding-left: 15px;" required>
+                      <md-select ng-model="personal_details.zone_id" ng-change="countryChanged()" name="zone_id" placeholder="Region" class=" form-field md-no-underline category-select" style="padding-left: 15px;" required>
                         <md-option ng-repeat="zone in zones track by $index" value="{{::zone.zone_id}}">{{::zone.name}}</md-option>
                       </md-select>
                       <!--<label class="item item-input item-select col-50 checkout-label">-->
@@ -107,19 +111,39 @@
                       <!--</label>-->
                     </div>
                 </div>
+                <!--<hr>
+
+                <ion-checkbox class="checkbox-square small form-field" data-ng-click="checkbox()">My delivery and billing addresses are the same</ion-checkbox>-->
 
       <!--</ion-list>-->
     </ion-content>
 
-    <ion-footer-bar align-title="left" ng-class="'bar-positive'">
-    <!--<ion-footer-bar align-title="left" ng-class="{'bar-assertive':forms.checkoutForm.$invalid, 'bar-positive':forms.checkoutForm.$valid}">-->
+    <!-- <ion-footer-bar align-title="left" ng-class="'bar-positive'">
         <h2 class="title">{{cart.total}}</h2>
         <div class="buttons">
             <a class="button" data-ng-click="personalInfoForm.$setSubmitted(); personalInfoForm.$valid && nextStep()">NEXT</a>
-            <!--<a class="button" ng-click="personalInfoForm.$submitted = true; personalInfoForm.$valid && nextStep()">NEXT</a>-->
         </div>
-    </ion-footer-bar>
+    </ion-footer-bar> -->
+
+    <div class="bar bar-footer zero-padding" style="height: 80px;">
+        <div class="" style="width:100%;">
+          <div class="full-width" style="margin-top: 5px;">
+      
+            <div class="row padding-top-zero">
+              
+                <div class="bottom-button" style="margin-top: 0px;">
+                    <a class="button button-outline button-positive visit-store-btn size-margin-auto" data-ng-click="personalInfoForm.$setSubmitted(); personalInfoForm.$valid && nextStep()">
+                      {{"Next" | translate}}
+                    </a>
+                  </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
   </form>
 
 </ion-view>
 </ion-view>
+
+

@@ -16,6 +16,7 @@ function InitialCtrl($scope,$rootScope,$state,$ionicHistory,$ionicLoading,server
     // init loginStatus
     if(!$rootScope.loginStatus || $rootScope.authResponse==null  || $rootScope.authResponse=='null' || $rootScope.authResponse=='' || $rootScope.authResponse==undefined || $rootScope.authResponse=='undefined'){
       var localAuthStatus = localStorage.getItem('loginStatus');
+      //console.log(localAuthStatus);
       if(localAuthStatus==null || localAuthStatus=='' || localAuthStatus==undefined){
         $scope.logOut(event,toState);
       }else if(JSON.parse(localAuthStatus)==true){

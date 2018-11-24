@@ -56,7 +56,9 @@ function OrderHistoryCtrl($scope,$state,$rootScope,$mdSidenav,$log,serverConfig,
 
   function initOrderHistory(){
     var extended_url = '/order_history';
-    var reqObj = {};
+    var reqObj = {
+      "affiliate_id":Number($rootScope.authResponse.customer_id)
+    };
     var config = {
       headers:{
         'Content-Type': 'application/x-www-form-urlencoded'
@@ -65,6 +67,7 @@ function OrderHistoryCtrl($scope,$state,$rootScope,$mdSidenav,$log,serverConfig,
     httpService.postRequest(serverConfig.clientAPI,extended_url, $httpParamSerializer(reqObj),config).then(function(response){
       if(response.status === 200){
         $scope.orders = response.data.orders;
+        console.log(response);
       }
     });
   }

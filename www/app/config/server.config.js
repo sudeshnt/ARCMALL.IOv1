@@ -6,7 +6,7 @@
 
       clientAPI: {
         serviceName: 'Client API Services',
-        serviceUrl: 'http://arcmall.alofatechlabs.com',
+        serviceUrl: 'http://arcmall.com',
         // serviceUrl: 'https://saasthara.com',
         port:'',
         base_url: '?route=api2'
@@ -23,6 +23,14 @@
         serviceUrl: 'https://graph.facebook.com',
         port:'',
         base_url: ''
+      },
+      payPal: {
+        payPalSandboxId: 'AdEr9SPrCsv5dnImSGh__Ma7VwiB6bcNVuwoWxpLdNsyrK9YkZtwTW8CPmVTZKmBpCgivsR212gVABhn',
+        payPalProductionId: '',
+        payPalEnv: 'PayPalEnvironmentSandbox',
+        payPalShopName: 'Arcmall Shop',
+        payPalMerchantPrivacyPolicyURL: 'http://arcmall.com/privacy',
+        payPalMerchantUserAgreementURL: 'http://arcmall.com/terms'
       }
 
     });

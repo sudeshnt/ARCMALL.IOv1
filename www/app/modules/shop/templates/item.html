@@ -85,11 +85,14 @@
         <!--</div>-->
     <!--</div>-->
     <div class="row">
-      <div class="tabs-secondary tabs-icon-left white-tabs" style="padding: 10px 0 0 10px;">
-        <h2 class="align-left" ng-bind-html="product.heading_title"></h2>
-        <h3 class="align-left new-price" ng-bind-html="product.price"></h3>
-        <strike><h3 class="align-left old-price" ng-bind-html="product.price"></h3></strike>
-        <div class="row discount-review align-right zero-padding" >
+      <div class="col">
+        <div class="tabs-secondary tabs-icon-left white-tabs" style="padding: 10px 0 0 10px;">
+          <h2 class="align-left" ng-bind-html="product.heading_title"></h2>
+          <h3 class="align-left new-price" ng-bind-html="product.price"></h3>
+          <strike><h3 class="align-left old-price" ng-bind-html="product.price"></h3></strike>
+        </div>
+      </div>
+      <div class="col discount-review align-right zero-padding" >
           <div class="row chip capital discount-chip">60% Off</div>
           <div style="padding-top: 20px;text-align: right;">
             51 Reviews<br>
@@ -99,7 +102,6 @@
             <i class="star font-XM ion-android-star-outline star-disabled"></i>
             <i class="star font-XM ion-android-star-outline star-disabled"></i>
           </div>
-        </div>
       </div>
     </div>
     <div class="product-details-topic zero-padding" style="border: none;">
@@ -195,13 +197,13 @@
         <div class="full-width align-center"><a ng-click="" class="size-margin-auto">View More</a></div>
       </p>
     </div>
-    <div class="product-details-topic zero-padding">
+    <!-- <div class="product-details-topic zero-padding">
       <h3 class="capital full-width">Shipping</h3>
       <p style="margin-top:15px">
         <span style="color:#a56a6c">$4.50</span> - To Sri Lanka via China Post
         <a ng-click="" style="float:right">change</a>
       </p>
-    </div>
+    </div> -->
     <div class="product-details-topic zero-padding">
       <h3 class="capital full-width">
         <img ng-src="app/modules/shop/img/return_policy.png">Return Policy

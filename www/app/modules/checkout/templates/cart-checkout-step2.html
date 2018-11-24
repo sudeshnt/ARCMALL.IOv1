@@ -1,3 +1,6 @@
+<div id="overlay">
+<div class="spinner-load"></div>
+</div>
 <ion-header-bar class="bar bar-header header-md bar-darker">
   <div style="width: 100%; display: inherit; margin-top: 0px !important;" >
     <div class="absolute back-icon-wrapper">
@@ -5,38 +8,57 @@
         <i class="ion-android-arrow-back font-L white"></i>
       </a>
     </div>
-    <h4 class="white left-title">{{'CHECKOUT_STEP_TWO' | translate}}</h4>
+    <h4 class="white center-title">{{'Step 2' | translate}}</h4>
     <div class="absolute cart-icon-wrapper">
     </div>
   </div>
 </ion-header-bar>
+
 <ion-view cache-view="false">
-    <ion-content class="has-header-md">
+    <ion-content class="has-header-md" style="margin-bottom:80px;">
+        
         <ion-list>
             <form name="forms.checkoutForm" novalidate>
                 <div class="item item-divider divider-topic">Delivery Method</div>
                 <ion-radio ng-repeat="method in shippingMethods" name="shipping_method" ng-change="shippingMethodChanged()" ng-model="paymentAndShipping.shipping_method" ng-value="'{{method}}'" ng-required="true">{{method.code}}{{method.title}}</ion-radio>
 
-                <div class="item item-divider divider-topic">Payment Method</div>
-                <ion-radio ng-repeat="method in paymentMethods" name="payment_method" ng-change="paymentMethodChanged()" ng-model="paymentAndShipping.payment_method" ng-value="'{{method.code}}'" ng-required="true">{{method.title}}</ion-radio>
+                <!-- <div class="item item-divider divider-topic">Payment Method</div>
+                <ion-radio ng-repeat="method in paymentMethods" name="payment_method" ng-change="paymentMethodChanged()" ng-model="paymentAndShipping.payment_method" ng-value="'{{method.code}}'" ng-required="true">{{method.title}}</ion-radio> -->
 
                 <div class="item item-divider divider-topic">Additional Comments/Instructions </div>
               <label class="item item-input text-xmd">
-                <i class="icon ion-document-text placeholder-icon"></i>
+                <!-- <i class="icon ion-document-text placeholder-icon"></i> -->
                 <input type="text" placeholder="{{'COMMENTS' | translate}}" ng-model="personal_info.comment">
               </label>
+              
                 <!--<label class="item item-input item-floating-label">-->
                     <!--<span class="input-label" i18n="cart.comments"></span>-->
                     <!--<textarea data-i18n-attr="{placeholder: 'cart.comments'}" ng-model="paymentAndShipping.comment" name="comment"></textarea>-->
                 <!--</label>-->
             </form>
         </ion-list>
+        <hr>
     </ion-content>
 
-    <ion-footer-bar align-title="left" ng-class="'bar-positive'">
+    <!-- <ion-footer-bar align-title="left" ng-class="'bar-positive'">
         <h2 class="title">{{cart.total}}</h2>
         <div class="buttons">
             <a class="button" ng-click="nextStep()">NEXT</a>
         </div>
-    </ion-footer-bar>
+    </ion-footer-bar> -->
+    <div class="bar bar-footer zero-padding" style="height: 80px;">
+            <div class="" style="width:100%;">
+              <div class="full-width" style="margin-top: 5px;">
+          
+                <div class="row padding-top-zero">
+                  
+                    <div class="bottom-button" style="margin-top: 0px; background-image:url('img/paypal-logo.png'); background-position: left; background-size: contain; background-repeat: no-repeat;">
+                        <a class="button button-outline button-positive visit-store-btn size-margin-auto" ng-click="nextStep()">
+                          {{"Pay with paypal" | translate}}
+                        </a>
+                      </div>
+                </div>
+              </div>
+            </div>
+          </div>
 </ion-view>

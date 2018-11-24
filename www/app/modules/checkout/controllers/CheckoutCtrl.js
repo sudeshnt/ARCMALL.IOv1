@@ -6,13 +6,63 @@ CheckoutCtrl.$inject = ['$scope','$state','$rootScope','serverConfig','httpServi
 
 function CheckoutCtrl($scope,$state,$rootScope,serverConfig,httpService,$httpParamSerializer,$http) {
 
-  $scope.personal_details = {};
+  //console.log($rootScope.authResponse);
+
+  if($rootScope.authResponse){
+    $scope.personal_details = $rootScope.authResponse;
+  }else{
+    $scope.personal_details = {};
+  }
+
+  var checked = 1 ;
+
+  $scope.checkbox = function (){
+    checked = 1;
+  }
 
   $scope.nextStep = function (){
+    //console.log(checked);
+    if(checked){
+    addCustomer();
     addAddress();
     setShippingAddress();
     setPaymentAddress();
     $state.go('checkout-step-2',{'personal_info':$scope.personal_details})
+    }
+    
+  }
+
+  //added by Nisal
+  function addCustomer() {
+    var extended_url = '/customer';
+
+    if($rootScope.authResponse){
+      var reqObj = {
+        "firstname":$scope.personal_details.firstname,
+        "lastname":$scope.personal_details.lastname,
+        "email":$scope.personal_details.email,
+        "telephone":$scope.personal_details.telephone,
+        "customer_id":Number($rootScope.authResponse.customer_id),
+      };
+    }else{
+      var reqObj = {
+        "firstname":$scope.personal_details.firstname,
+        "lastname":$scope.personal_details.lastname,
+        "email":$scope.personal_details.email,
+        "telephone":$scope.personal_details.telephone,
+      };
+    }
+    
+    var config = {
+      headers:{
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    };
+    httpService.postRequest(serverConfig.clientAPI,extended_url, $httpParamSerializer(reqObj),config).then(function(response){
+      if(response.status === 200){
+        console.log(response);
+      }
+    });
   }
 
   function addAddress() {

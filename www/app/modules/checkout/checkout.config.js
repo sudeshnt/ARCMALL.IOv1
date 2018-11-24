@@ -28,6 +28,18 @@ checkoutModule.config(function config($stateProvider,$urlRouterProvider) {
       url: '/checkout-step-3',
       templateUrl: 'app/modules/checkout/templates/cart-checkout-step3.html',
       controller: 'CheckoutStep3Ctrl',
-      params: {'personal_info':null}
+      params: {'personal_info':null,'payment_and_shipping':null}
+    })
+    .state('success', {
+      cache:false,
+      url: '/success',
+      templateUrl: 'app/modules/checkout/templates/success.html',
+      controller: 'CartCtrl'
+    })
+    .state('error', {
+      cache:false,
+      url: '/error',
+      templateUrl: 'app/modules/checkout/templates/fail.html',
+      controller: 'CartCtrl'
     })
 });

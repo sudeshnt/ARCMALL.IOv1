@@ -6,38 +6,44 @@
         <i class="ion-android-arrow-back font-L white"></i>
       </a>
     </div>
-    <h4 class="white left-title">{{'BILLING_DETAILS' | translate}}</h4>
+    <h4 class="white center-title">{{'Cart' | translate}}</h4>
     <div class="absolute cart-icon-wrapper">
-
+      
     </div>
   </div>
 </ion-header-bar>
-<div class="bar bar-subheader">
-  <h2 class="title white">{{"YOUR_ORDER" | translate}}</h2>
-</div>
+
+
 <ion-view>
-  <ion-content class="has-subheader">
+  
+  <ion-content class="has-subheader" style="margin-bottom:200px;">
+     
     <!--<md-button flex="50" class="md-primary md-raised" ng-click="showListBottomSheet()">Show as List</md-button>-->
     <ion-list show-delete="false" can-swipe="true"  class="list card cart-item" style="margin:0;">
       <ion-item class="card item item-avatar history-item" ng-repeat="item in cart.products">
+         
       <!--<ion-item class="card item item-avatar history-item" ng-repeat="item in cart.itemList">-->
         <!--<div class="circle" ng-style="{'background-image':'url(\'{{item.thumb}}\')'}">-->
         <!--</div>-->
-        <img  class="circle" ng-src="{{item.thumb}}">
+        <img ng-src="{{item.thumb}}">
         <h2 class="cart-item-title" ng-bind-html="item.name"></h2>
         <p ng-bind-html="item.model"></p>
+        <p class="small">{{"SIZE" | translate}} : 8</p>
+        <br>
         <!--<p ng-bind-html="item.description"></p>-->
         <span class="history-price" ng-bind-html="item.total"></span>
+        <p>Quantity</p>
         <div class="row qty-spinner">
+          
           <input type='button' value='-' class='qtyminus' ng-click="updateCart(item,'minus')"/>
           <input type='number' name='quantity' ng-model="item.quantity" class='qty' />
           <input type='button' value='+' class='qtyplus' ng-click="updateCart(item,'plus')"/>
         </div>
         <!--<a class="item-close-btn ion-close-round"></a>-->
-        <div class="chip capital">{{"SIZE" | translate}} : 8</div>
-        <div class="chip align-center">x {{item.quantity}}</div>
-
-        <ion-option-button class="button-assertive icon ion-trash-a" ng-click="removeItemFromCart(item.cart_id);"></ion-option-button>
+        <!-- <div class="chip capital">{{"SIZE" | translate}} : 8</div> -->
+        <!-- <div class="chip align-center">x {{item.quantity}}</div> -->
+        <a class="item-close-btn" ng-click="removeItemFromCart(item.cart_id);">&times;</a>
+        <!-- <input type='button' value='X' class="history-price" ng-click="removeItemFromCart(item.cart_id);"> -->
       </ion-item>
 
       <!--<ion-item  class="card item item-avatar history-item">-->
@@ -65,31 +71,37 @@
       <!--</ion-item>-->
     </ion-list>
 
-    <ion-item class="card item">
-      <!--<div class="row">-->
-        <!--<div class="col capital" style="font-size: 15px;font-weight:700;padding: 12px 0 0 0px;">-->
-          <!--{{"SHIPPING_AND_HANDLING" | translate}}-->
-        <!--</div>-->
-        <!--<div class="col align-right">-->
-          <!--<div class="chip success capital" style="width:auto;color: white;">FREE SHIPPING</div>-->
-        <!--</div>-->
-      <!--</div>-->
-      <hr>
-      <div class="row" ng-repeat="total in cart.totals">
-        <div class="col capital" style="font-size: 15px;font-weight:700;padding: 5px 0 15px 0px;">
-          {{total.title}}
-        </div>
-        <div class="col align-right bill-price">
-          <span>{{total.text}}</span>
-        </div>
-      </div>
-    </ion-item>
-
-    <div class="bottom-button">
-      <a class="button custom-height-button button-sm square button-block button-black capital" ng-href="#/checkout-step-1">
-        {{"CHECKOUT" | translate}}
-      </a>
-    </div>
+    
 
   </ion-content>
 </ion-view>
+
+<div class="bar bar-footer zero-padding" style="height: 200px;">
+  <div class="" style="width:100%;">
+    <div class="full-width" style="margin-top: 5px;">
+
+        <ion-item class="card item" style="border-color: rgba(255,255,255,0); margin-bottom: 0px;">
+     
+            <div class="row" ng-repeat="total in cart.totals">
+              <div class="col capital" style="font-size: 15px;font-weight:600;padding: 5px 0 15px 0px;">
+                {{total.title}}
+              </div>
+              <div class="col align-right bill-price">
+                <span>{{total.text}}</span>
+                
+              </div>
+            </div>
+          </ion-item>
+
+
+      <div class="row padding-top-zero">
+        
+          <div class="bottom-button">
+              <a class="button button-outline button-positive visit-store-btn size-margin-auto" style="margin-top: -10px;" ng-href="#/checkout-step-1">
+                {{"CHECKOUT" | translate}}
+              </a>
+            </div>
+      </div>
+    </div>
+  </div>
+</div>

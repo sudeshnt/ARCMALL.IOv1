@@ -3,27 +3,27 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-var arcMall = angular.module('arcMall', [
-  'ionic',
-  'ngMaterial',
-  'pascalprecht.translate',
-  'lang_en',
-  'modules',
-  'ngCordova',
+var arcMall = angular.module("arcMall", [
+  "ionic",
+  "ngMaterial",
+  "pascalprecht.translate",
+  "lang_en",
+  "modules",
+  "ngCordova",
   // 'tabSlideBox',
-  'config.module',
+  "config.module"
   // 'googleplus'
   // 'faceboook'
 ]);
 
 // translation config
-arcMall.config(function ($translateProvider) {
+arcMall.config(function($translateProvider) {
   $translateProvider.preferredLanguage("en");
   $translateProvider.forceAsyncReload(true);
   $translateProvider.fallbackLanguage("en");
 });
 
-arcMall.config(function ($httpProvider) {
+arcMall.config(function($httpProvider) {
   $httpProvider.defaults.withCredentials = true;
 });
 
@@ -35,8 +35,8 @@ arcMall.config(function ($httpProvider) {
 //   });
 // }]);
 
-arcMall.run(function ($ionicPlatform) {
-  $ionicPlatform.ready(function () {
+arcMall.run(function($ionicPlatform) {
+  $ionicPlatform.ready(function() {
     if (window.cordova && window.cordova.plugins.Keyboard) {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
@@ -50,7 +50,7 @@ arcMall.run(function ($ionicPlatform) {
     if (window.StatusBar) {
       this.statusBar.overlaysWebView(false);
       this.statusBar.styleLightContent();
-      window.StatusBar.styleHex('#000000');
+      window.StatusBar.styleHex("#000000");
     }
   });
 });

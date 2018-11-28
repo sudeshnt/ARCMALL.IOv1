@@ -68,10 +68,15 @@ function SignInCtrl(
           $window.localStorage.setItem("logged", true);
           var authResponse = response.data.customer_info;
           console.log("role" + response.data.customer_info.customer_group_id);
-          $window.localStorage.setItem(
+          localStorage.setItem(
             "role",
             response.data.customer_info.customer_group_id
           );
+          localStorage.setItem(
+            "customer_id",
+            response.data.customer_info.customer_id
+          );
+          // $rootScope.authResponse = response.data.customer_info;
           $state.go("dashboard", {
             userRole: "1"
           });

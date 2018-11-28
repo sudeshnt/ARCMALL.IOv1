@@ -15,6 +15,7 @@
             ng-model="search_text"
             type="text"
             placeholder="Search..."
+            ng-change="bySearch(search_text)"
             focus-me
             my-enter="search_model(search_text)"
             autofocus
@@ -37,9 +38,11 @@
       <!-- <ion-content class="has-header-md-banner"  scroll="false"> -->
 
       <ion-list ng-if=" search_text != '' " class=" search-barr card-name">
-        <ion-item ng-repeat="item in arry_item | filter:search_text">
-          {{ item }}
-        </ion-item>
+        <ion-item ng-repeat="item in arry_item ">
+          <div ng-click="openItemDetails(item.product_id)">
+            {{ item.name }}
+          </div></ion-item
+        >
       </ion-list>
       <ion-slide
         ng-if=" search_text == '' "
@@ -133,7 +136,7 @@
                   style="padding: 5px"
                   ng-click="goTo(allCategories[3])"
                 >
-                  <img ng-src="app/modules/dashboard/img/2.png" width="100%" />
+                  <img ng-src="{{ allCategories[3].image }}" width="100%" />
                   <div class="overlay">{{ allCategories[3].name }}</div>
                 </button>
                 <button
@@ -141,7 +144,7 @@
                   style="padding: 5px"
                   ng-click="goTo(allCategories[4])"
                 >
-                  <img ng-src="app/modules/dashboard/img/3.png" width="100%" />
+                  <img ng-src="{{ allCategories[3].image }}" width="100%" />
                   <div class="overlay">{{ allCategories[4].name }}</div>
                 </button>
               </div>
@@ -151,15 +154,15 @@
                   style="padding: 5px"
                   ng-click="goTo(allCategories[0])"
                 >
-                  <img ng-src="app/modules/dashboard/img/4.png" width="100%" />
-                  <div class="overlay">{{ allCategories[3].name }}</div>
+                  <img ng-src="{{ allCategories[3].image }}" width="100%" />
+                  <div class="overlay">{{ allCategories[0].name }}</div>
                 </button>
                 <button
                   class="column"
                   style="padding: 5px"
                   ng-click="goTo(allCategories[1])"
                 >
-                  <img ng-src="app/modules/dashboard/img/5.png" width="100%" />
+                  <img ng-src="{{ allCategories[3].image }}" width="100%" />
                   <div class="overlay">{{ allCategories[1].name }}</div>
                 </button>
               </div>
@@ -169,7 +172,7 @@
                   style="padding: 5px"
                   ng-click="goTo(allCategories[6])"
                 >
-                  <img ng-src="app/modules/dashboard/img/6.png" width="100%" />
+                  <img ng-src="{{ allCategories[3].image }}" width="100%" />
                   <div class="overlay">{{ allCategories[6].name }}</div>
                 </button>
                 <button class="column" style="padding: 5px">
@@ -315,7 +318,7 @@
           <md-list-item
             class="md-3-line"
             style="height: 50px; min-height:0px; padding-top: 10px;"
-            ng-show="authResponse.ispartner=='true'"
+            ng-show="role =='2'"
           >
             <div
               class="md-list-item-text zero-margin"

@@ -48,7 +48,7 @@ function DashBoardCtrl(
   $scope.clickedValueModel = "";
   $scope.removedValueModel = "";
   $scope.search_text = "";
-  $scope.arry_item = ["item 1", "item 2", "item3"];
+
   $scope.allImages = [
     "app/modules/dashboard/img/1.png",
     "app/modules/dashboard/img/1.png",
@@ -56,11 +56,12 @@ function DashBoardCtrl(
   ];
   console.log($scope.search_text);
   console.log("role-->" + $window.localStorage.getItem("role"));
-  $scope.role = $window.localStorage.getItem("role");
-  $scope.getTestItems = function(query) {
+  $scope.role = localStorage.getItem("role");
+  $scope.bySearch = function(query) {
     if (query) {
       $scope.user = {
-        search: query
+        search: query,
+        limit: 10
       };
 
       var extended_url = "/product/search";
@@ -82,7 +83,8 @@ function DashBoardCtrl(
             var authResponse = response.data.products;
 
             console.log(authResponse);
-            $state.go("dashboard");
+            $scope.arry_item = authResponse;
+            // $state.go("dashboard");
             // $state.go('home.new');
           } else {
             $scope.error = response.error_warning;
@@ -112,6 +114,12 @@ function DashBoardCtrl(
     return {
       items: []
     };
+  };
+
+  $scope.goToItems = function(category) {
+    $state.go("item-list", {
+      category_id: category.category_id
+    });
   };
 
   $scope.goTo = function(category) {
@@ -341,11 +349,7 @@ function DashBoardCtrl(
   $scope.goHome = function() {
     $state.go("home.new");
   };
-  $scope.goToItems = function(category) {
-    $state.go("item-list", {
-      category_id: category.category_id
-    });
-  };
+
   $scope.openAboutUs = function() {
     var opts = {
       toolbar: "no",
@@ -413,32 +417,11 @@ function DashBoardCtrl(
   init();
 
   function init() {
+    console.log("run--->");
     var localCategories = localStorage.getItem("cat_tabs");
     getAllCategories();
     getBestSeller();
     getFeatured();
-    // if (
-    //   localCategories != null &&
-    //   localCategories != undefined &&
-    //   localCategories != ""
-    // ) {
-    //   var tempTabs = JSON.parse(localCategories);
-    //   if (tempTabs != null && tempTabs != undefined && tempTabs != "") {
-    //     if (
-    //       tempTabs.categories.length > 0 &&
-    //       Date.parse(new Date()) - tempTabs.last_saved_at <
-    //         refresh_after * 60 * 1000
-    //     ) {
-    //       initTabs(tempTabs.categories);
-    //     } else {
-    //       getAllCategories();
-    //     }
-    //   } else {
-    //     getAllCategories();
-    //   }
-    // } else {
-    //   getAllCategories();
-    // }
   }
 
   //new slider

@@ -14,7 +14,8 @@ ItemCtrl.$inject = [
   "cartSev",
   "$mdBottomSheet",
   "$timeout",
-  "publicFunc"
+  "publicFunc",
+  "$ionicHistory"
 ];
 
 function ItemCtrl(
@@ -29,7 +30,8 @@ function ItemCtrl(
   cartSev,
   $mdBottomSheet,
   $timeout,
-  publicFunc
+  publicFunc,
+  $ionicHistory
 ) {
   $scope.cartSev = cartSev;
 
@@ -119,7 +121,7 @@ function ItemCtrl(
       });
   }
   $scope.back = function() {
-    $state.go("dashboard");
+    $ionicHistory.goBack();
   };
 
   $scope.goToItems = function() {

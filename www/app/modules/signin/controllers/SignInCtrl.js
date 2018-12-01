@@ -68,13 +68,30 @@ function SignInCtrl(
           $window.localStorage.setItem("logged", true);
           var authResponse = response.data.customer_info;
           console.log("role" + response.data.customer_info.customer_group_id);
-          localStorage.setItem(
+          $window.localStorage.setItem(
             "role",
             response.data.customer_info.customer_group_id
           );
-          localStorage.setItem(
+          $window.localStorage.setItem(
             "customer_id",
             response.data.customer_info.customer_id
+          );
+
+          $window.localStorage.setItem(
+            "firstname",
+            response.data.customer_info.firstname
+          );
+          $window.localStorage.setItem(
+            "lastname",
+            response.data.customer_info.lastname
+          );
+          $window.localStorage.setItem(
+            "email",
+            response.data.customer_info.email
+          );
+          $window.localStorage.setItem(
+            "telephone",
+            response.data.customer_info.telephone
           );
           // $rootScope.authResponse = response.data.customer_info;
           $state.go("dashboard", {

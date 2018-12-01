@@ -7,13 +7,19 @@ MyProfileCtrl.$inject = [
   "$state",
   "$rootScope",
   "$mdSidenav",
-  "$log"
+  "$log",
+  "$window"
 ];
 
-function MyProfileCtrl($scope, $state, $rootScope, $mdSidenav, $log) {
+function MyProfileCtrl($scope, $state, $rootScope, $mdSidenav, $log, $window) {
   $scope.edit = false;
 
   $scope.userProfile = angular.copy($rootScope.authResponse);
+
+  $scope.firstname = $window.localStorage.getItem("firstname");
+  $scope.lastname = $window.localStorage.getItem("lastname");
+  $scope.email = $window.localStorage.getItem("email");
+  $scope.telephone = $window.localStorage.getItem("telephone");
 
   $scope.saveProfile = function() {
     $scope.edit = false;

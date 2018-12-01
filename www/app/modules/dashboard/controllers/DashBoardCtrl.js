@@ -56,7 +56,7 @@ function DashBoardCtrl(
   ];
   console.log($scope.search_text);
   console.log("role-->" + $window.localStorage.getItem("role"));
-  $scope.role = localStorage.getItem("role");
+  $scope.role = $window.localStorage.getItem("role");
   $scope.bySearch = function(query) {
     if (query) {
       $scope.user = {
@@ -191,7 +191,7 @@ function DashBoardCtrl(
   };
 
   function getAllCategories() {
-    var extended_url = "/category/all";
+    var extended_url = "/category/home";
     var req = {};
     httpService
       .getRequest(serverConfig.clientAPI, extended_url, req, {})
@@ -199,8 +199,9 @@ function DashBoardCtrl(
         if (response.status === 200 && !response.error_warning) {
           console.log(response.data);
 
-          $scope.allCategories = response.data.categories[0].categories;
-          console.log($scope.allCategories);
+          $scope.allCategories = response.data.categories;
+          console.log("all categories" + $scope.allCategories);
+          console.log("all categories name" + $scope.allCategories[0].name);
 
           initTabs(response.data.categories);
         } else {

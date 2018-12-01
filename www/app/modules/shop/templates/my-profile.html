@@ -41,9 +41,12 @@
         <label class="profile-field-lable" style="color:aliceblue"
           >{{ "FIRST_NAME" | translate }} :</label
         >
-        <span class="profile-field-value" ng-if="!edit">{{
-          userProfile.firstname != "" ? userProfile.firstname : "N/A"
-        }}</span>
+        <span
+          class="profile-field-value"
+          ng-if="!edit"
+          style="font-weight: bold;  color:aliceblue"
+          >{{ firstname != "" ? firstname : "N/A" }}</span
+        >
         <md-input-container ng-if="edit" class="zero-margin profile-input">
           <label>{{ "FIRST_NAME" | translate }}</label>
           <input ng-model="userProfile.firstname" />
@@ -53,9 +56,12 @@
         <label class="profile-field-lable" style="color:aliceblue"
           >{{ "LAST_NAME" | translate }} :</label
         >
-        <span class="profile-field-value" ng-if="!edit">{{
-          userProfileProfile.lastname != "" ? userProfile.lastname : "N/A"
-        }}</span>
+        <span
+          class="profile-field-value"
+          ng-if="!edit"
+          style="font-weight: bold;  color:aliceblue"
+          >{{ lastname != "" ? lastname : "N/A" }}</span
+        >
         <md-input-container ng-if="edit" class="zero-margin profile-input">
           <label>{{ "LAST_NAME" | translate }}</label>
           <input ng-model="userProfile.lastname" />
@@ -65,9 +71,12 @@
         <label class="profile-field-lable" style="color:aliceblue"
           >{{ "EMAIL" | translate }} :</label
         >
-        <span class="profile-field-value" ng-if="!edit">{{
-          userProfile.email != "" ? userProfile.email : "N/A"
-        }}</span>
+        <span
+          class="profile-field-value"
+          ng-if="!edit"
+          style="font-weight: bold;  color:aliceblue"
+          >{{ email != "" ? email : "N/A" }}</span
+        >
         <md-input-container ng-if="edit" class="zero-margin profile-input">
           <label>{{ "EMAIL" | translate }}</label>
           <input ng-model="userProfile.email" />
@@ -77,9 +86,12 @@
         <label class="profile-field-lable" style="color:aliceblue"
           >{{ "MOBILE" | translate }} :</label
         >
-        <span class="profile-field-value" ng-if="!edit">{{
-          userProfile.telephone != "" ? userProfile.telephone : "N/A"
-        }}</span>
+        <span
+          class="profile-field-value"
+          ng-if="!edit"
+          style="font-weight: bold;  color:aliceblue"
+          >{{ telephone != "" ? telephone : "N/A" }}</span
+        >
         <md-input-container ng-if="edit" class="zero-margin profile-input">
           <label>{{ "MOBILE" | translate }}</label>
           <input ng-model="userProfile.telephone" />

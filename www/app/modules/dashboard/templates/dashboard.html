@@ -156,7 +156,11 @@
         <img ng-src="{{ allCategories[4].image }}" width="100%" />
         <div class="overlay">{{ allCategories[4].name }}</div>
       </button>
-      <button class="column" style="padding: 5px">
+      <button
+        class="column"
+        style="padding: 5px"
+        ng-click="goTo(allCategories[5])"
+      >
         <img ng-src="{{ allCategories[5].image }}" width="100%" />
         <div class="overlay">{{ allCategories[5].name }}</div>
       </button>

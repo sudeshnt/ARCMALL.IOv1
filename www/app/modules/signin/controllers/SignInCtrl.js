@@ -10,7 +10,8 @@ SignInCtrl.$inject = [
   "serverConfig",
   "$httpParamSerializer",
   "$window",
-  "sharedProperties"
+  "sharedProperties",
+  "$ionicHistory"
 ];
 
 function SignInCtrl(
@@ -21,7 +22,8 @@ function SignInCtrl(
   serverConfig,
   $httpParamSerializer,
   $window,
-  sharedProperties
+  sharedProperties,
+  $ionicHistory
 ) {
   $scope.goback = function() {
     $state.go("dashboard");
@@ -67,6 +69,7 @@ function SignInCtrl(
       )
       .then(function(response) {
         if (response.status === 200) {
+          $ionicHistory.clearHistory();
           $window.localStorage.setItem("logged", true);
           var authResponse = response.data.customer_info;
           console.log("role" + response.data.customer_info.customer_group_id);

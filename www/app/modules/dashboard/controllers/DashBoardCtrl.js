@@ -17,7 +17,8 @@ DashBoardCtrl.$inject = [
   "$mdSidenav",
   "$log",
   "$ionicScrollDelegate",
-  "$httpParamSerializer"
+  "$httpParamSerializer",
+  "$ionicHistory"
 ];
 
 function DashBoardCtrl(
@@ -35,10 +36,9 @@ function DashBoardCtrl(
   $mdSidenav,
   $log,
   $ionicScrollDelegate,
-  $httpParamSerializer
+  $httpParamSerializer,
+  $ionicHistory
 ) {
-  var type = "NEW";
-
   $scope.next1 = function() {
     $ionicScrollDelegate.$getByHandle("mysliderone").scrollBy(150, 0, true);
   };
@@ -48,6 +48,10 @@ function DashBoardCtrl(
   $scope.clickedValueModel = "";
   $scope.removedValueModel = "";
   $scope.search_text = "";
+
+  console.log($scope.search_text);
+  console.log("role-->" + $window.localStorage.getItem("role"));
+  console.log("role 1234-->" + sharedProperties.getString());
 
   getAllCategories();
   getBestSeller();
@@ -94,24 +98,6 @@ function DashBoardCtrl(
         });
 
       return authResponse;
-
-      // items: [
-      //   {
-      //     id: "1",
-      //     name: query + "1",
-      //     view: "view: " + query + "1"
-      //   },
-      //   {
-      //     id: "2",
-      //     name: query + "2",
-      //     view: "view: " + query + "2"
-      //   },
-      //   {
-      //     id: "3",
-      //     name: query + "3",
-      //     view: "view: " + query + "3"
-      //   }
-      // ]
     }
     return {
       items: []
@@ -182,9 +168,6 @@ function DashBoardCtrl(
   };
 
   function getAllCategories() {
-    console.log($scope.search_text);
-    console.log("role-->" + $window.localStorage.getItem("role"));
-    console.log("role 1234-->" + sharedProperties.getString());
     $scope.userrole = sharedProperties.getString();
     $scope.role = $window.localStorage.getItem("role");
 
@@ -299,6 +282,7 @@ function DashBoardCtrl(
   };
   $scope.logOut = function() {
     $scope.close();
+    $ionicHistory.clearHistory();
     localStorage.setItem("loginStatus", false);
     localStorage.setItem("authResponse", null);
     $rootScope.loginStatus = false;
@@ -312,10 +296,6 @@ function DashBoardCtrl(
 
   // function init() {
   //   console.log("run--->");
-
-  //   getAllCategories();
-  //   getBestSeller();
-  //   getFeatured();
   // }
 
   //new slider

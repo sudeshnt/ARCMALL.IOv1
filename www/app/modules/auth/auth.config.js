@@ -27,6 +27,6 @@ authModule.config(function config($stateProvider, $urlRouterProvider) {
       templateUrl: "app/modules/auth/templates/select-account-role.html",
       controller: "SelectAccountRoleCtrl"
     });
-  $urlRouterProvider.otherwise("/dashboard");
+  $urlRouterProvider.otherwise("/dashboard1");
   // $urlRouterProvider.otherwise('/home/new');
 });

@@ -51,6 +51,7 @@ arcMall.run(function($ionicPlatform) {
       this.statusBar.overlaysWebView(false);
       this.statusBar.styleLightContent();
       window.StatusBar.styleHex("#000000");
+      window.StatusBar.backgroundColorByHexString("#000000");
     }
   });
 });

@@ -1,6 +1,6 @@
 "use strict";
 
-var signinModule = angular.module("signin.module", []);
+var signinModule = angular.module("signin.module", ["ui.router"]);
 
 signinModule.config(function config($stateProvider, $urlRouterProvider) {
   $stateProvider.state("signin", {

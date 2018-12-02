@@ -1,4 +1,4 @@
-<ion-view title="" ng-controller="SignInCtrl">
+<ion-view title="">
   <ion-content class="signupbg">
     <div class="row">
       <div class="col col-10" ng-click="goback()">
@@ -16,47 +16,51 @@
         />
       </div>
     </div>
+
     <div class="row no-paading">
       <div class="col  text-center">
-        
         <h4 style="color: white;font-weight: normal;">Sign In</h4>
       </div>
     </div>
-    <form name="authorizationForm" novalidate ></form>
-    <div class="list list-fields list-inset no-paading">
-      <label class="item item-input item-icon-left">
-        <i class="icon ion-android-contact"></i>
-        <input
-        ng-model="authorization.username"
-          class="text-input"
-          type="text"
-          placeholder="E-mail address"
-          required
-        />
-      </label>
-      <label class="item item-input item-icon-left">
-        <i class="icon ion-android-unlock"></i>
-        <input
-        ng-model="authorization.password"
-          class="text-input"
-          type="password"
-          placeholder="Password"
-          required
-        />
-      </label>
+    <form
+      name="authorizationForm"
+      novalidate
+      ng-submit="fn.login(authorization)"
+    >
+      <div class="list list-fields list-inset no-paading">
+        <label class="item item-input item-icon-left">
+          <i class="icon ion-android-contact"></i>
+          <input
+            ng-model="authorization.username"
+            class="text-input"
+            type="text"
+            placeholder="E-mail address"
+            required
+          />
+        </label>
+        <label class="item item-input item-icon-left">
+          <i class="icon ion-android-unlock"></i>
+          <input
+            ng-model="authorization.password"
+            class="text-input"
+            type="password"
+            placeholder="Password"
+            required
+          />
+        </label>
 
-      <label class="item item-input item-icon-left bordernone">
-        <button
-          class="button button-block button-light button-outline"
-        
-          ng-disabled="!authorization.password || !authorization.username"
-          ng-click="fn.login(authorization)"
-        >
-          SIGN IN
-        </button>
-      </label>
-    </div>
-  </form>
+        <label class="item item-input item-icon-left bordernone">
+          <button
+            class="button button-block button-light button-outline"
+            type="submit"
+            ng-disabled="!authorization.password || !authorization.username"
+          >
+            SIGN IN
+          </button>
+        </label>
+      </div>
+    </form>
+
     <div class="row" ng-click="openSeller()">
       <div class="col text-center">
         <span style="color:white;"><u>Create an Account</u></span>

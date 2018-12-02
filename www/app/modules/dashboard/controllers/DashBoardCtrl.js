@@ -49,14 +49,16 @@ function DashBoardCtrl(
   $scope.removedValueModel = "";
   $scope.search_text = "";
 
+  getAllCategories();
+  getBestSeller();
+  getFeatured();
+
   $scope.allImages = [
     "app/modules/dashboard/img/1.png",
     "app/modules/dashboard/img/1.png",
     "app/modules/dashboard/img/1.png"
   ];
-  console.log($scope.search_text);
-  console.log("role-->" + $window.localStorage.getItem("role"));
-  $scope.role = $window.localStorage.getItem("role");
+
   $scope.bySearch = function(query) {
     if (query) {
       $scope.user = {
@@ -157,17 +159,6 @@ function DashBoardCtrl(
     $ionicScrollDelegate.$getByHandle("myslidertwo").scrollBy(-150, 0, true);
   };
 
-  $scope.sliderOptions = {
-    effect: "slide",
-    paginationHide: true,
-    initialSlide: 0,
-    onInit: function(swiper) {
-      $scope.swiper = swiper;
-    },
-    onSlideChangeEnd: function(swiper) {
-      // ....
-    }
-  };
   $scope.toggleSideBarHome = buildToggler("right");
 
   // refresh time in minutes
@@ -191,6 +182,12 @@ function DashBoardCtrl(
   };
 
   function getAllCategories() {
+    console.log($scope.search_text);
+    console.log("role-->" + $window.localStorage.getItem("role"));
+    console.log("role 1234-->" + sharedProperties.getString());
+    $scope.userrole = sharedProperties.getString();
+    $scope.role = $window.localStorage.getItem("role");
+
     var extended_url = "/category/home";
     var req = {};
     httpService
@@ -202,8 +199,6 @@ function DashBoardCtrl(
           $scope.allCategories = response.data.categories;
           console.log("all categories" + $scope.allCategories);
           console.log("all categories name" + $scope.allCategories[0].name);
-
-          initTabs(response.data.categories);
         } else {
           $scope.error = response.error_warning;
         }
@@ -222,8 +217,6 @@ function DashBoardCtrl(
 
           $scope.featured = response.data.products;
           console.log($scope.featured);
-
-          initTabs(response.data.categories);
         } else {
           $scope.error = response.error_warning;
         }
@@ -240,112 +233,12 @@ function DashBoardCtrl(
 
           $scope.bestSeller = response.data.products;
           console.log($scope.bestSeller);
-
-          initTabs(response.data.categories);
         } else {
           $scope.error = response.error_warning;
         }
       });
   }
 
-  function initTabs(categories) {
-    $scope.cat_tabs = {};
-    $scope.mainCategoryDropDown = [
-      {
-        id: categories[0].category_id,
-        name: categories[0].name,
-        value: "NEW"
-      },
-      {
-        id: categories[1].category_id,
-        name: categories[1].name,
-        value: "USED"
-      },
-      {
-        id: categories[2].category_id,
-        name: categories[2].name,
-        value: "WHOLESALE"
-      }
-    ];
-
-    setSelectedMainCategory();
-    // get processed categories
-    $scope.cat_tabs["NEW"] = $scope.getSubCategories(categories[0], 2);
-    $scope.cat_tabs["USED"] = $scope.getSubCategories(categories[1], 2);
-    $scope.cat_tabs["WHOLESALE"] = $scope.getSubCategories(categories[2], 2);
-
-    $scope.selectedCatTabs = $scope.cat_tabs[type];
-    $ionicSlideBoxDelegate.update();
-  }
-
-  function setSelectedMainCategory() {
-    for (var i in $scope.mainCategoryDropDown) {
-      if ($scope.mainCategoryDropDown[i].value == type) {
-        $scope.selectedMainCat = $scope.mainCategoryDropDown[i].value;
-        break;
-      }
-    }
-  }
-
-  $scope.selectedMainCatChange = function(value) {
-    $state.go(
-      $state.current,
-      {
-        type: value
-      },
-      {
-        reload: true
-      }
-    );
-  };
-
-  $scope.getSubCategories = function(arr, size) {
-    var newNameArr = [];
-    var newArr = [];
-    var tempArr = [];
-    if (arr.categories) {
-      for (var i = 0; i < arr.categories.length; i++) {
-        tempArr = [];
-        if (arr.categories[i].categories.length > 0) {
-          tempArr.push([arr.categories[i].categories[0]]);
-          for (var j = 1; j < arr.categories[i].categories.length; j += size) {
-            tempArr.push(arr.categories[i].categories.slice(j, j + size));
-          }
-        }
-        newNameArr.push({
-          name: arr.categories[i].name,
-          id: arr.categories[i].category_id,
-          sub_cats: tempArr
-        });
-        newArr.push(tempArr);
-      }
-    }
-    return {
-      tabs: newNameArr,
-      content: newArr
-    };
-  };
-
-  $scope.tabs = [
-    {
-      text: "ALL"
-    },
-    {
-      text: "MEN"
-    },
-    {
-      text: "WOMEN"
-    },
-    {
-      text: "KIDS"
-    },
-    {
-      text: "ACCESSORIES"
-    },
-    {
-      text: "SUITS"
-    }
-  ];
   $scope.categories = ["image2.png", "image3.png", "image4.png", "image5.png"];
   $scope.goHome = function() {
     $state.go("home.new");
@@ -415,34 +308,34 @@ function DashBoardCtrl(
     $state.go("signin");
   };
 
-  init();
+  // init();
 
-  function init() {
-    console.log("run--->");
-    var localCategories = localStorage.getItem("cat_tabs");
-    getAllCategories();
-    getBestSeller();
-    getFeatured();
-  }
+  // function init() {
+  //   console.log("run--->");
+
+  //   getAllCategories();
+  //   getBestSeller();
+  //   getFeatured();
+  // }
 
   //new slider
 
   $scope.ready = [];
 
-  $scope.$on("$ionicView.afterEnter", function(event, data) {
-    //initialisation of ready array to false
-    angular.forEach($scope.catgs, function(value, key) {
-      //make sure to let the first slide be loaded by giving 'true' to his corresponding key in ready array
-      if (key === 0) {
-        $scope.ready.push(0 + ": " + true);
-      }
-      //To stop loading other slides (pages) make sure to give 'false' to ther corresponding key in ready array
-      $scope.ready.push(key + ": " + false);
-    });
-  });
+  // $scope.$on("$ionicView.afterEnter", function(event, data) {
+  //   //initialisation of ready array to false
+  //   angular.forEach($scope.catgs, function(value, key) {
+  //     //make sure to let the first slide be loaded by giving 'true' to his corresponding key in ready array
+  //     if (key === 0) {
+  //       $scope.ready.push(0 + ": " + true);
+  //     }
+  //     //To stop loading other slides (pages) make sure to give 'false' to ther corresponding key in ready array
+  //     $scope.ready.push(key + ": " + false);
+  //   });
+  // });
 
-  $scope.changeSlide = function(index) {
-    //when slide is active : let angular to load it's content
-    $scope.ready.push(index + ": " + true);
-  };
+  // $scope.changeSlide = function(index) {
+  //   //when slide is active : let angular to load it's content
+  //   $scope.ready.push(index + ": " + true);
+  // };
 }

@@ -188,6 +188,8 @@ ul {
   margin: 0 auto;
   margin-left: 20%;
   margin-right: 20%;
+  margin-top: 10%;
+  margin-bottom: 10%;
   cursor: pointer;
   opacity: 1;
 
@@ -201,9 +203,6 @@ ul {
   -o-text-overflow: clip;
   text-overflow: clip;
   background: #ffffff;
-  -webkit-box-shadow: 2px 2px 2px 0 rgba(0, 0, 0, 0.2);
-  box-shadow: 2px 2px 2px 0 rgba(0, 0, 0, 0.2);
-  text-shadow: 0 0 0 rgba(15, 73, 168, 0.66);
 }
 
 .text-on-image {

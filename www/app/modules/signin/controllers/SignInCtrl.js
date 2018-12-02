@@ -9,7 +9,8 @@ SignInCtrl.$inject = [
   "httpService",
   "serverConfig",
   "$httpParamSerializer",
-  "$window"
+  "$window",
+  "sharedProperties"
 ];
 
 function SignInCtrl(
@@ -19,7 +20,8 @@ function SignInCtrl(
   httpService,
   serverConfig,
   $httpParamSerializer,
-  $window
+  $window,
+  sharedProperties
 ) {
   $scope.goback = function() {
     $state.go("dashboard");
@@ -93,10 +95,15 @@ function SignInCtrl(
             "telephone",
             response.data.customer_info.telephone
           );
+          console.log("role signin-->" + $window.localStorage.getItem("role"));
+          console.log(
+            "role dashboard-->" + response.data.customer_info.customer_group_id
+          );
           // $rootScope.authResponse = response.data.customer_info;
-          $state.go("dashboard", {
-            userRole: "1"
-          });
+          sharedProperties.setString(
+            response.data.customer_info.customer_group_id
+          );
+          $state.go("dashboard");
         } else {
           alert(response.error_warning);
           $scope.error = response.error_warning;

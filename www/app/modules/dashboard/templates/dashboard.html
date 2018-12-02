@@ -1,4 +1,4 @@
-<ion-view title="" ng-controller="DashBoardCtrl">
+<ion-view title="">
   <ion-header-bar class="bar bar-header header-md bar-darker">
     <div style="width: 100%; display: inherit; margin-top: 0px !important;">
       <div class="search-box-wrapper">
@@ -33,436 +33,392 @@
     </div>
   </ion-header-bar>
 
-  <ion-view cache-view="false">
-    <ion-content class="has-header-md" scroll="false">
-      <!-- <ion-content class="has-header-md-banner"  scroll="false"> -->
+  <ion-content class="has-header-md" scroll="true">
+    <!-- <ion-content class="has-header-md-banner"  scroll="false"> -->
 
-      <ion-list ng-if=" search_text != '' " class=" search-barr card-name">
-        <ion-item ng-repeat="item in arry_item ">
-          <div ng-click="openItemDetails(item.product_id)">
-            {{ item.name }}
-          </div></ion-item
-        >
-      </ion-list>
-      <ion-slide
-        ng-if=" search_text == '' "
-        ng-repeat="tab in selectedCatTabs.tabs  track by $index"
-        ion-slide-tab-label="{{tab.name}}"
-        style="background-color:white; width:100%;"
+    <ion-list ng-if=" search_text != '' " class=" search-barr card-name">
+      <ion-item ng-repeat="item in arry_item ">
+        <div ng-click="openItemDetails(item.product_id)">
+          {{ item.name }}
+        </div></ion-item
       >
-        <ion-content>
-          <div
-            class="row"
-            style="padding: 1px 5px 4px;"
-            ng-repeat="subCat_rows in tab.sub_cats track by $index"
-          >
-            <div
-              class="col zero-padding"
-              ng-class="{'list card card-margin' : subCat_rows.length == 1 && $index==0}"
-              ng-if="subCat_rows.length == 1"
-            >
-              <div ng-class="{'list card card-margin full-height' : $index>0 }">
-                <!--
-                  <div class="item item-image full-height">
-                  <ion-slide-box
-                    class="item item-image full-height"
-                    auto-play="true"
-                    does-continue="true"
-                    slide-intervel="30000"
-                  >
-                    <ion-slide ng-repeat="img in allImages">
-                      <img
-                        src="app/modules/dashboard/img/1.png"
-                        class="full-height"
-                        style="max-height: 200px;"
-                      />
-                    </ion-slide>
-                  </ion-slide-box>
-                -->
+    </ion-list>
 
-                <div class="item item-image full-height">
-                  <ion-slide-box
-                    auto-play="true"
-                    does-continue="true"
-                    slide-interval="10000"
-                  >
-                    <ion-slide>
-                      <img
-                        src="app/modules/dashboard/img/1.png"
-                        class="full-height"
-                        style="max-height: 200px;"
-                      />
-                    </ion-slide>
-                    <ion-slide>
-                      <img
-                        src="app/modules/dashboard/img/1.png"
-                        class="full-height"
-                        style="max-height: 200px;"
-                      />
-                    </ion-slide>
-                    <ion-slide>
-                      <img
-                        src="app/modules/dashboard/img/1.png"
-                        class="full-height"
-                        style="max-height: 200px;"
-                      />
-                    </ion-slide>
-                  </ion-slide-box>
-                  <!--
-                    <img
-                      src="app/modules/dashboard/img/1.png"
-                      class="full-height"
-                      style="max-height: 200px;"
-                    />
-                  -->
-
-                  <div class="text-on-image card-name ">
-                    <h2 class="multi-line-text">WELCOME TO ARCMALL</h2>
-                  </div>
-
-                  <div class="text-on-image-2 card-name ">
-                    <h4 class="multi-line-text">ABSOLUTE . RETAIL .COMPANY</h4>
-                  </div>
-                </div>
-              </div>
-
-              <div class="card-name " style="padding-left: 10px">
-                <h6>CATEGORIES</h6>
-              </div>
-
-              <div class="row ">
-                <button
-                  class="column"
-                  style="padding: 5px"
-                  ng-click="goTo(allCategories[0])"
-                >
-                  <img ng-src="{{ allCategories[0].image }}" width="100%" />
-                  <div class="overlay">{{ allCategories[0].name }}</div>
-                </button>
-                <button
-                  class="column"
-                  style="padding: 5px"
-                  ng-click="goTo(allCategories[1])"
-                >
-                  <img ng-src="{{ allCategories[1].image }}" width="100%" />
-                  <div class="overlay">{{ allCategories[1].name }}</div>
-                </button>
-              </div>
-              <div class="row ">
-                <button
-                  class="column"
-                  style="padding: 5px"
-                  ng-click="goTo(allCategories[2])"
-                >
-                  <img ng-src="{{ allCategories[2].image }}" width="100%" />
-                  <div class="overlay">{{ allCategories[2].name }}</div>
-                </button>
-                <button
-                  class="column"
-                  style="padding: 5px"
-                  ng-click="goTo(allCategories[3])"
-                >
-                  <img ng-src="{{ allCategories[3].image }}" width="100%" />
-                  <div class="overlay">{{ allCategories[3].name }}</div>
-                </button>
-              </div>
-              <div class="row ">
-                <button
-                  class="column"
-                  style="padding: 5px"
-                  ng-click="goTo(allCategories[4])"
-                >
-                  <img ng-src="{{ allCategories[4].image }}" width="100%" />
-                  <div class="overlay">{{ allCategories[4].name }}</div>
-                </button>
-                <button class="column" style="padding: 5px">
-                  <img ng-src="app/modules/dashboard/img/7.png" width="100%" />
-                  <div class="overlay">SHOES</div>
-                </button>
-              </div>
-
-              <button
-                class=" view-categories text-center"
-                ng-click="goToAllCategories()"
-              >
-                VIEW ALLCATEGORIES
-              </button>
-
-              <div style="margin-top: 5px">
-                <img
-                  src="app/modules/dashboard/img/8.png"
-                  style="max-height: 200px; max-width:100% ;"
-                />
-              </div>
-              <div class="card-name " style="padding-left: 10px">
-                <h6>FEATURED</h6>
-                <div class="row">
-                  <div class="col  text-right myfontsize">
-                    <i class="ion-android-arrow-back" ng-click="previous1()"></i
-                    >&nbsp;&nbsp;<i
-                      class="ion-android-arrow-forward"
-                      ng-click="next1()"
-                    ></i>
-                  </div>
-                </div>
-              </div>
-              <ion-scroll
-                direction="x"
-                class="wide-as-needed"
-                delegate-handle="mysliderone"
-              >
-                <div
-                  ng-click="openItemDetails(item.product_id)"
-                  ng-repeat="item in featured"
-                  style="display: inline-block;white-space: nowrap; "
-                >
-                  <img
-                    src="{{item.thumb}}"
-                    style="margin: 10px; display: inline-block;"
-                  />
-                  <div style="padding-left: 10px">{{ item.name }}</div>
-                </div>
-              </ion-scroll>
-
-              <div class="card-name " style="padding-left: 10px">
-                <h6>BEST SELLER</h6>
-                <div class="row">
-                  <div class="col  text-right myfontsize">
-                    <i class="ion-android-arrow-back" ng-click="previous2()"></i
-                    >&nbsp;&nbsp;<i
-                      class="ion-android-arrow-forward"
-                      ng-click="next2()"
-                    ></i>
-                  </div>
-                </div>
-              </div>
-              <ion-scroll
-                direction="x"
-                class="wide-as-needed"
-                delegate-handle="myslidertwo"
-              >
-                <div
-                  ng-click="openItemDetails(item.product_id)"
-                  ng-repeat="item in bestSeller "
-                  style="display: inline-block;white-space: nowrap; "
-                >
-                  <img
-                    src="{{item.thumb}}"
-                    style="margin: 10px; display: inline-block;"
-                  />
-                  <div style="padding-left: 10px">{{ item.name }}</div>
-                </div>
-              </ion-scroll>
-            </div>
-          </div>
-          <div class="row" style="min-height: 55px;"></div>
-        </ion-content>
-      </ion-slide>
-
+    <div ng-class="{'list card card-margin full-height' : $index>0 }">
       <!--
-        <ul class="list search-barr" ng-if="search_text != ''">
-          <li
-            class="search-row"
-            ng-repeat="item in arry_item | filter:search_text"
-          >
-            <h4>{{ item }}</h4>
-          </li>
-        </ul>
+        <div class="item item-image full-height">
+        <ion-slide-box
+          class="item item-image full-height"
+          auto-play="true"
+          does-continue="true"
+          slide-intervel="30000"
+        >
+          <ion-slide ng-repeat="img in allImages">
+            <img
+              src="app/modules/dashboard/img/1.png"
+              class="full-height"
+              style="max-height: 200px;"
+            />
+          </ion-slide>
+        </ion-slide-box>
       -->
-    </ion-content>
-    <md-sidenav class="md-sidenav-left  sidemenubg" md-component-id="right">
-      <md-content style="background-color: transparent;">
+
+      <div class="item item-image full-height">
+        <ion-slide-box
+          auto-play="true"
+          does-continue="true"
+          slide-interval="10000"
+        >
+          <ion-slide>
+            <img
+              src="app/modules/dashboard/img/1.png"
+              class="full-height"
+              style="max-height: 200px;"
+            />
+          </ion-slide>
+          <ion-slide>
+            <img
+              src="app/modules/dashboard/img/1.png"
+              class="full-height"
+              style="max-height: 200px;"
+            />
+          </ion-slide>
+          <ion-slide>
+            <img
+              src="app/modules/dashboard/img/1.png"
+              class="full-height"
+              style="max-height: 200px;"
+            />
+          </ion-slide>
+        </ion-slide-box>
+        <!--
+          <img
+            src="app/modules/dashboard/img/1.png"
+            class="full-height"
+            style="max-height: 200px;"
+          />
+        -->
+
+        <div class="text-on-image card-name ">
+          <h2 class="multi-line-text">WELCOME TO ARCMALL</h2>
+        </div>
+
+        <div class="text-on-image-2 card-name ">
+          <h4 class="multi-line-text">ABSOLUTE . RETAIL .COMPANY</h4>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-name " style="padding-left: 10px"><h6>CATEGORIES</h6></div>
+
+    <div class="row ">
+      <button
+        class="column"
+        style="padding: 5px"
+        ng-click="goTo(allCategories[0])"
+      >
+        <img ng-src="{{ allCategories[0].image }}" width="100%" />
+        <div class="overlay">{{ allCategories[0].name }}</div>
+      </button>
+      <button
+        class="column"
+        style="padding: 5px"
+        ng-click="goTo(allCategories[1])"
+      >
+        <img ng-src="{{ allCategories[1].image }}" width="100%" />
+        <div class="overlay">{{ allCategories[1].name }}</div>
+      </button>
+    </div>
+    <div class="row ">
+      <button
+        class="column"
+        style="padding: 5px"
+        ng-click="goTo(allCategories[2])"
+      >
+        <img ng-src="{{ allCategories[2].image }}" width="100%" />
+        <div class="overlay">{{ allCategories[2].name }}</div>
+      </button>
+      <button
+        class="column"
+        style="padding: 5px"
+        ng-click="goTo(allCategories[3])"
+      >
+        <img ng-src="{{ allCategories[3].image }}" width="100%" />
+        <div class="overlay">{{ allCategories[3].name }}</div>
+      </button>
+    </div>
+    <div class="row ">
+      <button
+        class="column"
+        style="padding: 5px"
+        ng-click="goTo(allCategories[4])"
+      >
+        <img ng-src="{{ allCategories[4].image }}" width="100%" />
+        <div class="overlay">{{ allCategories[4].name }}</div>
+      </button>
+      <button class="column" style="padding: 5px">
+        <img ng-src="{{ allCategories[5].image }}" width="100%" />
+        <div class="overlay">{{ allCategories[5].name }}</div>
+      </button>
+    </div>
+
+    <button class=" view-categories text-center" ng-click="goToAllCategories()">
+      VIEW ALLCATEGORIES
+    </button>
+
+    <div style="margin-top: 5px">
+      <img
+        src="app/modules/dashboard/img/8.png"
+        style="max-height: 200px; max-width:100% ;"
+      />
+    </div>
+    <div class="card-name " style="padding-left: 10px">
+      <h6>FEATURED</h6>
+      <div class="row">
+        <div class="col  text-right myfontsize">
+          <i class="ion-android-arrow-back" ng-click="previous1()"></i
+          >&nbsp;&nbsp;<i
+            class="ion-android-arrow-forward"
+            ng-click="next1()"
+          ></i>
+        </div>
+      </div>
+    </div>
+    <ion-scroll
+      direction="x"
+      class="wide-as-needed"
+      delegate-handle="mysliderone"
+    >
+      <div
+        ng-click="openItemDetails(item.product_id)"
+        ng-repeat="item in featured"
+        style="display: inline-block;white-space: nowrap; "
+      >
         <img
-          ng-src="app/modules/dashboard/img/sidelogo.png"
-          style="width:100%; padding: 20px;"
+          src="{{item.thumb}}"
+          style="margin: 10px; display: inline-block;"
         />
-        <md-list style="background-color: transparent;" class="padding" flex>
-          <md-list-item
-            class="md-3-line"
-            style="height: 50px; min-height:0px; padding-top: 10px;"
-            ng-show="role=='1' || role=='2'"
+        <div style="padding-left: 10px">{{ item.name }}</div>
+      </div>
+    </ion-scroll>
+
+    <div class="card-name " style="padding-left: 10px">
+      <h6>BEST SELLER</h6>
+      <div class="row">
+        <div class="col  text-right myfontsize">
+          <i class="ion-android-arrow-back" ng-click="previous2()"></i
+          >&nbsp;&nbsp;<i
+            class="ion-android-arrow-forward"
+            ng-click="next2()"
+          ></i>
+        </div>
+      </div>
+    </div>
+    <ion-scroll
+      direction="x"
+      class="wide-as-needed"
+      delegate-handle="myslidertwo"
+    >
+      <div
+        ng-click="openItemDetails(item.product_id)"
+        ng-repeat="item in bestSeller "
+        style="display: inline-block;white-space: nowrap; "
+      >
+        <img
+          src="{{item.thumb}}"
+          style="margin: 10px; display: inline-block;"
+        />
+        <div style="padding-left: 10px">{{ item.name }}</div>
+      </div>
+    </ion-scroll>
+
+    <div class="row" style="min-height: 55px;"></div>
+  </ion-content>
+
+  <md-sidenav class="md-sidenav-left  sidemenubg" md-component-id="right">
+    <md-content style="background-color: transparent;">
+      <img
+        ng-src="app/modules/dashboard/img/sidelogo.png"
+        style="width:100%; padding: 20px;"
+      />
+      <md-list style="background-color: transparent;" class="padding" flex>
+        <md-list-item
+          class="md-3-line"
+          style="height: 50px; min-height:0px; padding-top: 10px;"
+          ng-show="role=='1' || role=='2' || userrole=='1' || userrole=='2'"
+        >
+          <div
+            class="md-list-item-text zero-margin"
+            layout="column"
+            ng-click="openMyProfile()"
           >
-            <div
-              class="md-list-item-text zero-margin"
-              layout="column"
-              ng-click="openMyProfile()"
-            >
-              <h4>
-                <i class="ion-person sidenav-icon"></i
-                ><span class="sidenav-options">{{
-                  "MY_PROFILE" | translate
-                }}</span>
-              </h4>
-            </div>
-          </md-list-item>
-          <md-divider></md-divider>
-          <md-list-item
-            class="md-3-line"
-            style="height: 50px; min-height:0px; padding-top: 10px;"
-            ng-hide="role =='1' || role =='2'"
+            <h4>
+              <i class="ion-person sidenav-icon"></i
+              ><span class="sidenav-options">{{
+                "MY_PROFILE" | translate
+              }}</span>
+            </h4>
+          </div>
+        </md-list-item>
+        <md-divider></md-divider>
+        <md-list-item
+          class="md-3-line"
+          style="height: 50px; min-height:0px; padding-top: 10px;"
+          ng-hide="role=='1' || role=='2' || userrole=='1' || userrole=='2'"
+        >
+          <div
+            class="md-list-item-text zero-margin"
+            layout="column"
+            ng-click="openSignIn()"
           >
-            <div
-              class="md-list-item-text zero-margin"
-              layout="column"
-              ng-click="openSignIn()"
-            >
-              <h4>
-                <i class="ion-person sidenav-icon"></i
-                ><span class="sidenav-options">{{
-                  "SIGN_IN" | translate
-                }}</span>
-              </h4>
-            </div>
-          </md-list-item>
-          <md-divider></md-divider>
-          <md-list-item
-            class="md-3-line"
-            style="height: 50px; min-height:0px; padding-top: 10px;"
-            ng-show="role =='2'"
+            <h4>
+              <i class="ion-person sidenav-icon"></i
+              ><span class="sidenav-options">{{ "SIGN_IN" | translate }}</span>
+            </h4>
+          </div>
+        </md-list-item>
+        <md-divider></md-divider>
+        <md-list-item
+          class="md-3-line"
+          style="height: 50px; min-height:0px; padding-top: 10px;"
+          ng-show="role=='2' || userrole=='2'"
+        >
+          <div
+            class="md-list-item-text zero-margin"
+            layout="column"
+            ng-click="openAddItem()"
           >
-            <div
-              class="md-list-item-text zero-margin"
-              layout="column"
-              ng-click="openAddItem()"
-            >
-              <h4>
-                <i class="ion-android-hand sidenav-icon"></i
-                ><span class="sidenav-options">{{
-                  "ADD_ITEM" | translate
-                }}</span>
-              </h4>
-            </div>
-          </md-list-item>
-          <md-divider></md-divider>
-          <md-list-item
-            class="md-3-line"
-            style="height: 50px; min-height:0px; padding-top: 10px;"
+            <h4>
+              <i class="ion-android-hand sidenav-icon"></i
+              ><span class="sidenav-options">{{ "ADD_ITEM" | translate }}</span>
+            </h4>
+          </div>
+        </md-list-item>
+        <md-divider></md-divider>
+        <md-list-item
+          class="md-3-line"
+          style="height: 50px; min-height:0px; padding-top: 10px;"
+        >
+          <div
+            class="md-list-item-text zero-margin"
+            layout="column"
+            ng-click="openCategories()"
           >
-            <div
-              class="md-list-item-text zero-margin"
-              layout="column"
-              ng-click="openCategories()"
-            >
-              <h4>
-                <i class="ion-ios-browsers sidenav-icon"></i
-                ><span class="sidenav-options">{{
-                  "ALL_CATEGORIES" | translate
-                }}</span>
-              </h4>
-            </div>
-          </md-list-item>
-          <md-divider></md-divider>
-          <md-list-item
-            class="md-3-line"
-            style="height: 50px; min-height:0px; padding-top: 10px;"
+            <h4>
+              <i class="ion-ios-browsers sidenav-icon"></i
+              ><span class="sidenav-options">{{
+                "ALL_CATEGORIES" | translate
+              }}</span>
+            </h4>
+          </div>
+        </md-list-item>
+        <md-divider></md-divider>
+        <md-list-item
+          class="md-3-line"
+          style="height: 50px; min-height:0px; padding-top: 10px;"
+        >
+          <div
+            class="md-list-item-text zero-margin"
+            layout="column"
+            ng-click="openWishList()"
           >
-            <div
-              class="md-list-item-text zero-margin"
-              layout="column"
-              ng-click="openWishList()"
-            >
-              <h4>
-                <i class="ion-ios-heart sidenav-icon"></i
-                ><span class="sidenav-options">{{
-                  "WISH_LIST" | translate
-                }}</span>
-              </h4>
-            </div>
-          </md-list-item>
-          <md-divider></md-divider>
-          <md-list-item
-            class="md-3-line"
-            style="height: 50px; min-height:0px; padding-top: 10px;"
+            <h4>
+              <i class="ion-ios-heart sidenav-icon"></i
+              ><span class="sidenav-options">{{
+                "WISH_LIST" | translate
+              }}</span>
+            </h4>
+          </div>
+        </md-list-item>
+        <md-divider></md-divider>
+        <md-list-item
+          class="md-3-line"
+          style="height: 50px; min-height:0px; padding-top: 10px;"
+        >
+          <div
+            class="md-list-item-text zero-margin"
+            layout="column"
+            ng-click="openOrderHistory();"
           >
-            <div
-              class="md-list-item-text zero-margin"
-              layout="column"
-              ng-click="openOrderHistory();"
-            >
-              <h4>
-                <i class="ion-ios-albums sidenav-icon"></i
-                ><span class="sidenav-options">{{
-                  "ORDER_HISTORY" | translate
-                }}</span>
-              </h4>
-            </div>
-          </md-list-item>
-          <md-divider></md-divider>
-          <md-list-item
-            class="md-3-line"
-            style="height: 50px; min-height:0px; padding-top: 10px;"
+            <h4>
+              <i class="ion-ios-albums sidenav-icon"></i
+              ><span class="sidenav-options">{{
+                "ORDER_HISTORY" | translate
+              }}</span>
+            </h4>
+          </div>
+        </md-list-item>
+        <md-divider></md-divider>
+        <md-list-item
+          class="md-3-line"
+          style="height: 50px; min-height:0px; padding-top: 10px;"
+        >
+          <div
+            class="md-list-item-text zero-margin"
+            layout="column"
+            ng-click="openAboutUs();"
           >
-            <div
-              class="md-list-item-text zero-margin"
-              layout="column"
-              ng-click="openAboutUs();"
-            >
-              <h4>
-                <i class="ion-ios-albums sidenav-icon"></i
-                ><span class="sidenav-options">{{
-                  "ABOUT_US" | translate
-                }}</span>
-              </h4>
-            </div>
-          </md-list-item>
-          <md-divider></md-divider>
-          <md-list-item
-            class="md-3-line"
-            style="height: 50px; min-height:0px; padding-top: 10px;"
+            <h4>
+              <i class="ion-ios-albums sidenav-icon"></i
+              ><span class="sidenav-options">{{ "ABOUT_US" | translate }}</span>
+            </h4>
+          </div>
+        </md-list-item>
+        <md-divider></md-divider>
+        <md-list-item
+          class="md-3-line"
+          style="height: 50px; min-height:0px; padding-top: 10px;"
+        >
+          <div
+            class="md-list-item-text zero-margin"
+            layout="column"
+            ng-click="openPrivacyPolicy();"
           >
-            <div
-              class="md-list-item-text zero-margin"
-              layout="column"
-              ng-click="openPrivacyPolicy();"
-            >
-              <h4>
-                <i class="ion-ios-albums sidenav-icon"></i
-                ><span class="sidenav-options">{{
-                  "PRIVACY_POLICY" | translate
-                }}</span>
-              </h4>
-            </div>
-          </md-list-item>
-          <md-divider></md-divider>
-          <md-list-item
-            class="md-3-line"
-            style="height: 50px; min-height:0px; padding-top: 10px;"
+            <h4>
+              <i class="ion-ios-albums sidenav-icon"></i
+              ><span class="sidenav-options">{{
+                "PRIVACY_POLICY" | translate
+              }}</span>
+            </h4>
+          </div>
+        </md-list-item>
+        <md-divider></md-divider>
+        <md-list-item
+          class="md-3-line"
+          style="height: 50px; min-height:0px; padding-top: 10px;"
+        >
+          <div
+            class="md-list-item-text zero-margin"
+            layout="column"
+            ng-click="openTermsAndCondition();"
           >
-            <div
-              class="md-list-item-text zero-margin"
-              layout="column"
-              ng-click="openTermsAndCondition();"
-            >
-              <h4>
-                <i class="ion-ios-albums sidenav-icon"></i
-                ><span class="sidenav-options">{{
-                  "TERMS_CONDITION" | translate
-                }}</span>
-              </h4>
-            </div>
-          </md-list-item>
-          <md-divider></md-divider>
-          <md-list-item
-            class="md-3-line"
-            style="height: 50px; min-height:0px; padding-top: 10px;"
-            ng-show="role=='1' || role=='2'"
+            <h4>
+              <i class="ion-ios-albums sidenav-icon"></i
+              ><span class="sidenav-options">{{
+                "TERMS_CONDITION" | translate
+              }}</span>
+            </h4>
+          </div>
+        </md-list-item>
+        <md-divider></md-divider>
+        <md-list-item
+          class="md-3-line"
+          style="height: 50px; min-height:0px; padding-top: 10px;"
+          ng-show="role=='1' || role=='2' || userrole=='1' || userrole=='2'"
+        >
+          <div
+            class="md-list-item-text zero-margin"
+            layout="column"
+            ng-click="logOut()"
           >
-            <div
-              class="md-list-item-text zero-margin"
-              layout="column"
-              ng-click="logOut()"
-            >
-              <h4>
-                <i class="ion-android-hand sidenav-icon"></i
-                ><span class="sidenav-options">{{
-                  "LOG_OUT" | translate
-                }}</span>
-              </h4>
-            </div>
-          </md-list-item>
-          <md-divider></md-divider>
-        </md-list>
-      </md-content>
-    </md-sidenav>
-  </ion-view>
+            <h4>
+              <i class="ion-android-hand sidenav-icon"></i
+              ><span class="sidenav-options">{{ "LOG_OUT" | translate }}</span>
+            </h4>
+          </div>
+        </md-list-item>
+        <md-divider></md-divider>
+      </md-list>
+    </md-content>
+  </md-sidenav>
 </ion-view>

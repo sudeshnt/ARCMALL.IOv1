@@ -48,7 +48,6 @@ function InitialCtrl(
       $rootScope.authResponse == "undefined"
     ) {
       var localAuthStatus = localStorage.getItem("loginStatus");
-      //console.log(localAuthStatus);
       if (
         localAuthStatus == null ||
         localAuthStatus == "" ||
@@ -89,7 +88,7 @@ function InitialCtrl(
   });
 
   $rootScope.$on("$stateChangeSuccess", function() {
-    // initCartItemCount();
+    initCartItemCount();
     // $rootScope.cartItemCount = cartSev.shoppingCart.cart.itemList.length;
   });
 

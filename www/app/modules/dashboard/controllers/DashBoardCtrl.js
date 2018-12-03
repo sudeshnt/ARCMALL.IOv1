@@ -58,9 +58,9 @@ function DashBoardCtrl(
   getFeatured();
 
   $scope.allImages = [
-    "app/modules/dashboard/img/1.png",
-    "app/modules/dashboard/img/1.png",
-    "app/modules/dashboard/img/1.png"
+    "app/modules/dashboard/img/banner3.png",
+    "app/modules/dashboard/img/banner1.png",
+    "app/modules/dashboard/img/banner2.png"
   ];
 
   $scope.bySearch = function(query) {

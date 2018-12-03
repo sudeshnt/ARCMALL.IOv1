@@ -2,9 +2,17 @@
 
 angular.module("seller.module").controller("SellerCtrl", SellerCtrl);
 
-SellerCtrl.$inject = ["$scope", "$state", "$rootScope", "sharedProperties"];
+SellerCtrl.$inject = [
+  "$scope",
+  "$state",
+  "$rootScope",
+  "sharedProperties",
+  "$window"
+];
 
-function SellerCtrl($scope, $state, $rootScope, sharedProperties) {
+function SellerCtrl($scope, $state, $rootScope, sharedProperties, $window) {
+  $scope.role = $window.localStorage.getItem("role");
+
   $scope.signupbuyer = function() {
     $state.go("signup", {
       role: "buyer"

@@ -15,7 +15,8 @@ ItemCtrl.$inject = [
   "$mdBottomSheet",
   "$timeout",
   "publicFunc",
-  "$ionicHistory"
+  "$ionicHistory",
+  "$window"
 ];
 
 function ItemCtrl(
@@ -31,8 +32,10 @@ function ItemCtrl(
   $mdBottomSheet,
   $timeout,
   publicFunc,
-  $ionicHistory
+  $ionicHistory,
+  $window
 ) {
+  $scope.role = $window.localStorage.getItem("role");
   $scope.cartSev = cartSev;
 
   if ($stateParams.product_id) {

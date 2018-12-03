@@ -11,7 +11,8 @@ CategoriesAllCtrl.$inject = [
   "httpService",
   "serverConfig",
   "sharedProperties",
-  "$ionicLoading"
+  "$ionicLoading",
+  "$window"
 ];
 
 function CategoriesAllCtrl(
@@ -21,8 +22,11 @@ function CategoriesAllCtrl(
   httpService,
   serverConfig,
   sharedProperties,
-  $ionicLoading
+  $ionicLoading,
+  $window
 ) {
+  $scope.role = $window.localStorage.getItem("role");
+
   $scope.goback = function() {
     $state.go("dashboard");
   };

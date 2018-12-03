@@ -9,7 +9,8 @@ ItemsCtrl.$inject = [
   "httpService",
   "serverConfig",
   "$ionicHistory",
-  "$httpParamSerializer"
+  "$httpParamSerializer",
+  "$window"
 ];
 
 function ItemsCtrl(
@@ -19,8 +20,10 @@ function ItemsCtrl(
   httpService,
   serverConfig,
   $ionicHistory,
-  $httpParamSerializer
+  $httpParamSerializer,
+  $window
 ) {
+  $scope.role = $window.localStorage.getItem("role");
   $scope.categoryObject = sharedProperties.getObject();
   console.log("test scope" + $scope.categoryObject.category_id);
   $scope.name = $scope.categoryObject.name;

@@ -12,7 +12,8 @@ SellerProfileCtrl.$inject = [
   "serverConfig",
   "httpService",
   "$httpParamSerializer",
-  "publicFunc"
+  "publicFunc",
+  "$window"
 ];
 
 function SellerProfileCtrl(
@@ -23,8 +24,10 @@ function SellerProfileCtrl(
   serverConfig,
   httpService,
   $httpParamSerializer,
-  publicFunc
+  publicFunc,
+  $window
 ) {
+  $scope.role = $window.localStorage.getItem("role");
   if ($stateParams.product_id && $stateParams.seller_id) {
     $scope.product_id = $stateParams.product_id;
     $scope.seller_id = $stateParams.seller_id;

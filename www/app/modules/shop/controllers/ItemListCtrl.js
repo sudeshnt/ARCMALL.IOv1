@@ -11,7 +11,8 @@ ItemListCtrl.$inject = [
   "httpService",
   "$httpParamSerializer",
   "publicFunc",
-  "$ionicHistory"
+  "$ionicHistory",
+  "$window"
 ];
 
 function ItemListCtrl(
@@ -23,8 +24,10 @@ function ItemListCtrl(
   httpService,
   $httpParamSerializer,
   publicFunc,
-  $ionicHistory
+  $ionicHistory,
+  $window
 ) {
+  $scope.role = $window.localStorage.getItem("role");
   if ($stateParams.category_id) {
     $scope.category_id = $stateParams.category_id;
     init();

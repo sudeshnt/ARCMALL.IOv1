@@ -402,6 +402,22 @@
           <div
             class="md-list-item-text zero-margin"
             layout="column"
+            ng-click="openSettings();"
+          >
+            <h4>
+              <i class="ion-ios-albums sidenav-icon"></i
+              ><span class="sidenav-options">{{ "SETTINGS" | translate }}</span>
+            </h4>
+          </div>
+        </md-list-item>
+        <md-divider></md-divider>
+        <md-list-item
+          class="md-3-line"
+          style="height: 50px; min-height:0px; padding-top: 10px;"
+        >
+          <div
+            class="md-list-item-text zero-margin"
+            layout="column"
             ng-click="openTermsAndCondition();"
           >
             <h4>

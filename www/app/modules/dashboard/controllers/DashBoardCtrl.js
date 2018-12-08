@@ -276,6 +276,10 @@ function DashBoardCtrl(
   $scope.openAddItem = function() {
     $state.go("sellerHome");
   };
+  $scope.openSettings = function() {
+    $state.go("settings");
+  };
+
   $scope.openMyProfile = function() {
     $scope.close();
     $state.go("my-profile");

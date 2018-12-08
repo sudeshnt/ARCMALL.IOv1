@@ -5,6 +5,7 @@ angular.module("modules", [
   "signup.module",
   "signin.module",
   "items.module",
+  "settings.module",
   "categoriesall.module",
   "dashboard.module"
 ]);

@@ -18,9 +18,41 @@ var arcMall = angular.module("arcMall", [
 
 // translation config
 arcMall.config(function($translateProvider) {
-  $translateProvider.preferredLanguage("en");
-  $translateProvider.forceAsyncReload(true);
-  $translateProvider.fallbackLanguage("en");
+  var language = localStorage.getItem("language");
+  var lang = window.navigator.userLanguage || window.navigator.language;
+
+  if (lang && lang != "") {
+    lang = lang.substring(0, 2);
+  } else {
+    lang = "en";
+  }
+
+  if (lang != "en" && lang != "zh") {
+    lang = "en";
+  }
+
+  if (
+    !language ||
+    language == "" ||
+    language === "undefined" ||
+    language == null
+  ) {
+    console.log(language);
+    localStorage.setItem("language", lang);
+    localStorage.removeItem("cat_tabs");
+
+    $translateProvider.preferredLanguage(lang);
+    $translateProvider.forceAsyncReload(true);
+    $translateProvider.fallbackLanguage(lang);
+
+    localStorage.setItem("language_changed", true);
+  } else {
+    localStorage.setItem("language", language);
+    $translateProvider.preferredLanguage(language);
+    $translateProvider.forceAsyncReload(true);
+    $translateProvider.fallbackLanguage(language);
+    localStorage.setItem("language_changed", false);
+  }
 });
 
 arcMall.config(function($httpProvider) {

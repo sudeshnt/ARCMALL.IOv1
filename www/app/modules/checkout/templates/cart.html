@@ -1,10 +1,7 @@
-<ion-header-bar class="bar bar-header header-md bar-darker">
-  <div
-    style="width: 100%; display: inherit; margin-top: 0px !important;"
-    class="top"
-  >
+<ion-header-bar class="bar bar-header header-md bar-darker top">
+  <div style="width: 100%; display: inherit; margin-top: 0px !important;">
     <div class="absolute back-icon-wrapper">
-      <a class="button button-icon row" ng-href="#/dashboard">
+      <a class="button button-icon row" ng-href="#/categories">
         <!-- <a class="button button-icon row" ng-href="#/home/new"> -->
         <i class="ion-android-arrow-back font-L white"></i>
       </a>
@@ -67,7 +64,10 @@
         <!-- <a class="item-close-btn ion-close-round"></a> -->
         <!-- <div class="chip capital">{{"SIZE" | translate}} : 8</div> -->
         <!-- <div class="chip align-center">x {{item.quantity}}</div> -->
-        <a class="item-close-btn" ng-click="removeItemFromCart(item.cart_id);"
+        <a
+          style="height:10% !important"
+          class="item-close-btn"
+          ng-click="removeItemFromCart(item.cart_id);"
           >&times;</a
         >
         <!--
@@ -134,7 +134,7 @@
         <div class="bottom-button">
           <a
             class="button button-outline button-positive visit-store-btn size-margin-auto"
-            style="margin-top: -10px;"
+            style="margin-top: -10px; width : 100%"
             ng-href="#/checkout-step-1"
           >
             {{ "CHECKOUT" | translate }}

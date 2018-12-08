@@ -1,65 +1,98 @@
-<ion-header-bar class="bar bar-header header-md bar-darker">
-  <div style="width: 100%; display: inherit; margin-top: 0px !important;" >
+<ion-header-bar class="bar bar-header header-md bar-darker top">
+  <div style="width: 100%; display: inherit; margin-top: 0px !important;">
     <div class="absolute back-icon-wrapper">
       <a class="button button-icon row" ng-href="#/checkout-step-2">
         <i class="ion-android-arrow-back font-L white"></i>
       </a>
     </div>
-    <h4 class="white center-title">{{'Step 3' | translate}}</h4>
-    <div class="absolute cart-icon-wrapper">
-    </div>
+    <h4 class="white center-title">{{ "Step 3" | translate }}</h4>
+    <div class="absolute cart-icon-wrapper"></div>
   </div>
 </ion-header-bar>
 <ion-view cache-view="false">
-    <ion-content class="has-header-md" style="margin-bottom:80px;">
-        <div class="item item-divider divider-topic">Your Details</div>
-        <ion-list>
-            
-            
-            <ion-item class="details-items detail"><p><b>Name : </b> <small>{{personal_info.firstname}} {{checkout.lastname}}</small></p></ion-item>
-            <ion-item class="details-items detail"><p><b>Email Address : </b> <small>{{personal_info.email}}</small></p></ion-item>
-            <ion-item class="details-items detail"><p><b>Mobile Number : </b> <small>{{personal_info.telephone}}</small></p></ion-item>
-            <ion-item class="details-items detail"><p><b>Address : </b> <small>{{personal_info.address_1}}</small></p></ion-item>
-            <ion-item class="details-items detail"><p><b>City : </b> <small>{{personal_info.city}}</small></p></ion-item>
-            <ion-item class="details-items detail"><p><b>Postal Code : </b> <small>{{personal_info.postcode}}</small></p></ion-item>
-            
-        </ion-list>
-        <div class="item item-divider divider-topic">Your Order</div>
-        <ion-list>
-            <ion-item class="item item-thumbnail-left cart-item" ng-repeat="item in cart.products">
-                <img class="cart-image" ng-src="{{::item.thumb}}">
-                <h3 class="cart-item-title" ng-bind-html="::item.name"></h3>
-                <h5 class="cart-item-title" ng-bind-html="item.model"></h5>
-                <ul class="cart-item-options">
-                    <li ng-repeat="opt in item.option">{{::opt.name}}:{{::opt.value}}</li>
-                </ul>
-                <p>{{::item.quantity}} x {{::item.price}} <span class="cart-item-total">{{::item.total}}</span></p>
-            </ion-item>
-            <!-- <ion-item class="cart-totals-item" ng-repeat="total in cart.totals">
-                <p>{{::total.title}} <span class="cart-item-total">{{::total.text}}</span></p>
-            </ion-item> -->
-        </ion-list>
-    </ion-content>
+  <ion-content class="has-header-md" style="margin-bottom:80px;">
+    <div class="item item-divider divider-topic">Your Details</div>
+    <ion-list>
+      <ion-item class="details-items detail"
+        ><p>
+          <b>Name : </b>
+          <small>{{ personal_info.firstname }} {{ checkout.lastname }}</small>
+        </p></ion-item
+      >
+      <ion-item class="details-items detail"
+        ><p>
+          <b>Email Address : </b> <small>{{ personal_info.email }}</small>
+        </p></ion-item
+      >
+      <ion-item class="details-items detail"
+        ><p>
+          <b>Mobile Number : </b> <small>{{ personal_info.telephone }}</small>
+        </p></ion-item
+      >
+      <ion-item class="details-items detail"
+        ><p>
+          <b>Address : </b> <small>{{ personal_info.address_1 }}</small>
+        </p></ion-item
+      >
+      <ion-item class="details-items detail"
+        ><p>
+          <b>City : </b> <small>{{ personal_info.city }}</small>
+        </p></ion-item
+      >
+      <ion-item class="details-items detail"
+        ><p>
+          <b>Postal Code : </b> <small>{{ personal_info.postcode }}</small>
+        </p></ion-item
+      >
+    </ion-list>
+    <div class="item item-divider divider-topic">Your Order</div>
+    <ion-list>
+      <ion-item
+        class="item item-thumbnail-left cart-item"
+        ng-repeat="item in cart.products"
+      >
+        <img class="cart-image" ng-src="{{::item.thumb}}" />
+        <h3 class="cart-item-title" ng-bind-html="::item.name"></h3>
+        <h5 class="cart-item-title" ng-bind-html="item.model"></h5>
+        <ul class="cart-item-options">
+          <li ng-repeat="opt in item.option">{{::opt.name}}:{{::opt.value}}</li>
+        </ul>
+        <p>
+          {{::item.quantity}} x {{::item.price}}
+          <span class="cart-item-total">{{::item.total}}</span>
+        </p>
+      </ion-item>
+      <!--
+        <ion-item class="cart-totals-item" ng-repeat="total in cart.totals">
+            <p>{{::total.title}} <span class="cart-item-total">{{::total.text}}</span></p>
+        </ion-item>
+      -->
+    </ion-list>
+  </ion-content>
 
-    <!-- <ion-footer-bar align-title="left" class="bar-positive">
+  <!--
+    <ion-footer-bar align-title="left" class="bar-positive">
         <h2 class="title">{{cart.total}}</h2>
         <div class="buttons">
             <a class="button" ng-click="processOrder()">CONFIRM</a>
         </div>
-    </ion-footer-bar> -->
-    <div class="bar bar-footer zero-padding" style="height: 80px;">
-            <div class="" style="width:100%;">
-              <div class="full-width" style="margin-top: 5px;">
-          
-                <div class="row padding-top-zero">
-                  
-                    <div class="bottom-button" style="margin-top: 0px;">
-                        <a class="button button-outline button-positive visit-store-btn size-margin-auto" ng-click="processOrder()">
-                          {{"Confirm" | translate}}
-                        </a>
-                      </div>
-                </div>
-              </div>
-            </div>
+    </ion-footer-bar>
+  -->
+  <div class="bar bar-footer zero-padding" style="height: 80px;">
+    <div class="" style="width:100%;">
+      <div class="full-width" style="margin-top: 5px;">
+        <div class="row padding-top-zero">
+          <div class="bottom-button" style="margin-top: 0px; width : 100%">
+            <a
+              class="button button-outline button-positive visit-store-btn size-margin-auto"
+              style="width : 100%"
+              ng-click="processOrder()"
+            >
+              {{ "Confirm" | translate }}
+            </a>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </ion-view>

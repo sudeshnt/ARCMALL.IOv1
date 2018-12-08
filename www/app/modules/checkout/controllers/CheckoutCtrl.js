@@ -14,14 +14,14 @@ function CheckoutCtrl($scope,$state,$rootScope,serverConfig,httpService,$httpPar
     $scope.personal_details = {};
   }
 
-  var checked = 0;
+  var checked = 1 ;
 
   $scope.checkbox = function (){
     checked = 1;
   }
 
   $scope.nextStep = function (){
-    console.log(checked);
+    //console.log(checked);
     if(checked){
     addCustomer();
     addAddress();

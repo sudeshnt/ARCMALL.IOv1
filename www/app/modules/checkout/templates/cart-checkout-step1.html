@@ -1,4 +1,4 @@
-<ion-header-bar class="bar bar-header header-md bar-darker">
+<ion-header-bar class="bar bar-header header-md bar-darker top">
   <div style="width: 100%; display: inherit; margin-top: 0px !important;" >
     <div class="absolute back-icon-wrapper">
       <a class="button button-icon row" ng-href="#/cart">
@@ -19,14 +19,14 @@
                 <div class="row no-padding item item-input item-floating-label item-double-col checkout-double-col">
                     <label class="item item-input item-floating-label col-50 checkout-label">
                         <span class="input-label">First Name <span class="error-warning"> *</span></span>
-                        <input type="text" ng-model="personal_details.firstname" placeholder="First Name *" name="firstname" required>
+                        <input style = "color: black"type="text" ng-model="personal_details.firstname" placeholder="First Name *" name="firstname" required>
                         <span class="error-warning" data-ng-show="personalInfoForm.$submitted">
                           <span class="error-warning" data-ng-show="personalInfoForm.firstname.$error.required">This field is required.</span>
                         </span>
                     </label>
                     <label class="item item-input item-floating-label col-50 checkout-label">
                         <span class="input-label">Last Name <span class="error-warning"> *</span></span>
-                        <input type="text"  ng-model="personal_details.lastname" placeholder="Last Name *" name="lastname" required>
+                        <input style = "color: black" type="text"  ng-model="personal_details.lastname" placeholder="Last Name *" name="lastname" required>
                        <span class="error-warning" data-ng-show="personalInfoForm.$submitted">
                           <span class="error-warning" data-ng-show="personalInfoForm.lastname.$error.required">This field is required.</span>
                         </span>
@@ -35,7 +35,7 @@
                 <hr>
                 <label class="item item-input item-floating-label checkout-label separate-border">
                     <span class="input-label">Email <span class="error-warning"> *</span></span>
-                    <input type="email" ng-model="personal_details.email" placeholder="Email *" name="email" required>
+                    <input style = "color: black" type="email" ng-model="personal_details.email" placeholder="Email *" name="email" required>
                     <span class="error-warning" data-ng-show="personalInfoForm.$submitted">
                       <span class="error-warning" data-ng-show="personalInfoForm.email.$error.required">This field is required.</span>
                       <span class="error-warning" data-ng-show="personalInfoForm.email.$error.email">Enter a valid Email.</span>
@@ -44,7 +44,7 @@
                 <hr>
                 <label class="item item-input item-floating-label checkout-label separate-border">
                     <span class="input-label">Telephone <span class="error-warning"> *</span></span>
-                    <input type="tel" ng-model="personal_details.telephone" placeholder="Telephone *" name="telephone" required>
+                    <input  style = "color: black" type="tel" ng-model="personal_details.telephone" placeholder="Telephone *" name="telephone" required>
                     <span class="error-warning" data-ng-show="personalInfoForm.$submitted">
                       <span class="error-warning" data-ng-show="personalInfoForm.telephone.$error.required">This field is required.</span>
                     </span>
@@ -56,7 +56,7 @@
 
                 <label class="item item-input item-floating-label checkout-label separate-border">
                     <span class="input-label">Address Line 1 <span class="error-warning"> *</span></span>
-                    <input type="text"  ng-model="personal_details.address_1" name="address_1" placeholder="Address Line 1 *" required>
+                    <input  style = "color: black" type="text"  ng-model="personal_details.address_1" name="address_1" placeholder="Address Line 1 *" required>
                     <span class="error-warning" data-ng-show="personalInfoForm.$submitted">
                       <span class="error-warning" data-ng-show="personalInfoForm.address_1.$error.required">This field is required.</span>
                     </span>
@@ -64,7 +64,7 @@
                 <hr>
                 <label class="item item-input item-floating-label checkout-label separate-border">
                     <span class="input-label">Address Line 2 <span class="error-warning"> *</span></span>
-                    <input type="text"  ng-model="personal_details.address_2" name="address_2" placeholder="Address Line 2 *">
+                    <input  style = "color: black" type="text"  ng-model="personal_details.address_2" name="address_2" placeholder="Address Line 2 *">
                     <span class="error-warning" data-ng-show="personalInfoForm.$submitted">
                       <span class="error-warning" data-ng-show="personalInfoForm.address_2.$error.required">This field is required.</span>
                     </span>
@@ -73,14 +73,14 @@
                 <div class="row zero-padding no-padding item item-input item-floating-label item-double-col checkout-double-col separate-border">
                     <label class="item item-input item-floating-label col-50 checkout-label">
                         <span class="input-label">City <span class="error-warning"> *</span></span>
-                        <input type="text" ng-model="personal_details.city" name="city" placeholder="City *" required>
+                        <input  style = "color: black" type="text" ng-model="personal_details.city" name="city" placeholder="City *" required>
                         <span class="error-warning" data-ng-show="personalInfoForm.$submitted">
                           <span class="error-warning" data-ng-show="personalInfoForm.city.$error.required">This field is required.</span>
                         </span>
                     </label>
                     <label class="item item-input item-floating-label col-50 checkout-label">
                         <span class="input-label">Postal Code <span class="error-warning"> *</span></span>
-                        <input type="text" ng-model="personal_details.postcode" maxlength="10" minlength="5" name="postal_code" placeholder="Postal Code *" required>
+                        <input style = "color: black" type="text" ng-model="personal_details.postcode" maxlength="10" minlength="5" name="postal_code" placeholder="Postal Code *" required>
                         <span class="error-warning" data-ng-show="personalInfoForm.$submitted">
                           <span class="error-warning" data-ng-show="personalInfoForm.postal_code.$error.required">This field is required.</span>
                         </span>
@@ -111,9 +111,9 @@
                       <!--</label>-->
                     </div>
                 </div>
-                <!-- <hr> -->
+                <!--<hr>
 
-                <!-- <ion-checkbox class="checkbox-square small form-field" data-ng-click="checkbox()">My delivery and billing addresses are the same</ion-checkbox> -->
+                <ion-checkbox class="checkbox-square small form-field" data-ng-click="checkbox()">My delivery and billing addresses are the same</ion-checkbox>-->
 
       <!--</ion-list>-->
     </ion-content>
@@ -131,8 +131,8 @@
       
             <div class="row padding-top-zero">
               
-                <div class="bottom-button" style="margin-top: 0px;">
-                    <a class="button button-outline button-positive visit-store-btn size-margin-auto" data-ng-click="personalInfoForm.$setSubmitted(); personalInfoForm.$valid && nextStep()">
+                <div class="bottom-button" style="margin-top: 0px; width : 100%">
+                    <a class="button button-outline button-positive visit-store-btn size-margin-auto" style="width : 100%" data-ng-click="personalInfoForm.$setSubmitted(); personalInfoForm.$valid && nextStep()">
                       {{"Next" | translate}}
                     </a>
                   </div>

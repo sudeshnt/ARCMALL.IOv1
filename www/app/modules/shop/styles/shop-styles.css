@@ -423,7 +423,6 @@ md-select:not([disabled]):focus .md-select-value {
   color: #373d3d;
 }
 .profile-field-value {
-  padding-left: 15px;
   font-size: 20px;
   font-weight: 100;
 }

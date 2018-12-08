@@ -10,7 +10,8 @@ ItemsCtrl.$inject = [
   "serverConfig",
   "$ionicHistory",
   "$httpParamSerializer",
-  "$window"
+  "$window",
+  "publicFunc"
 ];
 
 function ItemsCtrl(
@@ -21,7 +22,8 @@ function ItemsCtrl(
   serverConfig,
   $ionicHistory,
   $httpParamSerializer,
-  $window
+  $window,
+  publicFunc
 ) {
   $scope.role = $window.localStorage.getItem("role");
   $scope.categoryObject = sharedProperties.getObject();
@@ -54,7 +56,11 @@ function ItemsCtrl(
       .getRequest(serverConfig.clientAPI, extended_url, req, {})
       .then(function(response) {
         if (response.status === 200) {
-          $scope.categories = response.data.categories[0];
+          console.log("test scope" + response.data.categories[0].name);
+          $scope.categories = publicFunc.devideArray(
+            response.data.categories[0].categories,
+            2
+          );
           console.log("test scope" + response.data.categories[0].name);
         } else {
           alert(response.error_warning);

@@ -254,3 +254,14 @@
 .item-icon-right .icon {
   font-size: 24px;
 }
+
+.item {
+  overflow: inherit;
+  text-overflow: inherit;
+  white-space: wrap;
+}
+.icon-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

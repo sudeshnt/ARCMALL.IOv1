@@ -1,11 +1,8 @@
 <ion-view title="">
   <ion-content>
     <div class="row top">
-      <div class="col col-10" ng-click="goback()">
-        <i
-          class="ion-android-arrow-back font-L white"
-          style="font: size 36px;"
-        ></i>
+      <div class="col col-10 icon-center" ng-click="goback()">
+        <i class="ion-android-arrow-back font-L white"></i>
       </div>
       <div class="col " style="text-align: center">
         <h4 style="color: white;font-weight: bold; font-size: 16px">
@@ -13,14 +10,102 @@
         </h4>
       </div>
     </div>
-    <ion-list ng-repeat="category in categories.categories">
-      <ion-item class="divider">
-        <div ng-click="goToItems(category)">
-          <h5 style="color: black;font-weight: bold; font-size: 16px">
-            {{ category.name }}
-          </h5>
+    <ion-content class="has-header" overflow-scroll="true">
+      <div class="row" ng-repeat="categoryRow in categories">
+        <div
+          class="col zero-padding"
+          ng-repeat="category in categoryRow"
+          style="max-width:50%;"
+        >
+          <div class="list card wish-list-card" ng-click="goToItems(category)">
+            <div class="item item-image">
+              <img
+                ng-src="{{category.image}}"
+                style="width: 200px; height: 200px;"
+              />
+            </div>
+            <div
+              class="item tabs-secondary tabs-icon-left white-tabs"
+              style="padding: 10px;"
+            >
+              <ion-item class="item-text-wrap align-center">
+                {{ category.name }}
+              </ion-item>
+              <!--
+                <h3 class="align-center item" ng-bind-html="category.name"></h3>
+              -->
+            </div>
+          </div>
         </div>
-      </ion-item>
-    </ion-list>
+      </div>
+      <div class="row" style="min-height: 25px;"></div>
+    </ion-content>
   </ion-content>
 </ion-view>
+
+<!--
+  <ion-header-bar class="bar bar-header header-md bar-darker top " >
+    <div style="width: 100%; display: inherit; margin-top: 0px !important;" >
+      <div class="absolute back-icon-wrapper">
+        <a class="button button-icon row" ng-click="back();">
+          <i class="ion-android-arrow-back font-L white"></i>
+        </a>
+      </div>
+      <h4 class="white left-title" ng-bind-html="category.heading_title"></h4>
+      <div class="absolute cart-icon-wrapper">
+        <a class="button button-icon row" ng-click="viewCart()">
+          <i class="ion-android-cart font-L white"></i>
+          <i class="cart-item-count" ng-show="cartItemCount>0  ">{{cartItemCount}}</i>
+        </a>
+      </div>
+    </div>
+  </ion-header-bar>
+
+    <ion-content class="has-header" overflow-scroll="true">
+      <div class="row" ng-repeat="productRow in category.products">
+        <div class="col zero-padding" ng-repeat="product in productRow" style="max-width:50%;">
+          <div class="list card wish-list-card" ng-click="openItemDetails(product.product_id)">
+            <div class="item item-image" >
+              <img ng-src="{{product.thumb}}" class="full-width full-height">
+            </div>
+            <div class="item tabs-secondary tabs-icon-left white-tabs" style="padding: 10px;">
+              <h3 class="align-center" ng-bind-html="product.name"></h3>
+              <h3 class="align-center" ng-bind-html="product.price"></h3>
+            </div>
+          </div>
+        </div>
+        <div class="col zero-padding" ng-if="productRow.length==1">
+        </div>
+      </div>
+      <div class="row" style="min-height: 25px;"></div>
+    </ion-content>
+  </ion-view>
+
+
+  <ion-view title="">
+    <ion-content>
+      <div class="row top">
+        <div class="col col-10" ng-click="goback()">
+          <i
+            class="ion-android-arrow-back font-L white"
+            style="font: size 36px;"
+          ></i>
+        </div>
+        <div class="col " style="text-align: center">
+          <h4 style="color: white;font-weight: bold; font-size: 16px">
+            {{ name }}
+          </h4>
+        </div>
+      </div>
+      <ion-list ng-repeat="category in categories.categories">
+        <ion-item class="divider">
+          <div ng-click="goToItems(category)">
+            <h5 style="color: black;font-weight: bold; font-size: 16px">
+              {{ category.name }}
+            </h5>
+          </div>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-view>
+-->

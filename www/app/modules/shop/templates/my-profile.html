@@ -38,63 +38,61 @@
 
     <ul class="list" style=" width:80%;margin: auto;">
       <li class="item">
-        <label class="profile-field-lable" style="color:aliceblue"
-          >{{ "FIRST_NAME" | translate }} :</label
-        >
-        <span
-          class="profile-field-value"
-          ng-if="!edit"
-          style="font-weight: bold;  color:aliceblue"
-          >{{ firstname != "" ? firstname : "N/A" }}</span
-        >
+        <div style="width:100%">
+          <label class="profile-field-lable" style="color:aliceblue"
+            >{{ "FIRST_NAME" | translate }} :</label
+          >
+        </div>
+        <div style="width:100%">
+          <span
+            class="profile-field-value"
+            ng-if="!edit"
+            style="font-weight: bold;  color:aliceblue"
+            >{{ firstname != "" ? firstname : "N/A" }}</span
+          >
+        </div>
+
         <md-input-container ng-if="edit" class="zero-margin profile-input">
           <label>{{ "FIRST_NAME" | translate }}</label>
           <input ng-model="userProfile.firstname" />
         </md-input-container>
       </li>
       <li class="item">
-        <label class="profile-field-lable" style="color:aliceblue"
-          >{{ "LAST_NAME" | translate }} :</label
-        >
-        <span
-          class="profile-field-value"
-          ng-if="!edit"
-          style="font-weight: bold;  color:aliceblue"
-          >{{ lastname != "" ? lastname : "N/A" }}</span
-        >
+        <div style="width:100%">
+          <label class="profile-field-lable" style="color:aliceblue"
+            >{{ "LAST_NAME" | translate }} :</label
+          >
+        </div>
+        <div style="width:100%">
+          <span
+            class="profile-field-value"
+            ng-if="!edit"
+            style="font-weight: bold;  color:aliceblue"
+            >{{ lastname != "" ? lastname : "N/A" }}</span
+          >
+        </div>
         <md-input-container ng-if="edit" class="zero-margin profile-input">
           <label>{{ "LAST_NAME" | translate }}</label>
           <input ng-model="userProfile.lastname" />
         </md-input-container>
       </li>
       <li class="item">
-        <label class="profile-field-lable" style="color:aliceblue"
-          >{{ "EMAIL" | translate }} :</label
-        >
-        <span
-          class="profile-field-value"
-          ng-if="!edit"
-          style="font-weight: bold;  color:aliceblue"
-          >{{ email != "" ? email : "N/A" }}</span
-        >
+        <div style="width:100%">
+          <label class="profile-field-lable" style="color:aliceblue"
+            >{{ "EMAIL" | translate }} :</label
+          >
+        </div>
+        <div style="width:100%">
+          <span
+            class="profile-field-value"
+            ng-if="!edit"
+            style="font-weight: bold;  color:aliceblue"
+            >{{ email != "" ? email : "N/A" }}</span
+          >
+        </div>
         <md-input-container ng-if="edit" class="zero-margin profile-input">
           <label>{{ "EMAIL" | translate }}</label>
           <input ng-model="userProfile.email" />
-        </md-input-container>
-      </li>
-      <li class="item">
-        <label class="profile-field-lable" style="color:aliceblue"
-          >{{ "MOBILE" | translate }} :</label
-        >
-        <span
-          class="profile-field-value"
-          ng-if="!edit"
-          style="font-weight: bold;  color:aliceblue"
-          >{{ telephone != "" ? telephone : "N/A" }}</span
-        >
-        <md-input-container ng-if="edit" class="zero-margin profile-input">
-          <label>{{ "MOBILE" | translate }}</label>
-          <input ng-model="userProfile.telephone" />
         </md-input-container>
       </li>
       <li class="item" ng-if="userProfile.ispartner == 'true'">

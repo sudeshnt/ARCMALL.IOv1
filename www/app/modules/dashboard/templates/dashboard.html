@@ -25,7 +25,7 @@
       <div class="absolute cart-icon-wrapper">
         <a class="button button-icon row" ng-click="viewCart()">
           <i class="ion-android-cart font-L black"></i>
-          <i class="cart-item-count" ng-show="cartItemCount>0 && role !='3' ">{{
+          <i class="cart-item-count" ng-show="cartItemCount>0 ">{{
             cartItemCount
           }}</i>
         </a>
@@ -43,202 +43,208 @@
         </div></ion-item
       >
     </ion-list>
+    <div ng-if=" search_text == '' ">
+      <div ng-class="{'list card card-margin full-height' : $index>0 }">
+        <!--
+          <div class="item item-image full-height">
+          <ion-slide-box
+            class="item item-image full-height"
+            auto-play="true"
+            does-continue="true"
+            slide-intervel="30000"
+          >
+            <ion-slide ng-repeat="img in allImages">
+              <img
+                src="app/modules/dashboard/img/1.png"
+                class="full-height"
+                style="max-height: 200px;"
+              />
+            </ion-slide>
+          </ion-slide-box>
+        -->
 
-    <div ng-class="{'list card card-margin full-height' : $index>0 }">
-      <!--
         <div class="item item-image full-height">
-        <ion-slide-box
-          class="item item-image full-height"
-          auto-play="true"
-          does-continue="true"
-          slide-intervel="30000"
-        >
-          <ion-slide ng-repeat="img in allImages">
+          <ion-slide-box
+            auto-play="true"
+            does-continue="true"
+            slide-interval="10000"
+          >
+            <ion-slide>
+              <img
+                src="app/modules/dashboard/img/banner1.jpg"
+                class="full-height"
+                style="max-height: 200px;"
+              />
+            </ion-slide>
+            <ion-slide>
+              <img
+                src="app/modules/dashboard/img/banner2.jpg"
+                class="full-height"
+                style="max-height: 200px;"
+              />
+            </ion-slide>
+            <ion-slide>
+              <img
+                src="app/modules/dashboard/img/banner3.jpg"
+                class="full-height"
+                style="max-height: 200px;"
+              />
+            </ion-slide>
+          </ion-slide-box>
+          <!--
             <img
               src="app/modules/dashboard/img/1.png"
               class="full-height"
               style="max-height: 200px;"
             />
-          </ion-slide>
-        </ion-slide-box>
-      -->
+          -->
 
-      <div class="item item-image full-height">
-        <ion-slide-box
-          auto-play="true"
-          does-continue="true"
-          slide-interval="10000"
+          <!--
+            <div class="text-on-image card-name ">
+              <h2 class="multi-line-text">WELCOME TO ARCMALL</h2>
+            </div>
+
+            <div class="text-on-image-2 card-name ">
+              <h4 class="multi-line-text">ABSOLUTE . RETAIL .COMPANY</h4>
+            </div>
+          -->
+        </div>
+      </div>
+
+      <div class="card-name " style="padding-left: 10px">
+        <h6>CATEGORIES</h6>
+      </div>
+
+      <div class="row ">
+        <button
+          class="column"
+          style="padding: 5px"
+          ng-click="goTo(allCategories[0])"
         >
-          <ion-slide>
-            <img
-              src="app/modules/dashboard/img/banner1.jpg"
-              class="full-height"
-              style="max-height: 200px;"
-            />
-          </ion-slide>
-          <ion-slide>
-            <img
-              src="app/modules/dashboard/img/banner2.jpg"
-              class="full-height"
-              style="max-height: 200px;"
-            />
-          </ion-slide>
-          <ion-slide>
-            <img
-              src="app/modules/dashboard/img/banner3.jpg"
-              class="full-height"
-              style="max-height: 200px;"
-            />
-          </ion-slide>
-        </ion-slide-box>
-        <!--
+          <img ng-src="{{ allCategories[0].image }}" width="100%" />
+          <div class="overlay">{{ allCategories[0].name }}</div>
+        </button>
+        <button
+          class="column"
+          style="padding: 5px"
+          ng-click="goTo(allCategories[1])"
+        >
+          <img ng-src="{{ allCategories[1].image }}" width="100%" />
+          <div class="overlay">{{ allCategories[1].name }}</div>
+        </button>
+      </div>
+      <div class="row ">
+        <button
+          class="column"
+          style="padding: 5px"
+          ng-click="goTo(allCategories[2])"
+        >
+          <img ng-src="{{ allCategories[2].image }}" width="100%" />
+          <div class="overlay">{{ allCategories[2].name }}</div>
+        </button>
+        <button
+          class="column"
+          style="padding: 5px"
+          ng-click="goTo(allCategories[3])"
+        >
+          <img ng-src="{{ allCategories[3].image }}" width="100%" />
+          <div class="overlay">{{ allCategories[3].name }}</div>
+        </button>
+      </div>
+      <div class="row ">
+        <button
+          class="column"
+          style="padding: 5px"
+          ng-click="goTo(allCategories[4])"
+        >
+          <img ng-src="{{ allCategories[4].image }}" width="100%" />
+          <div class="overlay">{{ allCategories[4].name }}</div>
+        </button>
+        <button
+          class="column"
+          style="padding: 5px"
+          ng-click="goTo(allCategories[5])"
+        >
+          <img ng-src="{{ allCategories[5].image }}" width="100%" />
+          <div class="overlay">{{ allCategories[5].name }}</div>
+        </button>
+      </div>
+
+      <button
+        class=" view-categories text-center"
+        ng-click="goToAllCategories()"
+      >
+        VIEW ALLCATEGORIES
+      </button>
+
+      <div style="margin-top: 5px">
+        <img
+          src="app/modules/dashboard/img/8.png"
+          style="max-height: 200px; max-width:100% ;"
+        />
+      </div>
+      <div class="card-name " style="padding-left: 10px">
+        <h6>FEATURED</h6>
+        <div class="row">
+          <div class="col  text-right myfontsize">
+            <i class="ion-android-arrow-back" ng-click="previous1()"></i
+            >&nbsp;&nbsp;<i
+              class="ion-android-arrow-forward"
+              ng-click="next1()"
+            ></i>
+          </div>
+        </div>
+      </div>
+      <ion-scroll
+        direction="x"
+        class="wide-as-needed"
+        delegate-handle="mysliderone"
+      >
+        <div
+          ng-click="openItemDetails(item.product_id)"
+          ng-repeat="item in featured"
+          style="display: inline-block;white-space: nowrap; "
+        >
           <img
-            src="app/modules/dashboard/img/1.png"
-            class="full-height"
-            style="max-height: 200px;"
+            src="{{item.thumb}}"
+            style="margin: 10px; display: inline-block;"
           />
-        -->
+          <div style="padding-left: 10px">{{ item.name }}</div>
+        </div>
+      </ion-scroll>
 
-        <!--
-          <div class="text-on-image card-name ">
-            <h2 class="multi-line-text">WELCOME TO ARCMALL</h2>
+      <div class="card-name " style="padding-left: 10px">
+        <h6>BEST SELLER</h6>
+        <div class="row">
+          <div class="col  text-right myfontsize">
+            <i class="ion-android-arrow-back" ng-click="previous2()"></i
+            >&nbsp;&nbsp;<i
+              class="ion-android-arrow-forward"
+              ng-click="next2()"
+            ></i>
           </div>
-
-          <div class="text-on-image-2 card-name ">
-            <h4 class="multi-line-text">ABSOLUTE . RETAIL .COMPANY</h4>
-          </div>
-        -->
-      </div>
-    </div>
-
-    <div class="card-name " style="padding-left: 10px"><h6>CATEGORIES</h6></div>
-
-    <div class="row ">
-      <button
-        class="column"
-        style="padding: 5px"
-        ng-click="goTo(allCategories[0])"
-      >
-        <img ng-src="{{ allCategories[0].image }}" width="100%" />
-        <div class="overlay">{{ allCategories[0].name }}</div>
-      </button>
-      <button
-        class="column"
-        style="padding: 5px"
-        ng-click="goTo(allCategories[1])"
-      >
-        <img ng-src="{{ allCategories[1].image }}" width="100%" />
-        <div class="overlay">{{ allCategories[1].name }}</div>
-      </button>
-    </div>
-    <div class="row ">
-      <button
-        class="column"
-        style="padding: 5px"
-        ng-click="goTo(allCategories[2])"
-      >
-        <img ng-src="{{ allCategories[2].image }}" width="100%" />
-        <div class="overlay">{{ allCategories[2].name }}</div>
-      </button>
-      <button
-        class="column"
-        style="padding: 5px"
-        ng-click="goTo(allCategories[3])"
-      >
-        <img ng-src="{{ allCategories[3].image }}" width="100%" />
-        <div class="overlay">{{ allCategories[3].name }}</div>
-      </button>
-    </div>
-    <div class="row ">
-      <button
-        class="column"
-        style="padding: 5px"
-        ng-click="goTo(allCategories[4])"
-      >
-        <img ng-src="{{ allCategories[4].image }}" width="100%" />
-        <div class="overlay">{{ allCategories[4].name }}</div>
-      </button>
-      <button
-        class="column"
-        style="padding: 5px"
-        ng-click="goTo(allCategories[5])"
-      >
-        <img ng-src="{{ allCategories[5].image }}" width="100%" />
-        <div class="overlay">{{ allCategories[5].name }}</div>
-      </button>
-    </div>
-
-    <button class=" view-categories text-center" ng-click="goToAllCategories()">
-      VIEW ALLCATEGORIES
-    </button>
-
-    <div style="margin-top: 5px">
-      <img
-        src="app/modules/dashboard/img/8.png"
-        style="max-height: 200px; max-width:100% ;"
-      />
-    </div>
-    <div class="card-name " style="padding-left: 10px">
-      <h6>FEATURED</h6>
-      <div class="row">
-        <div class="col  text-right myfontsize">
-          <i class="ion-android-arrow-back" ng-click="previous1()"></i
-          >&nbsp;&nbsp;<i
-            class="ion-android-arrow-forward"
-            ng-click="next1()"
-          ></i>
         </div>
       </div>
-    </div>
-    <ion-scroll
-      direction="x"
-      class="wide-as-needed"
-      delegate-handle="mysliderone"
-    >
-      <div
-        ng-click="openItemDetails(item.product_id)"
-        ng-repeat="item in featured"
-        style="display: inline-block;white-space: nowrap; "
+      <ion-scroll
+        direction="x"
+        class="wide-as-needed"
+        delegate-handle="myslidertwo"
       >
-        <img
-          src="{{item.thumb}}"
-          style="margin: 10px; display: inline-block;"
-        />
-        <div style="padding-left: 10px">{{ item.name }}</div>
-      </div>
-    </ion-scroll>
-
-    <div class="card-name " style="padding-left: 10px">
-      <h6>BEST SELLER</h6>
-      <div class="row">
-        <div class="col  text-right myfontsize">
-          <i class="ion-android-arrow-back" ng-click="previous2()"></i
-          >&nbsp;&nbsp;<i
-            class="ion-android-arrow-forward"
-            ng-click="next2()"
-          ></i>
+        <div
+          ng-click="openItemDetails(item.product_id)"
+          ng-repeat="item in bestSeller "
+          style="display: inline-block;white-space: nowrap; "
+        >
+          <img
+            src="{{item.thumb}}"
+            style="margin: 10px; display: inline-block;"
+          />
+          <div style="padding-left: 10px">{{ item.name }}</div>
         </div>
-      </div>
-    </div>
-    <ion-scroll
-      direction="x"
-      class="wide-as-needed"
-      delegate-handle="myslidertwo"
-    >
-      <div
-        ng-click="openItemDetails(item.product_id)"
-        ng-repeat="item in bestSeller "
-        style="display: inline-block;white-space: nowrap; "
-      >
-        <img
-          src="{{item.thumb}}"
-          style="margin: 10px; display: inline-block;"
-        />
-        <div style="padding-left: 10px">{{ item.name }}</div>
-      </div>
-    </ion-scroll>
+      </ion-scroll>
 
-    <div class="row" style="min-height: 55px;"></div>
+      <div class="row" style="min-height: 55px;"></div>
+    </div>
   </ion-content>
 
   <md-sidenav class="md-sidenav-left  sidemenubg" md-component-id="right">

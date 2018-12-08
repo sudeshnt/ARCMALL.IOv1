@@ -13,7 +13,8 @@ CartCtrl.$inject = [
   "serverConfig",
   "httpService",
   "$httpParamSerializer",
-  "$ionicHistory"
+  "$ionicHistory",
+  "$window"
 ];
 
 function LanguagesCtrl(
@@ -27,9 +28,10 @@ function LanguagesCtrl(
   serverConfig,
   httpService,
   $httpParamSerializer,
-  $ionicHistory
+  $ionicHistory,
+  $window
 ) {
-  var lang = localStorage.getItem("language");
+  var lang = $window.localStorage.getItem("language");
   if (!lang || lang == "" || lang === "undefined" || lang == null) {
     lang = "en";
   }
@@ -47,9 +49,9 @@ function LanguagesCtrl(
 
   $scope.changeLanguage = function(lang) {
     console.log("changed");
-    localStorage.removeItem("cat_tabs");
-    localStorage.setItem("language", lang);
-    localStorage.setItem("language_changed", true);
+    $window.localStorage.removeItem("cat_tabs");
+    $window.localStorage.setItem("language", lang);
+    $window.localStorage.setItem("language_changed", true);
     location.reload();
   };
 }

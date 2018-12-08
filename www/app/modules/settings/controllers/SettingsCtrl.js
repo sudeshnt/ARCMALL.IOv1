@@ -29,6 +29,9 @@ function SettingsCtrl(
   $httpParamSerializer,
   $ionicHistory
 ) {
+  $scope.goback = function() {
+    $ionicHistory.goBack();
+  };
   $scope.goToLanguages = function() {
     $state.go("languages");
   };

@@ -59,8 +59,8 @@ function CheckoutStep3Ctrl(
         function(data) {
           var extended_url = "/order/history";
           var reqObj = {
-            order_status_id: 5,
-            order_id: order_id
+            "order_status_id":5,
+            "order_id":order_id,
           };
           var config = {
             headers: {
@@ -94,22 +94,20 @@ function CheckoutStep3Ctrl(
       JSON.parse($scope.payment_and_shipping.shipping_method).quote
     )[0];
     var extended_url = "/order/add";
-    if ($rootScope.authResponse) {
+    if($rootScope.authResponse){
       var reqObj = {
-        shipping_method: JSON.parse($scope.payment_and_shipping.shipping_method)
-          .quote[key].code,
-        payment_method: $scope.payment_and_shipping.payment_method,
-        comment: $scope.personal_info.comment,
-        affiliate_id: ""
-      };
-    } else {
-      var reqObj = {
-        shipping_method: JSON.parse($scope.payment_and_shipping.shipping_method)
-          .quote[key].code,
-        payment_method: $scope.payment_and_shipping.payment_method,
-        comment: $scope.personal_info.comment,
-        affiliate_id: ""
-      };
+          "shipping_method":JSON.parse($scope.payment_and_shipping.shipping_method).quote[key].code,
+          "payment_method":$scope.payment_and_shipping.payment_method,
+          "comment":$scope.personal_info.comment,
+          "affiliate_id":'',
+        };
+    }else{
+        var reqObj = {
+            "shipping_method":JSON.parse($scope.payment_and_shipping.shipping_method).quote[key].code,
+            "payment_method":$scope.payment_and_shipping.payment_method,
+            "comment":$scope.personal_info.comment,
+            "affiliate_id":'',
+          };
     }
 
     var config = {

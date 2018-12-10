@@ -1,39 +1,14 @@
-"use strict";
+'use strict';
 
-angular.module("shop.module").controller("CategoryCtrl", CategoryCtrl);
+angular.module('shop.module').controller('CategoryCtrl',CategoryCtrl );
 
-CategoryCtrl.$inject = [
-  "$scope",
-  "$state",
-  "$rootScope",
-  "$stateParams",
-  "httpService",
-  "serverConfig",
-  "$ionicSlideBoxDelegate",
-  "$window",
-  "$ionicGesture",
-  "$timeout",
-  "$mdSidenav",
-  "$log"
-];
+CategoryCtrl.$inject = ['$scope','$state','$rootScope','$stateParams','httpService','serverConfig','$ionicSlideBoxDelegate','$window', '$ionicGesture','$timeout','$mdSidenav','$log'];
 
-function CategoryCtrl(
-  $scope,
-  $state,
-  $rootScope,
-  $stateParams,
-  httpService,
-  serverConfig,
-  $ionicSlideBoxDelegate,
-  $window,
-  $ionicGesture,
-  $timeout,
-  $mdSidenav,
-  $log
-) {
+function CategoryCtrl($scope,$state,$rootScope,$stateParams,httpService,serverConfig,$ionicSlideBoxDelegate,$window, $ionicGesture,$timeout,$mdSidenav,$log) {
+
   var type = $stateParams.type;
 
-  $scope.toggleSideBarHome = buildToggler("right");
+  $scope.toggleSideBarHome = buildToggler('right');
 
   // refresh time in minutes
   var refresh_after = 30;
@@ -56,24 +31,19 @@ function CategoryCtrl(
   };
 
   function getAllCategories() {
-    var extended_url = "/category/all";
+    var extended_url = '/category/all';
     var req = {};
-    httpService
-      .postRequest(serverConfig.clientAPI, extended_url, req, {})
-      .then(function(response) {
-        if (response.status === 200 && !response.error_warning) {
-          localStorage.setItem(
-            "cat_tabs",
-            JSON.stringify({
-              categories: response.data.categories,
-              last_saved_at: Date.parse(new Date())
-            })
-          );
-          initTabs(response.data.categories);
-        } else {
-          $scope.error = response.error_warning;
-        }
-      });
+    httpService.postRequest(serverConfig.clientAPI,extended_url,req,{}).then(function(response){
+      if(response.status === 200 && !response.error_warning){
+        localStorage.setItem('cat_tabs',JSON.stringify({
+          "categories" : response.data.categories,
+          "last_saved_at" : Date.parse(new Date())
+        }));
+        initTabs(response.data.categories);
+      }else{
+        $scope.error = response.error_warning;
+      }
+    });
   }
 
   function initTabs(categories) {
@@ -98,9 +68,10 @@ function CategoryCtrl(
 
     setSelectedMainCategory();
     // get processed categories
-    $scope.cat_tabs["NEW"] = $scope.getSubCategories(categories[0], 2);
-    $scope.cat_tabs["USED"] = $scope.getSubCategories(categories[1], 2);
-    $scope.cat_tabs["WHOLESALE"] = $scope.getSubCategories(categories[2], 2);
+    $scope.cat_tabs["NEW"] = $scope.getSubCategories(categories[0],2) ;
+    $scope.cat_tabs["USED"] = $scope.getSubCategories(categories[1],2);
+    $scope.cat_tabs["WHOLESALE"] = $scope.getSubCategories(categories[2],2)
+
 
     $scope.selectedCatTabs = $scope.cat_tabs[type];
     $ionicSlideBoxDelegate.update();
@@ -159,14 +130,14 @@ function CategoryCtrl(
   $scope.goHome = function() {
     $state.go("home.new");
   };
-  $scope.goToItems = function(category) {
-    $state.go("item-list", { category_id: category.category_id });
+  $scope.goToItems = function (category) {
+    $state.go('item-list',{category_id:category.category_id});
   };
-  $scope.goToSearch = function() {
-    $state.go("item-search");
-  };
+  $scope.goToSearch = function () {
+    $state.go('item-search');
+  }
 
-  $scope.openCategories = function() {
+  $scope.openCategories = function (){
     $scope.close();
     $state.go("categories");
   };
@@ -182,46 +153,35 @@ function CategoryCtrl(
     $scope.close();
     $state.go("order-history");
   };
-  $scope.openAddItem = function() {
-    $state.go("sellerHome");
-  };
-  $scope.openMyProfile = function() {
+  $scope.openMyProfile = function () {
     $scope.close();
     $state.go("my-profile");
   };
-  $scope.logOut = function() {
+  $scope.logOut = function () {
     $scope.close();
-    localStorage.setItem("loginStatus", false);
-    localStorage.setItem("authResponse", null);
+    localStorage.setItem('loginStatus',false);
+    localStorage.setItem('authResponse',null);
     $rootScope.loginStatus = false;
     $rootScope.authResponse = null;
-    $state.go("authSignIn");
+    $state.go('authSignIn');
   };
 
   init();
 
   function init() {
-    var localCategories = localStorage.getItem("cat_tabs");
-    if (
-      localCategories != null &&
-      localCategories != undefined &&
-      localCategories != ""
-    ) {
+    var localCategories = localStorage.getItem('cat_tabs');
+    if(localCategories!=null && localCategories!=undefined && localCategories!=""){
       var tempTabs = JSON.parse(localCategories);
-      if (tempTabs != null && tempTabs != undefined && tempTabs != "") {
-        if (
-          tempTabs.categories.length > 0 &&
-          Date.parse(new Date()) - tempTabs.last_saved_at <
-            refresh_after * 60 * 1000
-        ) {
-          initTabs(tempTabs.categories);
-        } else {
+      if(tempTabs!=null && tempTabs!=undefined && tempTabs!=""){
+        if(tempTabs.categories.length>0 && Date.parse(new Date)-tempTabs.last_saved_at < refresh_after*60*1000){
+          initTabs(tempTabs.categories)
+        }else {
           getAllCategories();
         }
-      } else {
+      }else{
         getAllCategories();
       }
-    } else {
+    }else{
       getAllCategories();
     }
   }

@@ -73,31 +73,22 @@ function OrderHistoryCtrl(
       });
   };
 
-  function initOrderHistory() {
-    console.log("cus_id" + localStorage.getItem("customer_id"));
-    var extended_url = "/order_history";
+  function initOrderHistory(){
+    var extended_url = '/order_history';
     var reqObj = {
-      // affiliate_id: Number($rootScope.authResponse.customer_id)
-      affiliate_id: Number(localStorage.getItem("customer_id"))
+      "affiliate_id":Number($rootScope.authResponse.customer_id)
     };
     var config = {
       headers: {
         "Content-Type": "application/x-www-form-urlencoded"
       }
     };
-    httpService
-      .postRequest(
-        serverConfig.clientAPI,
-        extended_url,
-        $httpParamSerializer(reqObj),
-        config
-      )
-      .then(function(response) {
-        if (response.status === 200) {
-          $scope.orders = response.data.orders;
-          console.log(response);
-        }
-      });
+    httpService.postRequest(serverConfig.clientAPI,extended_url, $httpParamSerializer(reqObj),config).then(function(response){
+      if(response.status === 200){
+        $scope.orders = response.data.orders;
+        console.log(response);
+      }
+    });
   }
 
   function init() {

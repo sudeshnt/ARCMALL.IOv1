@@ -37,11 +37,11 @@ shopModule.config(function config($stateProvider, $urlRouterProvider) {
     //     }
     //   }
     // })
-    .state("categories", {
-      url: "/categories",
-      templateUrl: "app/modules/shop/templates/categories.html",
-      controller: "CategoryCtrl",
-      params: { type: "NEW" }
+    .state('categories', {
+      url: '/categories',
+      templateUrl: 'app/modules/shop/templates/categories.html',
+      controller: 'CategoryCtrl',
+      params : {type:'NEW'}
     })
     .state("wish-list", {
       url: "/wish-list",
@@ -59,11 +59,11 @@ shopModule.config(function config($stateProvider, $urlRouterProvider) {
       controller: "ViewOrderHistoryCtrl",
       params: { order: null }
     })
-    .state("item-list", {
-      url: "/item-list",
-      templateUrl: "app/modules/shop/templates/item-list.html",
-      controller: "ItemListCtrl",
-      params: { category_id: null }
+    .state('item-list', {
+      url: '/item-list',
+      templateUrl: 'app/modules/shop/templates/item-list.html',
+      controller: 'ItemListCtrl',
+      params:{category_id:null}
     })
     .state("item", {
       url: "/item",
@@ -76,14 +76,14 @@ shopModule.config(function config($stateProvider, $urlRouterProvider) {
       templateUrl: "app/modules/shop/templates/itemSearch.html",
       controller: "ItemSearchCtrl"
     })
-    .state("my-profile", {
-      url: "/my-profile",
-      templateUrl: "app/modules/shop/templates/my-profile.html",
-      controller: "MyProfileCtrl"
+    .state('my-profile', {
+      url: '/my-profile',
+      templateUrl: 'app/modules/shop/templates/my-profile.html',
+      controller: 'MyProfileCtrl'
     })
-    .state("seller-profile", {
-      url: "/seller-profile/:product_id/:seller_id",
-      templateUrl: "app/modules/shop/templates/seller-profile.html",
-      controller: "SellerProfileCtrl"
-    });
+    .state('seller-profile', {
+      url: '/seller-profile/:product_id/:seller_id',
+      templateUrl: 'app/modules/shop/templates/seller-profile.html',
+      controller: 'SellerProfileCtrl'
+    })
 });

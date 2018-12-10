@@ -50,23 +50,16 @@
     function postRequest(service, extended_url, req, config) {
       var deferred = $q.defer();
       // var url = service.serviceUrl+service.base_url+extended_url;
-      var url =
-        service.serviceUrl +
-        ":" +
-        service.port +
-        service.base_url +
-        extended_url;
+      var url = service.serviceUrl+':'+service.port+service.base_url+extended_url;
 
-      addToPendingRequests(url, deferred);
+      addToPendingRequests(url,deferred);
       showLoading();
-      $http
-        .post(url, req, config)
-        .success(function(data, status) {
-          var response = log(url, "POST", req, config, data, status);
-
+      $http.post(url,req,config)
+        .success(function(data,status){
+          var response = log(url,'POST',req,config,data,status);
+          hideLoading();
           removeFromPendingRequests(url);
           deferred.resolve(response);
-          hideLoading();
         })
         .error(function(data, status) {
           hideLoading();

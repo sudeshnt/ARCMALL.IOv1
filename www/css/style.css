@@ -15,8 +15,8 @@ ion-content {
   margin-left: auto !important;
   margin-right: auto !important;
 }
-.card-margin {
-  margin: 2px 2px !important;
+.card-margin{
+  margin:2px 2px !important;
 }
 
 .absolute {
@@ -38,7 +38,7 @@ ion-content {
   text-align: right;
 }
 /*buttons*/
-.button.square {
+.button.square{
   border-radius: 0;
 }
 .custom-height-button {
@@ -64,7 +64,7 @@ ion-content {
   height: 65px;
   line-height: 40px !important;
 }
-.button-orange {
+.button-orange{
   background-color: #458ccc;
   /*background-color: #f48420;*/
   color: #ffffff;
@@ -136,7 +136,7 @@ ion-content {
 .left-title {
   margin-left: 60px;
 }
-.bar-subheader {
+.bar-subheader{
   background-color: #458ccc;
   /*background-color:#fc8d33;*/
   box-shadow: 2px 3px 3px 0px rgba(41, 41, 41, 0.3);

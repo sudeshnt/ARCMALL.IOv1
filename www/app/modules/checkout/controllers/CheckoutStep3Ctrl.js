@@ -76,8 +76,7 @@ function CheckoutStep3Ctrl(
             )
             .then(function(response) {
               console.log(response);
-              if (response.status === 200) {
-                console.log("success");
+              if (response.status === 200 && !response.data.error) {
                 $state.go("success");
               }
             });

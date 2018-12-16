@@ -3,15 +3,16 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-var arcMall = angular.module('arcMall', [
-  'ionic',
-  'ngMaterial',
-  'pascalprecht.translate',
-  'lang_en',
-  'modules',
-  'ngCordova',
+var arcMall = angular.module("arcMall", [
+  "ionic",
+  "ngMaterial",
+  "pascalprecht.translate",
+  "lang_en",
+  "lang_zh",
+  "modules",
+  "ngCordova",
   // 'tabSlideBox',
-  'config.module',
+  "config.module"
   // 'googleplus'
   // 'faceboook'
 ]);
@@ -19,17 +20,19 @@ var arcMall = angular.module('arcMall', [
 // translation config
 arcMall.config(function($translateProvider) {
   var language = localStorage.getItem("language");
+
+  console.log("language", language);
   var lang = window.navigator.userLanguage || window.navigator.language;
 
-  if (lang && lang != "") {
-    lang = lang.substring(0, 2);
-  } else {
-    lang = "en";
-  }
+  // if (lang && lang != "") {
+  //   lang = lang.substring(0, 2);
+  // } else {
+  //   lang = "en";
+  // }
 
-  if (lang != "en" && lang != "zh") {
-    lang = "en";
-  }
+  // if (lang != "en" && lang != "zh") {
+  //   lang = "en";
+  // }
 
   if (
     !language ||
@@ -37,7 +40,7 @@ arcMall.config(function($translateProvider) {
     language === "undefined" ||
     language == null
   ) {
-    console.log(language);
+    console.log("lang" + lang);
     localStorage.setItem("language", lang);
     localStorage.removeItem("cat_tabs");
 
@@ -47,6 +50,7 @@ arcMall.config(function($translateProvider) {
 
     localStorage.setItem("language_changed", true);
   } else {
+    console.log("lang2" + lang);
     localStorage.setItem("language", language);
     $translateProvider.preferredLanguage(language);
     $translateProvider.forceAsyncReload(true);

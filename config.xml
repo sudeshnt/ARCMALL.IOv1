@@ -109,5 +109,5 @@
     <plugin name="com.paypal.cordova.mobilesdk" spec="^3.5.0" />
     <plugin name="card.io.cordova.mobilesdk" spec="^2.1.0" />
     <engine name="ios" spec="^4.5.5" />
-    <engine name="android" spec="~7.0.0" />
+    <engine name="android" spec="^7.0.0" />
 </widget>

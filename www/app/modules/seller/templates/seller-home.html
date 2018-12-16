@@ -1,5 +1,5 @@
-<ion-header-bar class="bar bar-header header-md bar-darker">
-  <div style="width: 100%; display: inherit; margin-top: 0px !important;" >
+<ion-header-bar class="bar bar-header header-md bar-darker top">
+  <div style="width: 100%; display: inherit; margin-top: 0px !important;">
     <div class="search-box-wrapper">
       <div class="absolute toggle-side-wrapper">
         <a class="button button-icon row" ng-click="goHome()">
@@ -12,151 +12,335 @@
 </ion-header-bar>
 
 <ion-view>
-  <ion-content class="padding" >
+  <ion-content class="padding">
     <label class="item item-input text-xmd add-item-textbox">
-      <!--<i class="icon ion-ios-home-outline placeholder-icon"></i>-->
-      <input type="text" placeholder="{{'WHAT_IS_YOUR_PRODUCT_NAME' | translate}}" ng-model="item.name">
+      <!-- <i class="icon ion-ios-home-outline placeholder-icon"></i> -->
+      <input
+        type="text"
+        placeholder="{{'WHAT_IS_YOUR_PRODUCT_NAME' | translate}}"
+        ng-model="item.name"
+      />
     </label>
-    <label class="item item-input text-xmd add-item-textbox" style="height:100px;">
-      <!--<i class="icon ion-ios-home-outline placeholder-icon"></i>-->
-      <textarea type="text" rows="4" placeholder="{{'TELL_US_ABOUT_YOUR_ITEM' | translate}}" ng-model="item.description"></textarea>
+    <label
+      class="item item-input text-xmd add-item-textbox"
+      style="height:100px;"
+    >
+      <!-- <i class="icon ion-ios-home-outline placeholder-icon"></i> -->
+      <textarea
+        type="text"
+        rows="4"
+        placeholder="{{'TELL_US_ABOUT_YOUR_ITEM' | translate}}"
+        ng-model="item.description"
+      ></textarea>
     </label>
     <div layout="row" layout-align="space-between center">
-      <md-select ng-model="category.catLevel1" placeholder="Please select type of item" class="md-no-underline category-select">
-        <md-option ng-repeat="cat_level_1 in cat_tabs track by $index" value="{{$index}}">{{cat_level_1.name}}</md-option>
+      <md-select
+        ng-model="category.catLevel1"
+        placeholder="Please select type of item"
+        class="md-no-underline category-select"
+      >
+        <md-option
+          ng-repeat="cat_level_1 in cat_tabs track by $index"
+          value="{{$index}}"
+          >{{ cat_level_1.name }}</md-option
+        >
       </md-select>
     </div>
-    <div layout="row" layout-align="space-between center" ng-if="category.catLevel1">
-      <md-select ng-model="category.catLevel2" placeholder="Please select a main category" class="md-no-underline category-select">
-        <md-option ng-repeat="cat_level_2 in cat_tabs[category.catLevel1].categories track by $index" value="{{$index}}">{{cat_level_2.name}}</md-option>
+    <div
+      layout="row"
+      layout-align="space-between center"
+      ng-if="category.catLevel1"
+    >
+      <md-select
+        ng-model="category.catLevel2"
+        placeholder="Please select a main category"
+        class="md-no-underline category-select"
+      >
+        <md-option
+          ng-repeat="cat_level_2 in cat_tabs[category.catLevel1].categories track by $index"
+          value="{{$index}}"
+          >{{ cat_level_2.name }}</md-option
+        >
       </md-select>
     </div>
-    <div layout="row" layout-align="space-between center" ng-if="category.catLevel2">
-      <md-select ng-model="category.catLevel3"  ng-change="setItemCategory()" placeholder="Please select a sub category" class="md-no-underline category-select">
-        <md-option ng-repeat="cat_level_3 in cat_tabs[category.catLevel1].categories[category.catLevel2].categories track by $index" value="{{$index}}">{{cat_level_3.name}}</md-option>
+    <div
+      layout="row"
+      layout-align="space-between center"
+      ng-if="category.catLevel2"
+    >
+      <md-select
+        ng-model="category.catLevel3"
+        ng-change="setItemCategory()"
+        placeholder="Please select a sub category"
+        class="md-no-underline category-select"
+      >
+        <md-option
+          ng-repeat="cat_level_3 in cat_tabs[category.catLevel1].categories[category.catLevel2].categories track by $index"
+          value="{{$index}}"
+          >{{ cat_level_3.name }}</md-option
+        >
       </md-select>
     </div>
-    <div class="square category-chip" ng-click="signUp()" ng-repeat="category in item.category">
-      {{category.name}}
+    <div
+      class="square category-chip"
+      ng-click="signUp()"
+      ng-repeat="category in item.category"
+    >
+      {{ category.name }}
     </div>
     <label class="item item-input text-xmd add-item-textbox">
-      <!--<i class="icon ion-ios-home-outline placeholder-icon"></i>-->
-      <input type="text" placeholder="{{'WHAT_IS_THE_MODEL_OF_YOUR_PRODUCT' | translate}}" ng-model="item.model">
+      <!-- <i class="icon ion-ios-home-outline placeholder-icon"></i> -->
+      <input
+        type="text"
+        placeholder="{{'WHAT_IS_THE_MODEL_OF_YOUR_PRODUCT' | translate}}"
+        ng-model="item.model"
+      />
     </label>
     <div class="row zero-padding">
       <div class="col zero-padding" style="max-width:153px;margin-right: 5px;">
         <div layout="row" layout-align="space-between center">
-          <md-select ng-model="item.currency_code"  placeholder="Currency" class="md-no-underline category-select">
-            <md-option ng-repeat="currency in currencies track by $index" value="{{currency.code}}">{{currency.title}}</md-option>
+          <md-select
+            ng-model="item.currency_code"
+            placeholder="Currency"
+            class="md-no-underline category-select"
+          >
+            <md-option
+              ng-repeat="currency in currencies track by $index"
+              value="{{currency.code}}"
+              >{{ currency.title }}</md-option
+            >
           </md-select>
         </div>
       </div>
       <div class="col zero-padding">
-        <label class="item item-input text-xmd add-item-textbox" style=" height: 51px;">
-          <input type="number" placeholder="{{'WHAT_IS_THE_PRICE_OF_YOUR_PRODUCT' | translate}}" ng-model="item.price">
+        <label
+          class="item item-input text-xmd add-item-textbox"
+          style=" height: 51px;"
+        >
+          <input
+            type="number"
+            placeholder="{{'WHAT_IS_THE_PRICE_OF_YOUR_PRODUCT' | translate}}"
+            ng-model="item.price"
+          />
         </label>
       </div>
     </div>
     <div class="row zero-padding">
       <div class="col zero-padding">
-        <label class="item item-input text-xmd add-item-textbox" style=" height: 51px;">
-          <input type="number" placeholder="{{'WHAT_IS_THE_HEIGHT_OF_YOUR_PRODUCT' | translate}}" ng-model="item.height">
+        <label
+          class="item item-input text-xmd add-item-textbox"
+          style=" height: 51px;"
+        >
+          <input
+            type="number"
+            placeholder="{{'WHAT_IS_THE_HEIGHT_OF_YOUR_PRODUCT' | translate}}"
+            ng-model="item.height"
+          />
         </label>
       </div>
       <div class="col zero-padding" style="max-width:153px;margin-left: 5px;">
         <div layout="row" layout-align="space-between center">
-          <md-select ng-model="item.dimensionMeasureUnit"  placeholder="Measure Unit" class="md-no-underline category-select">
-            <md-option ng-repeat="measure in dimensionMeasures track by $index" value="{{measure}}">{{measure}}</md-option>
+          <md-select
+            ng-model="item.dimensionMeasureUnit"
+            placeholder="Measure Unit"
+            class="md-no-underline category-select"
+          >
+            <md-option
+              ng-repeat="measure in dimensionMeasures track by $index"
+              value="{{measure}}"
+              >{{ measure }}</md-option
+            >
           </md-select>
         </div>
       </div>
     </div>
     <div class="row zero-padding">
       <div class="col zero-padding">
-        <label class="item item-input text-xmd add-item-textbox" style=" height: 51px;">
-          <input type="number" placeholder="{{'WHAT_IS_THE_WEIGHT_OF_YOUR_PRODUCT' | translate}}" ng-model="item.weight">
+        <label
+          class="item item-input text-xmd add-item-textbox"
+          style=" height: 51px;"
+        >
+          <input
+            type="number"
+            placeholder="{{'WHAT_IS_THE_WEIGHT_OF_YOUR_PRODUCT' | translate}}"
+            ng-model="item.weight"
+          />
         </label>
       </div>
       <div class="col zero-padding" style="max-width:153px;margin-left: 5px;">
         <div layout="row" layout-align="space-between center">
-          <md-select ng-model="item.weightMeasureUnit"  placeholder="Measure Unit" class="md-no-underline category-select">
-            <md-option ng-repeat="measure in weightMeasures track by $index" value="{{measure}}">{{measure}}</md-option>
+          <md-select
+            ng-model="item.weightMeasureUnit"
+            placeholder="Measure Unit"
+            class="md-no-underline category-select"
+          >
+            <md-option
+              ng-repeat="measure in weightMeasures track by $index"
+              value="{{measure}}"
+              >{{ measure }}</md-option
+            >
           </md-select>
         </div>
       </div>
     </div>
 
     <label class="item item-input text-xmd add-item-textbox">
-      <!--<i class="icon ion-ios-home-outline placeholder-icon"></i>-->
-      <input type="number" placeholder="{{'QUANTITY_AVAILABLE' | translate}}" ng-model="item.quantity">
+      <!-- <i class="icon ion-ios-home-outline placeholder-icon"></i> -->
+      <input
+        type="number"
+        placeholder="{{'QUANTITY_AVAILABLE' | translate}}"
+        ng-model="item.quantity"
+      />
     </label>
-    <!--<img ng-repeat="image in item.images track by $index" ng-src="{{image}}" style="width: 70px;height: 70px;margin: 5px;">-->
+    <!--
+      <img ng-repeat="image in item.images track by $index" ng-src="{{image}}" style="width: 70px;height: 70px;margin: 5px;">
+    -->
     <div ng-show="product.product_id">
       <label class="grey-text">Main Image</label>
       <div class="full-width" ng-show="item.mainImage">
-        <img ng-src="{{pathForImage(item.mainImage)}}" style="height: 100px;margin:5px;">
+        <img
+          ng-src="{{pathForImage(item.mainImage)}}"
+          style="height: 100px;margin:5px;"
+        />
       </div>
       <div ng-show="!item.mainImage">
         <a class="button square main-image-btn" ng-click="getPicture('Main')">
-          <i class="ion-plus-round" style="font-size: 30px;"></i>
-        </a><br><br>
+          <i class="ion-plus-round" style="font-size: 30px;"></i> </a
+        ><br /><br />
       </div>
     </div>
     <div ng-show="product.product_id">
-      <label class="grey-text full-width">Sub Images</label><br>
-      <img ng-repeat="image in item.images" ng-src="{{pathForImage(image)}}" style="width: 100px; height: 100px;margin:5px;">
-      <a class="button square sub-image-btn" ng-click="getPicture('Product')" ng-show="item.images.length<7">
+      <label class="grey-text full-width">Sub Images</label><br />
+      <img
+        ng-repeat="image in item.images"
+        ng-src="{{pathForImage(image)}}"
+        style="width: 100px; height: 100px;margin:5px;"
+      />
+      <a
+        class="button square sub-image-btn"
+        ng-click="getPicture('Product')"
+        ng-show="item.images.length<7"
+      >
         <i class="ion-plus-round" style="font-size: 30px;"></i>
       </a>
     </div>
 
     <div>
-      <a class="button custom-height-button button-sm square button-block button-orange capital" ng-click="addItem();">
-        {{"SAVE_ITEM" | translate}}
+      <a
+        class="button custom-height-button button-sm square button-block button-orange capital"
+        ng-click="addItem();"
+      >
+        {{ "SAVE_ITEM" | translate }}
       </a>
     </div>
   </ion-content>
 
-  <md-sidenav class="md-sidenav-left md-whiteframe-4dp" md-component-id="left" style="margin-top: 55px !important;">
+  <md-sidenav
+    class="md-sidenav-left md-whiteframe-4dp"
+    md-component-id="left"
+    style="margin-top: 55px !important;"
+  >
     <md-content>
-      <img ng-src="app/modules/shop/img/home-slide-nav.jpg" style="width:100%">
+      <img
+        ng-src="app/modules/shop/img/home-slide-nav.jpg"
+        style="width:100%"
+      />
       <md-list flex>
-        <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;" ng-show="!loginStatus">
-          <div class="md-list-item-text zero-margin" layout="column" ng-click="openSignIn()">
-            <h4><i class="ion-person sidenav-icon"></i><span class="sidenav-options">{{'SIGN_IN' | translate}}</span></h4>
+        <md-list-item
+          class="md-3-line"
+          style="height: 50px; min-height:0px; padding-top: 10px;"
+          ng-show="!loginStatus"
+        >
+          <div
+            class="md-list-item-text zero-margin"
+            layout="column"
+            ng-click="openSignIn()"
+          >
+            <h4>
+              <i class="ion-person sidenav-icon"></i
+              ><span class="sidenav-options">{{ "SIGN_IN" | translate }}</span>
+            </h4>
           </div>
         </md-list-item>
         <md-divider></md-divider>
-        <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;"  ng-show="authResponse.ispartner=='true'">
-          <div class="md-list-item-text zero-margin" layout="column" ng-click="openAddItem()">
-            <h4><i class="ion-android-hand sidenav-icon"></i><span class="sidenav-options">{{'ADD_ITEM' | translate}}</span></h4>
+        <md-list-item
+          class="md-3-line"
+          style="height: 50px; min-height:0px; padding-top: 10px;"
+          ng-show="authResponse.ispartner=='true'"
+        >
+          <div
+            class="md-list-item-text zero-margin"
+            layout="column"
+            ng-click="openAddItem()"
+          >
+            <h4>
+              <i class="ion-android-hand sidenav-icon"></i
+              ><span class="sidenav-options">{{ "ADD_ITEM" | translate }}</span>
+            </h4>
           </div>
         </md-list-item>
-        <!-- <md-divider ></md-divider>
-        <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;" >
-          <div class="md-list-item-text zero-margin" layout="column" ng-click="openCategories()">
-            <h4><i class="ion-ios-browsers sidenav-icon"></i><span class="sidenav-options">{{'ALL_CATEGORIES' | translate}}</span></h4>
-          </div>
-        </md-list-item> -->
-        <md-divider ></md-divider>
-        <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;">
-          <div class="md-list-item-text zero-margin" layout="column"  ng-click="openWishList()">
-            <h4><i class="ion-ios-heart sidenav-icon"></i><span class="sidenav-options">{{'WISH_LIST' | translate}}</span></h4>
+        <!--
+          <md-divider ></md-divider>
+          <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;" >
+            <div class="md-list-item-text zero-margin" layout="column" ng-click="openCategories()">
+              <h4><i class="ion-ios-browsers sidenav-icon"></i><span class="sidenav-options">{{'ALL_CATEGORIES' | translate}}</span></h4>
+            </div>
+          </md-list-item>
+        -->
+        <md-divider></md-divider>
+        <md-list-item
+          class="md-3-line"
+          style="height: 50px; min-height:0px; padding-top: 10px;"
+        >
+          <div
+            class="md-list-item-text zero-margin"
+            layout="column"
+            ng-click="openWishList()"
+          >
+            <h4>
+              <i class="ion-ios-heart sidenav-icon"></i
+              ><span class="sidenav-options">{{
+                "WISH_LIST" | translate
+              }}</span>
+            </h4>
           </div>
         </md-list-item>
-        <md-divider ></md-divider>
-        <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;">
-          <div class="md-list-item-text zero-margin" layout="column"  ng-click="openOrderHistory();">
-            <h4><i class="ion-ios-albums sidenav-icon"></i><span class="sidenav-options">{{'ORDER_HISTORY' | translate}}</span></h4>
+        <md-divider></md-divider>
+        <md-list-item
+          class="md-3-line"
+          style="height: 50px; min-height:0px; padding-top: 10px;"
+        >
+          <div
+            class="md-list-item-text zero-margin"
+            layout="column"
+            ng-click="openOrderHistory();"
+          >
+            <h4>
+              <i class="ion-ios-albums sidenav-icon"></i
+              ><span class="sidenav-options">{{
+                "ORDER_HISTORY" | translate
+              }}</span>
+            </h4>
           </div>
         </md-list-item>
-        <md-divider ></md-divider>
-        <md-list-item class="md-3-line" style="height: 50px; min-height:0px; padding-top: 10px;"  ng-show="loginStatus">
-          <div class="md-list-item-text zero-margin" layout="column" ng-click="logOut()">
-            <h4><i class="ion-android-hand sidenav-icon"></i><span class="sidenav-options">{{'LOG_OUT' | translate}}</span></h4>
+        <md-divider></md-divider>
+        <md-list-item
+          class="md-3-line"
+          style="height: 50px; min-height:0px; padding-top: 10px;"
+          ng-show="loginStatus"
+        >
+          <div
+            class="md-list-item-text zero-margin"
+            layout="column"
+            ng-click="logOut()"
+          >
+            <h4>
+              <i class="ion-android-hand sidenav-icon"></i
+              ><span class="sidenav-options">{{ "LOG_OUT" | translate }}</span>
+            </h4>
           </div>
         </md-list-item>
-        <md-divider ></md-divider>
+        <md-divider></md-divider>
       </md-list>
     </md-content>
   </md-sidenav>

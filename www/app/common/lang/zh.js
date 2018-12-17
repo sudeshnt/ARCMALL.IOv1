@@ -104,7 +104,9 @@ angular.module("lang_zh", ["pascalprecht.translate", "ngSanitize"]).config([
       CHOOSE: "~ 选择",
       NEXT: "下一个 >",
       ADD_OPTION: "添加选项",
-      PLEASE_VALIDATE: "請輸入所有必填字段"
+      PLEASE_VALIDATE: "請輸入所有必填字段",
+      ENG_US: "English (US)",
+      CHINESE_SIMPLIFIED: "Simplified Chinese (简体中文)"
     });
     $translateProvider.useSanitizeValueStrategy("escapeParameters");
   }

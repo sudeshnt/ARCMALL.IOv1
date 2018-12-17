@@ -76,7 +76,9 @@ angular.module("lang_en", ["pascalprecht.translate", "ngSanitize"]).config([
       CHECKOUT_STEP_TWO: "Checkout - Step 2",
       CHECKOUT_STEP_THREE: "Checkout - Step 3",
       COMMENTS: "Comments",
-      SETTINGS: "SETTINGS"
+      SETTINGS: "SETTINGS",
+      ENG_US: "English (US)",
+      CHINESE_SIMPLIFIED: "Simplified Chinese (简体中文)"
     });
     $translateProvider.useSanitizeValueStrategy("escapeParameters");
   }

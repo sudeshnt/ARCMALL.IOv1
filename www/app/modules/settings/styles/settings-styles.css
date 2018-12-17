@@ -1,3 +1,8 @@
 .top {
   background-color: #0790cf !important;
 }
+
+.radio-content .radio-icon {
+  visibility: visible;
+  color: #0790cf;
+}

@@ -30,7 +30,7 @@ function SettingsCtrl(
   $ionicHistory
 ) {
   $scope.goback = function() {
-    $ionicHistory.goBack();
+    $state.go("dashboard");
   };
   $scope.goToLanguages = function() {
     $state.go("languages");

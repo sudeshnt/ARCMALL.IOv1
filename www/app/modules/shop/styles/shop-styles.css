@@ -1,15 +1,13 @@
-
-.cart-icon-wrapper{
+.cart-icon-wrapper {
   right: 15px;
-  top:8px;
+  top: 8px;
 }
-.back-icon-wrapper{
-  left: 15px;
-  top:8px;
+.back-icon-wrapper {
+  top: 8px;
 }
-.toggle-side-wrapper{
+.toggle-side-wrapper {
   left: 5px;
-  top:8px;
+  top: 8px;
 }
 .filter-icon-wrapper {
   right: 55px;
@@ -30,17 +28,22 @@
   /*border-color: #111;*/
   background-color: #458ccc;
   /*background-color: #2b3036;*/
-  background-image: linear-gradient(0deg, #458ccc, #458ccc 50%, transparent 50%);
+  background-image: linear-gradient(
+    0deg,
+    #458ccc,
+    #458ccc 50%,
+    transparent 50%
+  );
   /*background-image: linear-gradient(0deg, #2b3036, #2b3036 50%, transparent 50%);*/
   color: #fff;
 }
-.tabs-darker{
+.tabs-darker {
   background-color: #458ccc !important;
   /*background-color: #2b3036 !important;*/
   background-image: none;
 }
 .tabs-darker > .tabs {
-  background-color:#458ccc !important;
+  background-color: #458ccc !important;
   /*background-color: #2b3036 !important;*/
   background-image: none;
   color: white;
@@ -348,17 +351,17 @@
 .list .item.item-accordion.ng-hide-remove {
   display: block !important;
 }
-.search-box{
+.search-box {
   height: 43px;
   margin-top: 3px;
   margin-left: 50px;
   margin-right: 20px;
 }
-.sidebar-toggle{
+.sidebar-toggle {
   position: absolute;
   top: 8px;
 }
-.md-sidenav-left{
+.md-sidenav-left {
   margin-top: 56px;
   min-width: 0px;
   width: 250px !important;
@@ -470,7 +473,7 @@ md-select:not([disabled]):focus .md-select-value {
   font-weight: 500 !important;
   width: fit-content !important;
 }
-.discount-review{
+.discount-review {
   display: inline-block;
   width: fit-content;
   /* position: absolute; */
@@ -479,7 +482,7 @@ md-select:not([disabled]):focus .md-select-value {
   margin-right: 15px;
   margin-top: 20px;
 }
-.option-select{
+.option-select {
   margin: 0px 0 0px !important;
   width: 100%;
   background: #e8e8e8;

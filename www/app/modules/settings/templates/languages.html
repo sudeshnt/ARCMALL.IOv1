@@ -10,19 +10,11 @@
   </div>
 </ion-header-bar>
 
-<ion-content overflow-scroll="true">
-  <ion-radio
-    class="default"
-    ng-model="choice"
-    value="en"
-    ng-change="changeLanguage('en')"
-    >{{ "ENG_US" | translate }}</ion-radio
-  >
-  <ion-radio
-    class="default"
-    ng-model="choice"
-    value="zh"
-    ng-change="changeLanguage('zh')"
-    >{{ "CHINESE_SIMPLIFIED" | translate }}</ion-radio
-  >
+<ion-content>
+  <ion-radio ng-model="choice" value="en" ng-change="changeLanguage('en')">{{
+    "ENG_US" | translate
+  }}</ion-radio>
+  <ion-radio ng-model="choice" value="zh" ng-change="changeLanguage('zh')">{{
+    "CHINESE_SIMPLIFIED" | translate
+  }}</ion-radio>
 </ion-content>

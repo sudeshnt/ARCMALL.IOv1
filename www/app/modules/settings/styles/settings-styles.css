@@ -3,6 +3,6 @@
 }
 
 .radio-content .radio-icon {
-  visibility: visible;
-  color: #0790cf;
+  visibility: hidden;
+  color: #000000;
 }
